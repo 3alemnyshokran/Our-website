@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Educational Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Welcome Back</h1>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" id="remember"> Remember me
+                    </label>
+                    <a href="#" class="forgot-password" onclick="forgotPassword(event)">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div class="register-link">
+                Don't have an account? <a href="register.html">Sign up</a>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Redirect to register if not registered
+    if (!localStorage.getItem('tutor_username') || !localStorage.getItem('tutor_password')) {
+        window.location.href = 'register.html';
+    }
+    function handleLogin(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const savedUsername = localStorage.getItem('tutor_username');
+        const savedPassword = localStorage.getItem('tutor_password');
+        const trusted = localStorage.getItem('tutor_trusted') === 'true';
+        if (username === savedUsername && (btoa(password) === savedPassword || trusted)) {
+            // Successful login
+            window.location.href = 'our fucking project.html';
+            return false;
+        } else {
+            alert('Incorrect username or password.');
+            return false;
+        }
+    }
+    function forgotPassword(e) {
+        e.preventDefault();
+        // If device is trusted, allow login without password
+        const trusted = localStorage.getItem('tutor_trusted') === 'true';
+        if (trusted) {
+            window.location.href = 'our fucking project.html';
+        } else {
+            alert('Password recovery is only available on the device you registered with.');
+        }
+    }
+    </script>
+</body>
+</html>

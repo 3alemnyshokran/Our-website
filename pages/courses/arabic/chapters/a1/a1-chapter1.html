@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Alphabet - A1 Level | Chapter 1</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <!-- Include the same styles as english chapter -->
+    <style>
+        /* ... same styles as english chapter ... */
+        
+        /* Additional styles for Arabic text */
+        .arabic-text {
+            font-size: 1.5rem;
+            text-align: right;
+            direction: rtl;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .phonetic {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chapter-container">
+        <div class="level-badge" data-i18n="levelA1">A1 - Breakthrough</div>
+        <h1>Chapter 1: Arabic Alphabet - Basic Letters</h1>
+        
+        <div class="skill-progress">
+            <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
+            <div class="skill-progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="streak-counter">
+            <span class="streak-icon">🔥</span>
+            <span id="currentStreak">0</span> correct in a row!
+        </div>
+
+        <div class="content-section">
+            <h2>First Letters</h2>
+            <p>Let's start with some basic Arabic letters. Each letter can be written in different forms depending on its position in the word.</p>
+            <ul>
+                <li><span class="arabic-text">ا</span> <span class="phonetic">(Alif)</span> - Similar to 'A'</li>
+                <li><span class="arabic-text">ب</span> <span class="phonetic">(Baa)</span> - Similar to 'B'</li>
+                <li><span class="arabic-text">ت</span> <span class="phonetic">(Taa)</span> - Similar to 'T'</li>
+            </ul>
+        </div>
+
+        <div class="feedback-message" id="feedbackMessage"></div>
+
+        <div class="question-container" id="q1">
+            <h3>Practice Question 1</h3>
+            <p>What is the name of this letter: <span class="arabic-text">ا</span>?</p>
+            <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q1', 'Alif')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="hints-container">
+                <p><strong>Hint:</strong> This letter makes the 'A' sound in Arabic.</p>
+            </div>
+        </div>
+
+        <div class="question-container" id="q2">
+            <h3>Practice Question 2</h3>
+            <p>What is the name of this letter: <span class="arabic-text">ب</span>?</p>
+            <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q2', 'Baa')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="hints-container">
+                <p><strong>Hint:</strong> This letter makes the 'B' sound in Arabic.</p>
+            </div>
+        </div>
+
+        <div class="question-container" id="q3">
+            <h3>Practice Question 3</h3>
+            <p>What is the name of this letter: <span class="arabic-text">ت</span>?</p>
+            <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q3', 'Taa')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="hints-container">
+                <p><strong>Hint:</strong> This letter makes the 'T' sound in Arabic.</p>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+            <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        // Same script as English chapter with additional configuration for Arabic
+        let streak = 0;
+        let questionsAnswered = 0;
+        const totalQuestions = 3;
+        const encouragingMessages = [
+            "ممتاز! (Excellent!) 🌟",
+            "أحسنت! (Well done!) 🔥",
+            "رائع! (Amazing!) 👏",
+            "استمر! (Keep going!) 💫",
+            "عمل جيد! (Good work!) 🎯"
+        ];
+
+        // ... rest of the script same as English chapter ...
+    </script>
+</body>
+</html>

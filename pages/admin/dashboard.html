@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Analytics</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<div class="dashboard-layout">
+    <aside class="sidebar">
+        <div class="logo">3alemny Shokran</div>
+        <nav>
+            <ul>
+                <li class="active">Dashboard</li>
+                <li>Users</li>
+                <li>Devices</li>
+                <li>Academics</li>
+            </ul>
+        </nav>
+        <div class="bottom-controls">
+            <span>🌙</span>
+            <span>🇺🇸</span>
+        </div>
+        <div style="padding:24px; color:#fff; font-size:0.95rem;">
+            <strong>Username/Password DB</strong>
+            <ul id="userList" style="margin:10px 0 0 0; padding:0; list-style:none; font-size:0.95rem;"></ul>
+        </div>
+        <div style="padding:24px; color:#fff; font-size:0.95rem;">
+            <strong>Most Used Devices</strong>
+            <ul id="deviceList" style="margin:10px 0 0 0; padding:0; list-style:none; font-size:0.95rem;"></ul>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="topbar">
+            <div class="search-box">
+                <span>🔍</span>
+                <input type="text" placeholder="Search user..." id="searchUser" />
+            </div>
+            <div class="profile">
+                <span>🔔</span>
+                <span>🛒</span>
+                <span class="profile-pic"></span>
+            </div>
+        </div>
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-title">Total Users</div>
+                <div class="card-value" id="totalUsers">0</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Active Users</div>
+                <div class="card-value" id="activeUsers">0</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Most Used Device</div>
+                <div class="card-value" id="mostUsedDevice">-</div>
+            </div>
+        </div>
+        <div class="charts-row">
+            <div class="chart-card">
+                <h3>User Device Distribution</h3>
+                <canvas id="deviceChart" height="120"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>User Academic/Test Info</h3>
+                <div id="userAcademicInfo" style="max-height:300px;overflow:auto;"></div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="../js/main.js"></script>
+</body>
+</html>
