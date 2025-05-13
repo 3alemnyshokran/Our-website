@@ -5,7 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tutoring Website - English & Math</title>  <link rel="stylesheet" href="assets/css/styles.css">
   <style>
-    /* Updated styles for better UI/UX */
+    /* Updated s  <div class="btn-container">
+    <a href="pages/courses/english/english-course.html" class="btn" data-i18n="englishCourses">English Language Courses</a>
+    <a href="pages/courses/math/math-course.html" class="btn" data-i18n="mathCourses">Math Courses</a>       
+    <a href="pages/courses/science/science-course.html" class="btn" data-i18n="scienceCourses">Science Courses</a>
+    <a href="pages/courses/german/german-course.html" class="btn" data-i18n="germanCourses">German Language Courses</a>
+    <a href="pages/courses/arabic/arabic-course.html" class="btn" data-i18n="arabicCourses">Arabic Language Courses</a>
+  </div>or better UI/UX */
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       background: linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%);
@@ -206,8 +212,7 @@
     }
   </style>
 </head>
-<body>
-  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<body>  <audio id="clickSound" src="assets/audio/click.mp3" preload="auto"></audio>
 
   <!-- Login Overlay -->
   <div class="login-overlay" id="loginOverlay" style="display:none;">
@@ -273,13 +278,12 @@
   <h1 data-i18n="welcome">Welcome to the Tutoring Website</h1>
   <p data-i18n="helloUser">Hello, <span id="welcomeUser"></span>!</p>
   <p data-i18n="coursesInfo">Courses for English and Math - Beginner, Intermediate, Advanced Levels</p>
-
   <div class="btn-container">
-    <a href="english-course.html" class="btn" data-i18n="englishCourses">English Language Courses</a>
-    <a href="math-course.html" class="btn" data-i18n="mathCourses">Math Courses</a>
-    <a href="science-course.html" class="btn" data-i18n="scienceCourses">Science Courses</a>
-    <a href="german-course.html" class="btn" data-i18n="germanCourses">German Language Courses</a>
-    <a href="arabic-course.html" class="btn" data-i18n="arabicCourses">Arabic Language Courses</a>
+    <a href="pages/courses/english/english-course.html" class="btn" data-i18n="englishCourses">English Language Courses</a>
+    <a href="pages/courses/math/math-course.html" class="btn" data-i18n="mathCourses">Math Courses</a>
+    <a href="pages/courses/science/science-course.html" class="btn" data-i18n="scienceCourses">Science Courses</a>
+    <a href="pages/courses/german/german-course.html" class="btn" data-i18n="germanCourses">German Language Courses</a>
+    <a href="pages/courses/arabic/arabic-course.html" class="btn" data-i18n="arabicCourses">Arabic Language Courses</a>
   </div>
 
   <div id="courseContainer">
