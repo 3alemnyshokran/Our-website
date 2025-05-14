@@ -1,0 +1,28 @@
+/* Custom styles for specific components */
+:root {
+    --primary-color: #4f46e5;
+    --secondary-color: #3b82f6;
+}
+
+/* Tailwind-compatible customizations */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.theme-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+.language-selector select {
+    appearance: none;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid #e2e8f0;
+}

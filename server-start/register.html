@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Educational Platform</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .register-container {
+            max-width: 400px;
+            margin: 60px auto;
+            background: var(--card-bg);
+            padding: 32px 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px var(--hover-shadow);
+        }
+        .register-box h1 {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .register-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .register-btn:hover {
+            background: var(--secondary-color);
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .ip-info {
+            margin-top: 18px;
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 0.95rem;
+        }
+        .note {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            <h1>Register</h1>
+            <div class="note">
+                Your username and password are saved only on this device.<br>
+                If you forget your password, you can still log in from this device.<br>
+                <strong>Your device IP: <span id="deviceIp">Loading...</span></strong>
+            </div>
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="new-password">
+                </div>
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+            <div class="login-link">
+                Already have an account? <a href="login.html">Login</a>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Save username and password to localStorage
+    function handleRegister(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        if (!username || !password) return false;
+        // Save credentials (hashed for basic obfuscation)
+        localStorage.setItem('tutor_username', username);
+        localStorage.setItem('tutor_password', btoa(password));
+        // Mark device as trusted
+        localStorage.setItem('tutor_trusted', 'true');
+        window.location.href = 'home-screen.html';
+        return false;
+    }
+    // Get device IP (uses public API)
+    fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('deviceIp').textContent = data.ip;
+        })
+        .catch(() => {
+            document.getElementById('deviceIp').textContent = 'Unavailable';
+        });
+    </script>
+</body>
+</html>

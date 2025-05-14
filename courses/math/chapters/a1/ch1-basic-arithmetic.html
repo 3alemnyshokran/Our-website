@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Arithmetic | Chapter 1</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .step-by-step {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(var(--primary-color-rgb), 0.05);
+            border-radius: 8px;
+        }
+
+        .step-by-step.show {
+            display: block;
+        }
+
+        .step {
+            margin: 10px 0;
+            padding: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .math-expression {
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            background: var(--card-bg);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .video-explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .video-explanation:hover {
+            transform: translateY(-2px);
+        }
+
+        .hint-button {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .hint-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .mental-math-tip {
+            margin-top: 10px;
+            font-style: italic;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="chapter-container">
+        <div class="level-badge">Basic Level</div>
+        <h1>Chapter 1: Basic Arithmetic</h1>
+        
+        <div class="skill-progress">
+            <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
+            <div class="skill-progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="streak-counter">
+            <span class="streak-icon">🔥</span>
+            <span id="currentStreak">0</span> correct in a row!
+        </div>
+
+        <div class="content-section">
+            <h2>Addition and Subtraction</h2>
+            <p>Let's practice basic arithmetic operations. Remember:</p>
+            <ul>
+                <li>Addition (+) combines numbers together</li>
+                <li>Subtraction (-) finds the difference between numbers</li>
+                <li>Always work from left to right unless there are parentheses</li>
+            </ul>
+        </div>
+
+        <div class="feedback-message" id="feedbackMessage"></div>
+
+        <div class="question-container" id="q1">
+            <h3>Practice Question 1</h3>
+            <p>Calculate: <span class="math-expression">15 + 7</span></p>
+            <div class="mental-math-tip">Tip: Break down 7 into 5 + 2 to make it easier!</div>
+            <input type="number" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
+            <button class="hint-button" onclick="toggleHint('q1')">Need a hint?</button>
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q1', '22')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="step-by-step" id="q1-steps">
+                <h4>Step by Step Solution:</h4>
+                <div class="step">1. Break down 15 + 7</div>
+                <div class="step">2. Think of it as 15 + 5 + 2</div>
+                <div class="step">3. 15 + 5 = 20 (easy!)</div>
+                <div class="step">4. 20 + 2 = 22</div>
+            </div>
+        </div>
+
+        <div class="question-container" id="q2">
+            <h3>Practice Question 2</h3>
+            <p>Calculate: <span class="math-expression">23 - 8</span></p>
+            <div class="mental-math-tip">Tip: Think about getting to 20 first!</div>
+            <input type="number" class="answer-input" id="q2-input" placeholder="Type your answer" autocomplete="off">
+            <button class="hint-button" onclick="toggleHint('q2')">Need a hint?</button>
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q2', '15')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="step-by-step" id="q2-steps">
+                <h4>Step by Step Solution:</h4>
+                <div class="step">1. Break down 23 - 8</div>
+                <div class="step">2. First subtract 3: 23 - 3 = 20</div>
+                <div class="step">3. Then subtract 5 more: 20 - 5 = 15</div>
+                <div class="step">4. We subtracted 3 + 5 = 8 in total!</div>
+            </div>
+        </div>
+
+        <div class="question-container" id="q3">
+            <h3>Practice Question 3</h3>
+            <p>Calculate: <span class="math-expression">12 + 5 - 3</span></p>
+            <div class="mental-math-tip">Tip: Remember to work from left to right!</div>
+            <input type="number" class="answer-input" id="q3-input" placeholder="Type your answer" autocomplete="off">
+            <button class="hint-button" onclick="toggleHint('q3')">Need a hint?</button>
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q3', '14')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="step-by-step" id="q3-steps">
+                <h4>Step by Step Solution:</h4>
+                <div class="step">1. Start with 12 + 5</div>
+                <div class="step">2. 12 + 5 = 17</div>
+                <div class="step">3. Now subtract 3: 17 - 3 = 14</div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="previousChapter()">Previous Chapter</button>
+            <button class="nav-button" onclick="nextChapter()">Next Chapter</button>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        let streak = 0;
+        let questionsAnswered = 0;
+        const totalQuestions = 3;
+        const encouragingMessages = [
+            "Perfect calculation! 🌟",
+            "You're a math wizard! 🔥",
+            "Great work with numbers! 👏",
+            "Your math skills are growing! 💫",
+            "Excellent arithmetic! 🎯"
+        ];
+
+        function checkAnswerWithFeedback(questionId, correctAnswer) {
+            const input = document.getElementById(`${questionId}-input`);
+            const container = document.getElementById(questionId);
+            const resultDiv = container.querySelector('.answer-result');
+            const stepsDiv = document.getElementById(`${questionId}-steps`);
+            const userAnswer = input.value.trim();
+            
+            const isCorrect = userAnswer === correctAnswer;
+            
+            container.className = `question-container ${isCorrect ? 'correct' : 'incorrect'}`;
+            resultDiv.className = `answer-result ${isCorrect ? 'correct' : 'incorrect'} show`;
+            
+            if (isCorrect) {
+                streak++;
+                questionsAnswered++;
+                resultDiv.textContent = `✓ Correct! ${correctAnswer} is the right answer.`;
+                updateProgress(questionId);
+                showEncouragement();
+                input.disabled = true;
+                hideHint(questionId);
+            } else {
+                streak = 0;
+                resultDiv.textContent = `✗ Not quite. Try using the hint or viewing the step-by-step solution!`;
+                showHint(questionId);
+            }
+            
+            updateStreakCounter();
+            updateMasteryProgress();
+        }
+
+        function showEncouragement() {
+            const message = encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)];
+            const feedbackDiv = document.getElementById('feedbackMessage');
+            feedbackDiv.textContent = message;
+            feedbackDiv.style.color = '#4caf50';
+        }
+
+        function updateStreakCounter() {
+            document.getElementById('currentStreak').textContent = streak;
+        }
+
+        function updateMasteryProgress() {
+            const progress = (questionsAnswered / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('masteryPercentage').textContent = `${Math.round(progress)}%`;
+        }
+
+        function toggleHint(questionId) {
+            const stepsDiv = document.getElementById(`${questionId}-steps`);
+            stepsDiv.classList.toggle('show');
+        }
+
+        function showHint(questionId) {
+            const stepsDiv = document.getElementById(`${questionId}-steps`);
+            stepsDiv.classList.add('show');
+        }
+
+        function hideHint(questionId) {
+            const stepsDiv = document.getElementById(`${questionId}-steps`);
+            stepsDiv.classList.remove('show');
+        }
+
+        // Handle Enter key press
+        document.querySelectorAll('.answer-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const questionId = this.id.split('-')[0];
+                    const correctAnswer = {
+                        'q1': '22',
+                        'q2': '15',
+                        'q3': '14'
+                    }[questionId];
+                    checkAnswerWithFeedback(questionId, correctAnswer);
+                }
+            });
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateMasteryProgress();
+            updateStreakCounter();
+        });
+    </script>
+</body>
+</html>

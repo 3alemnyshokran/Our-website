@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Grammar - A1 Level | Chapter 1</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .chapter-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+
+        .exercise {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--card-bg);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .question-container {
+            background: var(--card-bg);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px var(--hover-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .question-container.correct {
+            border-left: 4px solid #4caf50;
+        }
+
+        .question-container.incorrect {
+            border-left: 4px solid #f44336;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .check-answer-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .check-answer-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .answer-result {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .answer-result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .answer-result.correct {
+            background: rgba(76, 175, 80, 0.15);
+            color: #2e7d32;
+        }
+
+        .answer-result.incorrect {
+            background: rgba(244, 67, 54, 0.15);
+            color: #d32f2f;
+        }
+
+        .skill-progress {
+            position: relative;
+            background: rgba(var(--primary-color-rgb), 0.1);
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .progress-label {
+            position: absolute;
+            right: 0;
+            top: -25px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .streak-counter {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+
+        .streak-counter .streak-icon {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .feedback-message {
+            font-size: 1.1rem;
+            margin: 15px 0;
+            text-align: center;
+            min-height: 1.5em;
+        }
+
+        .hints-container {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(var(--primary-color-rgb), 0.05);
+            border-radius: 8px;
+            display: none;
+        }
+
+        .hints-container.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="chapter-container">
+        <div class="level-badge" data-i18n="levelA1">A1 - Breakthrough</div>
+        <h1>Chapter 1: Basic Grammar</h1>
+        
+        <div class="skill-progress">
+            <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
+            <div class="skill-progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="streak-counter">
+            <span class="streak-icon">🔥</span>
+            <span id="currentStreak">0</span> correct in a row!
+        </div>
+
+        <div class="content-section">
+            <h2>Subject Pronouns</h2>
+            <p>In English, we use subject pronouns to refer to people or things without using their names. The main subject pronouns are:</p>
+            <ul>
+                <li>I (first person singular)</li>
+                <li>You (second person singular/plural)</li>
+                <li>He/She/It (third person singular)</li>
+                <li>We (first person plural)</li>
+                <li>They (third person plural)</li>
+            </ul>
+        </div>
+
+        <div class="feedback-message" id="feedbackMessage"></div>
+
+        <div class="question-container" id="q1">
+            <h3>Practice Question 1</h3>
+            <p>Complete the sentence: "_____ am a student." (Use the correct subject pronoun)</p>
+            <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q1', 'I')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="hints-container">
+                <p><strong>Hint:</strong> When talking about yourself, which pronoun do you use?</p>
+            </div>
+        </div>
+
+        <div class="question-container" id="q2">
+            <h3>Practice Question 2</h3>
+            <p>Complete the sentence: "_____ is my teacher." (Use the correct subject pronoun for a female teacher)</p>
+            <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q2', 'She')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="hints-container">
+                <p><strong>Hint:</strong> Which pronoun do we use for a female person?</p>
+            </div>
+        </div>
+
+        <div class="question-container" id="q3">
+            <h3>Practice Question 3</h3>
+            <p>Complete the sentence: "_____ are my friends." (Use the correct subject pronoun for multiple people)</p>
+            <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q3', 'They')">Check Answer</button>
+            <div class="answer-result"></div>
+            <div class="hints-container">
+                <p><strong>Hint:</strong> When referring to multiple people, we use this plural pronoun.</p>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+            <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        let streak = 0;
+        let questionsAnswered = 0;
+        const totalQuestions = 3;
+        const encouragingMessages = [
+            "Great job! Keep it up! 🌟",
+            "You're on fire! 🔥",
+            "Excellent work! 👏",
+            "Amazing progress! 💫",
+            "You're doing great! 🎯"
+        ];
+
+        function checkAnswerWithFeedback(questionId, correctAnswer) {
+            const input = document.getElementById(`${questionId}-input`);
+            const container = document.getElementById(questionId);
+            const resultDiv = container.querySelector('.answer-result');
+            const hintsDiv = container.querySelector('.hints-container');
+            const userAnswer = input.value.trim();
+            
+            const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
+            
+            // Update UI
+            container.className = `question-container ${isCorrect ? 'correct' : 'incorrect'}`;
+            resultDiv.className = `answer-result ${isCorrect ? 'correct' : 'incorrect'} show`;
+            
+            if (isCorrect) {
+                streak++;
+                questionsAnswered++;
+                resultDiv.textContent = `✓ Correct! "${correctAnswer}" is the right answer.`;
+                updateProgress(questionId);
+                showEncouragement();
+                input.disabled = true;
+            } else {
+                streak = 0;
+                resultDiv.textContent = `✗ Try again! Think about which pronoun fits here.`;
+                hintsDiv.className = 'hints-container show';
+            }
+            
+            updateStreakCounter();
+            updateMasteryProgress();
+        }
+
+        function showEncouragement() {
+            const message = encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)];
+            const feedbackDiv = document.getElementById('feedbackMessage');
+            feedbackDiv.textContent = message;
+            feedbackDiv.style.color = '#4caf50';
+        }
+
+        function updateStreakCounter() {
+            document.getElementById('currentStreak').textContent = streak;
+        }
+
+        function updateMasteryProgress() {
+            const progress = (questionsAnswered / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('masteryPercentage').textContent = `${Math.round(progress)}%`;
+        }
+
+        // Handle "Enter" key press
+        document.querySelectorAll('.answer-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const questionId = this.id.split('-')[0];
+                    const correctAnswer = {
+                        'q1': 'I',
+                        'q2': 'She',
+                        'q3': 'They'
+                    }[questionId];
+                    checkAnswerWithFeedback(questionId, correctAnswer);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

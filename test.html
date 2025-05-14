@@ -1,0 +1,54 @@
+<style>
+    /* Test Page Styles */
+    .test-container {
+        max-width: 800px;
+        margin: 30px auto;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #ffffff;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    .test-container h1 {
+        text-align: center;
+        color: #2e7d32;
+    }
+    .test-container .question {
+        margin-bottom: 20px;
+    }
+    .test-container .question h2 {
+        color: #388e3c;
+    }
+    .test-container button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        background: #4caf50;
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+</style>
+<script>
+    // Test Page Logic
+    function submitTest() {
+        alert('Test submitted! Your level will be determined.');
+    }
+</script>
+
+<div class="test-container">
+    <h1>Level Test</h1>
+    <div class="question">
+        <h2>Question 1: What is the capital of France?</h2>
+        <input type="radio" name="q1" value="Paris"> Paris<br>
+        <input type="radio" name="q1" value="London"> London<br>
+        <input type="radio" name="q1" value="Berlin"> Berlin<br>
+    </div>
+    <div class="question">
+        <h2>Question 2: Solve 5 + 3</h2>
+        <input type="radio" name="q2" value="8"> 8<br>
+        <input type="radio" name="q2" value="10"> 10<br>
+        <input type="radio" name="q2" value="6"> 6<br>
+    </div>
+    <button onclick="submitTest()">Submit Test</button>
+</div>

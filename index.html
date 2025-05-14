@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutoring Website - English & Math</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Tutoring Website</h1>
+    <div class="flex items-center gap-4">
+      <button class="theme-btn bg-white text-blue-600 px-4 py-2 rounded" aria-label="Toggle Theme">
+        <span class="light-icon hidden">☀️</span>
+        <span class="dark-icon">🌙</span>
+      </button>
+      <select id="languageSelect" class="bg-white text-gray-800 px-4 py-2 rounded" aria-label="Select Language">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="p-8">
+    <h2 class="text-3xl font-semibold mb-4">Welcome to the Tutoring Website</h2>
+    <p class="mb-6">Hello, <span id="welcomeUser" class="font-bold">User</span>!</p>
+    <p class="mb-6">Courses for English and Math - Beginner, Intermediate, Advanced Levels</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <a href="english-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">English Language Courses</a>
+      <a href="math-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">Math Courses</a>
+      <a href="science-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">Science Courses</a>
+      <a href="german-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">German Language Courses</a>
+      <a href="arabic-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">Arabic Language Courses</a>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white p-4 text-center">
+    <p>&copy; 2025 Tutoring Website. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

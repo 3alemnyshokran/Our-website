@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .profile-setup-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .profile-upload {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile-upload-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: block;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            cursor: pointer;
+        }
+
+        .profile-upload-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .profile-upload-label:hover {
+            transform: translateY(-2px);
+        }
+
+        .profile-form {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px var(--hover-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .save-button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+
+        .save-button:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-setup-container">
+        <h1>Profile Setup</h1>
+        <form class="profile-form" id="profileForm">
+            <div class="profile-upload">
+                <img src="default-avatar.png" alt="Profile Preview" class="profile-upload-preview" id="profilePreview">
+                <label class="profile-upload-label">
+                    Upload Photo
+                    <input type="file" id="profilePhoto" accept="image/*" style="display: none;">
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="save-button">Complete Setup</button>
+        </form>
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedPic = localStorage.getItem('profilePicture');
+            const uploadPreview = document.getElementById('profilePreview');
+            if (savedPic) {
+                uploadPreview.src = savedPic;
+                uploadPreview.classList.remove('empty');
+            }
+            const username = localStorage.getItem('username');
+            const email = localStorage.getItem('email');
+            if (username) document.getElementById('username').value = username;
+            if (email) document.getElementById('email').value = email;
+        });
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            localStorage.setItem('username', username);
+            localStorage.setItem('email', email);
+            window.location.href = 'home-screen.html';
+        });
+        document.getElementById('profilePhoto').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePreview').src = e.target.result;
+                    localStorage.setItem('profilePicture', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
