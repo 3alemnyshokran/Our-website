@@ -75,8 +75,22 @@ To run the project locally:
 4. Start the server: `node server.js`
 5. Open `index.html` in your browser
 
+## Deployment
+
+### Vercel Deployment
+
+The project is configured for deployment on Vercel:
+
+1. Push your code to GitHub
+2. Connect your GitHub repository to Vercel
+3. Vercel will automatically deploy your site
+4. Access your live site at the Vercel-generated URL
+
+The deployment configuration is handled by `vercel.json` in the root directory.
+
 ## Technology Stack
 
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js
 - Database: MongoDB (configured in server.js)
+- Deployment: Vercel
