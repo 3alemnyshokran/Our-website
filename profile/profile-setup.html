@@ -1,145 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Setup</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .profile-setup-container {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .profile-upload {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-upload-preview {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            display: block;
-            object-fit: cover;
-            border: 3px solid var(--primary-color);
-            cursor: pointer;
-        }
-
-        .profile-upload-label {
-            display: inline-block;
-            padding: 10px 20px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .profile-upload-label:hover {
-            transform: translateY(-2px);
-        }
-
-        .profile-form {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px var(--hover-shadow);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-color);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--input-bg);
-            color: var(--text-color);
-        }
-
-        .save-button {
-            width: 100%;
-            padding: 12px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: transform 0.2s ease;
-        }
-
-        .save-button:hover {
-            transform: translateY(-2px);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Setup - 3alemny Shokran</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Basic styles for theme toggle icons if needed, Tailwind handles dark mode via 'dark' class on html */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
+  </style>
+  <script>
+    // Tailwind dark mode setup
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  </script>
 </head>
-<body>
-    <div class="profile-setup-container">
-        <h1>Profile Setup</h1>
-        <form class="profile-form" id="profileForm">
-            <div class="profile-upload">
-                <img src="default-avatar.png" alt="Profile Preview" class="profile-upload-preview" id="profilePreview">
-                <label class="profile-upload-label">
-                    Upload Photo
-                    <input type="file" id="profilePhoto" accept="image/*" style="display: none;">
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+          <span class="light-icon">☀️</span>
+          <span class="dark-icon">🌙</span>
+        </button>
+        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <!-- Add other languages as needed -->
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-xl shadow-xl">
+      <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">Setup Your Profile</h2>
+      <form id="profileSetupForm">
+        <!-- Personal Information -->
+        <div class="mb-6">
+          <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Personal Information</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="fullName" class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">Full Name</label>
+              <input type="text" id="fullName" name="fullName" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="e.g., John Doe">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">Email Address</label>
+              <input type="email" id="email" name="email" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="e.g., john.doe@example.com">
+            </div>
+          </div>
+        </div>
+
+        <!-- Learning Preferences -->
+        <div class="mb-6">
+          <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Learning Preferences</h3>
+          <div>
+            <label for="preferredSubjects" class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">Preferred Subjects (comma-separated)</label>
+            <input type="text" id="preferredSubjects" name="preferredSubjects" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="e.g., Math, Science, English">
+          </div>
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="mb-6">
+          <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Profile Picture</h3>
+          <div class="flex items-center gap-4">
+            <img id="profileImagePreview" src="https://via.placeholder.com/100" alt="Profile Preview" class="w-24 h-24 rounded-full object-cover border-2 border-slate-300 dark:border-slate-600">
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" class="block w-full text-sm text-slate-500 dark:text-slate-400
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-lg file:border-0
+              file:text-sm file:font-semibold
+              file:bg-blue-50 dark:file:bg-blue-900 file:text-blue-700 dark:file:text-blue-300
+              hover:file:bg-blue-100 dark:hover:file:bg-blue-800
+            ">
+          </div>
+        </div>
+        
+        <!-- Notifications -->
+        <div class="mb-8">
+            <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Notification Settings</h3>
+            <div class="space-y-2">
+                <label class="flex items-center space-x-3">
+                    <input type="checkbox" name="emailNotifications" class="form-checkbox h-5 w-5 text-blue-600 dark:text-blue-500 border-slate-300 dark:border-slate-600 rounded focus:ring-blue-500 dark:bg-slate-700">
+                    <span class="text-slate-700 dark:text-slate-300">Receive email notifications for course updates</span>
+                </label>
+                <label class="flex items-center space-x-3">
+                    <input type="checkbox" name="smsNotifications" class="form-checkbox h-5 w-5 text-blue-600 dark:text-blue-500 border-slate-300 dark:border-slate-600 rounded focus:ring-blue-500 dark:bg-slate-700">
+                    <span class="text-slate-700 dark:text-slate-300">Receive SMS notifications for important announcements</span>
                 </label>
             </div>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <button type="submit" class="save-button">Complete Setup</button>
-        </form>
-    </div>
-    <script src="js/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedPic = localStorage.getItem('profilePicture');
-            const uploadPreview = document.getElementById('profilePreview');
-            if (savedPic) {
-                uploadPreview.src = savedPic;
-                uploadPreview.classList.remove('empty');
-            }
-            const username = localStorage.getItem('username');
-            const email = localStorage.getItem('email');
-            if (username) document.getElementById('username').value = username;
-            if (email) document.getElementById('email').value = email;
-        });
-        document.getElementById('profileForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            localStorage.setItem('username', username);
-            localStorage.setItem('email', email);
-            window.location.href = 'home-screen.html';
-        });
-        document.getElementById('profilePhoto').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profilePreview').src = e.target.result;
-                    localStorage.setItem('profilePicture', e.target.result);
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
+        </div>
+
+        <div class="flex justify-end">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-colors">
+            Save Profile
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
+    <p>&copy; <span id="currentYear">2025</span> 3alemny Shokran. All rights reserved.</p>
+    <p class="text-sm">Designed with Tailwind CSS</p>
+  </footer>
+
+  <script src="../../js/main.js"></script>
+  <script>
+    // Update current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Profile picture preview
+    const profilePictureInput = document.getElementById('profilePicture');
+    const profileImagePreview = document.getElementById('profileImagePreview');
+    if (profilePictureInput && profileImagePreview) {
+      profilePictureInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            profileImagePreview.src = e.target.result;
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // Handle form submission (basic example)
+    const profileSetupForm = document.getElementById('profileSetupForm');
+    if (profileSetupForm) {
+      profileSetupForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // In a real application, you would collect form data and send it to a server.
+        alert('Profile saved successfully! (This is a demo)');
+        // Example: Collect data
+        // const formData = new FormData(profileSetupForm);
+        // for (let [key, value] of formData.entries()) {
+        //   console.log(key, value);
+        // }
+      });
+    }
+  </script>
 </body>
 </html>
