@@ -1,74 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Analytics</title>
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - 3alemny Shokran</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
 </head>
-<body>
-<div class="dashboard-layout">
-    <aside class="sidebar">
-        <div class="logo">3alemny Shokran</div>
-        <nav>
-            <ul>
-                <li class="active">Dashboard</li>
-                <li>Users</li>
-                <li>Devices</li>
-                <li>Academics</li>
-            </ul>
-        </nav>
-        <div class="bottom-controls">
-            <span>🌙</span>
-            <span>🇺🇸</span>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex transition-colors duration-300">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-slate-800 dark:bg-slate-950 text-white min-h-screen p-4 flex flex-col overflow-auto">
+    <div class="mb-8">
+      <h1 class="text-2xl font-bold text-blue-400">3alemny Shokran</h1>
+      <p class="text-sm text-slate-400">Admin Dashboard</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-grow">
+      <ul class="space-y-1">
+        <li>
+          <button onclick="showTab('dashboard')" class="w-full text-left px-4 py-2 rounded hover:bg-slate-700 active-tab" id="tab-dashboard">
+            Dashboard
+          </button>
+        </li>
+        <li>
+          <button onclick="showTab('users')" class="w-full text-left px-4 py-2 rounded hover:bg-slate-700" id="tab-users">
+            User Management
+          </button>
+        </li>
+        <li>
+          <button onclick="showTab('devices')" class="w-full text-left px-4 py-2 rounded hover:bg-slate-700" id="tab-devices">
+            Device History
+          </button>
+        </li>
+        <li>
+          <button onclick="showTab('recovery')" class="w-full text-left px-4 py-2 rounded hover:bg-slate-700" id="tab-recovery">
+            Account Recovery
+          </button>
+        </li>
+      </ul>
+    </nav>
+    
+    <!-- Export Options -->
+    <div class="mt-8 pt-4 border-t border-slate-700">
+      <h3 class="text-sm font-semibold text-slate-400 mb-2">Export Data</h3>
+      <button onclick="exportLoginHistory()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-4 rounded mb-2">
+        Export Login History
+      </button>
+      <button onclick="exportUsersData()" class="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-4 rounded">
+        Export User Data
+      </button>
+    </div>
+    
+    <!-- Admin Info -->
+    <div class="mt-8 pt-4 border-t border-slate-700">
+      <div class="flex items-center">
+        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">A</div>
+        <div class="ml-3">
+          <p class="text-sm font-medium">Admin User</p>
+          <p class="text-xs text-slate-400">admin@3alemny.com</p>
         </div>
-        <div style="padding:24px; color:#fff; font-size:0.95rem;">
-            <strong>Username/Password DB</strong>
-            <ul id="userList" style="margin:10px 0 0 0; padding:0; list-style:none; font-size:0.95rem;"></ul>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow p-6 overflow-auto">
+    <!-- Dashboard Tab -->
+    <div id="dashboard-tab" class="tab-content">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Dashboard Overview</h2>
+        <button onclick="refreshData()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          Refresh Data
+        </button>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Users</h3>
+            <span class="text-blue-500 bg-blue-100 dark:bg-blue-900 dark:text-blue-300 rounded-full p-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="flex items-baseline">
+            <span class="text-3xl font-bold" id="total-users-count">0</span>
+            <span class="ml-2 text-sm text-green-600 dark:text-green-400">+2 today</span>
+          </div>
         </div>
-        <div style="padding:24px; color:#fff; font-size:0.95rem;">
-            <strong>Most Used Devices</strong>
-            <ul id="deviceList" style="margin:10px 0 0 0; padding:0; list-style:none; font-size:0.95rem;"></ul>
+
+        <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Login Attempts</h3>
+            <span class="text-yellow-500 bg-yellow-100 dark:bg-yellow-900 dark:text-yellow-300 rounded-full p-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="flex items-baseline">
+            <span class="text-3xl font-bold" id="login-attempts-count">0</span>
+            <span class="ml-2 text-sm text-green-600 dark:text-green-400">+15 today</span>
+          </div>
         </div>
-    </aside>
-    <main class="main-content">
-        <div class="topbar">
-            <div class="search-box">
-                <span>🔍</span>
-                <input type="text" placeholder="Search user..." id="searchUser" />
-            </div>
-            <div class="profile">
-                <span>🔔</span>
-                <span>🛒</span>
-                <span class="profile-pic"></span>
-            </div>
+
+        <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-sm font-medium text-slate-500 dark:text-slate-400">Unique Devices</h3>
+            <span class="text-purple-500 bg-purple-100 dark:bg-purple-900 dark:text-purple-300 rounded-full p-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="flex items-baseline">
+            <span class="text-3xl font-bold" id="unique-devices-count">0</span>
+            <span class="ml-2 text-sm text-green-600 dark:text-green-400">+5 today</span>
+          </div>
         </div>
-        <div class="dashboard-cards">
-            <div class="card">
-                <div class="card-title">Total Users</div>
-                <div class="card-value" id="totalUsers">0</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Active Users</div>
-                <div class="card-value" id="activeUsers">0</div>
-            </div>
-            <div class="card">
-                <div class="card-title">Most Used Device</div>
-                <div class="card-value" id="mostUsedDevice">-</div>
-            </div>
+      </div>
+
+      <!-- Recent Login Activity -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6 mb-8">
+        <h3 class="text-lg font-semibold mb-4">Recent Login Activity</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="text-xs uppercase text-slate-500 dark:text-slate-400">
+              <tr>
+                <th class="px-4 py-3">Username</th>
+                <th class="px-4 py-3">Time</th>
+                <th class="px-4 py-3">IP Address</th>
+                <th class="px-4 py-3">Device</th>
+                <th class="px-4 py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody id="recent-logins-table">
+              <tr class="border-b border-slate-200 dark:border-slate-700">
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="charts-row">
-            <div class="chart-card">
-                <h3>User Device Distribution</h3>
-                <canvas id="deviceChart" height="120"></canvas>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div id="users-tab" class="tab-content hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">User Management</h2>
+        <div class="flex space-x-2">
+          <div class="relative">
+            <input type="text" id="user-search" placeholder="Search users..." class="py-2 pl-10 pr-4 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
             </div>
-            <div class="chart-card">
-                <h3>User Academic/Test Info</h3>
-                <div id="userAcademicInfo" style="max-height:300px;overflow:auto;"></div>
-            </div>
+          </div>
         </div>
-    </main>
-</div>
-<script src="../js/main.js"></script>
+      </div>
+
+      <!-- Users Table -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="text-xs uppercase text-slate-500 dark:text-slate-400">
+              <tr>
+                <th class="px-4 py-3">Username</th>
+                <th class="px-4 py-3">Last Login</th>
+                <th class="px-4 py-3">IP Address</th>
+                <th class="px-4 py-3">Device</th>
+                <th class="px-4 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-table">
+              <tr class="border-b border-slate-200 dark:border-slate-700">
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Devices Tab -->
+    <div id="devices-tab" class="tab-content hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Device History</h2>
+        <button onclick="refreshDeviceHistory()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded flex items-center">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          Refresh
+        </button>
+      </div>
+
+      <!-- Device Filters -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Filter by Username</label>
+            <input type="text" id="filter-username" class="w-full py-2 px-4 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Filter by Device</label>
+            <select id="filter-device" class="w-full py-2 px-4 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">All devices</option>
+              <option value="Windows">Windows</option>
+              <option value="MacOS">MacOS</option>
+              <option value="Linux">Linux</option>
+              <option value="Android">Android</option>
+              <option value="iOS">iOS</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Login Status</label>
+            <select id="filter-status" class="w-full py-2 px-4 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">All attempts</option>
+              <option value="true">Successful</option>
+              <option value="false">Failed</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-4">
+          <button onclick="applyDeviceFilters()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Apply Filters</button>
+          <button onclick="clearDeviceFilters()" class="ml-2 bg-slate-200 dark:bg-slate-600 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 px-4 py-2 rounded">Clear</button>
+        </div>
+      </div>
+
+      <!-- Device History Table -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="text-xs uppercase text-slate-500 dark:text-slate-400">
+              <tr>
+                <th class="px-4 py-3">Username</th>
+                <th class="px-4 py-3">Timestamp</th>
+                <th class="px-4 py-3">IP Address</th>
+                <th class="px-4 py-3">Browser</th>
+                <th class="px-4 py-3">OS</th>
+                <th class="px-4 py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody id="device-history-table">
+              <tr class="border-b border-slate-200 dark:border-slate-700">
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+                <td class="px-4 py-3">Loading...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Recovery Tab -->
+    <div id="recovery-tab" class="tab-content hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Account Recovery</h2>
+      </div>
+
+      <!-- Recovery Form -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6 mb-6">
+        <div class="mb-6">
+          <h3 class="text-lg font-semibold mb-4">Find User by Device Information</h3>
+          <p class="text-slate-600 dark:text-slate-400 mb-4">
+            Enter the username or device information to find account details for password recovery.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Username</label>
+              <input type="text" id="recovery-username" class="w-full py-2 px-4 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter username">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">IP Address</label>
+              <input type="text" id="recovery-ip" class="w-full py-2 px-4 rounded border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 192.168.1.1">
+            </div>
+          </div>
+          
+          <button onclick="searchUserDevices()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Search</button>
+        </div>
+      </div>
+
+      <!-- Recovery Results -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6">
+        <h3 class="text-lg font-semibold mb-4">Recovery Results</h3>
+        <div id="recovery-results" class="p-4 bg-slate-50 dark:bg-slate-900 rounded border border-slate-200 dark:border-slate-700">
+          <p class="text-slate-600 dark:text-slate-400 text-center">Enter search criteria above to find user login history</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Tab navigation
+    function showTab(tabName) {
+      // Hide all tab contents
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+      });
+      
+      // Remove active class from all tab buttons
+      document.querySelectorAll('button[id^="tab-"]').forEach(btn => {
+        btn.classList.remove('bg-slate-700');
+      });
+      
+      // Show selected tab
+      document.getElementById(`${tabName}-tab`).classList.remove('hidden');
+      
+      // Highlight selected tab button
+      document.getElementById(`tab-${tabName}`).classList.add('bg-slate-700');
+    }
+    
+    // Initial data load
+    let loginHistory = [];
+    let users = [];
+    
+    async function loadData() {
+      try {
+        // Fetch login history
+        const historyRes = await fetch('http://localhost:3001/api/admin/login-history');
+        const historyData = await historyRes.json();
+        loginHistory = historyData.history || [];
+        
+        // Fetch users
+        const usersRes = await fetch('http://localhost:3001/api/users');
+        const usersData = await usersRes.json();
+        users = usersData || [];
+        
+        // Update UI with data
+        updateDashboard();
+        updateUsersTable();
+        updateDeviceHistoryTable();
+      } catch (error) {
+        console.error('Error loading data:', error);
+      }
+    }
+    
+    function updateDashboard() {
+      // Update counts
+      document.getElementById('total-users-count').textContent = users.length;
+      document.getElementById('login-attempts-count').textContent = loginHistory.length;
+      
+      // Count unique devices
+      const uniqueDevices = new Set();
+      loginHistory.forEach(login => {
+        uniqueDevices.add(login.device);
+      });
+      document.getElementById('unique-devices-count').textContent = uniqueDevices.size;
+      
+      // Update recent logins table
+      const recentLogins = loginHistory.slice(0, 5); // Just show 5 most recent
+      const tbody = document.getElementById('recent-logins-table');
+      tbody.innerHTML = '';
+      
+      recentLogins.forEach(login => {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750';
+        
+        const statusClass = login.login_success 
+          ? 'text-green-600 dark:text-green-400' 
+          : 'text-red-600 dark:text-red-400';
+        const statusText = login.login_success ? 'Success' : 'Failed';
+        
+        tr.innerHTML = `
+          <td class="px-4 py-3">${login.username}</td>
+          <td class="px-4 py-3">${formatTimestamp(login.timestamp)}</td>
+          <td class="px-4 py-3">${login.ip}</td>
+          <td class="px-4 py-3">${login.browser} (${login.os})</td>
+          <td class="px-4 py-3 ${statusClass} font-medium">${statusText}</td>
+        `;
+        
+        tbody.appendChild(tr);
+      });
+      
+      if (recentLogins.length === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-200 dark:border-slate-700';
+        tr.innerHTML = `
+          <td colspan="5" class="px-4 py-3 text-center text-slate-500 dark:text-slate-400">No login history available</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+    
+    function updateUsersTable() {
+      const tbody = document.getElementById('users-table');
+      tbody.innerHTML = '';
+      
+      users.forEach(user => {
+        // Find last login
+        const userLogins = loginHistory.filter(login => login.username === user.username && login.login_success);
+        const lastLogin = userLogins.length > 0 ? userLogins[0] : null;
+        
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750';
+        
+        tr.innerHTML = `
+          <td class="px-4 py-3">${user.username}</td>
+          <td class="px-4 py-3">${lastLogin ? formatTimestamp(lastLogin.timestamp) : 'Never'}</td>
+          <td class="px-4 py-3">${user.ip || 'N/A'}</td>
+          <td class="px-4 py-3">${user.device || 'N/A'}</td>
+          <td class="px-4 py-3">
+            <button onclick="viewUserDevices('${user.username}')" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mr-3">
+              View Devices
+            </button>
+            <button onclick="resetPassword('${user.username}')" class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">
+              Reset Password
+            </button>
+          </td>
+        `;
+        
+        tbody.appendChild(tr);
+      });
+      
+      if (users.length === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-200 dark:border-slate-700';
+        tr.innerHTML = `
+          <td colspan="5" class="px-4 py-3 text-center text-slate-500 dark:text-slate-400">No users found</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+    
+    function updateDeviceHistoryTable(filteredHistory = null) {
+      const history = filteredHistory || loginHistory;
+      const tbody = document.getElementById('device-history-table');
+      tbody.innerHTML = '';
+      
+      history.forEach(login => {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-750';
+        
+        const statusClass = login.login_success 
+          ? 'text-green-600 dark:text-green-400' 
+          : 'text-red-600 dark:text-red-400';
+        const statusText = login.login_success ? 'Success' : 'Failed';
+        
+        tr.innerHTML = `
+          <td class="px-4 py-3">${login.username}</td>
+          <td class="px-4 py-3">${formatTimestamp(login.timestamp)}</td>
+          <td class="px-4 py-3">${login.ip}</td>
+          <td class="px-4 py-3">${login.browser}</td>
+          <td class="px-4 py-3">${login.os}</td>
+          <td class="px-4 py-3 ${statusClass} font-medium">${statusText}</td>
+        `;
+        
+        tbody.appendChild(tr);
+      });
+      
+      if (history.length === 0) {
+        const tr = document.createElement('tr');
+        tr.className = 'border-b border-slate-200 dark:border-slate-700';
+        tr.innerHTML = `
+          <td colspan="6" class="px-4 py-3 text-center text-slate-500 dark:text-slate-400">No device history found</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+    
+    function applyDeviceFilters() {
+      const usernameFilter = document.getElementById('filter-username').value.toLowerCase();
+      const deviceFilter = document.getElementById('filter-device').value;
+      const statusFilter = document.getElementById('filter-status').value;
+      
+      let filteredHistory = loginHistory;
+      
+      if (usernameFilter) {
+        filteredHistory = filteredHistory.filter(login => 
+          login.username.toLowerCase().includes(usernameFilter)
+        );
+      }
+      
+      if (deviceFilter) {
+        filteredHistory = filteredHistory.filter(login => 
+          login.os === deviceFilter
+        );
+      }
+      
+      if (statusFilter !== '') {
+        const success = statusFilter === 'true';
+        filteredHistory = filteredHistory.filter(login => 
+          login.login_success === success
+        );
+      }
+      
+      updateDeviceHistoryTable(filteredHistory);
+    }
+    
+    function clearDeviceFilters() {
+      document.getElementById('filter-username').value = '';
+      document.getElementById('filter-device').value = '';
+      document.getElementById('filter-status').value = '';
+      updateDeviceHistoryTable();
+    }
+    
+    async function searchUserDevices() {
+      const username = document.getElementById('recovery-username').value;
+      const ip = document.getElementById('recovery-ip').value;
+      
+      if (!username && !ip) {
+        alert('Please enter a username or IP address to search');
+        return;
+      }
+      
+      const resultsDiv = document.getElementById('recovery-results');
+      resultsDiv.innerHTML = '<p class="text-center">Searching...</p>';
+      
+      try {
+        let userLogins = [];
+        
+        if (username) {
+          const response = await fetch(`http://localhost:3001/api/admin/user-devices/${username}`);
+          const data = await response.json();
+          userLogins = data.devices || [];
+        } else {
+          // Filter by IP
+          userLogins = loginHistory.filter(login => login.ip === ip);
+        }
+        
+        if (userLogins.length === 0) {
+          resultsDiv.innerHTML = '<p class="text-center text-slate-600 dark:text-slate-400">No login history found for this user/device</p>';
+          return;
+        }
+        
+        // Group by username
+        const userMap = {};
+        userLogins.forEach(login => {
+          if (!userMap[login.username]) {
+            userMap[login.username] = [];
+          }
+          userMap[login.username].push(login);
+        });
+        
+        let resultsHtml = '';
+        
+        for (const [username, logins] of Object.entries(userMap)) {
+          resultsHtml += `
+            <div class="mb-6">
+              <h4 class="text-lg font-medium mb-2">Username: ${username}</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead class="text-xs uppercase text-slate-500 dark:text-slate-400">
+                    <tr>
+                      <th class="px-3 py-2 text-left">Time</th>
+                      <th class="px-3 py-2 text-left">IP</th>
+                      <th class="px-3 py-2 text-left">Device</th>
+                      <th class="px-3 py-2 text-left">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          `;
+          
+          logins.forEach(login => {
+            const statusClass = login.login_success 
+              ? 'text-green-600 dark:text-green-400' 
+              : 'text-red-600 dark:text-red-400';
+            const statusText = login.login_success ? 'Success' : 'Failed';
+            
+            resultsHtml += `
+              <tr class="border-b border-slate-200 dark:border-slate-700">
+                <td class="px-3 py-2">${formatTimestamp(login.timestamp)}</td>
+                <td class="px-3 py-2">${login.ip}</td>
+                <td class="px-3 py-2">${login.browser} (${login.os})</td>
+                <td class="px-3 py-2 ${statusClass}">${statusText}</td>
+              </tr>
+            `;
+          });
+          
+          resultsHtml += `
+                  </tbody>
+                </table>
+              </div>
+              <div class="mt-4">
+                <button onclick="resetPassword('${username}')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+                  Reset Password
+                </button>
+              </div>
+            </div>
+          `;
+        }
+        
+        resultsDiv.innerHTML = resultsHtml;
+        
+      } catch (error) {
+        console.error('Error searching user devices:', error);
+        resultsDiv.innerHTML = '<p class="text-center text-red-600 dark:text-red-400">Error occurred while searching</p>';
+      }
+    }
+    
+    function resetPassword(username) {
+      // This would be implemented according to your password reset policy
+      alert(`Password reset functionality for user "${username}" would be implemented here.`);
+    }
+    
+    function viewUserDevices(username) {
+      document.getElementById('filter-username').value = username;
+      showTab('devices');
+      applyDeviceFilters();
+    }
+    
+    function refreshData() {
+      loadData();
+    }
+    
+    function refreshDeviceHistory() {
+      loadData();
+      clearDeviceFilters();
+    }
+    
+    function exportLoginHistory() {
+      window.open('http://localhost:3001/api/admin/export-login-history', '_blank');
+    }
+    
+    function exportUsersData() {
+      // This would be connected to an API endpoint for exporting user data
+      alert('User data export functionality would be implemented here.');
+    }
+    
+    // Helper function to format timestamps
+    function formatTimestamp(timestamp) {
+      if (!timestamp) return 'N/A';
+      
+      try {
+        const date = new Date(timestamp);
+        return date.toLocaleString();
+      } catch (e) {
+        return timestamp;
+      }
+    }
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      showTab('dashboard');
+    });
+  </script>
 </body>
 </html>
