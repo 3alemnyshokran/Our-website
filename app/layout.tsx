@@ -1,5 +1,5 @@
+import { Analytics } from '@vercel/analytics/next';
 import React, { useEffect, useState } from 'react';
-import VercelAnalytics from '../components/VercelAnalytics';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [showAuth, setShowAuth] = React.useState(true);
@@ -17,10 +17,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     e.preventDefault();
     setError('');
     const form = e.target as HTMLFormElement;
+    const email = (form.elements.namedItem('email') as HTMLInputElement)?.value;
     const password = (form.elements.namedItem('password') as HTMLInputElement)?.value;
     const username = (form.elements.namedItem('username') as HTMLInputElement)?.value;
     const endpoint = isLogin ? '/api/login' : '/api/register';
-    const body = { username, password };
+    const body = isLogin ? { username: email, password } : { username, password };
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       });
       const data = await res.json();
       if (data.success) {
-        localStorage.setItem('user', JSON.stringify({ username }));
+        localStorage.setItem('user', JSON.stringify({ username: isLogin ? email : username }));
         setShowAuth(false);
       } else {
         setError(data.error || 'Authentication failed');
@@ -51,10 +52,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <button onClick={() => setIsLogin(!isLogin)} className="absolute top-4 right-4 text-blue-600 dark:text-blue-400 underline text-sm">{isLogin ? 'Register' : 'Login'}</button>
               <h2 className="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">{isLogin ? 'Login to Your Account' : 'Create an Account'}</h2>
               <form className="space-y-5" onSubmit={handleAuth}>
-                <div>
-                  <label htmlFor="username" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
-                  <input type="text" id="username" name="username" required className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Your username" />
-                </div>
+                {!isLogin && (
+                  <div>
+                    <label htmlFor="username" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
+                    <input type="text" id="username" name="username" required className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Your username" />
+                  </div>
+                )}
+                {isLogin && (
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                    <input type="email" id="email" name="email" required className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="you@email.com" />
+                  </div>
+                )}
                 <div>
                   <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
                   <input type="password" id="password" name="password" required className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="••••••••" />
@@ -68,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {!showAuth && (
           <>
             {children}
-            <VercelAnalytics />
+            <Analytics />
           </>
         )}
       </body>
