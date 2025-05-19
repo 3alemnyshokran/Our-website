@@ -107,101 +107,109 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Update current year in footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Update current year in footer
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-    // --- Language selection logic with translation ---
-    const languageSelect = document.getElementById('languageSelect');
-    if (!localStorage.getItem('language')) {
-      localStorage.setItem('language', 'ar');
-    }
-    languageSelect.value = localStorage.getItem('language') || 'ar';
-
-    // Translation dictionary (for demo, real app: fetch from translations/*.json)
-    const translations = {
-      ar: {
-        welcome: 'مرحبًا بك في منصتنا التعليمية!',
-        helloUser: 'مرحبًا، <span id="welcomeUser" class="font-bold">المستخدم</span>!',
-        explore: 'استكشف دوراتنا في مختلف المواد، مصممة لجميع المستويات.',
-        ourCourses: 'دوراتنا',
-        english: 'اللغة الإنجليزية',
-        englishDesc: 'أتقن الإنجليزية من المبتدئ إلى المتقدم.',
-        math: 'الرياضيات',
-        mathDesc: 'اكتشف عالم الأرقام وحل المشكلات.',
-        science: 'العلوم',
-        scienceDesc: 'اكتشف عجائب العالم الطبيعي.',
-        german: 'اللغة الألمانية',
-        germanDesc: 'تعلم الألمانية واستكشف ثقافة جديدة.',
-        arabic: 'اللغة العربية',
-        arabicDesc: 'اكتشف جمال اللغة العربية.',
-        copyright: 'جميع الحقوق محفوظة',
-        designed: 'مصمم باستخدام Tailwind CSS',
-      },
-      en: {
-        welcome: 'Welcome to Our Learning Platform!',
-        helloUser: 'Hello, <span id="welcomeUser" class="font-bold">User</span>!',
-        explore: 'Explore our courses in various subjects, designed for all learning levels.',
-        ourCourses: 'Our Courses',
-        english: 'English Language',
-        englishDesc: 'Master English from beginner to advanced levels.',
-        math: 'Mathematics',
-        mathDesc: 'Unlock the world of numbers and problem-solving.',
-        science: 'Science',
-        scienceDesc: 'Discover the wonders of the natural world.',
-        german: 'German Language',
-        germanDesc: 'Learn German and explore a new culture.',
-        arabic: 'Arabic Language',
-        arabicDesc: 'Embrace the beauty of the Arabic language.',
-        copyright: 'All rights reserved.',
-        designed: 'Designed with Tailwind CSS',
+      // --- Language selection logic with translation ---
+      const languageSelect = document.getElementById('languageSelect');
+      if (!localStorage.getItem('language')) {
+        localStorage.setItem('language', 'ar');
       }
-    };
+      languageSelect.value = localStorage.getItem('language') || 'ar';
 
-    function updateLanguage(lang) {
-      if (lang === 'ar') {
-        document.documentElement.lang = 'ar';
-        document.documentElement.dir = 'rtl';
-        document.body.classList.add('text-right');
-        document.body.classList.remove('text-left');
-      } else {
-        document.documentElement.lang = 'en';
-        document.documentElement.dir = 'ltr';
-        document.body.classList.remove('text-right');
-        document.body.classList.add('text-left');
+      // Translation dictionary (for demo, real app: fetch from translations/*.json)
+      const translations = {
+        ar: {
+          welcome: 'مرحبًا بك في منصتنا التعليمية!',
+          helloUser: 'مرحبًا، <span id="welcomeUser" class="font-bold">المستخدم</span>!',
+          explore: 'استكشف دوراتنا في مختلف المواد، مصممة لجميع المستويات.',
+          ourCourses: 'دوراتنا',
+          english: 'اللغة الإنجليزية',
+          englishDesc: 'أتقن الإنجليزية من المبتدئ إلى المتقدم.',
+          math: 'الرياضيات',
+          mathDesc: 'اكتشف عالم الأرقام وحل المشكلات.',
+          science: 'العلوم',
+          scienceDesc: 'اكتشف عجائب العالم الطبيعي.',
+          german: 'اللغة الألمانية',
+          germanDesc: 'تعلم الألمانية واستكشف ثقافة جديدة.',
+          arabic: 'اللغة العربية',
+          arabicDesc: 'اكتشف جمال اللغة العربية.',
+          copyright: 'جميع الحقوق محفوظة',
+          designed: 'مصمم باستخدام Tailwind CSS',
+        },
+        en: {
+          welcome: 'Welcome to Our Learning Platform!',
+          helloUser: 'Hello, <span id="welcomeUser" class="font-bold">User</span>!',
+          explore: 'Explore our courses in various subjects, designed for all learning levels.',
+          ourCourses: 'Our Courses',
+          english: 'English Language',
+          englishDesc: 'Master English from beginner to advanced levels.',
+          math: 'Mathematics',
+          mathDesc: 'Unlock the world of numbers and problem-solving.',
+          science: 'Science',
+          scienceDesc: 'Discover the wonders of the natural world.',
+          german: 'German Language',
+          germanDesc: 'Learn German and explore a new culture.',
+          arabic: 'Arabic Language',
+          arabicDesc: 'Embrace the beauty of the Arabic language.',
+          copyright: 'All rights reserved.',
+          designed: 'Designed with Tailwind CSS',
+        }
+      };
+
+      function updateLanguage(lang) {
+        if (lang === 'ar') {
+          document.documentElement.lang = 'ar';
+          document.documentElement.dir = 'rtl';
+          document.body.classList.add('text-right');
+          document.body.classList.remove('text-left');
+        } else {
+          document.documentElement.lang = 'en';
+          document.documentElement.dir = 'ltr';
+          document.body.classList.remove('text-right');
+          document.body.classList.add('text-left');
+        }
+        // Translate visible text (except website name)
+        const t = translations[lang];
+        const h2 = document.querySelector('section.text-center h2');
+        const pLg = document.querySelector('section.text-center p.text-lg');
+        const pMd = document.querySelector('section.text-center p.text-md');
+        const h3 = document.querySelector('section > h3');
+        if (h2) h2.textContent = t.welcome;
+        if (pLg) pLg.innerHTML = t.helloUser;
+        if (pMd) pMd.textContent = t.explore;
+        if (h3) h3.textContent = t.ourCourses;
+        // Course cards
+        const courseTitles = document.querySelectorAll('.course-card h4');
+        const courseDescs = document.querySelectorAll('.course-card p');
+        if (courseTitles.length >= 5 && courseDescs.length >= 5) {
+          courseTitles[0].textContent = t.english;
+          courseDescs[0].textContent = t.englishDesc;
+          courseTitles[1].textContent = t.math;
+          courseDescs[1].textContent = t.mathDesc;
+          courseTitles[2].textContent = t.science;
+          courseDescs[2].textContent = t.scienceDesc;
+          courseTitles[3].textContent = t.german;
+          courseDescs[3].textContent = t.germanDesc;
+          courseTitles[4].textContent = t.arabic;
+          courseDescs[4].textContent = t.arabicDesc;
+        }
+        // Footer
+        const footerP = document.querySelector('footer p');
+        const footerPSm = document.querySelector('footer p.text-sm');
+        if (footerP) footerP.innerHTML = `&copy; <span id="currentYear">${new Date().getFullYear()}</span> 3alemny Shokran. ${t.copyright}`;
+        if (footerPSm) footerPSm.textContent = t.designed;
       }
-      // Translate visible text (except website name)
-      const t = translations[lang];
-      document.querySelector('section.text-center h2').textContent = t.welcome;
-      document.querySelector('section.text-center p.text-lg').innerHTML = t.helloUser;
-      document.querySelector('section.text-center p.text-md').textContent = t.explore;
-      document.querySelector('section > h3').textContent = t.ourCourses;
-      // Course cards
-      const courseTitles = document.querySelectorAll('.course-card h4');
-      const courseDescs = document.querySelectorAll('.course-card p');
-      if (courseTitles.length >= 5 && courseDescs.length >= 5) {
-        courseTitles[0].textContent = t.english;
-        courseDescs[0].textContent = t.englishDesc;
-        courseTitles[1].textContent = t.math;
-        courseDescs[1].textContent = t.mathDesc;
-        courseTitles[2].textContent = t.science;
-        courseDescs[2].textContent = t.scienceDesc;
-        courseTitles[3].textContent = t.german;
-        courseDescs[3].textContent = t.germanDesc;
-        courseTitles[4].textContent = t.arabic;
-        courseDescs[4].textContent = t.arabicDesc;
-      }
-      // Footer
-      document.querySelector('footer p').innerHTML = `&copy; <span id="currentYear">${new Date().getFullYear()}</span> 3alemny Shokran. ${t.copyright}`;
-      document.querySelector('footer p.text-sm').textContent = t.designed;
-    }
 
-    // On page load, set language
-    updateLanguage(languageSelect.value);
+      // On page load, set language
+      updateLanguage(languageSelect.value);
 
-    // Listen for language changes
-    languageSelect.addEventListener('change', function() {
-      localStorage.setItem('language', this.value);
-      updateLanguage(this.value);
+      // Listen for language changes
+      languageSelect.addEventListener('change', function() {
+        localStorage.setItem('language', this.value);
+        updateLanguage(this.value);
+      });
     });
   </script>
 </body>
