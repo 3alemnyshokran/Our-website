@@ -28,6 +28,28 @@
   </script>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
+      <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
+        <button id="toggle-auth" class="absolute top-4 right-4 text-blue-600 dark:text-blue-400 underline text-sm">Register</button>
+        <h2 id="auth-title" class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">Login to Your Account</h2>
+        <form id="authForm" class="space-y-5">
+          <div id="username-group" style="display:none;">
+            <label for="auth-username" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
+            <input type="text" id="auth-username" name="username" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Your username">
+          </div>
+          <div>
+            <label for="auth-email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+            <input type="email" id="auth-email" name="email" required class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="you@email.com">
+          </div>
+          <div>
+            <label for="auth-password" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
+            <input type="password" id="auth-password" name="password" required class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="••••••••">
+          </div>
+          <div id="auth-error" class="text-red-500 text-sm text-center hidden"></div>
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-colors">Login</button>
+        </form>
+      </div>
+    </div>
   <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
@@ -211,6 +233,56 @@
         updateLanguage(this.value);
       });
     });
+  </script>
+  <script>
+    // Auth modal logic
+    function showAuthModal(show) {
+      document.getElementById('auth-modal').classList.toggle('hidden', !show);
+    }
+    function setAuthMode(isLogin) {
+      document.getElementById('auth-title').textContent = isLogin ? 'Login to Your Account' : 'Create an Account';
+      document.getElementById('toggle-auth').textContent = isLogin ? 'Register' : 'Login';
+      document.getElementById('username-group').style.display = isLogin ? 'none' : '';
+      document.querySelector('#authForm button[type=submit]').textContent = isLogin ? 'Login' : 'Register';
+    }
+    // Check login
+    if (!localStorage.getItem('user')) {
+      showAuthModal(true);
+      setAuthMode(true);
+    }
+    document.getElementById('toggle-auth').onclick = function() {
+      const isLogin = document.getElementById('auth-title').textContent.includes('Login');
+      setAuthMode(!isLogin);
+    };
+    document.getElementById('authForm').onsubmit = async function(e) {
+      e.preventDefault();
+      const isLogin = document.getElementById('auth-title').textContent.includes('Login');
+      const email = document.getElementById('auth-email').value.trim();
+      const password = document.getElementById('auth-password').value;
+      const username = document.getElementById('auth-username').value.trim();
+      const endpoint = isLogin ? 'http://localhost:3001/api/login' : 'http://localhost:3001/api/register';
+      const body = isLogin ? { username: email, password } : { username, password };
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      const errorDiv = document.getElementById('auth-error');
+      if (data.success) {
+        localStorage.setItem('user', JSON.stringify({ username: isLogin ? email : username }));
+        showAuthModal(false);
+        errorDiv.classList.add('hidden');
+        window.location.reload();
+      } else {
+        errorDiv.textContent = data.error || 'Authentication failed.';
+        errorDiv.classList.remove('hidden');
+      }
+    };
+    // Hide modal if already logged in
+    if (localStorage.getItem('user')) {
+      showAuthModal(false);
+    }
   </script>
   <!-- Vercel Analytics -->
   <script type="module">
