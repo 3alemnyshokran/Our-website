@@ -3,49 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutoring Website - English & Math</title>
+  <title>Tutoring Website - Enhanced</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body {
       font-family: 'Inter', sans-serif;
     }
+    /* Basic styles for theme toggle icons if needed, Tailwind handles dark mode via 'dark' class on html */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
   </style>
+  <script>
+    // Tailwind dark mode setup
+    // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  </script>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Tutoring Website</h1>
-    <div class="flex items-center gap-4">
-      <button class="theme-btn bg-white text-blue-600 px-4 py-2 rounded" aria-label="Toggle Theme">
-        <span class="light-icon hidden">☀️</span>
-        <span class="dark-icon">🌙</span>
-      </button>
-      <select id="languageSelect" class="bg-white text-gray-800 px-4 py-2 rounded" aria-label="Select Language">
-        <option value="en">English</option>
-        <option value="ar">العربية</option>
-      </select>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+          <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+          <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+        </button>
+        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <!-- Add other languages as needed -->
+        </select>
+      </div>
     </div>
   </header>
 
-  <main class="p-8">
-    <h2 class="text-3xl font-semibold mb-4">Welcome to the Tutoring Website</h2>
-    <p class="mb-6">Hello, <span id="welcomeUser" class="font-bold">User</span>!</p>
-    <p class="mb-6">Courses for English and Math - Beginner, Intermediate, Advanced Levels</p>
+  <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section class="text-center mb-10">
+      <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">Welcome to Our Learning Platform!</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">Hello, <span id="welcomeUser" class="font-bold">User</span>!</p>
+      <p class="text-md text-slate-500 dark:text-slate-500">Explore our courses in various subjects, designed for all learning levels.</p>
+    </section>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <a href="english-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">English Language Courses</a>
-      <a href="math-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">Math Courses</a>
-      <a href="science-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">Science Courses</a>
-      <a href="german-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">German Language Courses</a>
-      <a href="arabic-course.html" class="btn bg-blue-500 text-white px-6 py-3 rounded shadow hover:bg-blue-600">Arabic Language Courses</a>
-    </div>
+    <section>
+      <h3 class="text-2xl sm:text-3xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Our Courses</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- English Course Card -->
+        <a href="courses/english/english-course.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🇬🇧</span>
+            <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">English Language</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Master English from beginner to advanced levels.</p>
+          </div>
+        </a>
+        <!-- Math Course Card -->
+        <a href="math-course.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-green-200 dark:border-green-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🧮</span>
+            <h4 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">Mathematics</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Unlock the world of numbers and problem-solving.</p>
+          </div>
+        </a>
+        <!-- Science Course Card -->
+        <a href="science-course.html" class="course-card bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🔬</span>
+            <h4 class="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2 group-hover:text-purple-900 dark:group-hover:text-purple-200 transition-colors">Science</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Discover the wonders of the natural world.</p>
+          </div>
+        </a>
+        <!-- German Course Card -->
+        <a href="german-course.html" class="course-card bg-gradient-to-br from-orange-100 via-orange-50 to-white dark:from-orange-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-orange-200 dark:border-orange-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🇩🇪</span>
+            <h4 class="text-2xl font-bold text-orange-700 dark:text-orange-300 mb-2 group-hover:text-orange-900 dark:group-hover:text-orange-200 transition-colors">German Language</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Learn German and explore a new culture.</p>
+          </div>
+        </a>
+        <!-- Arabic Course Card -->
+        <a href="courses/arabic/arabic-course.html" class="course-card bg-gradient-to-br from-teal-100 via-teal-50 to-white dark:from-teal-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-teal-200 dark:border-teal-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🇪🇬</span>
+            <h4 class="text-2xl font-bold text-teal-700 dark:text-teal-300 mb-2 group-hover:text-teal-900 dark:group-hover:text-teal-200 transition-colors">Arabic Language</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Embrace the beauty of the Arabic language.</p>
+          </div>
+        </a>
+        <!-- Add more course cards as needed -->
+      </div>
+    </section>
   </main>
 
-  <footer class="bg-gray-800 text-white p-4 text-center">
-    <p>&copy; 2025 Tutoring Website. All rights reserved.</p>
+  <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
+    <p>&copy; <span id="currentYear">2025</span> 3alemny Shokran. All rights reserved.</p>
+    <p class="text-sm">Designed with Tailwind CSS</p>
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // Update current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
