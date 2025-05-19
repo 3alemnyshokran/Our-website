@@ -109,6 +109,41 @@
   <script>
     // Update current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // --- Language selection logic ---
+    const languageSelect = document.getElementById('languageSelect');
+    // Set default language to Arabic if not set
+    if (!localStorage.getItem('language')) {
+      localStorage.setItem('language', 'ar');
+    }
+    // Set the select value to the stored language
+    languageSelect.value = localStorage.getItem('language') || 'ar';
+
+    // Function to update the page language
+    function updateLanguage(lang) {
+      if (lang === 'ar') {
+        document.documentElement.lang = 'ar';
+        document.documentElement.dir = 'rtl';
+        document.body.classList.add('text-right');
+        document.body.classList.remove('text-left');
+      } else {
+        document.documentElement.lang = 'en';
+        document.documentElement.dir = 'ltr';
+        document.body.classList.remove('text-right');
+        document.body.classList.add('text-left');
+      }
+      // Optionally: update visible text using translations here
+    }
+
+    // On page load, set language
+    updateLanguage(languageSelect.value);
+
+    // Listen for language changes
+    languageSelect.addEventListener('change', function() {
+      localStorage.setItem('language', this.value);
+      updateLanguage(this.value);
+      // Optionally: reload or update text
+    });
   </script>
 </body>
 </html>
