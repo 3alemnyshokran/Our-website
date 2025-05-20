@@ -1,54 +1,83 @@
-<style>
-    /* Test Page Styles */
-    .test-container {
-        max-width: 800px;
-        margin: 30px auto;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: #ffffff;
-        padding: 24px;
-        border-radius: 12px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-    .test-container h1 {
-        text-align: center;
-        color: #2e7d32;
-    }
-    .test-container .question {
-        margin-bottom: 20px;
-    }
-    .test-container .question h2 {
-        color: #388e3c;
-    }
-    .test-container button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 6px;
-        background: #4caf50;
-        color: white;
-        font-size: 1rem;
-        cursor: pointer;
-    }
-</style>
-<script>
-    // Test Page Logic
-    function submitTest() {
-        alert('Test submitted! Your level will be determined.');
-    }
-</script>
-
-<div class="test-container">
-    <h1>Level Test</h1>
-    <div class="question">
-        <h2>Question 1: What is the capital of France?</h2>
-        <input type="radio" name="q1" value="Paris"> Paris<br>
-        <input type="radio" name="q1" value="London"> London<br>
-        <input type="radio" name="q1" value="Berlin"> Berlin<br>
+<!DOCTYPE html>
+<html lang="en" class="dark"> <!-- Added dark class -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Test</title>
+    <style>
+        /* Test Page Styles */
+        .test-container {
+            max-width: 800px;
+            margin: 30px auto;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .test-container h1 {
+            text-align: center;
+            color: #2e7d32;
+        }
+        .test-container .question {
+            margin-bottom: 20px;
+        }
+        .test-container .question h2 {
+            color: #388e3c;
+        }
+        .test-container button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #4caf50;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        body.dark .test-container {
+            background: #1f2937; /* Tailwind gray-800 */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        body.dark .test-container h1 {
+            color: #6ee7b7; /* Tailwind green-300 */
+        }
+        body.dark .test-container .question h2 {
+            color: #a7f3d0; /* Tailwind green-200 */
+        }
+        body.dark .test-container button {
+            background: #22c55e; /* Tailwind green-500 */
+            color: white;
+        }
+        body.dark .test-container input[type="radio"] + br + input[type="radio"] {
+            color: #d1d5db; /* Tailwind gray-300 */
+        }
+        body.dark .test-container .question {
+            color: #d1d5db; /* Tailwind gray-300 for question text */
+        }
+    </style>
+    <script>
+        // Test Page Logic
+        function submitTest() {
+            alert('Test submitted! Your level will be determined.');
+        }
+    </script>
+</head>
+<body class="dark:bg-slate-900 dark:text-slate-200"> <!-- Added dark mode classes to body -->
+    <div class="test-container">
+        <h1>Level Test</h1>
+        <div class="question">
+            <h2>Question 1: What is the capital of France?</h2>
+            <input type="radio" name="q1" value="Paris"> Paris<br>
+            <input type="radio" name="q1" value="London"> London<br>
+            <input type="radio" name="q1" value="Berlin"> Berlin<br>
+        </div>
+        <div class="question">
+            <h2>Question 2: Solve 5 + 3</h2>
+            <input type="radio" name="q2" value="8"> 8<br>
+            <input type="radio" name="q2" value="10"> 10<br>
+            <input type="radio" name="q2" value="6"> 6<br>
+        </div>
+        <button onclick="submitTest()">Submit Test</button>
     </div>
-    <div class="question">
-        <h2>Question 2: Solve 5 + 3</h2>
-        <input type="radio" name="q2" value="8"> 8<br>
-        <input type="radio" name="q2" value="10"> 10<br>
-        <input type="radio" name="q2" value="6"> 6<br>
-    </div>
-    <button onclick="submitTest()">Submit Test</button>
-</div>
+</body>
+</html>

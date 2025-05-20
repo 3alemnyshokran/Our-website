@@ -6,6 +6,118 @@
     <title>Basic Phrases - A1 Level | Chapter 3</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
+        /* Dark theme styles */
+        [data-theme="dark"] body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .chapter-container {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+        }
+        [data-theme="dark"] .level-badge {
+            background: #0056b3; /* Darker primary for dark mode */
+            color: #ffffff;
+        }
+        [data-theme="dark"] .content-section,
+        [data-theme="dark"] .question-container,
+        [data-theme="dark"] .phrase-card,
+        [data-theme="dark"] .streak-counter {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 {
+            color: #f5f5f5;
+        }
+        [data-theme="dark"] p, [data-theme="dark"] li {
+            color: #cccccc;
+        }
+        [data-theme="dark"] .nav-button {
+            background: #0056b3;
+            color: #ffffff;
+        }
+        [data-theme="dark"] .nav-button:hover {
+            background: #004494;
+        }
+        [data-theme="dark"] .answer-input {
+            background: #333;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+        [data-theme="dark"] .answer-input:focus {
+            border-color: #007bff; /* Primary color for focus */
+        }
+        [data-theme="dark"] .check-answer-btn {
+            background: #0056b3;
+            color: #ffffff;
+        }
+        [data-theme="dark"] .check-answer-btn:hover {
+            background: #004494;
+        }
+        [data-theme="dark"] .answer-result.correct {
+            background: rgba(76, 175, 80, 0.2); /* Darker success */
+            color: #a5d6a7;
+        }
+        [data-theme="dark"] .answer-result.incorrect {
+            background: rgba(244, 67, 54, 0.2); /* Darker error */
+            color: #ef9a9a;
+        }
+        [data-theme="dark"] .hints-container {
+            background: rgba(0, 86, 179, 0.1); /* Darker hint bg */
+            border: 1px solid #004494;
+        }
+        [data-theme="dark"] .choice-option {
+            background: #333;
+            border-color: #555;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .choice-option:hover {
+            background: #444;
+        }
+        [data-theme="dark"] .choice-option.selected {
+            border-color: #007bff;
+            background: rgba(0, 123, 255, 0.15);
+        }
+        [data-theme="dark"] .choice-option.correct {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.2);
+        }
+        [data-theme="dark"] .choice-option.incorrect {
+            border-color: #f44336;
+            background: rgba(244, 67, 54, 0.2);
+        }
+        [data-theme="dark"] .welcome-banner {
+            background: linear-gradient(135deg, #2c3e50, #1a252f); /* Darker gradient */
+            color: #f5f5f5;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+        }
+        [data-theme="dark"] .username {
+            color: #f1c40f; /* Brighter yellow for dark mode */
+        }
+        [data-theme="dark"] .progress-overview {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        [data-theme="dark"] .skill-progress {
+            background: rgba(0, 86, 179, 0.2); /* Darker progress bar bg */
+        }
+        [data-theme="dark"] .skill-progress-fill {
+            background: #007bff; /* Primary color */
+        }
+        [data-theme="dark"] .progress-label {
+            color: #f5f5f5;
+        }
+        [data-theme="dark"] .phrase-pronunciation {
+            color: #9ad7ff; /* Lighter secondary color */
+        }
+        [data-theme="dark"] .phrase-context {
+            color: #bbbbbb;
+        }
+        [data-theme="dark"] .phrase-example {
+            border-left-color: #007bff;
+        }
+
+        /* Original styles */
         .chapter-container {
             max-width: 800px;
             margin: 30px auto;
@@ -549,6 +661,21 @@
     </div>
 
     <script>
+        // Apply theme from localStorage
+        function applyInitialTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+        }
+        document.addEventListener('DOMContentLoaded', applyInitialTheme);
+
+        // Listen for theme changes from other tabs/windows
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'theme') {
+                const newTheme = event.newValue || 'light';
+                document.body.setAttribute('data-theme', newTheme);
+            }
+        });
+
         // Variables to track progress
         let streak = 0;
         let questionsAnswered = 0;

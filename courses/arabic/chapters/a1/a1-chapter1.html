@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arabic Alphabet - A1 Level | Chapter 1</title>
-    <link rel="stylesheet" href="../../css/styles.css">
-    <!-- Include the same styles as english chapter -->
+    <link rel="stylesheet" href="../../../../css/styles.css"> <!-- Adjusted path -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-gray': '#F0F2F5',
+                        'custom-blue': '#1877F2',
+                        'custom-green': '#42B72A',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                        'dark-border': '#3A3B3C',
+                        'dark-primary': '#2D88FF',
+                        'dark-secondary': '#B0B3B8',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* ... same styles as english chapter ... */
-        
         /* Additional styles for Arabic text */
         .arabic-text {
             font-size: 1.5rem;
@@ -18,81 +36,138 @@
         }
 
         .phonetic {
-            color: var(--secondary-color);
+            color: var(--secondary-color); /* Consider dark mode for this */
             font-size: 0.9rem;
             margin-left: 10px;
         }
+
+        /* Dark theme adjustments - can be expanded */
+        .dark .chapter-container {
+            background-color: #1e293b; /* slate-800 */
+            color: #e2e8f0; /* slate-200 */
+        }
+        .dark .level-badge {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+        }
+        .dark .content-section {
+            background-color: #334155; /* slate-700 */
+            border-color: #475569; /* slate-600 */
+        }
+        .dark .question-container {
+            background-color: #334155; /* slate-700 */
+            border-color: #475569; /* slate-600 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .dark .answer-input {
+            background-color: #475569; /* slate-600 */
+            color: #e2e8f0; /* slate-200 */
+            border-color: #64748b; /* slate-500 */
+        }
+        .dark .answer-input:focus {
+            border-color: #3b82f6; /* blue-500 */
+        }
+        .dark .check-answer-btn {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+        }
+        .dark .check-answer-btn:hover {
+            background-color: #2563eb; /* blue-600 */
+        }
+        .dark .nav-button {
+            background-color: #475569; /* slate-600 */
+            color: #e2e8f0; /* slate-200 */
+        }
+        .dark .nav-button:hover {
+            background-color: #64748b; /* slate-500 */
+        }
+        .dark .streak-counter {
+            background-color: #334155; /* slate-700 */
+            color: #e2e8f0; /* slate-200 */
+        }
+        .dark .phonetic {
+            color: #94a3b8; /* slate-400 */
+        }
+         .dark body {
+            background-color: #0f172a; /* slate-900 */
+        }
     </style>
 </head>
-<body>
-    <div class="chapter-container">
-        <div class="level-badge" data-i18n="levelA1">A1 - Breakthrough</div>
-        <h1>Chapter 1: Arabic Alphabet - Basic Letters</h1>
+<body class="bg-custom-gray dark:bg-dark-bg">
+    <div class="chapter-container p-4 md:p-8 rounded-lg shadow-lg bg-white dark:bg-dark-card mx-auto max-w-3xl mt-5 mb-5">
+        <div class="level-badge bg-custom-blue text-white py-1 px-3 rounded-full inline-block mb-4 dark:bg-dark-primary" data-i18n="levelA1">A1 - Breakthrough</div>
+        <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-dark-text">Chapter 1: Arabic Alphabet - Basic Letters</h1>
         
-        <div class="skill-progress">
-            <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
-            <div class="skill-progress-fill" id="progressBar"></div>
+        <div class="skill-progress relative h-2 bg-gray-200 rounded-full mb-4 dark:bg-dark-border">
+            <div class="skill-progress-fill absolute h-full bg-custom-green rounded-full dark:bg-custom-green" id="progressBar" style="width: 0%;"></div>
+            <div class="progress-label absolute right-0 -top-5 text-sm text-gray-600 dark:text-dark-secondary">Mastery: <span id="masteryPercentage">0%</span></div>
         </div>
 
-        <div class="streak-counter">
-            <span class="streak-icon">🔥</span>
-            <span id="currentStreak">0</span> correct in a row!
+        <div class="streak-counter flex items-center bg-gray-100 dark:bg-dark-card p-2 rounded-lg mb-6 shadow">
+            <span class="streak-icon text-xl mr-2">🔥</span>
+            <span id="currentStreak" class="text-gray-700 dark:text-dark-text">0</span> <span class="ml-1 text-gray-700 dark:text-dark-text">correct in a row!</span>
         </div>
 
-        <div class="content-section">
-            <h2>First Letters</h2>
-            <p>Let's start with some basic Arabic letters. Each letter can be written in different forms depending on its position in the word.</p>
-            <ul>
-                <li><span class="arabic-text">ا</span> <span class="phonetic">(Alif)</span> - Similar to 'A'</li>
-                <li><span class="arabic-text">ب</span> <span class="phonetic">(Baa)</span> - Similar to 'B'</li>
-                <li><span class="arabic-text">ت</span> <span class="phonetic">(Taa)</span> - Similar to 'T'</li>
+        <div class="content-section bg-gray-50 dark:bg-dark-card p-6 rounded-lg shadow mb-6">
+            <h2 class="text-2xl font-semibold mb-3 text-gray-700 dark:text-dark-text">First Letters</h2>
+            <p class="text-gray-600 dark:text-dark-secondary mb-4">Let's start with some basic Arabic letters. Each letter can be written in different forms depending on its position in the word.</p>
+            <ul class="list-disc list-inside space-y-2">
+                <li class="text-gray-700 dark:text-dark-secondary"><span class="arabic-text text-2xl">ا</span> <span class="phonetic text-gray-500 dark:text-dark-secondary">(Alif)</span> - Similar to 'A'</li>
+                <li class="text-gray-700 dark:text-dark-secondary"><span class="arabic-text text-2xl">ب</span> <span class="phonetic text-gray-500 dark:text-dark-secondary">(Baa)</span> - Similar to 'B'</li>
+                <li class="text-gray-700 dark:text-dark-secondary"><span class="arabic-text text-2xl">ت</span> <span class="phonetic text-gray-500 dark:text-dark-secondary">(Taa)</span> - Similar to 'T'</li>
             </ul>
         </div>
 
-        <div class="feedback-message" id="feedbackMessage"></div>
+        <div class="feedback-message text-center font-semibold my-4 min-h-[1.5em]" id="feedbackMessage"></div>
 
-        <div class="question-container" id="q1">
-            <h3>Practice Question 1</h3>
-            <p>What is the name of this letter: <span class="arabic-text">ا</span>?</p>
-            <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q1', 'Alif')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> This letter makes the 'A' sound in Arabic.</p>
+        <div class="question-container bg-white dark:bg-dark-card p-6 rounded-lg shadow mb-6" id="q1">
+            <h3 class="text-xl font-semibold mb-3 text-gray-700 dark:text-dark-text">Practice Question 1</h3>
+            <p class="text-gray-600 dark:text-dark-secondary mb-3">What is the name of this letter: <span class="arabic-text text-2xl">ا</span>?</p>
+            <input type="text" class="answer-input w-full p-3 border border-gray-300 rounded-lg dark:bg-dark-border dark:border-gray-600 dark:text-dark-text focus:ring-2 focus:ring-custom-blue dark:focus:ring-dark-primary" id="q1-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn bg-custom-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-3 w-full transition duration-150 ease-in-out dark:bg-dark-primary dark:hover:bg-blue-600" onclick="checkAnswerWithFeedback('q1', 'Alif')">Check Answer</button>
+            <div class="answer-result mt-3 p-3 rounded-lg text-sm"></div>
+            <div class="hints-container mt-3 p-3 bg-blue-50 dark:bg-gray-700 rounded-lg hidden">
+                <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hint:</strong> This letter makes the 'A' sound in Arabic.</p>
             </div>
         </div>
 
-        <div class="question-container" id="q2">
-            <h3>Practice Question 2</h3>
-            <p>What is the name of this letter: <span class="arabic-text">ب</span>?</p>
-            <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q2', 'Baa')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> This letter makes the 'B' sound in Arabic.</p>
+        <div class="question-container bg-white dark:bg-dark-card p-6 rounded-lg shadow mb-6" id="q2">
+            <h3 class="text-xl font-semibold mb-3 text-gray-700 dark:text-dark-text">Practice Question 2</h3>
+            <p class="text-gray-600 dark:text-dark-secondary mb-3">What is the name of this letter: <span class="arabic-text text-2xl">ب</span>?</p>
+            <input type="text" class="answer-input w-full p-3 border border-gray-300 rounded-lg dark:bg-dark-border dark:border-gray-600 dark:text-dark-text focus:ring-2 focus:ring-custom-blue dark:focus:ring-dark-primary" id="q2-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn bg-custom-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-3 w-full transition duration-150 ease-in-out dark:bg-dark-primary dark:hover:bg-blue-600" onclick="checkAnswerWithFeedback('q2', 'Baa')">Check Answer</button>
+            <div class="answer-result mt-3 p-3 rounded-lg text-sm"></div>
+            <div class="hints-container mt-3 p-3 bg-blue-50 dark:bg-gray-700 rounded-lg hidden">
+                <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hint:</strong> This letter makes the 'B' sound in Arabic.</p>
             </div>
         </div>
 
-        <div class="question-container" id="q3">
-            <h3>Practice Question 3</h3>
-            <p>What is the name of this letter: <span class="arabic-text">ت</span>?</p>
-            <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q3', 'Taa')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> This letter makes the 'T' sound in Arabic.</p>
+        <div class="question-container bg-white dark:bg-dark-card p-6 rounded-lg shadow mb-6" id="q3">
+            <h3 class="text-xl font-semibold mb-3 text-gray-700 dark:text-dark-text">Practice Question 3</h3>
+            <p class="text-gray-600 dark:text-dark-secondary mb-3">What is the name of this letter: <span class="arabic-text text-2xl">ت</span>?</p>
+            <input type="text" class="answer-input w-full p-3 border border-gray-300 rounded-lg dark:bg-dark-border dark:border-gray-600 dark:text-dark-text focus:ring-2 focus:ring-custom-blue dark:focus:ring-dark-primary" id="q3-input" placeholder="Type your answer" autocomplete="off">
+            <button class="check-answer-btn bg-custom-blue hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mt-3 w-full transition duration-150 ease-in-out dark:bg-dark-primary dark:hover:bg-blue-600" onclick="checkAnswerWithFeedback('q3', 'Taa')">Check Answer</button>
+            <div class="answer-result mt-3 p-3 rounded-lg text-sm"></div>
+            <div class="hints-container mt-3 p-3 bg-blue-50 dark:bg-gray-700 rounded-lg hidden">
+                <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hint:</strong> This letter makes the 'T' sound in Arabic.</p>
             </div>
         </div>
 
-        <div class="navigation">
-            <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
-            <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+        <div class="navigation flex justify-between mt-8">
+            <button class="nav-button bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-lg transition duration-150 ease-in-out dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+            <button class="nav-button bg-custom-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-150 ease-in-out dark:bg-custom-green dark:hover:bg-green-600" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
         </div>
     </div>
 
-    <script src="../../js/main.js"></script>
+    <script src="../../../../js/main.js"></script> <!-- Adjusted path -->
     <script>
-        // Same script as English chapter with additional configuration for Arabic
+        // Ensure theme persistence if using localStorage for theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
         let streak = 0;
         let questionsAnswered = 0;
         const totalQuestions = 3;
@@ -104,7 +179,73 @@
             "عمل جيد! (Good work!) 🎯"
         ];
 
-        // ... rest of the script same as English chapter ...
+        function updateProgressBar() {
+            const percentage = totalQuestions > 0 ? (questionsAnswered / totalQuestions) * 100 : 0;
+            document.getElementById('masteryPercentage').textContent = `${Math.round(percentage)}%`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+        }
+
+        function showFeedback(message, isCorrect) {
+            const feedbackEl = document.getElementById('feedbackMessage');
+            feedbackEl.textContent = message;
+            feedbackEl.className = 'feedback-message text-center font-semibold my-4 min-h-[1.5em]'; // Reset classes
+            if (isCorrect) {
+                feedbackEl.classList.add('text-green-500', 'dark:text-green-400');
+            } else {
+                feedbackEl.classList.add('text-red-500', 'dark:text-red-400');
+            }
+        }
+        
+        function checkAnswerWithFeedback(questionId, correctAnswer) {
+            const inputElement = document.getElementById(`${questionId}-input`);
+            const answerResultElement = inputElement.closest('.question-container').querySelector('.answer-result');
+            const hintsContainer = inputElement.closest('.question-container').querySelector('.hints-container');
+            const userAnswer = inputElement.value.trim().toLowerCase();
+            correctAnswer = correctAnswer.toLowerCase();
+
+            answerResultElement.classList.remove('correct', 'incorrect', 'bg-green-100', 'dark:bg-green-900', 'text-green-700', 'dark:text-green-300', 'bg-red-100', 'dark:bg-red-900', 'text-red-700', 'dark:text-red-300');
+            answerResultElement.textContent = '';
+
+
+            if (userAnswer === correctAnswer) {
+                questionsAnswered++;
+                streak++;
+                answerResultElement.textContent = "Correct! " + encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)];
+                answerResultElement.classList.add('correct', 'bg-green-100', 'dark:bg-green-800', 'text-green-700', 'dark:text-green-300');
+                inputElement.disabled = true;
+                inputElement.closest('.question-container').querySelector('.check-answer-btn').disabled = true;
+                showFeedback("Well done!", true);
+                if(hintsContainer) hintsContainer.style.display = 'none';
+
+            } else {
+                streak = 0;
+                answerResultElement.textContent = "Incorrect. Try again or check the hint.";
+                answerResultElement.classList.add('incorrect', 'bg-red-100', 'dark:bg-red-800', 'text-red-700', 'dark:text-red-300');
+                showFeedback("Oops, not quite. Give it another shot!", false);
+                if(hintsContainer) hintsContainer.style.display = 'block';
+            }
+            document.getElementById('currentStreak').textContent = streak;
+            updateProgressBar();
+        }
+
+        function previousChapter() {
+            // Logic for previous chapter
+            alert("Navigating to previous chapter (not implemented).");
+        }
+
+        function nextChapter() {
+            // Logic for next chapter
+            alert("Navigating to next chapter (not implemented).");
+        }
+        
+        // Initialize
+        updateProgressBar();
+        // Load username if available (example)
+        const username = localStorage.getItem('username') || 'Learner';
+        // If you have a username display element:
+        // const usernameDisplay = document.getElementById('usernameDisplay');
+        // if(usernameDisplay) usernameDisplay.textContent = username;
+
     </script>
 </body>
 </html>

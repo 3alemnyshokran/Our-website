@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Grammar - A1 Level | Chapter 1</title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
     <style>
         .chapter-container {
             max-width: 900px; /* Increased max-width for better spacing */
             margin: 40px auto;
             padding: 30px;
-            background-color: #f9fafb; /* Light gray background for the container */
+            background-color: #1f2937; /* Tailwind gray-800 for dark theme */
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
         }
@@ -18,7 +18,7 @@
         .level-badge {
             display: inline-block;
             padding: 5px 15px;
-            background: #3b82f6; /* Tailwind blue-500 */
+            background: #2563eb; /* Tailwind blue-600 for dark theme */
             color: white;
             border-radius: 20px;
             margin-bottom: 20px;
@@ -27,28 +27,28 @@
         .content-section {
             margin-bottom: 30px;
             padding: 20px;
-            background: #ffffff; /* White background for content sections */
+            background: #374151; /* Tailwind gray-700 for dark theme */
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
         }
 
         .lesson-title {
             font-size: 1.75rem; /* Larger lesson titles */
-            color: #1f2937; /* Tailwind gray-800 */
+            color: #f3f4f6; /* Tailwind gray-100 for dark theme */
             margin-bottom: 1rem;
         }
 
         .lesson-paragraph {
             font-size: 1rem;
             line-height: 1.6;
-            color: #4b5563; /* Tailwind gray-600 */
+            color: #d1d5db; /* Tailwind gray-300 for dark theme */
             margin-bottom: 1rem;
         }
 
         .lesson-list {
             list-style-type: disc;
             margin-left: 1.5rem;
-            color: #4b5563; /* Tailwind gray-600 */
+            color: #d1d5db; /* Tailwind gray-300 for dark theme */
         }
 
         .action-button {
@@ -82,8 +82,8 @@
         }
 
         .question-container {
-            background: #ffffff; /* White background for questions */
-            border-left: 4px solid #3b82f6; /* Blue accent for questions */
+            background: #374151; /* Tailwind gray-700 for dark theme */
+            border-left: 4px solid #2563eb; /* Tailwind blue-600 for dark theme */
             padding: 20px;
             margin: 20px 0;
             border-radius: 10px;
@@ -93,7 +93,7 @@
 
         .question-title {
             font-size: 1.25rem;
-            color: #1f2937; /* Tailwind gray-800 */
+            color: #f3f4f6; /* Tailwind gray-100 for dark theme */
             margin-bottom: 0.5rem;
         }
 
@@ -138,17 +138,17 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #d1d5db; /* Tailwind gray-300 */
+            border: 1px solid #4b5563; /* Tailwind gray-600 for dark theme */
             border-radius: 8px;
-            background: var(--input-bg);
-            color: var(--text-color);
+            background: #374151; /* Tailwind gray-700 for dark theme */
+            color: #f3f4f6; /* Tailwind gray-100 for dark theme */
             font-size: 1rem;
             transition: border-color 0.3s ease;
         }
 
         .answer-input:focus {
-            border-color: #3b82f6; /* Tailwind blue-500 */
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3); /* Focus ring */
+            border-color: #2563eb; /* Tailwind blue-600 for dark theme */
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.4); /* Focus ring for dark theme */
             outline: none;
         }
 
@@ -184,13 +184,13 @@
         }
 
         .answer-result.correct {
-            background: rgba(76, 175, 80, 0.15);
-            color: #2e7d32;
+            background: rgba(76, 175, 80, 0.2); /* Adjusted for dark theme */
+            color: #6ee7b7; /* Tailwind green-300 for dark theme */
         }
 
         .answer-result.incorrect {
-            background: rgba(244, 67, 54, 0.15);
-            color: #d32f2f;
+            background: rgba(244, 67, 54, 0.2); /* Adjusted for dark theme */
+            color: #fca5a5; /* Tailwind red-300 for dark theme */
         }
 
         .skill-progress {
@@ -214,7 +214,7 @@
             right: 0;
             top: -25px;
             font-size: 0.9rem;
-            color: var(--text-color);
+            color: #d1d5db; /* Tailwind gray-300 for dark theme */
         }
 
         .streak-counter {
@@ -253,7 +253,7 @@
     </style>
 </head>
 <body>
-    <div class="chapter-container p-6 md:p-8 lg:p-10">
+    <div class="chapter-container p-6 md:p-8 lg:p-10 dark:bg-gray-800">
         <!-- Removed Welcome Banner -->
         
         <div class="level-badge" data-i18n="levelA1">A1 - Breakthrough</div>
@@ -261,29 +261,29 @@
         
         <!-- Skill Selection -->
         <div class="flex flex-wrap gap-3 mt-6 mb-8">
-          <button data-skill="pronouns" class="skill-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">Pronouns</button>
-          <button data-skill="tobe" class="skill-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium">Verb To Be</button>
-          <button data-skill="family" class="skill-btn bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium">Family Vocabulary</button>
-          <button data-skill="adjectives" class="skill-btn bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md text-sm font-medium">Adjectives</button>
-          <button data-skill="numbers" class="skill-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium">Numbers</button>
-          <button data-skill="questions" class="skill-btn bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium">Questions</button>
-          <button data-skill="articles" class="skill-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium">Articles</button>
-          <button data-skill="prepositions" class="skill-btn bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded-md text-sm font-medium">Prepositions</button>
+          <button data-skill="pronouns" class="skill-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Pronouns</button>
+          <button data-skill="tobe" class="skill-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Verb To Be</button>
+          <button data-skill="family" class="skill-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Family Vocabulary</button>
+          <button data-skill="adjectives" class="skill-btn bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Adjectives</button>
+          <button data-skill="numbers" class="skill-btn bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Numbers</button>
+          <button data-skill="questions" class="skill-btn bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Questions</button>
+          <button data-skill="articles" class="skill-btn bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Articles</button>
+          <button data-skill="prepositions" class="skill-btn bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Prepositions</button>
         </div>
 
         <!-- Question Modal -->
-        <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
-          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-            <h3 id="modalSkillTitle" class="text-xl font-bold mb-4 text-blue-600"></h3>
-            <p id="modalQuestion" class="text-gray-800 dark:text-gray-200 mb-4"></p>
-            <input id="modalAnswer" type="text" class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white" placeholder="Your answer">
-            <div class="flex justify-between items-center">
-              <button id="prevQuestion" class="bg-gray-400 hover:bg-gray-500 text-white px-3 py-1 rounded disabled:opacity-50" disabled>Previous</button>
-              <button id="checkAnswer" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Check</button>
-              <button id="nextQuestion" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded disabled:opacity-50" disabled>Next</button>
+        <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden">
+          <div class="bg-slate-800 p-6 rounded-lg shadow-xl w-full max-w-md">
+            <h3 id="modalSkillTitle" class="text-xl font-bold mb-4 text-blue-400"></h3>
+            <p id="modalQuestion" class="text-gray-200 mb-4"></p>
+            <input id="modalAnswer" type="text" class="w-full border border-gray-600 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-700 text-white placeholder-gray-400" placeholder="Your answer">
+            <div class="flex justify-between items-center mt-4">
+              <button id="prevQuestion" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md disabled:opacity-50 transition-colors text-sm font-medium">Previous</button>
+              <button id="checkAnswer" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors text-sm font-medium">Check</button>
+              <button id="nextQuestion" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md disabled:opacity-50 transition-colors text-sm font-medium">Next</button>
             </div>
-            <p id="modalFeedback" class="mt-4 font-medium"></p>
-            <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">✖</button>
+            <p id="modalFeedback" class="mt-4 font-medium text-sm"></p>
+            <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-200 text-2xl font-bold">&times;</button>
           </div>
         </div>
 
@@ -327,6 +327,7 @@
             <button id="backToLesson" class="action-button back-to-lesson-btn">Back to Lesson</button>
         </div>
 
+        <!-- Dark mode adjustments for tables -->
         <div class="content-section">
             <h2>Verb "To Be" (am, is, are)</h2>
             <p>The verb "to be" is used to describe people, places, and things. Examples:</p>
@@ -339,33 +340,33 @@
             <table class="mt-4 w-full border-collapse">
                 <thead>
                     <tr>
-                        <th class="border p-2">Subject Pronoun</th>
-                        <th class="border p-2">Verb "to be"</th>
-                        <th class="border p-2">Example</th>
+                        <th class="border p-2 text-left text-gray-300">Subject Pronoun</th>
+                        <th class="border p-2 text-left text-gray-300">Verb "to be"</th>
+                        <th class="border p-2 text-left text-gray-300">Example</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="bg-gray-800">
                         <td class="border p-2">I</td>
                         <td class="border p-2">am</td>
                         <td class="border p-2">I am a student.</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-800">
                         <td class="border p-2">You</td>
                         <td class="border p-2">are</td>
                         <td class="border p-2">You are my friend.</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-800">
                         <td class="border p-2">He/She/It</td>
                         <td class="border p-2">is</td>
                         <td class="border p-2">He is tall. / She is smart. / It is a book.</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-800">
                         <td class="border p-2">We</td>
                         <td class="border p-2">are</td>
                         <td class="border p-2">We are happy.</td>
                     </tr>
-                    <tr>
+                    <tr class="bg-gray-800">
                         <td class="border p-2">They</td>
                         <td class="border p-2">are</td>
                         <td class="border p-2">They are students.</td>
@@ -495,7 +496,7 @@
         </div>
     </div>
 
-    <script src="../../js/main.js"></script>
+    <script src="../../../js/main.js"></script>
     <script>
         let streak = 0;
         let questionsAnswered = 0;

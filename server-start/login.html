@@ -1,12 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark"> <!-- Added dark class -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Educational Platform</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        body.dark {
+            background-color: #1f2937; /* Tailwind gray-800 */
+            color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        body.dark .login-box {
+            background-color: #374151; /* Tailwind gray-700 */
+            color: #f3f4f6; /* Tailwind gray-100 */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        body.dark .login-box h1 {
+            color: #60a5fa; /* Tailwind blue-400 */
+        }
+        body.dark .form-group label {
+            color: #d1d5db; /* Tailwind gray-300 */
+        }
+        body.dark .form-group input[type="text"],
+        body.dark .form-group input[type="password"] {
+            background-color: #4b5563; /* Tailwind gray-600 */
+            color: #f3f4f6; /* Tailwind gray-100 */
+            border: 1px solid #6b7280; /* Tailwind gray-500 */
+        }
+        body.dark .form-options label,
+        body.dark .form-options .forgot-password {
+            color: #d1d5db; /* Tailwind gray-300 */
+        }
+        body.dark .form-options .forgot-password:hover {
+            color: #9ca3af; /* Tailwind gray-400 */
+        }
+        body.dark .login-btn {
+            background-color: #2563eb; /* Tailwind blue-600 */
+            color: white;
+        }
+        body.dark .login-btn:hover {
+            background-color: #1d4ed8; /* Tailwind blue-700 */
+        }
+        body.dark .register-link,
+        body.dark .register-link a {
+            color: #d1d5db; /* Tailwind gray-300 */
+        }
+        body.dark .register-link a:hover {
+            color: #9ca3af; /* Tailwind gray-400 */
+        }
+    </style>
 </head>
-<body>
+<body class="dark"> <!-- Added dark class -->
     <div class="login-container">
         <div class="login-box">
             <h1>Welcome Back</h1>

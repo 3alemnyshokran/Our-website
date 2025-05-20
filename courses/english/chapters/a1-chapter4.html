@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Present Tense - A1 Level | Chapter 4</title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../../../css/styles.css">
     <style>
         .chapter-container {
             max-width: 800px;
@@ -253,6 +253,107 @@
             border-radius: 8px;
             margin: 15px 0;
             border-left: 3px solid var(--primary-color);
+        }
+
+        /* Dark Theme Styles */
+        [data-theme="dark"] body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .chapter-container {
+            background-color: #2c2c2c; /* Slightly lighter than body for contrast */
+            border: 1px solid #444;
+        }
+        [data-theme="dark"] .level-badge {
+            background: var(--primary-color-dark, #5a67d8); /* Use a dark theme primary or a fallback */
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .content-section,
+        [data-theme="dark"] .question-container {
+            background: #252525;
+            border: 1px solid #383838;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        [data-theme="dark"] .welcome-banner {
+            background: linear-gradient(135deg, #3c3c5c, #2a5a9a);
+            color: #e0e0e0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+        }
+        [data-theme="dark"] .username {
+            color: #f6e05e; /* Lighter yellow for dark theme */
+        }
+        [data-theme="dark"] .progress-overview {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        [data-theme="dark"] .nav-button {
+            background: var(--primary-color-dark, #5a67d8);
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .nav-button:hover {
+            background: var(--primary-color-dark-hover, #4c58b8);
+        }
+        [data-theme="dark"] .answer-input {
+            background: #333;
+            color: #e0e0e0;
+            border: 2px solid #555;
+        }
+        [data-theme="dark"] .answer-input:focus {
+            border-color: var(--primary-color-dark, #5a67d8);
+        }
+        [data-theme="dark"] .check-answer-btn {
+            background: var(--primary-color-dark, #5a67d8);
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .check-answer-btn:hover {
+            background: var(--primary-color-dark-hover, #4c58b8);
+        }
+        [data-theme="dark"] .answer-result.correct {
+            background: rgba(76, 175, 80, 0.25); /* Darker green tint */
+            color: #a5d6a7;
+        }
+        [data-theme="dark"] .answer-result.incorrect {
+            background: rgba(244, 67, 54, 0.25); /* Darker red tint */
+            color: #ef9a9a;
+        }
+        [data-theme="dark"] .skill-progress {
+            background: rgba(var(--primary-color-rgb, 79, 70, 229), 0.2); /* Darker tint */
+        }
+        [data-theme="dark"] .skill-progress-fill {
+            background: var(--primary-color-dark, #5a67d8);
+        }
+        [data-theme="dark"] .progress-label {
+            color: #ccc;
+        }
+        [data-theme="dark"] .streak-counter {
+            background: #252525;
+            color: #e0e0e0;
+            border: 1px solid #383838;
+        }
+        [data-theme="dark"] .feedback-message {
+            color: #e0e0e0; /* Ensure feedback text is visible */
+        }
+        [data-theme="dark"] .hints-container {
+            background: rgba(var(--primary-color-rgb, 79, 70, 229), 0.1); /* Darker tint */
+            border: 1px solid #383838;
+        }
+        [data-theme="dark"] .grammar-table th,
+        [data-theme="dark"] .grammar-table td {
+            border: 1px solid #444;
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] .grammar-table th {
+            background-color: rgba(var(--primary-color-rgb, 79, 70, 229), 0.2);
+        }
+        [data-theme="dark"] .grammar-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03); /* Very subtle row striping */
+        }
+        [data-theme="dark"] .grammar-rule {
+            background-color: rgba(var(--primary-color-rgb, 79, 70, 229), 0.1);
+            border-left: 3px solid var(--primary-color-dark, #5a67d8);
+            color: #e0e0e0;
+        }
+        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3 {
+            color: #f0f0f0;
         }
     </style>
 </head>
@@ -638,8 +739,36 @@
             updateOverallProgress();
         }
         
+        document.addEventListener('DOMContentLoaded', () => {
+            // Apply theme from localStorage
+            const savedTheme = localStorage.getItem('theme') || 'light'; // Default to light
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            // If you are setting it on body: document.body.setAttribute('data-theme', savedTheme);
+
+            displayUsername(); // Call your existing function to display username and load progress
+        });
+
+        // Listen for theme changes in other tabs/windows
+        window.addEventListener('storage', (event) => {
+            if (event.key === 'theme') {
+                const newTheme = event.newValue;
+                if (newTheme) {
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    // If you are setting it on body: document.body.setAttribute('data-theme', newTheme);
+                }
+            }
+        });
+
+        // Function to toggle theme (can be called from a button if you add one)
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
         // Call displayUsername when the page loads
-        document.addEventListener('DOMContentLoaded', displayUsername);
+        // document.addEventListener('DOMContentLoaded', displayUsername); // This is now called inside the new DOMContentLoaded listener
     </script>
 </body>
 </html>
