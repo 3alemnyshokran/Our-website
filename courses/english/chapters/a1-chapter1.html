@@ -246,6 +246,12 @@
           <button data-skill="pronouns" class="skill-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Pronouns Practice</button>
           <button data-skill="tobe" class="skill-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Verb To Be Practice</button>
           <button data-skill="family" class="skill-btn bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded">Family Vocabulary Practice</button>
+          <!-- Additional Skills -->
+          <button data-skill="adjectives" class="skill-btn bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Adjectives Practice</button>
+          <button data-skill="numbers" class="skill-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Numbers Practice</button>
+          <button data-skill="questions" class="skill-btn bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded">Questions Practice</button>
+          <button data-skill="articles" class="skill-btn bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded">Articles Practice</button>
+          <button data-skill="prepositions" class="skill-btn bg-pink-500 hover:bg-pink-600 text-white px-4 py-2 rounded">Prepositions Practice</button>
         </div>
 
         <!-- Question Modal -->
@@ -614,6 +620,26 @@
         family: [
           { q: 'My mother\'s father is my _____.', a: 'grandfather' },
           { q: 'My father\'s sister is my _____.', a: 'aunt' }
+        ],
+        adjectives: [
+          { q: 'What is the opposite of "big"?', a: 'small' },
+          { q: 'What is the opposite of "happy"?', a: 'sad' }
+        ],
+        numbers: [
+          { q: 'What number comes after 7?', a: '8' },
+          { q: 'What is 5 + 3?', a: '8' }
+        ],
+        questions: [
+          { q: 'What is the question word for asking about time?', a: 'When' },
+          { q: 'What is the question word for asking about a person?', a: 'Who' }
+        ],
+        articles: [
+          { q: 'Fill in the blank: "I saw _____ apple on the table."', a: 'an' },
+          { q: 'Fill in the blank: "She bought _____ car."', a: 'a' }
+        ],
+        prepositions: [
+          { q: 'Fill in the blank: "The book is _____ the table."', a: 'on' },
+          { q: 'Fill in the blank: "He is sitting _____ the chair."', a: 'on' }
         ]
       };
       let currentSkill = null, currentIndex = 0;
