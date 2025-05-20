@@ -280,8 +280,9 @@
             <span id="currentStreak">0</span> correct in a row!
         </div>
 
-        <div class="content-section">
-            <h2>Subject Pronouns</h2>
+        <!-- Lesson Section -->
+        <div id="lessonSection" class="content-section">
+            <h2>Lesson: Subject Pronouns</h2>
             <p>In English, we use subject pronouns to refer to people or things without using their names. The main subject pronouns are:</p>
             <ul>
                 <li>I (first person singular)</li>
@@ -290,42 +291,26 @@
                 <li>We (first person plural)</li>
                 <li>They (third person plural)</li>
             </ul>
+            <button id="startTraining" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mt-4">Start Training</button>
         </div>
 
-        <div class="feedback-message" id="feedbackMessage"></div>
-
-        <div class="question-container" id="q1">
-            <h3>Practice Question 1</h3>
-            <p>Complete the sentence: "_____ am a student." (Use the correct subject pronoun)</p>
-            <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q1', 'I')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> When talking about yourself, which pronoun do you use?</p>
+        <!-- Training Section -->
+        <div id="trainingSection" class="content-section hidden">
+            <h2>Training: Subject Pronouns</h2>
+            <div class="question-container">
+                <h3>Practice Question 1</h3>
+                <p>Complete the sentence: "_____ am a student." (Use the correct subject pronoun)</p>
+                <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
+                <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q1', 'I')">Check Answer</button>
+                <div class="answer-result"></div>
+                <div class="hints-container">
+                    <p><strong>Hint:</strong> When talking about yourself, which pronoun do you use?</p>
+                </div>
             </div>
+            <button id="backToLesson" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded mt-4">Back to Lesson</button>
         </div>
 
-        <div class="question-container" id="q2">
-            <h3>Practice Question 2</h3>
-            <p>Complete the sentence: "_____ is my teacher." (Use the correct subject pronoun for a female teacher)</p>
-            <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q2', 'She')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> Which pronoun do we use for a female person?</p>
-            </div>
-        </div>
-
-        <div class="question-container" id="q3">
-            <h3>Practice Question 3</h3>
-            <p>Complete the sentence: "_____ are my friends." (Use the correct subject pronoun for multiple people)</p>
-            <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q3', 'They')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> When referring to multiple people, we use this plural pronoun.</p>
-            </div>
-        </div>        <div class="content-section">
+        <div class="content-section">
             <h2>Verb "To Be" (am, is, are)</h2>
             <p>The verb "to be" is used to describe people, places, and things. Examples:</p>
             <ul>
@@ -689,6 +674,17 @@
           feedbackEl.textContent = '✗ Try again!'; feedbackEl.className='mt-4 text-red-600 font-semibold';
         }
       });
+    </script>
+    <script>
+            document.getElementById('startTraining').addEventListener('click', function() {
+                document.getElementById('lessonSection').classList.add('hidden');
+                document.getElementById('trainingSection').classList.remove('hidden');
+            });
+
+            document.getElementById('backToLesson').addEventListener('click', function() {
+                document.getElementById('trainingSection').classList.add('hidden');
+                document.getElementById('lessonSection').classList.remove('hidden');
+            });
     </script>
 </body>
 </html>
