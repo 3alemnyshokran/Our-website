@@ -36,6 +36,84 @@
         <li>Write five sentences about what you did last weekend.</li>
         <li>Describe your family using the new vocabulary.</li>
       </ol>
+      <h3 class="text-xl font-semibold mt-6 mb-2">IXL-Style Practice: Daily Routine</h3>
+      <div class="question-container" id="q1">
+        <p>Fill in the blank: "I _____ up at 7 o'clock every day."</p>
+        <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q1','wake')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-container" id="q2">
+        <p>Choose the correct word: "She _____ breakfast at 8:00."</p>
+        <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q2','has')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-container" id="q3">
+        <p>Fill in the blank: "We _____ to school by bus."</p>
+        <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q3','go')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <h3 class="text-xl font-semibold mt-6 mb-2">IXL-Style Practice: Simple Past Tense</h3>
+      <div class="question-container" id="q4">
+        <p>Change to past tense: "I play football."</p>
+        <input type="text" class="answer-input" id="q4-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q4','played football')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-container" id="q5">
+        <p>Change to past tense: "She watches a movie."</p>
+        <input type="text" class="answer-input" id="q5-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q5','watched a movie')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-container" id="q6">
+        <p>Fill in the blank: "Yesterday, we _____ to the park."</p>
+        <input type="text" class="answer-input" id="q6-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q6','went')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <h3 class="text-xl font-semibold mt-6 mb-2">IXL-Style Practice: Family Vocabulary</h3>
+      <div class="question-container" id="q7">
+        <p>Who is your mother's son?</p>
+        <input type="text" class="answer-input" id="q7-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q7','brother')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <div class="question-container" id="q8">
+        <p>Who is your father's daughter?</p>
+        <input type="text" class="answer-input" id="q8-input" placeholder="Type your answer">
+        <button class="check-answer-btn" onclick="checkA2Answer('q8','sister')">Check Answer</button>
+        <div class="answer-result"></div>
+      </div>
+      <script>
+      function checkA2Answer(qid, correct) {
+        const input = document.getElementById(qid+'-input');
+        const result = input.parentElement.querySelector('.answer-result');
+        if (input.value.trim().toLowerCase() === correct.toLowerCase()) {
+          result.textContent = '✓ Correct!';
+          result.style.color = '#2e7d32';
+          input.disabled = true;
+        } else {
+          result.textContent = '✗ Try again!';
+          result.style.color = '#d32f2f';
+        }
+      }
+      document.querySelectorAll('.answer-input').forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            const qid = this.id.split('-')[0];
+            const answers = {
+              'q1':'wake', 'q2':'has', 'q3':'go',
+              'q4':'played football', 'q5':'watched a movie', 'q6':'went',
+              'q7':'brother', 'q8':'sister'
+            };
+            checkA2Answer(qid, answers[qid]);
+          }
+        });
+      });
+      </script>
     </section>
   </main>
   <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">

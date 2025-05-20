@@ -30,6 +30,110 @@
   </footer>
   <script>
     document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Cookie utility functions
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/; SameSite=Lax";
+    }
+
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+      }
+      return null;
+    }
+
+    function deleteCookie(name) {
+      document.cookie = name + '=; Max-Age=0; path=/; SameSite=Lax';
+    }
+
+    // Get device and browser information
+    function getDeviceInfo() {
+      return {
+        device: navigator.userAgent,
+        browser: getBrowserName(),
+        os: getOperatingSystem()
+      };
+    }
+    function getBrowserName() {
+      const userAgent = navigator.userAgent;
+      if (userAgent.indexOf("Firefox") > -1) return "Mozilla Firefox";
+      else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) return "Opera";
+      else if (userAgent.indexOf("Edge") > -1) return "Microsoft Edge";
+      else if (userAgent.indexOf("Chrome") > -1) return "Google Chrome";
+      else if (userAgent.indexOf("Safari") > -1) return "Safari";
+      else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) return "Internet Explorer";
+      else return "Unknown browser";
+    }
+    function getOperatingSystem() {
+      const userAgent = navigator.userAgent;
+      if (userAgent.indexOf("Win") > -1) return "Windows";
+      else if (userAgent.indexOf("Mac") > -1) return "MacOS";
+      else if (userAgent.indexOf("Linux") > -1) return "Linux";
+      else if (userAgent.indexOf("Android") > -1) return "Android";
+      else if (userAgent.indexOf("iOS") > -1) return "iOS";
+      else return "Unknown OS";
+    }
+    async function getIpAddress() {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+      } catch (error) {
+        return 'unknown';
+      }
+    }
+
+    // Prompt for username and save all info
+    async function saveUserData() {
+      let username = localStorage.getItem('special_username');
+      if (!username) {
+        username = prompt('Enter a username to personalize your experience:');
+        if (!username) return;
+        localStorage.setItem('special_username', username);
+      }
+      const deviceInfo = getDeviceInfo();
+      const ip = await getIpAddress();
+      // Collect all cookies
+      const allCookies = document.cookie;
+      // Save to localStorage
+      localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo));
+      localStorage.setItem('ip', ip);
+      localStorage.setItem('allCookies', allCookies);
+      // Optionally send to backend for account recovery/personalization
+      /*
+      fetch('http://localhost:3001/api/save-user-device', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, deviceInfo, ip, cookies: allCookies })
+      });
+      */
+    }
+
+    // Save all info when user clicks Start Learning Now
+    document.querySelector('a[href="/index.html"]').addEventListener('click', function() {
+      setCookie('visited', 'yes', 30);
+      const theme = localStorage.getItem('theme') || 'light';
+      setCookie('theme', theme, 30);
+      const language = localStorage.getItem('language') || 'en';
+      setCookie('language', language, 30);
+      setCookie('lastVisit', new Date().toISOString(), 30);
+      const user = localStorage.getItem('user');
+      if (user) {
+        setCookie('user', user, 30);
+      }
+      saveUserData();
+    });
   </script>
 </body>
 </html>
