@@ -178,20 +178,67 @@ function checkAnswer(exerciseId, correctAnswer) {
 // --- BACKEND API INTEGRATION ---
 const BACKEND_URL = 'http://localhost:3001';
 
-async function registerUser(username, password, ip, device) {
+async function registerUser(username, password, ip, device, browser, os) {
   const res = await fetch(`${BACKEND_URL}/api/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password, ip, device })
+    body: JSON.stringify({ 
+      username, 
+      password, 
+      ip: ip || 'unknown', 
+      device: device || navigator.userAgent,
+      browser: browser || getBrowserName(),
+      os: os || getOperatingSystem()
+    })
   });
   return res.json();
 }
 
-async function loginUser(username, password) {
+// Device info helper functions
+function getBrowserName() {
+  const userAgent = navigator.userAgent;
+  if (userAgent.indexOf("Firefox") > -1) return "Mozilla Firefox";
+  else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) return "Opera";
+  else if (userAgent.indexOf("Edge") > -1) return "Microsoft Edge";
+  else if (userAgent.indexOf("Chrome") > -1) return "Google Chrome";
+  else if (userAgent.indexOf("Safari") > -1) return "Safari";
+  else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) return "Internet Explorer";
+  else return "Unknown browser";
+}
+
+function getOperatingSystem() {
+  const userAgent = navigator.userAgent;
+  if (userAgent.indexOf("Win") > -1) return "Windows";
+  else if (userAgent.indexOf("Mac") > -1) return "MacOS";
+  else if (userAgent.indexOf("Linux") > -1) return "Linux";
+  else if (userAgent.indexOf("Android") > -1) return "Android";
+  else if (userAgent.indexOf("iOS") > -1) return "iOS";
+  else return "Unknown OS";
+}
+
+async function getIpAddress() {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    const data = await response.json();
+    return data.ip;
+  } catch (error) {
+    console.error('Failed to get IP address:', error);
+    return 'unknown';
+  }
+}
+
+async function loginUser(username, password, deviceInfo = {}) {
   const res = await fetch(`${BACKEND_URL}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
+    body: JSON.stringify({ 
+      username, 
+      password,
+      ip: deviceInfo.ip || 'unknown',
+      device: deviceInfo.device || navigator.userAgent,
+      browser: deviceInfo.browser || 'unknown',
+      os: deviceInfo.os || 'unknown'
+    })
   });
   return res.json();
 }
@@ -246,14 +293,31 @@ document.getElementById('loginForm')?.addEventListener('submit', async function(
     const username = document.getElementById('usernameInput')?.value;
     const password = document.getElementById('passwordInput')?.value;
     if (!username || !password) return alert('Please enter username and password.');
-    const result = await loginUser(username, password);
-    if (result.success) {
-        // Save username in sessionStorage for session tracking
-        sessionStorage.setItem('tutor_username', username);
-        hideLogin();
-        document.getElementById('welcomeUser').textContent = username;
-    } else {
-        alert(result.error || 'Login failed');
+    
+    try {
+        // Get device information
+        const deviceInfo = {
+            device: navigator.userAgent,
+            browser: getBrowserName(),
+            os: getOperatingSystem(),
+            ip: await getIpAddress()
+        };
+        
+        const result = await loginUser(username, password, deviceInfo);
+        if (result.success) {
+            // Save username in sessionStorage for session tracking
+            sessionStorage.setItem('tutor_username', username);
+            if (result.token) {
+                localStorage.setItem('authToken', result.token);
+            }
+            hideLogin();
+            document.getElementById('welcomeUser').textContent = username;
+        } else {
+            alert(result.error || 'Login failed');
+        }
+    } catch (err) {
+        console.error('Login error:', err);
+        alert('Network error. Please try again.');
     }
 });
 
@@ -262,13 +326,24 @@ document.getElementById('registerForm')?.addEventListener('submit', async functi
     e.preventDefault();
     const username = document.getElementById('username')?.value;
     const password = document.getElementById('password')?.value;
-    let ip = '';
+    
     try {
-        const res = await fetch('https://api.ipify.org?format=json');
-        ip = (await res.json()).ip;
-    } catch { ip = 'Unavailable'; }
-    const device = navigator.userAgent;
-    const result = await registerUser(username, password, ip, device);
+        // Get device information
+        const deviceInfo = {
+            device: navigator.userAgent,
+            browser: getBrowserName(),
+            os: getOperatingSystem(),
+            ip: await getIpAddress()
+        };
+        
+        const result = await registerUser(
+            username, 
+            password, 
+            deviceInfo.ip, 
+            deviceInfo.device,
+            deviceInfo.browser,
+            deviceInfo.os
+        );
     if (result.success) {
         sessionStorage.setItem('tutor_username', username);
         window.location.href = 'home-screen.html';
