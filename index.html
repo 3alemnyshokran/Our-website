@@ -30,9 +30,9 @@
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
     <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
       <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 w-full max-w-md relative">
-        <button id="toggle-auth" class="absolute top-4 right-4 text-blue-600 dark:text-blue-400 underline text-sm">Register</button>        <h2 id="auth-title" class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">Login to Your Account</h2>
-        <form id="authForm" class="space-y-5">
-          <div>
+        <button id="toggle-auth" class="absolute top-4 right-4 text-blue-600 dark:text-blue-400 underline text-sm">Register</button>
+        <h2 id="auth-title" class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">Login to Your Account</h2>
+        <form id="authForm" class="space-y-5">          <div>
             <label for="auth-username" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
             <input type="text" id="auth-username" name="username" required class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Your username">
           </div>
@@ -44,11 +44,25 @@
           <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-colors">Login</button>
         </form>
       </div>
-    </div>
-  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+    </div>  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
       <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Login button - visible when not logged in -->
+        <button id="login-btn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+          Login
+        </button>
+        
+        <!-- Profile button - visible when logged in -->
+        <div id="profile-btn" class="hidden relative">
+          <button class="flex items-center bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            <span>Username</span>
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+        </div>
+        
         <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
           <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
           <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
@@ -228,51 +242,131 @@
         updateLanguage(this.value);
       });
     });
-  </script>
-  <script>
+  </script>  <script>
     // Auth modal logic
     function showAuthModal(show) {
       document.getElementById('auth-modal').classList.toggle('hidden', !show);
-    }    function setAuthMode(isLogin) {
+    }
+    
+    function setAuthMode(isLogin) {
       document.getElementById('auth-title').textContent = isLogin ? 'Login to Your Account' : 'Create an Account';
       document.getElementById('toggle-auth').textContent = isLogin ? 'Register' : 'Login';
       document.querySelector('#authForm button[type=submit]').textContent = isLogin ? 'Login' : 'Register';
     }
-    // Check login
-    if (!localStorage.getItem('user')) {
+    
+    // No longer force login on page load - site works without login
+    
+    // Login button in header
+    document.getElementById('login-btn').addEventListener('click', function() {
       showAuthModal(true);
       setAuthMode(true);
-    }
+    });
+    
+    // Toggle between login and register
     document.getElementById('toggle-auth').onclick = function() {
       const isLogin = document.getElementById('auth-title').textContent.includes('Login');
       setAuthMode(!isLogin);
-    };    document.getElementById('authForm').onsubmit = async function(e) {
+    };
+    
+    // Close modal when clicking outside
+    document.getElementById('auth-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        showAuthModal(false);
+      }
+    });
+    
+    document.getElementById('authForm').onsubmit = async function(e) {
       e.preventDefault();
       const isLogin = document.getElementById('auth-title').textContent.includes('Login');
       const username = document.getElementById('auth-username').value.trim();
       const password = document.getElementById('auth-password').value;
+      
+      // Get device information
+      const deviceInfo = {
+        device: navigator.userAgent,
+        browser: getBrowserName(),
+        os: getOperatingSystem(),
+        ip: 'unknown' // We would normally get this from the server
+      };
+      
       const endpoint = isLogin ? 'http://localhost:3001/api/login' : 'http://localhost:3001/api/register';
-      const body = { username, password };
-      const res = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });      const data = await res.json();
-      const errorDiv = document.getElementById('auth-error');
-      if (data.success) {
-        localStorage.setItem('user', JSON.stringify({ username }));
-        showAuthModal(false);
-        errorDiv.classList.add('hidden');
-        window.location.reload();
-      } else {
-        errorDiv.textContent = data.error || 'Authentication failed.';
-        errorDiv.classList.remove('hidden');
+      const body = { 
+        username, 
+        password,
+        ...deviceInfo
+      };
+      
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        
+        const data = await res.json();
+        const errorDiv = document.getElementById('auth-error');
+        
+        if (data.success) {
+          localStorage.setItem('user', JSON.stringify({ username }));
+          if (data.token) {
+            localStorage.setItem('authToken', data.token);
+          }
+          showAuthModal(false);
+          errorDiv.classList.add('hidden');
+          updateUserState();
+          // No reload needed since site works without login
+        } else {
+          errorDiv.textContent = data.error || 'Authentication failed.';
+          errorDiv.classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error('Authentication error:', err);
+        document.getElementById('auth-error').textContent = 'Network error. Please try again.';
+        document.getElementById('auth-error').classList.remove('hidden');
       }
     };
-    // Hide modal if already logged in
-    if (localStorage.getItem('user')) {
-      showAuthModal(false);
+    
+    // Helper functions for device detection
+    function getBrowserName() {
+      const userAgent = navigator.userAgent;
+      if (userAgent.indexOf("Firefox") > -1) return "Mozilla Firefox";
+      else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) return "Opera";
+      else if (userAgent.indexOf("Edge") > -1) return "Microsoft Edge";
+      else if (userAgent.indexOf("Chrome") > -1) return "Google Chrome";
+      else if (userAgent.indexOf("Safari") > -1) return "Safari";
+      else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) return "Internet Explorer";
+      else return "Unknown browser";
     }
+    
+    function getOperatingSystem() {
+      const userAgent = navigator.userAgent;
+      if (userAgent.indexOf("Win") > -1) return "Windows";
+      else if (userAgent.indexOf("Mac") > -1) return "MacOS";
+      else if (userAgent.indexOf("Linux") > -1) return "Linux";
+      else if (userAgent.indexOf("Android") > -1) return "Android";
+      else if (userAgent.indexOf("iOS") > -1) return "iOS";
+      else return "Unknown OS";
+    }
+    
+    // Update UI based on login state
+    function updateUserState() {
+      const userInfo = localStorage.getItem('user');
+      const loginBtn = document.getElementById('login-btn');
+      const profileBtn = document.getElementById('profile-btn');
+      
+      if (userInfo) {
+        const user = JSON.parse(userInfo);
+        loginBtn.classList.add('hidden');
+        profileBtn.classList.remove('hidden');
+        profileBtn.querySelector('span').textContent = user.username;
+      } else {
+        loginBtn.classList.remove('hidden');
+        profileBtn.classList.add('hidden');
+      }
+    }
+    
+    // Initialize user state
+    updateUserState();
   </script>
   <!-- Vercel Analytics -->
   <script type="module">
