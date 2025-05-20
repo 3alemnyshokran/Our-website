@@ -9,16 +9,6 @@
     <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');</style>
 </head>
 <body class="bg-gray-100 text-gray-800">
-  <!-- Username Login Modal -->
-  <div id="usernameModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-    <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg w-full max-w-sm">
-      <h2 class="text-2xl font-bold mb-4 text-blue-600">Welcome!</h2>
-      <p class="mb-4 text-gray-700 dark:text-gray-300">Please enter your username to continue.</p>
-      <input id="modalUsername" type="text" placeholder="Username" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white">
-      <button id="modalSubmit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition">Continue</button>
-    </div>
-  </div>
-
     <!-- Header -->
     <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">English Language Course</h1>
@@ -46,7 +36,7 @@
             <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- A1 Card -->
-                <a href="chapters/a1-chapter1.html" class="course-card bg-blue-100 dark:bg-blue-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
+                <a href="chapters/a1-chapter1.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🅰️1</span>
                         <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">A1 Beginner</h4>
@@ -54,7 +44,7 @@
                     </div>
                 </a>
                 <!-- A2 Card -->
-                <a href="chapters/a2/a2-chapter1.html" class="course-card bg-green-100 dark:bg-green-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-green-200 dark:border-green-800">
+                <a href="chapters/a2/a2-chapter1.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-green-200 dark:border-green-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🅰️2</span>
                         <h4 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">A2 Elementary</h4>
@@ -62,7 +52,7 @@
                     </div>
                 </a>
                 <!-- B1 Card -->
-                <a href="chapters/b1/b1-chapter1.html" class="course-card bg-purple-100 dark:bg-purple-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
+                <a href="chapters/b1/b1-chapter1.html" class="course-card bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🅱️1</span>
                         <h4 class="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2 group-hover:text-purple-900 dark:group-hover:text-purple-200 transition-colors">B1 Intermediate</h4>
@@ -70,7 +60,7 @@
                     </div>
                 </a>
                 <!-- B2 Card -->
-                <a href="chapters/b2/b2-chapter1.html" class="course-card bg-orange-100 dark:bg-orange-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-orange-200 dark:border-orange-800">
+                <a href="chapters/b2/b2-chapter1.html" class="course-card bg-gradient-to-br from-orange-100 via-orange-50 to-white dark:from-orange-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-orange-200 dark:border-orange-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🅱️2</span>
                         <h4 class="text-2xl font-bold text-orange-700 dark:text-orange-300 mb-2 group-hover:text-orange-900 dark:group-hover:text-orange-200 transition-colors">B2 Upper-Intermediate</h4>
@@ -78,7 +68,7 @@
                     </div>
                 </a>
                 <!-- C1 Card -->
-                <a href="chapters/c1/c1-chapter1.html" class="course-card bg-teal-100 dark:bg-teal-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-teal-200 dark:border-teal-800">
+                <a href="chapters/c1/c1-chapter1.html" class="course-card bg-gradient-to-br from-teal-100 via-teal-50 to-white dark:from-teal-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-teal-200 dark:border-teal-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🇨1</span>
                         <h4 class="text-2xl font-bold text-teal-700 dark:text-teal-300 mb-2 group-hover:text-teal-900 dark:group-hover:text-teal-200 transition-colors">C1 Advanced</h4>
@@ -86,7 +76,7 @@
                     </div>
                 </a>
                 <!-- C2 Card -->
-                <a href="chapters/c2/c2-chapter1.html" class="course-card bg-pink-100 dark:bg-pink-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-pink-200 dark:border-pink-800">
+                <a href="chapters/c2/c2-chapter1.html" class="course-card bg-gradient-to-br from-pink-100 via-pink-50 to-white dark:from-pink-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-pink-200 dark:border-pink-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🇨2</span>
                         <h4 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-2 group-hover:text-pink-900 dark:group-hover:text-pink-200 transition-colors">C2 Proficient</h4>
