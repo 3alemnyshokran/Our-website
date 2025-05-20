@@ -241,6 +241,29 @@
         <div class="level-badge" data-i18n="levelA1">A1 - Breakthrough</div>
         <h1>Chapter 1: Basic Grammar</h1>
         
+        <!-- Skill Selection -->
+        <div class="flex flex-wrap gap-4 mt-6">
+          <button data-skill="pronouns" class="skill-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Pronouns Practice</button>
+          <button data-skill="tobe" class="skill-btn bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Verb To Be Practice</button>
+          <button data-skill="family" class="skill-btn bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded">Family Vocabulary Practice</button>
+        </div>
+
+        <!-- Question Modal -->
+        <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+          <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h3 id="modalSkillTitle" class="text-xl font-bold mb-4 text-blue-600"></h3>
+            <p id="modalQuestion" class="text-gray-800 dark:text-gray-200 mb-4"></p>
+            <input id="modalAnswer" type="text" class="w-full border border-gray-300 dark:border-gray-600 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white" placeholder="Your answer">
+            <div class="flex justify-between items-center">
+              <button id="prevQuestion" class="bg-gray-400 hover:bg-gray-500 text-white px-3 py-1 rounded disabled:opacity-50" disabled>Previous</button>
+              <button id="checkAnswer" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Check</button>
+              <button id="nextQuestion" class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded disabled:opacity-50" disabled>Next</button>
+            </div>
+            <p id="modalFeedback" class="mt-4 font-medium"></p>
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">✖</button>
+          </div>
+        </div>
+
         <div class="skill-progress">
             <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
             <div class="skill-progress-fill" id="progressBar"></div>
@@ -575,6 +598,71 @@
         
         // Call displayUsername when the page loads
         document.addEventListener('DOMContentLoaded', displayUsername);
+    </script>
+    <script>
+      // Skill question sets
+      const skills = {
+        pronouns: [
+          { q: '_____ am a student.', a: 'i' },
+          { q: '_____ is my teacher.', a: 'she' },
+          { q: '_____ are my friends.', a: 'they' }
+        ],
+        tobe: [
+          { q: 'He _____ from Spain.', a: 'is' },
+          { q: 'We _____ in the classroom.', a: 'are' }
+        ],
+        family: [
+          { q: 'My mother\'s father is my _____.', a: 'grandfather' },
+          { q: 'My father\'s sister is my _____.', a: 'aunt' }
+        ]
+      };
+      let currentSkill = null, currentIndex = 0;
+      const modal = document.getElementById('questionModal');
+      const titleEl = document.getElementById('modalSkillTitle');
+      const questEl = document.getElementById('modalQuestion');
+      const ansEl = document.getElementById('modalAnswer');
+      const prevBtn = document.getElementById('prevQuestion');
+      const nextBtn = document.getElementById('nextQuestion');
+      const checkBtn = document.getElementById('checkAnswer');
+      const feedbackEl = document.getElementById('modalFeedback');
+      document.querySelectorAll('.skill-btn').forEach(btn => btn.addEventListener('click', ()=>{
+        currentSkill = btn.dataset.skill;
+        currentIndex = 0;
+        titleEl.textContent = btn.textContent;
+        loadQuestion();
+        modal.classList.remove('hidden');
+      }));
+      document.getElementById('closeModal').addEventListener('click', ()=> modal.classList.add('hidden'));
+      prevBtn.addEventListener('click', ()=>{
+        if(currentIndex>0) currentIndex--, loadQuestion();
+      });
+      nextBtn.addEventListener('click', ()=>{
+        const total = skills[currentSkill].length;
+        if(currentIndex<total-1) currentIndex++ , loadQuestion();
+        else modal.classList.add('hidden');
+      });
+      function loadQuestion(){
+        const item = skills[currentSkill][currentIndex];
+        questEl.textContent = item.q;
+        ansEl.value = '';
+        feedbackEl.textContent = '';
+        prevBtn.disabled = currentIndex===0;
+        nextBtn.disabled = true;
+      }
+      checkBtn.addEventListener('click', ()=>{
+        const correct = skills[currentSkill][currentIndex].a.toLowerCase();
+        if(ansEl.value.trim().toLowerCase()===correct){
+          feedbackEl.textContent = '✓ Correct!'; feedbackEl.className='mt-4 text-green-600 font-semibold';
+          nextBtn.disabled = false;
+          // Update progress in localStorage per skill
+          const progressKey = `a1_${currentSkill}_prog`;
+          let prog = JSON.parse(localStorage.getItem(progressKey)||'[]');
+          prog[currentIndex] = true;
+          localStorage.setItem(progressKey, JSON.stringify(prog));
+        } else {
+          feedbackEl.textContent = '✗ Try again!'; feedbackEl.className='mt-4 text-red-600 font-semibold';
+        }
+      });
     </script>
 </body>
 </html>
