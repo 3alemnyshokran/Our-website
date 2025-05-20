@@ -15,9 +15,21 @@
     </div>
   </header>
   <main class="flex-grow container mx-auto px-4 py-8">
-    <section class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl">
-      <h2 class="text-2xl font-bold mb-4 text-green-700 dark:text-green-300">A2 Elementary - Chapter 1: Everyday Life</h2>
-      <p class="mb-4">In this chapter, you will learn how to talk about your daily routine, family, and use simple past tense.</p>
+    <section class="max-w-2xl mx-auto">
+      <!-- Welcome banner with username -->
+      <div class="bg-gradient-to-r from-blue-600 to-blue-500 text-white p-4 rounded-t-xl shadow-lg flex justify-between items-center">
+        <div>
+          <p class="font-medium text-lg">Welcome back, <span id="usernameDisplay" class="font-bold text-yellow-300">Learner</span>!</p>
+          <p class="text-sm text-blue-100">Ready to improve your English skills?</p>
+        </div>
+        <div class="bg-white/10 px-3 py-2 rounded-lg text-sm">
+          Your progress: <span id="progressDisplay">0%</span>
+        </div>
+      </div>
+      
+      <div class="bg-white dark:bg-slate-800 p-8 rounded-b-xl shadow-xl">
+        <h2 class="text-2xl font-bold mb-4 text-green-700 dark:text-green-300">A2 Elementary - Chapter 1: Everyday Life</h2>
+        <p class="mb-4">In this chapter, you will learn how to talk about your daily routine, family, and use simple past tense.</p>
       <h3 class="text-xl font-semibold mt-6 mb-2">Key Vocabulary</h3>
       <ul class="list-disc pl-6 mb-4">
         <li>Wake up, get up, have breakfast, go to work/school, come home, have dinner, go to bed</li>
@@ -86,15 +98,53 @@
         <input type="text" class="answer-input" id="q8-input" placeholder="Type your answer">
         <button class="check-answer-btn" onclick="checkA2Answer('q8','sister')">Check Answer</button>
         <div class="answer-result"></div>
-      </div>
-      <script>
+      </div>      <script>
+      // Cookie utility functions
+      function getCookie(name) {
+          const nameEQ = name + "=";
+          const ca = document.cookie.split(';');
+          for (let i = 0; i < ca.length; i++) {
+              let c = ca[i];
+              while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+              if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+          }
+          return null;
+      }
+      
+      // Variables to track progress
+      let questionsAnswered = 0;
+      const totalQuestions = 8; // Update if you add more questions
+      
+      // Display username from localStorage or cookies
+      function displayUsername() {
+          const usernameElement = document.getElementById('usernameDisplay');
+          // Try to get username from localStorage first, then from cookies
+          const username = localStorage.getItem('special_username') || getCookie('username') || 'Learner';
+          usernameElement.textContent = username;
+          
+          // Load saved progress if available
+          const savedProgress = localStorage.getItem('a2_chapter1_progress');
+          if (savedProgress) {
+              document.getElementById('progressDisplay').textContent = `${Math.round(savedProgress)}%`;
+          }
+      }
+      
+      // Call displayUsername when page loads
+      document.addEventListener('DOMContentLoaded', displayUsername);
+      
       function checkA2Answer(qid, correct) {
         const input = document.getElementById(qid+'-input');
         const result = input.parentElement.querySelector('.answer-result');
         if (input.value.trim().toLowerCase() === correct.toLowerCase()) {
+          questionsAnswered++;
           result.textContent = '✓ Correct!';
           result.style.color = '#2e7d32';
           input.disabled = true;
+          
+          // Update and save progress
+          const progress = (questionsAnswered / totalQuestions) * 100;
+          document.getElementById('progressDisplay').textContent = `${Math.round(progress)}%`;
+          localStorage.setItem('a2_chapter1_progress', progress);
         } else {
           result.textContent = '✗ Try again!';
           result.style.color = '#d32f2f';
