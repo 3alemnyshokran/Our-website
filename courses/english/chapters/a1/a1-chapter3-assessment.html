@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Chapter 3: Assessment - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#1877F2',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        .question-container { transition: all 0.3s ease; }
+        .question-container:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .choice-option { transition: all 0.2s ease; }
+        .choice-option:hover { transform: translateX(5px); }
+        .choice-option.selected { border-color: #1877F2; background: rgba(24,119,242,0.1); }
+        .progress-fill { transition: width 0.5s; }
+        .confetti { position: fixed; width: 10px; height: 10px; background-color: #ffd700; opacity: 0; pointer-events: none; animation: confetti-fall 5s ease-out forwards; }
+        @keyframes confetti-fall { 0% { transform: translateY(-100%) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+            <div class="flex items-center gap-4">
+                <a href="./a1-chapter3.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-blue-600 dark:text-blue-400">A1 Chapter 3 Assessment</h2>
+            <p class="text-slate-600 dark:text-slate-400">Test your knowledge of all the phrases, greetings, questions, and goodbyes from this chapter. You must score at least 70% to pass.</p>
+            <div class="mt-4 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 flex items-center">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 mr-4">
+                    <div class="progress-fill bg-blue-600 h-2.5 rounded-full" id="progressBar" style="width: 0%"></div>
+                </div>
+                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/20 Questions</span>
+            </div>
+        </div>
+        <div id="quiz-container" class="space-y-8 mb-8">
+            <!-- 20 questions will be inserted here (see below for structure) -->
+        </div>
+        <div class="mt-8 flex justify-between">
+            <a href="./a1-chapter3-questions2.html" class="nav-button bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">← Previous Practice</a>
+            <a href="./a1-chapter4.html" class="nav-button bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">Next Chapter</a>
+        </div>
+        <div id="confetti-container"></div>
+        <div id="result-message" class="text-2xl font-bold text-center mt-8"></div>
+    </main>
+    <script>
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        // Assessment questions
+        const questions = [
+            { q: 'Which greeting is appropriate at 8:00 AM?', options: ['Good night', 'Good morning', 'Good evening', 'Bye'], answer: 'Good morning' },
+            { q: 'How do you introduce yourself?', options: ['I am from Egypt.', 'My name is...', 'Goodbye!', 'How are you?'], answer: 'My name is...' },
+            { q: 'What do you say when meeting someone for the first time?', options: ['See you soon!', 'Nice to meet you', 'Good night', 'I am fine'], answer: 'Nice to meet you' },
+            { q: 'Which is a question about someone\'s origin?', options: ['Where are you from?', 'How are you?', 'Good morning', 'Bye'], answer: 'Where are you from?' },
+            { q: 'Choose the correct response: "How are you?"', options: ['My name is...', 'I\'m fine, thank you.', 'Good night!', 'See you later!'], answer: "I'm fine, thank you." },
+            { q: 'Which phrase is used to say goodbye at night?', options: ['Good morning', 'Good night', 'Hello', 'How are you?'], answer: 'Good night' },
+            { q: 'What do you say if you want to meet again soon?', options: ['See you later!', 'Good morning!', 'How are you?', 'My name is...'], answer: 'See you later!' },
+            { q: 'Which is NOT a greeting?', options: ['Hello', 'Goodbye', 'Good morning', 'Good evening'], answer: 'Goodbye' },
+            { q: 'Complete: Person A: "Hello! What\'s your name?" Person B: "_______."', options: ['I am from Spain.', 'My name is...', 'Good night!', 'How are you?'], answer: 'My name is...' },
+            { q: 'Which phrase is used when leaving?', options: ['Goodbye', 'Hello', 'How are you?', 'Good morning'], answer: 'Goodbye' },
+            { q: 'What is a polite way to ask about someone\'s feelings?', options: ['Where are you from?', 'How are you?', 'Good night!', 'Bye'], answer: 'How are you?' },
+            { q: 'Choose the correct response: "What\'s your name?"', options: ['I\'m fine, thank you.', 'My name is Ahmed.', 'See you soon!', 'Good night!'], answer: 'My name is Ahmed.' },
+            { q: 'Which phrase is NOT a way to say goodbye?', options: ['Bye!', 'See you soon!', 'Good night!', 'How are you?'], answer: 'How are you?' },
+            { q: 'Complete: Person A: "Good night!" Person B: "_______."', options: ['Good night!', 'How are you?', 'My name is...', 'See you soon!'], answer: 'Good night!' },
+            { q: 'Which greeting is used in the afternoon?', options: ['Good morning', 'Good afternoon', 'Good night', 'Bye'], answer: 'Good afternoon' },
+            { q: 'What do you say when you leave a friend?', options: ['Goodbye', 'Hello', 'How are you?', 'Good morning'], answer: 'Goodbye' },
+            { q: 'Which phrase is used to ask about someone\'s country?', options: ['Where are you from?', 'How are you?', 'Good night!', 'Bye'], answer: 'Where are you from?' },
+            { q: 'Choose the correct response: "It was nice meeting you!"', options: ['Goodbye!', 'How are you?', 'My name is...', 'Good morning!'], answer: 'Goodbye!' },
+            { q: 'Which phrase is a greeting?', options: ['Hello', 'Bye', 'See you soon!', 'Good night!'], answer: 'Hello' },
+            { q: 'What do you say before sleeping?', options: ['Good night', 'Good morning', 'Hello', 'Bye'], answer: 'Good night' }
+        ];
+        const totalQuestions = questions.length;
+        let currentQuestion = 1;
+        let correctAnswers = 0;
+        let completed = false;
+        function renderQuestions() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            questions.forEach((q, idx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6' + (idx > 0 ? ' hidden' : '');
+                qDiv.setAttribute('data-question', idx+1);
+                qDiv.innerHTML = `<h3 class="text-xl font-bold mb-4">Question ${idx+1}</h3>
+                    <p class="mb-4">${q.q}</p>
+                    <div class="space-y-2">
+                        ${q.options.map(opt => `<div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="${opt.replace(/"/g,'&quot;')}">${opt}</div>`).join('')}
+                    </div>
+                    <div class="mt-4 feedback hidden"></div>`;
+                container.appendChild(qDiv);
+            });
+        }
+        function showQuestion(n) {
+            document.querySelectorAll('.question-container').forEach(q => q.classList.add('hidden'));
+            const q = document.querySelector(`.question-container[data-question="${n}"]`);
+            if (q) q.classList.remove('hidden');
+        }
+        function updateProgress() {
+            const percent = (currentQuestion-1) / totalQuestions * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progress-text').textContent = `${currentQuestion-1}/${totalQuestions} Questions`;
+        }
+        function showConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+                confetti.style.animationDelay = (Math.random()*2) + 's';
+                confettiContainer.appendChild(confetti);
+            }
+            setTimeout(() => { confettiContainer.innerHTML = ''; }, 5000);
+        }
+        function finishAssessment() {
+            completed = true;
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('progress-text').textContent = `${totalQuestions}/${totalQuestions} Questions`;
+            let pass = correctAnswers >= Math.ceil(totalQuestions*0.7);
+            document.getElementById('result-message').textContent = pass ? `Congratulations! You passed with ${correctAnswers}/${totalQuestions} correct.` : `You scored ${correctAnswers}/${totalQuestions}. Try again to pass!`;
+            if (pass) {
+                showConfetti();
+                localStorage.setItem('a1_ch3_assessment_passed', 'true');
+            } else {
+                localStorage.removeItem('a1_ch3_assessment_passed');
+            }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            renderQuestions();
+            showQuestion(currentQuestion);
+            updateProgress();
+            document.querySelectorAll('.choice-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    if (completed) return;
+                    const parent = this.closest('.question-container');
+                    parent.querySelectorAll('.choice-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    parent.querySelector('.feedback').classList.add('hidden');
+                    parent.querySelector('.feedback').textContent = '';
+                    // Check answer
+                    const idx = parseInt(parent.getAttribute('data-question'))-1;
+                    if (this.textContent.trim() === questions[idx].answer) {
+                        correctAnswers++;
+                        parent.querySelector('.feedback').textContent = '✓ Correct!';
+                        parent.querySelector('.feedback').classList.remove('hidden');
+                        setTimeout(() => {
+                            if (currentQuestion < totalQuestions) {
+                                currentQuestion++;
+                                showQuestion(currentQuestion);
+                                updateProgress();
+                            } else {
+                                finishAssessment();
+                            }
+                        }, 800);
+                    } else {
+                        parent.querySelector('.feedback').textContent = '✗ Try again!';
+                        parent.querySelector('.feedback').classList.remove('hidden');
+                    }
+                });
+            });
+            // If already passed, show confetti and result
+            if (localStorage.getItem('a1_ch3_assessment_passed') === 'true') {
+                completed = true;
+                document.getElementById('progressBar').style.width = '100%';
+                document.getElementById('progress-text').textContent = `${totalQuestions}/${totalQuestions} Questions`;
+                document.getElementById('result-message').textContent = `Congratulations! You passed previously.`;
+                showConfetti();
+            }
+        });
+    </script>
+</body>
+</html>

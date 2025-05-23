@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Chapter 3: Practice Questions 2 - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#1877F2',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        .question-container { transition: all 0.3s ease; }
+        .question-container:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .choice-option { transition: all 0.2s ease; }
+        .choice-option:hover { transform: translateX(5px); }
+        .choice-option.selected { border-color: #1877F2; background: rgba(24,119,242,0.1); }
+        .progress-fill { transition: width 0.5s; }
+        .confetti { position: fixed; width: 10px; height: 10px; background-color: #ffd700; opacity: 0; pointer-events: none; animation: confetti-fall 5s ease-out forwards; }
+        @keyframes confetti-fall { 0% { transform: translateY(-100%) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+            <div class="flex items-center gap-4">
+                <a href="./a1-chapter3.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-blue-600 dark:text-blue-400">Practice: Basic Questions, Responses, and Goodbyes</h2>
+            <p class="text-slate-600 dark:text-slate-400">Test your understanding of basic questions, responses, and ways to say goodbye in English.</p>
+            <div class="mt-4 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 flex items-center">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 mr-4">
+                    <div class="progress-fill bg-blue-600 h-2.5 rounded-full" id="progressBar" style="width: 0%"></div>
+                </div>
+                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/8 Questions</span>
+            </div>
+        </div>
+        <div id="quiz-container" class="space-y-8 mb-8">
+            <!-- Question 1 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6" data-question="1">
+                <h3 class="text-xl font-bold mb-4">Question 1</h3>
+                <p class="mb-4">What is a polite way to ask someone how they are?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you?" data-correct="true">How are you?</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Where are you from?">Where are you from?</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Goodbye!">Goodbye!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is...">My name is...</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="2">
+                <h3 class="text-xl font-bold mb-4">Question 2</h3>
+                <p class="mb-4">Choose the correct response: "What's your name?"</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I'm fine, thank you.">I'm fine, thank you.</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is Ahmed." data-correct="true">My name is Ahmed.</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="See you soon!">See you soon!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good night!">Good night!</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 3 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="3">
+                <h3 class="text-xl font-bold mb-4">Question 3</h3>
+                <p class="mb-4">Which phrase would you use to say goodbye in the evening?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning!">Good morning!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good night!" data-correct="true">Good night!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hello!">Hello!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you?">How are you?</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="4">
+                <h3 class="text-xl font-bold mb-4">Question 4</h3>
+                <p class="mb-4">Complete the dialogue: Person A: "It was nice meeting you!" Person B: "__________!"</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Goodbye!" data-correct="true">Goodbye!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you?">How are you?</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is...">My name is...</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning!">Good morning!</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 5 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="5">
+                <h3 class="text-xl font-bold mb-4">Question 5</h3>
+                <p class="mb-4">Which is a friendly way to say you will meet someone again soon?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="See you later!" data-correct="true">See you later!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning!">Good morning!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you?">How are you?</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is...">My name is...</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 6 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="6">
+                <h3 class="text-xl font-bold mb-4">Question 6</h3>
+                <p class="mb-4">Choose the correct response: "How are you?"</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I'm fine, thank you." data-correct="true">I'm fine, thank you.</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Goodbye!">Goodbye!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is...">My name is...</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="See you soon!">See you soon!</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 7 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="7">
+                <h3 class="text-xl font-bold mb-4">Question 7</h3>
+                <p class="mb-4">Which phrase is NOT a way to say goodbye?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Bye!">Bye!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="See you soon!">See you soon!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good night!">Good night!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you?" data-correct="true">How are you?</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 8 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="8">
+                <h3 class="text-xl font-bold mb-4">Question 8</h3>
+                <p class="mb-4">Complete the dialogue: Person A: "Good night!" Person B: "__________!"</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good night!" data-correct="true">Good night!</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you?">How are you?</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is...">My name is...</div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="See you soon!">See you soon!</div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+        </div>
+        <div class="mt-8 flex justify-between">
+            <a href="./a1-chapter3-questions1.html" class="nav-button bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">← Previous Questions</a>
+            <a href="./a1-chapter3-assessment.html" class="nav-button bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">Next: Assessment</a>
+        </div>
+        <div id="confetti-container"></div>
+    </main>
+    <script>
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+        // Quiz logic
+        const totalQuestions = 8;
+        let currentQuestion = 1;
+        let correctAnswers = 0;
+        let completed = false;
+        function showQuestion(n) {
+            document.querySelectorAll('.question-container').forEach(q => q.classList.add('hidden'));
+            const q = document.querySelector(`.question-container[data-question="${n}"]`);
+            if (q) q.classList.remove('hidden');
+        }
+        function updateProgress() {
+            const percent = (currentQuestion-1) / totalQuestions * 100;
+            document.getElementById('progressBar').style.width = percent + '%';
+            document.getElementById('progress-text').textContent = `${currentQuestion-1}/${totalQuestions} Questions`;
+        }
+        function showConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+                confetti.style.animationDelay = (Math.random()*2) + 's';
+                confettiContainer.appendChild(confetti);
+            }
+            setTimeout(() => { confettiContainer.innerHTML = ''; }, 5000);
+        }
+        document.querySelectorAll('.choice-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (completed) return;
+                const parent = this.closest('.question-container');
+                parent.querySelectorAll('.choice-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                parent.querySelector('.feedback').classList.add('hidden');
+                parent.querySelector('.feedback').textContent = '';
+                // Check answer
+                if (this.dataset.correct === 'true') {
+                    correctAnswers++;
+                    parent.querySelector('.feedback').textContent = '✓ Correct!';
+                    parent.querySelector('.feedback').classList.remove('hidden');
+                    setTimeout(() => {
+                        if (currentQuestion < totalQuestions) {
+                            currentQuestion++;
+                            showQuestion(currentQuestion);
+                            updateProgress();
+                        } else {
+                            completed = true;
+                            document.getElementById('progressBar').style.width = '100%';
+                            document.getElementById('progress-text').textContent = `${totalQuestions}/${totalQuestions} Questions`;
+                            showConfetti();
+                            localStorage.setItem('a1_ch3_part2_completed', 'true');
+                        }
+                    }, 800);
+                } else {
+                    parent.querySelector('.feedback').textContent = '✗ Try again!';
+                    parent.querySelector('.feedback').classList.remove('hidden');
+                }
+            });
+        });
+        showQuestion(currentQuestion);
+        updateProgress();
+        // If already completed, show confetti
+        if (localStorage.getItem('a1_ch3_part2_completed') === 'true') {
+            completed = true;
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('progress-text').textContent = `${totalQuestions}/${totalQuestions} Questions`;
+            showConfetti();
+        }
+    </script>
+</body>
+</html>
