@@ -1,112 +1,133 @@
 <!DOCTYPE html>
-<html lang="en" class="dark"> <!-- Added dark class -->
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Educational Platform</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Login - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-gray': '#F0F2F5',
+                        'custom-blue': '#1877F2',
+                        'custom-green': '#42B72A',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                        'dark-border': '#3A3B3C',
+                        'dark-primary': '#2D88FF',
+                        'dark-secondary': '#B0B3B8',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body.dark {
-            background-color: #1f2937; /* Tailwind gray-800 */
-            color: #f3f4f6; /* Tailwind gray-100 */
-        }
-        body.dark .login-box {
-            background-color: #374151; /* Tailwind gray-700 */
-            color: #f3f4f6; /* Tailwind gray-100 */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        body.dark .login-box h1 {
-            color: #60a5fa; /* Tailwind blue-400 */
-        }
-        body.dark .form-group label {
-            color: #d1d5db; /* Tailwind gray-300 */
-        }
-        body.dark .form-group input[type="text"],
-        body.dark .form-group input[type="password"] {
-            background-color: #4b5563; /* Tailwind gray-600 */
-            color: #f3f4f6; /* Tailwind gray-100 */
-            border: 1px solid #6b7280; /* Tailwind gray-500 */
-        }
-        body.dark .form-options label,
-        body.dark .form-options .forgot-password {
-            color: #d1d5db; /* Tailwind gray-300 */
-        }
-        body.dark .form-options .forgot-password:hover {
-            color: #9ca3af; /* Tailwind gray-400 */
-        }
-        body.dark .login-btn {
-            background-color: #2563eb; /* Tailwind blue-600 */
-            color: white;
-        }
-        body.dark .login-btn:hover {
-            background-color: #1d4ed8; /* Tailwind blue-700 */
-        }
-        body.dark .register-link,
-        body.dark .register-link a {
-            color: #d1d5db; /* Tailwind gray-300 */
-        }
-        body.dark .register-link a:hover {
-            color: #9ca3af; /* Tailwind gray-400 */
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
     </style>
 </head>
-<body class="dark"> <!-- Added dark class -->
-    <div class="login-container">
-        <div class="login-box">
-            <h1>Welcome Back</h1>
-            <form id="loginForm" onsubmit="return handleLogin(event)">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required autocomplete="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required autocomplete="current-password">
-                </div>
-                <div class="form-options">
-                    <label>
-                        <input type="checkbox" id="remember"> Remember me
-                    </label>
-                    <a href="#" class="forgot-password" onclick="forgotPassword(event)">Forgot Password?</a>
-                </div>
-                <button type="submit" class="login-btn">Login</button>
-            </form>
-            <div class="register-link">
-                Don't have an account? <a href="register.html">Sign up</a>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
             </div>
         </div>
-    </div>
+    </header>
+    
+    <main class="flex-grow flex items-center justify-center">
+        <section class="w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl mt-10">
+            <h2 class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">Login to Your Account</h2>
+            <form id="loginForm" class="space-y-5">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
+                    <input type="text" id="username" name="username" required class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Your username">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
+                    <input type="password" id="password" name="password" required class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="••••••••">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" id="rememberMe" name="rememberMe" class="form-checkbox h-4 w-4 text-blue-600 dark:text-blue-500 border-slate-300 dark:border-slate-600 rounded focus:ring-blue-500 dark:bg-slate-700">
+                        <span class="ml-2 text-slate-700 dark:text-slate-300 text-sm">Remember me</span>
+                    </label>
+                    <a href="#" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-colors mt-4">Login</button>
+                <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-4">Don't have an account? <a href="register.html" class="text-blue-600 dark:text-blue-400 hover:underline">Register</a></p>
+            </form>
+        </section>
+    </main>
+    
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+        <p class="text-sm">Designed with Tailwind CSS</p>
+    </footer>
+    
     <script>
-    // Redirect to register if not registered
-    if (!localStorage.getItem('tutor_username') || !localStorage.getItem('tutor_password')) {
-        window.location.href = 'register.html';
-    }
-    function handleLogin(e) {
-        e.preventDefault();
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value;
-        const savedUsername = localStorage.getItem('tutor_username');
-        const savedPassword = localStorage.getItem('tutor_password');
-        const trusted = localStorage.getItem('tutor_trusted') === 'true';
-        if (username === savedUsername && (btoa(password) === savedPassword || trusted)) {
-            // Successful login
-            window.location.href = 'our fucking project.html';
-            return false;
-        } else {
-            alert('Incorrect username or password.');
-            return false;
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        const form = document.getElementById('loginForm');
+        
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('rememberMe').checked;
+            
+            // Check if there are saved credentials
+            const savedUsername = localStorage.getItem('tutor_username');
+            const savedPassword = localStorage.getItem('tutor_password');
+            
+            if (username === savedUsername && btoa(password) === savedPassword) {
+                // Successful login
+                alert('Login successful!');
+                // Remember user if checked
+                if (rememberMe) {
+                    localStorage.setItem('user', JSON.stringify({ username }));
+                }
+                // Redirect to main page
+                window.location.href = 'index.html';
+            } else {
+                alert('Invalid username or password');
+            }
         }
-    }
-    function forgotPassword(e) {
-        e.preventDefault();
-        // If device is trusted, allow login without password
-        const trusted = localStorage.getItem('tutor_trusted') === 'true';
-        if (trusted) {
-            window.location.href = 'our fucking project.html';
-        } else {
-            alert('Password recovery is only available on the device you registered with.');
-        }
-    }
+        
+        form.addEventListener('submit', handleLogin);
+        
+        // Initialize theme toggle button
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
     </script>
 </body>
 </html>

@@ -1,17 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English C1 - Chapter 1</title>
+  <link rel="stylesheet" href="../../../../css/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');body{font-family:'Inter',sans-serif;}</style>
+  <script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                colors: {
+                    'custom-gray': '#F0F2F5',
+                    'custom-blue': '#1877F2',
+                    'custom-green': '#42B72A',
+                    'dark-bg': '#18191A',
+                    'dark-card': '#242526',
+                    'dark-text': '#E4E6EB',
+                    'dark-border': '#3A3B3C',
+                    'dark-primary': '#2D88FF',
+                    'dark-secondary': '#B0B3B8',
+                }
+            }
+        }
+    }
+  </script>
+  <style>
+    /* Basic styles for theme toggle icons */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    body{font-family:'Inter',sans-serif;}
+  </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col">
   <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">3alemny Shokran</h1>
-      <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Back to Course</a>
+      <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+      <div class="flex items-center gap-4">
+        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+            <span class="light-icon">☀️</span>
+            <span class="dark-icon">🌙</span>
+        </button>
+        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+            <option value="en">English</option>
+            <option value="ar">العربية</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+        </select>
+      </div>
     </div>
   </header>
   <main class="flex-grow container mx-auto px-4 py-8">
@@ -35,8 +77,24 @@
   </main>
   <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
     <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
-    <p class="text-sm">Designed with Tailwind CSS</p>
-  </footer>
+    <p class="text-sm">Designed with Tailwind CSS</p>  </footer>
   <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
+  <script src="../../../../js/main.js"></script>
+  <script>
+    // Initialize theme toggle button
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      if (themeToggleBtn) {
+          themeToggleBtn.addEventListener('click', toggleTheme);
+      }
+      
+      // Ensure theme persistence
+      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+      } else {
+          document.documentElement.classList.remove('dark');
+      }
+    });
+  </script>
 </body>
 </html>

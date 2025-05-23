@@ -27,8 +27,11 @@
         }
     </script>
     <style>
-        /* Additional styles for Arabic text */
-        .arabic-text {
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
             font-size: 1.5rem;
             text-align: right;
             direction: rtl;
@@ -94,6 +97,24 @@
     </style>
 </head>
 <body class="bg-custom-gray dark:bg-dark-bg">
+    <!-- Add navigation header with theme toggle -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+        <a href="../../arabic-course.html" class="text-lg font-bold">← Back to Arabic Course</a>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
     <div class="chapter-container p-4 md:p-8 rounded-lg shadow-lg bg-white dark:bg-dark-card mx-auto max-w-3xl mt-5 mb-5">
         <div class="level-badge bg-custom-blue text-white py-1 px-3 rounded-full inline-block mb-4 dark:bg-dark-primary" data-i18n="levelA1">A1 - Breakthrough</div>
         <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-dark-text">Chapter 1: Arabic Alphabet - Basic Letters</h1>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,11 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
+    /* Basic styles for theme toggle icons */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
   </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex transition-colors duration-300">
@@ -54,8 +59,7 @@
         Export User Data
       </button>
     </div>
-    
-    <!-- Admin Info -->
+      <!-- Admin Info -->
     <div class="mt-8 pt-4 border-t border-slate-700">
       <div class="flex items-center">
         <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center font-bold">A</div>
@@ -64,6 +68,12 @@
           <p class="text-xs text-slate-400">admin@3alemny.com</p>
         </div>
       </div>
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="theme-btn mt-4 w-full flex justify-center bg-slate-700 hover:bg-slate-600 text-white text-sm py-2 px-4 rounded" aria-label="Toggle Theme">
+        <span class="light-icon">☀️</span>
+        <span class="dark-icon">🌙</span>
+        <span class="ml-2">Toggle Theme</span>
+      </button>
     </div>
   </aside>
 
@@ -653,10 +663,12 @@
     }
     
     // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-      loadData();
+    document.addEventListener('DOMContentLoaded', () => {      loadData();
       showTab('dashboard');
     });
   </script>
+  
+  <!-- Add main.js script for theme handling -->
+  <script src="js/main.js"></script>
 </body>
 </html>

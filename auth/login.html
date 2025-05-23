@@ -8,13 +8,24 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
+    /* Basic styles for theme toggle icons */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
   </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
   <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
-      <a href="/index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+      <div class="flex items-center gap-4">
+        <a href="/index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+          <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+          <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+        </button>
+      </div>
     </div>
   </header>
   <main class="flex-grow flex items-center justify-center">
@@ -131,9 +142,11 @@
       const user = localStorage.getItem('user');
       if (user) {
         setCookie('user', user, 30);
-      }
-      saveUserData();
+      }      saveUserData();
     });
   </script>
+  
+  <!-- Add main.js script for theme and language handling -->
+  <script src="../js/main.js"></script>
 </body>
 </html>

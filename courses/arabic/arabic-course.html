@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arabic Language Course</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');</style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    /* Basic styles for theme toggle icons */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
+  <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
     <h1 class="text-2xl font-bold">الدورة العربية</h1>
     <div class="flex items-center gap-4">
-      <button class="theme-btn bg-white text-blue-600 px-3 py-2 rounded" aria-label="Toggle Theme">
-        <span class="light-icon hidden">☀️</span>
-        <span class="dark-icon">🌙</span>
+      <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+        <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+        <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
       </button>
-      <select id="languageSelect" class="bg-white text-gray-800 px-3 py-2 rounded">
+      <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
         <option value="ar">العربية</option>
         <option value="en">English</option>
         <option value="de">Deutsch</option>
@@ -28,12 +35,11 @@
 
   <main class="p-8 max-w-4xl mx-auto space-y-8 text-right">
     <!-- A1 Level -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <div class="flex items-center gap-4 mb-4 justify-end">
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">      <div class="flex items-center gap-4 mb-4 justify-end">
         <h2 class="text-xl font-semibold">المستوى الابتدائي</h2>
         <span class="bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">A1</span>
       </div>
-      <a href="chapters/arabic/a1-chapter1.html" class="block bg-gray-100 dark:bg-gray-700 p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+      <a href="chapters/a1/a1-chapter1.html" class="block bg-gray-100 dark:bg-gray-700 p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition">
         <h3 class="text-lg font-semibold">الفصل 1: الأبجدية العربية</h3>
         <p class="text-gray-600 dark:text-gray-300">تعلم الأبجدية العربية والنطق الأساسي.</p>
         <div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded mt-2">
@@ -60,7 +66,12 @@
     </section>
   </main>
 
-  <footer class="bg-gray-800 text-white p-4 text-center mt-12">&copy; 2025 Tutoring Website</footer>
-  <script src="../../js/main.js"></script>
+  <footer class="bg-gray-800 text-white p-4 text-center mt-12">&copy; 2025 Tutoring Website</footer>  <script src="../../js/main.js"></script>
+  <script>
+    // Any page-specific JavaScript can go here
+    document.addEventListener('DOMContentLoaded', () => {
+      // main.js will handle theme and language initialization
+    });
+  </script>
 </body>
 </html>

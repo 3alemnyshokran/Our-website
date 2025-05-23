@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Arithmetic | Chapter 1</title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-gray': '#F0F2F5',
+                        'custom-blue': '#1877F2',
+                        'custom-green': '#42B72A',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                        'dark-border': '#3A3B3C',
+                        'dark-primary': '#2D88FF',
+                        'dark-secondary': '#B0B3B8',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
         .step-by-step {
             display: none;
             margin-top: 15px;
@@ -31,52 +58,49 @@
             padding: 5px 10px;
             border-radius: 4px;
             display: inline-block;
+            margin: 5px 0;
         }
-
-        .video-explanation {
-            margin-top: 15px;
-            padding: 15px;
-            background: var(--card-bg);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
+        
+        /* Dark mode adjustments */
+        .dark .step-by-step {
+            background-color: #334155; /* slate-700 */
         }
-
-        .video-explanation:hover {
-            transform: translateY(-2px);
+        
+        .dark .step {
+            border-left-color: #3b82f6; /* blue-500 */
         }
-
-        .hint-button {
-            background: none;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.2s ease;
-        }
-
-        .hint-button:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .mental-math-tip {
-            margin-top: 10px;
-            font-style: italic;
-            color: var(--secondary-color);
+        
+        .dark .math-expression {
+            background-color: #475569; /* slate-600 */
+            color: #e2e8f0; /* slate-200 */
         }
     </style>
 </head>
-<body>
-    <div class="chapter-container">
-        <div class="level-badge">Basic Level</div>
-        <h1>Chapter 1: Basic Arithmetic</h1>
+<body class="bg-custom-gray dark:bg-dark-bg">
+    <!-- Add navigation header with theme toggle -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+        <a href="../../math-course.html" class="text-lg font-bold">← Back to Math Course</a>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>    </header>
+
+    <div class="chapter-container p-4 md:p-8 rounded-lg shadow-lg bg-white dark:bg-dark-card mx-auto max-w-3xl mt-5 mb-5">
+        <div class="level-badge bg-custom-blue text-white py-1 px-3 rounded-full inline-block mb-4 dark:bg-dark-primary">Basic Level</div>
+        <h1 class="text-3xl font-bold mb-6 text-gray-800 dark:text-dark-text">Chapter 1: Basic Arithmetic</h1>
         
-        <div class="skill-progress">
-            <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
-            <div class="skill-progress-fill" id="progressBar"></div>
+        <div class="skill-progress relative h-2 bg-gray-200 rounded-full mb-4 dark:bg-dark-border">
+            <div class="skill-progress-fill absolute h-full bg-custom-green rounded-full dark:bg-custom-green" id="progressBar" style="width: 0%;"></div>
+            <div class="progress-label absolute right-0 -top-5 text-sm text-gray-600 dark:text-dark-secondary">Mastery: <span id="masteryPercentage">0%</span></div>
         </div>
 
         <div class="streak-counter">
@@ -214,8 +238,7 @@
 
         function toggleHint(questionId) {
             const stepsDiv = document.getElementById(`${questionId}-steps`);
-            stepsDiv.classList.toggle('show');
-        }
+            stepsDiv.classList.toggle('show');        }
 
         function showHint(questionId) {
             const stepsDiv = document.getElementById(`${questionId}-steps`);
@@ -226,6 +249,21 @@
             const stepsDiv = document.getElementById(`${questionId}-steps`);
             stepsDiv.classList.remove('show');
         }
+        
+        // Initialize theme toggle button
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', toggleTheme);
+            }
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
 
         // Handle Enter key press
         document.querySelectorAll('.answer-input').forEach(input => {
@@ -240,13 +278,25 @@
                     checkAnswerWithFeedback(questionId, correctAnswer);
                 }
             });
-        });
-
-        // Initialize on load
+        });        // Initialize on load
         document.addEventListener('DOMContentLoaded', () => {
             updateMasteryProgress();
             updateStreakCounter();
+            
+            // Initialize theme toggle button
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', toggleTheme);
+            }
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
         });
     </script>
+    <script src="../../../../js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Science Concepts | Elementary Level</title>
+    <link rel="stylesheet" href="../../../../css/styles.css"> <!-- Adjusted path -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-gray': '#F0F2F5',
+                        'custom-blue': '#1877F2',
+                        'custom-green': '#42B72A',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                        'dark-border': '#3A3B3C',
+                        'dark-primary': '#2D88FF',
+                        'dark-secondary': '#B0B3B8',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
+        /* Interactive elements styling */
+        .interactive-element {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .interactive-element:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Quiz styling */
+        .quiz-option {
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover:not(.selected) {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .quiz-option.selected.correct {
+            background-color: rgba(16, 185, 129, 0.2);
+            border-color: rgb(16, 185, 129);
+        }
+        
+        .quiz-option.selected.incorrect {
+            background-color: rgba(239, 68, 68, 0.2);
+            border-color: rgb(239, 68, 68);
+        }
+        
+        /* Science experiment animations */
+        @keyframes bubbling {
+            0% { transform: translateY(0) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-10px) scale(1.1); opacity: 0.9; }
+            100% { transform: translateY(-20px) scale(0.8); opacity: 0; }
+        }
+        
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: bubbling 3s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center shadow-md">
+        <div class="flex items-center gap-4">
+            <a href="../../science-course.html" class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to Course
+            </a>
+        </div>
+        <h1 class="text-xl font-bold">Basic Science Concepts</h1>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Progress bar -->
+    <div class="bg-blue-100 dark:bg-blue-900 py-2">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-1 text-sm">
+                <span>Progress</span>
+                <span id="progress-percent">0%</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-slate-700 rounded-full h-2.5">
+                <div id="progress-bar" class="bg-blue-600 dark:bg-blue-500 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-6">Introduction to Science</h2>
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg mb-8">
+                <p class="mb-4">Science is the systematic study of the structure and behavior of the physical and natural world through observation and experimentation. It helps us understand the world around us.</p>
+                <p class="mb-4">In this chapter, we'll learn about:</p>
+                <ul class="list-disc pl-6 mb-4 space-y-2">
+                    <li>The scientific method</li>
+                    <li>Basic scientific concepts</li>
+                    <li>Simple experiments you can do at home</li>
+                    <li>How science impacts our everyday lives</li>
+                </ul>
+                <div class="p-4 bg-blue-50 dark:bg-blue-900/50 rounded-lg">
+                    <p class="italic text-blue-800 dark:text-blue-300">Science begins with curiosity and a desire to understand how things work.</p>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">The Scientific Method</h3>
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg mb-8">
+                <p class="mb-4">The scientific method is a process used by scientists to study the world around them. It involves these steps:</p>
+                
+                <ol class="list-decimal pl-6 mb-6 space-y-4">
+                    <li>
+                        <strong class="text-blue-600 dark:text-blue-400">Ask a question</strong>
+                        <p>Start with something you're curious about.</p>
+                    </li>
+                    <li>
+                        <strong class="text-blue-600 dark:text-blue-400">Research</strong>
+                        <p>Find out what is already known about your question.</p>
+                    </li>
+                    <li>
+                        <strong class="text-blue-600 dark:text-blue-400">Form a hypothesis</strong>
+                        <p>Make a prediction about what might happen.</p>
+                    </li>
+                    <li>
+                        <strong class="text-blue-600 dark:text-blue-400">Test with an experiment</strong>
+                        <p>Design and conduct an experiment to test your hypothesis.</p>
+                    </li>
+                    <li>
+                        <strong class="text-blue-600 dark:text-blue-400">Analyze data</strong>
+                        <p>Look at the results of your experiment.</p>
+                    </li>
+                    <li>
+                        <strong class="text-blue-600 dark:text-blue-400">Draw conclusions</strong>
+                        <p>Decide if your hypothesis was correct.</p>
+                    </li>
+                </ol>
+                
+                <div class="flex justify-center">
+                    <div class="relative h-64 w-64 bg-blue-100 dark:bg-blue-800/30 rounded-full flex items-center justify-center">
+                        <div class="text-center">
+                            <span class="block text-lg font-semibold text-blue-600 dark:text-blue-400">Scientific Method</span>
+                            <span class="text-sm">A continuous cycle</span>
+                        </div>
+                        <!-- Decorative bubbles for visual effect -->
+                        <div class="bubble h-4 w-4" style="left: 30%; bottom: 20%; animation-delay: 0s;"></div>
+                        <div class="bubble h-6 w-6" style="left: 40%; bottom: 30%; animation-delay: 0.5s;"></div>
+                        <div class="bubble h-5 w-5" style="left: 60%; bottom: 25%; animation-delay: 1s;"></div>
+                        <div class="bubble h-3 w-3" style="left: 70%; bottom: 15%; animation-delay: 1.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simple quiz section -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-400">Knowledge Check</h3>
+            <div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg">
+                <div class="mb-8">
+                    <p class="font-medium mb-3">1. What is the first step of the scientific method?</p>
+                    <div class="space-y-2">
+                        <div class="quiz-option p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50" data-correct="true">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q1" class="mr-2">
+                                <span>Ask a question</span>
+                            </label>
+                        </div>
+                        <div class="quiz-option p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q1" class="mr-2">
+                                <span>Form a hypothesis</span>
+                            </label>
+                        </div>
+                        <div class="quiz-option p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q1" class="mr-2">
+                                <span>Conduct an experiment</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <p class="font-medium mb-3">2. What does science help us do?</p>
+                    <div class="space-y-2">
+                        <div class="quiz-option p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q2" class="mr-2">
+                                <span>Create magic potions</span>
+                            </label>
+                        </div>
+                        <div class="quiz-option p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50" data-correct="true">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q2" class="mr-2">
+                                <span>Understand the world around us</span>
+                            </label>
+                        </div>
+                        <div class="quiz-option p-3 border border-gray-200 dark:border-slate-700 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="radio" name="q2" class="mr-2">
+                                <span>Predict the future</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="check-answers" class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-lg shadow transition-colors">
+                    Check Answers
+                </button>
+            </div>
+        </section>
+
+        <!-- Navigation buttons -->
+        <section class="flex justify-between">
+            <a href="../../science-course.html" class="inline-flex items-center gap-2 bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 px-4 py-2 rounded-lg transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                Back to Course
+            </a>
+            <button id="next-chapter" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white px-4 py-2 rounded-lg transition-colors" disabled>
+                Next Chapter
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 dark:bg-slate-800 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-600 dark:text-gray-400">&copy; 2025 3alemny Shokran. All rights reserved.</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                        Privacy Policy
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                        Terms of Service
+                    </a>
+                    <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../../../../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme
+            initializeTheme();
+            
+            // Theme toggle button functionality
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', toggleTheme);
+            }
+            
+            // Quiz functionality
+            const checkAnswersBtn = document.getElementById('check-answers');
+            if (checkAnswersBtn) {
+                checkAnswersBtn.addEventListener('click', function() {
+                    let correctAnswers = 0;
+                    const totalQuestions = 2;
+                    
+                    // Check question 1
+                    const q1Options = document.querySelectorAll('[name="q1"]');
+                    q1Options.forEach(option => {
+                        const parentOption = option.closest('.quiz-option');
+                        parentOption.classList.remove('selected', 'correct', 'incorrect');
+                        
+                        if (option.checked) {
+                            parentOption.classList.add('selected');
+                            
+                            if (parentOption.dataset.correct) {
+                                parentOption.classList.add('correct');
+                                correctAnswers++;
+                            } else {
+                                parentOption.classList.add('incorrect');
+                            }
+                        }
+                    });
+                    
+                    // Check question 2
+                    const q2Options = document.querySelectorAll('[name="q2"]');
+                    q2Options.forEach(option => {
+                        const parentOption = option.closest('.quiz-option');
+                        parentOption.classList.remove('selected', 'correct', 'incorrect');
+                        
+                        if (option.checked) {
+                            parentOption.classList.add('selected');
+                            
+                            if (parentOption.dataset.correct) {
+                                parentOption.classList.add('correct');
+                                correctAnswers++;
+                            } else {
+                                parentOption.classList.add('incorrect');
+                            }
+                        }
+                    });
+                    
+                    // Update progress
+                    const percentComplete = Math.floor((correctAnswers / totalQuestions) * 100);
+                    document.getElementById('progress-percent').textContent = `${percentComplete}%`;
+                    document.getElementById('progress-bar').style.width = `${percentComplete}%`;
+                    
+                    // Enable next chapter button if all correct
+                    if (correctAnswers === totalQuestions) {
+                        document.getElementById('next-chapter').disabled = false;
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

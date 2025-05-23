@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3alemny Shokran - Educational Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-gray': '#F0F2F5',
+                        'custom-blue': '#1877F2',
+                        'custom-green': '#42B72A',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                        'dark-border': '#3A3B3C',
+                        'dark-primary': '#2D88FF',
+                        'dark-secondary': '#B0B3B8',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Main Site</a>
+                <a href="login.html" id="loginBtn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Login</a>
+                <a href="register.html" id="registerBtn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Register</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <section class="text-center mb-10">
+            <h2 class="text-3xl sm:text-5xl font-bold mb-4 text-blue-600 dark:text-blue-400">Welcome to 3alemny Shokran</h2>
+            <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Your comprehensive educational platform for language learning, mathematics, and science.</p>
+        </section>
+        
+        <section class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <a href="../courses/english/english-course.html" class="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col items-center">
+                <span class="text-4xl mb-3">🇬🇧</span>
+                <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">English</h3>
+                <p class="text-center text-slate-600 dark:text-slate-400">Learn English from A1 to C2 levels</p>
+            </a>
+            
+            <a href="../courses/german/german-course.html" class="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col items-center">
+                <span class="text-4xl mb-3">🇩🇪</span>
+                <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">German</h3>
+                <p class="text-center text-slate-600 dark:text-slate-400">Master German language skills</p>
+            </a>
+            
+            <a href="../courses/arabic/arabic-course.html" class="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col items-center">
+                <span class="text-4xl mb-3">🇪🇬</span>
+                <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">Arabic</h3>
+                <p class="text-center text-slate-600 dark:text-slate-400">Explore Arabic language and culture</p>
+            </a>
+            
+            <a href="../courses/math/math-course.html" class="bg-white dark:bg-slate-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col items-center">
+                <span class="text-4xl mb-3">🧮</span>
+                <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2">Mathematics</h3>
+                <p class="text-center text-slate-600 dark:text-slate-400">From basic arithmetic to advanced math</p>
+            </a>
+        </section>
+    </main>
+    
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+        <p class="text-sm">Designed with Tailwind CSS</p>
+    </footer>
+    
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('user');
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.getElementById('registerBtn');
+            
+            if (user) {
+                // User is logged in
+                loginBtn.textContent = 'My Account';
+                loginBtn.href = '../profile/profile-setup.html';
+                registerBtn.textContent = 'Logout';
+                registerBtn.href = '#';
+                registerBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('user');
+                    window.location.reload();
+                });
+            }
+        });
+        
+        // Initialize theme toggle button
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+    </script>
+</body>
+</html>

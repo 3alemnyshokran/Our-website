@@ -1,27 +1,42 @@
 // Theme handling
 let currentTheme = localStorage.getItem('theme') || 'light';
-document.body.setAttribute('data-theme', currentTheme);
 
 // Sync theme across tabs
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {
         const newTheme = event.newValue || 'light';
-        document.body.setAttribute('data-theme', newTheme);
-        updateThemeIcon(newTheme);
+        initializeTheme(newTheme);
     }
 });
 
 // Initialize theme
-function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme') || 'light';
+function initializeTheme(forcedTheme) {
+    const savedTheme = forcedTheme || localStorage.getItem('theme') || 'light';
+    currentTheme = savedTheme;
+    
+    // Set on HTML element for Tailwind Dark Mode
     document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    
+    // Set on body for backwards compatibility with [data-theme] selectors
+    document.body.setAttribute('data-theme', savedTheme);
+    
     updateThemeIcon(savedTheme);
 }
 
 function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
     const newTheme = isDark ? 'dark' : 'light';
+    
+    // Update our theme state
+    currentTheme = newTheme;
+    
+    // Store in localStorage
     localStorage.setItem('theme', newTheme);
+    
+    // Update body attribute for [data-theme] selectors
+    document.body.setAttribute('data-theme', newTheme);
+    
+    // Update icons
     updateThemeIcon(newTheme);
 }
 
@@ -350,6 +365,10 @@ document.getElementById('registerForm')?.addEventListener('submit', async functi
     } else {
         alert(result.error || 'Registration failed');
     }
+  } catch (err) {
+    console.error('Registration error:', err);
+    alert('Network error. Please try again.');
+  }
 });
 
 function saveProgress(courseId, chapterId, exerciseId, completed) {
@@ -504,19 +523,54 @@ function setProgress(progressId, percentage) {
 
 // Call initializations when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize theme first
     initializeTheme();
+    
+    // Load translations for current language
     await loadTranslations(currentLanguage);
     applyTranslations(currentLanguage);
-    updateProgressIndicators();
+    
+    // Setup other functionalities
+    if (typeof updateProgressIndicators === 'function') updateProgressIndicators();
     setupAccessibility();
     setupKeyboardShortcuts();
     setupFocusManagement();
 
     // Add event listener for theme toggle button
-    const themeButton = document.querySelector('.theme-btn');
+    const themeButton = document.querySelector('#theme-toggle, .theme-btn');
     if (themeButton) {
         themeButton.addEventListener('click', toggleTheme);
-        updateThemeIcon(currentTheme);
+    }
+
+    // Set up language selection
+    const languageSelect = document.getElementById('languageSelect');
+    if (languageSelect) {
+        // Set initial value from localStorage
+        if (currentLanguage) {
+            languageSelect.value = currentLanguage;
+        }
+        
+        // Listen for changes
+        languageSelect.addEventListener('change', function() {
+            const selectedLanguage = this.value;
+            changeLanguage(selectedLanguage);
+            
+            // Accessibility announcement
+            const selectedOption = this.options[this.selectedIndex];
+            const announcement = document.createElement('div');
+            announcement.setAttribute('role', 'status');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.className = 'sr-only';
+            announcement.textContent = `Language changed to ${selectedOption.text}`;
+            document.body.appendChild(announcement);
+            setTimeout(() => announcement.remove(), 1000);
+        });
+    }    // Load saved profile picture on page load
+    const savedPic = localStorage.getItem('profilePicture');
+    const preview = document.getElementById('profile-preview');
+    if (savedPic && preview) {
+        preview.src = savedPic;
+        preview.classList.remove('empty');
     }
 
     // Privacy Notice Modal
@@ -536,46 +590,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.setItem('privacyAccepted', 'true');
             modal.remove();
             document.body.classList.remove('modal-open');
-        });
-    }
-
-    // Announce language switch for screen readers
-    const langSelect = document.getElementById('languageSelect');
-    if (langSelect) {
-        langSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const announcement = document.createElement('div');
-            announcement.setAttribute('role', 'status');
-            announcement.setAttribute('aria-live', 'polite');
-            announcement.className = 'sr-only';
-            announcement.textContent = `Language changed to ${selectedOption.text}`;
-            document.body.appendChild(announcement);
-            setTimeout(() => announcement.remove(), 1000);
-        });
-    }
-
-    // Load saved profile picture on page load
-    const savedPic = localStorage.getItem('profilePicture');
-    const preview = document.getElementById('profile-preview');
-    if (savedPic && preview) {
-        preview.src = savedPic;
-        preview.classList.remove('empty');
-    }
-
-    // Apply saved theme
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
-
-    // Language selection
-    const languageSelect = document.getElementById('languageSelect');
-    if (languageSelect) {
-        const savedLanguage = localStorage.getItem('language') || 'en';
-        languageSelect.value = savedLanguage;
-        languageSelect.addEventListener('change', (event) => {
-            const selectedLanguage = event.target.value;
-            localStorage.setItem('language', selectedLanguage);
-            // Reload translations or update UI accordingly
         });
     }
 });

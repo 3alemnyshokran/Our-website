@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="dark"> <!-- Added dark class -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>German Language Course</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    /* Basic styles for theme toggle icons */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
+  </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
+  <!-- Header -->
+  <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold">German Language Course</h1>
+    <div class="flex items-center gap-4">
+      <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+        <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+        <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+      </button>
+      <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="flex-grow container mx-auto px-4 py-8">
+    <section class="text-center mb-10">
+      <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">German Course</h2>
+      <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">Learn German from A1 to C2 levels</p>
+    </section>
+    <section>
+      <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- A1 Card -->
+        <a href="chapters/a1/a1-chapter1.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🅰️1</span>
+            <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">A1 Beginner</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Basic German for absolute beginners.</p>
+          </div>
+        </a>
+        <!-- A2 Card -->
+        <a href="chapters/a2/a2-chapter1.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-green-200 dark:border-green-800">
+          <div class="p-8 flex flex-col items-center">
+            <span class="text-4xl mb-3">🅰️2</span>
+            <h4 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">A2 Elementary</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Simple conversations and basic grammar.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
+    &copy; 2025 Tutoring Website
+  </footer>
+
+  <script src="../../js/main.js"></script>
+</body>
+</html>

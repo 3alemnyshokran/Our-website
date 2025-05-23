@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,12 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { font-family: 'Inter', sans-serif; }
+    
+    /* Basic styles for theme toggle icons */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
     
     .animated-bg {
       background: linear-gradient(120deg, #4f46e5, #3b82f6, #0ea5e9);
@@ -32,6 +38,12 @@
   </style>
 </head>
 <body class="animated-bg min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="absolute top-4 right-4">
+    <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+      <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+      <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+    </button>
+  </div>
   <div class="w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl card-pop">
     <h1 class="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6">3alemny Shokran</h1>
     <h2 class="text-xl text-center text-slate-700 dark:text-slate-300 mb-8">Welcome to Your Learning Journey</h2>
@@ -147,10 +159,12 @@
     });
     
     // If username exists, go directly to home page
-    const savedUsername = localStorage.getItem('special_username') || getCookie('username');
-    if (savedUsername) {
+    const savedUsername = localStorage.getItem('special_username') || getCookie('username');    if (savedUsername) {
       document.getElementById('username').value = savedUsername;
     }
   </script>
+  
+  <!-- Add main.js script for theme and language handling -->
+  <script src="../js/main.js"></script>
 </body>
 </html>

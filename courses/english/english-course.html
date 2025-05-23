@@ -6,18 +6,25 @@
     <title>English Language Course</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');</style>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    /* Basic styles for theme toggle icons if needed, Tailwind handles dark mode via 'dark' class on html */
+    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+    html.dark .theme-btn .light-icon { display: inline; }
+    html.dark .theme-btn .dark-icon { display: none; }
+    </style>
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
     <!-- Header -->
     <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
         <h1 class="text-2xl font-bold">English Language Course</h1>
         <div class="flex items-center gap-4">
-            <button class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded" aria-label="Toggle Theme">
-                <span class="light-icon hidden">☀️</span>
-                <span class="dark-icon">🌙</span>
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
             </button>
-            <select id="languageSelect" class="bg-white dark:bg-slate-800 text-gray-800 dark:text-slate-200 px-3 py-2 rounded">
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
                 <option value="en">English</option>
                 <option value="de">Deutsch</option>
                 <option value="ar">العربية</option>
@@ -34,9 +41,8 @@
         </section>
         <section>
             <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- A1 Card -->
-                <a href="chapters/a1-chapter1.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">                <!-- A1 Card -->
+                <a href="chapters/a1/a1-chapter1.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
                     <div class="p-8 flex flex-col items-center">
                         <span class="text-4xl mb-3">🅰️1</span>
                         <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">A1 Beginner</h4>
@@ -94,46 +100,90 @@
     <!-- Lock overlays on course cards -->
   <style>.locked { position: relative; pointer-events: none; opacity: 0.5; } .locked::after { content: '🔒'; position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; }</style>
 
+  <script src="../../js/main.js"></script>
   <script>
     // Check username on load
     document.addEventListener('DOMContentLoaded', () => {
       const saved = localStorage.getItem('special_username');
       if (!saved) {
-        document.getElementById('usernameModal').classList.remove('hidden');
+        // Assuming usernameModal is defined elsewhere or to be added if this feature is kept
+        // document.getElementById('usernameModal').classList.remove('hidden');
+        console.log("Username modal would be shown here.");
       }
       else {
         greetUser(saved);
         applyChapterLocks();
       }
     });
-    document.getElementById('modalSubmit').addEventListener('click', () => {
-      const name = document.getElementById('modalUsername').value.trim();
-      if (!name) return;
-      localStorage.setItem('special_username', name);
-      // device info
-      localStorage.setItem('deviceInfo', JSON.stringify({ ua: navigator.userAgent, browser: navigator.platform }));
-      document.getElementById('usernameModal').classList.add('hidden');
-      greetUser(name);
-      applyChapterLocks();
-    });
+    // document.getElementById('modalSubmit').addEventListener('click', () => { // Assuming modalSubmit is part of usernameModal
+    //   const name = document.getElementById('modalUsername').value.trim();
+    //   if (!name) return;
+    //   localStorage.setItem('special_username', name);
+    //   // device info
+    //   localStorage.setItem('deviceInfo', JSON.stringify({ ua: navigator.userAgent, browser: navigator.platform }));
+    //   document.getElementById('usernameModal').classList.add('hidden');
+    //   greetUser(name);
+    //   applyChapterLocks();
+    // });
     function greetUser(name) {
       const header = document.querySelector('header');
       const badge = document.createElement('div');
       badge.textContent = `Hello, ${name}`;
       badge.className = 'text-white font-semibold';
-      header.appendChild(badge);
+      // Ensure it's added in a way that doesn't break layout, e.g., before the buttons div
+      const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+      if (buttonsDiv) {
+        header.insertBefore(badge, buttonsDiv);
+      } else {
+        header.appendChild(badge);
+      }
     }
     function applyChapterLocks() {
-      const a1done = parseFloat(localStorage.getItem('a1_chapter1_progress')) >= 100;
-      if (!a1done) {
-        document.querySelector('a[href="chapters/a2/a2-chapter1.html"]').classList.add('locked');
+      const مستوىA1مكتمل = parseFloat(localStorage.getItem('a1_chapter1_progress')) >= 100;
+      const a1Card = document.querySelector('a[href="chapters/a1/a1-chapter1.html"]'); // Updated to new path
+
+      // Example: Lock A2 if A1 is not done
+      const a2CardLink = document.querySelector('a[href="chapters/a2/a2-chapter1.html"]');
+      if (a2CardLink && !مستوىA1مكتمل) {
+        a2CardLink.classList.add('locked');
       }
-      const a2done = parseFloat(localStorage.getItem('a2_chapter1_progress')) >= 100;
-      if (!a2done) {
-        document.querySelector('a[href="chapters/b1/b1-chapter1.html"]').classList.add('locked');
+
+      const مستوىA2مكتمل = parseFloat(localStorage.getItem('a2_chapter1_progress')) >= 100;
+      const b1CardLink = document.querySelector('a[href="chapters/b1/b1-chapter1.html"]');
+      if (b1CardLink && !مستوىA2مكتمل) {
+        b1CardLink.classList.add('locked');
       }
-      // continue for other levels...
+      // continue for other levels... B2, C1, C2
+      const b1done = parseFloat(localStorage.getItem('b1_chapter1_progress')) >= 100;
+      const b2CardLink = document.querySelector('a[href="chapters/b2/b2-chapter1.html"]');
+      if (b2CardLink && !b1done) {
+        b2CardLink.classList.add('locked');
+      }
+
+      const b2done = parseFloat(localStorage.getItem('b2_chapter1_progress')) >= 100;
+      const c1CardLink = document.querySelector('a[href="chapters/c1/c1-chapter1.html"]');
+      if (c1CardLink && !b2done) {
+        c1CardLink.classList.add('locked');
+      }
+
+      const c1done = parseFloat(localStorage.getItem('c1_chapter1_progress')) >= 100;
+      const c2CardLink = document.querySelector('a[href="chapters/c2/c2-chapter1.html"]');
+      if (c2CardLink && !c1done) {
+        c2CardLink.classList.add('locked');
+      }
     }
+
+    // Initialize theme and language from main.js, then apply page-specific logic
+    document.addEventListener('DOMContentLoaded', () => {
+        // main.js should handle initializeTheme() and loadTranslations()
+        // Then, this page-specific logic can run
+        if (typeof applyChapterLocks === "function") { // Ensure main.js might not have this
+            applyChapterLocks();
+        }
+         if (typeof greetUser === "function" && localStorage.getItem('special_username')) {
+            greetUser(localStorage.getItem('special_username'));
+        }
+    });
   </script>
 </body>
 </html>
