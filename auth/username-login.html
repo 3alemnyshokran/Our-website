@@ -135,10 +135,38 @@
           // Also save in a cookie for server-side use if needed
           setCookie('username', username, 30); // 30 days expiration
           
+          // Initialize progress values for new user
+          initializeProgressValues();
+          
           // Redirect to main page
           window.location.href = '../index.html';
         }
       });
+      
+      // Initialize progress values for new users
+      function initializeProgressValues() {
+        // English course progress initialization
+        if (localStorage.getItem('a1_chapter1_progress') === null) {
+          localStorage.setItem('a1_chapter1_progress', '0');
+        }
+        if (localStorage.getItem('a2_chapter1_progress') === null) {
+          localStorage.setItem('a2_chapter1_progress', '0');
+        }
+        if (localStorage.getItem('b1_chapter1_progress') === null) {
+          localStorage.setItem('b1_chapter1_progress', '0');
+        }
+        if (localStorage.getItem('b2_chapter1_progress') === null) {
+          localStorage.setItem('b2_chapter1_progress', '0');
+        }
+        if (localStorage.getItem('c1_chapter1_progress') === null) {
+          localStorage.setItem('c1_chapter1_progress', '0');
+        }
+        if (localStorage.getItem('c2_chapter1_progress') === null) {
+          localStorage.setItem('c2_chapter1_progress', '0');
+        }
+        
+        console.log('Progress values initialized for new user');
+      }
       
       // Handle change user button
       document.getElementById('change-user').addEventListener('click', function() {

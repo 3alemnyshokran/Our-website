@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Added dark class -->
-<head>
-    <link rel="stylesheet" href="../css/enhanced-styles.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e40af">
     <title>English Language Course</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/mobile-optimized.css">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
     /* Basic styles for theme toggle icons if needed, Tailwind handles dark mode via 'dark' class on html */
@@ -16,59 +16,44 @@
     html.dark .theme-btn .dark-icon { display: none; }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
-    <!-- Header -->
-    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold">English Language Course</h1>
-        <div class="flex items-center gap-4">
-            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-                <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
-                <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
-            </button>
-            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-                <option value="en">English</option>
-                <option value="de">Deutsch</option>
-                <option value="ar">العربية</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-            </select>
-        </div>
-    </header>
-
-    <!-- Add margin-top to accommodate the fixed nav -->
-    <div style="margin-top: 70px;"></div>
-
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 w-full bg-slate-800 dark:bg-slate-900 shadow-md z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="../index.html" class="back-to-home flex items-center text-white text-sm font-medium">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                Back to Home
-            </a>
-            <div class="flex items-center gap-3">
-                <span id="username-display" class="text-white text-sm font-medium"></span>
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">    <!-- Header -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <h1 class="text-xl md:text-2xl font-bold">English Language Course</h1>
+                <a href="../../index.html" class="ml-2 px-2 py-1 bg-blue-700 dark:bg-blue-800 rounded-lg text-xs hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors">
+                    Home
+                </a>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+                <div id="user-info" class="flex items-center mr-2">
+                    <!-- User greeting will be inserted here by JS -->
+                </div>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+                <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                </select>
             </div>
         </div>
-    </nav>
-    
-    <!-- Add margin-top to accommodate the fixed nav -->
-    <div style="margin-top: 70px;"></div>
-
-    <main class="flex-grow container mx-auto px-4 py-8">
-        <section class="text-center mb-10">
-            <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">English Course</h2>
-            <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">All levels from A1 to C2</p>
+    </header>    <main class="flex-grow container mx-auto px-4 py-4 sm:py-8">
+        <section class="text-center mb-6 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 text-blue-600 dark:text-blue-400">English Course</h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-2">All levels from A1 to C2</p>
         </section>
-        
-        <section class="mb-10">
-            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 mb-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section class="mb-8">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 sm:p-6 mb-4 sm:mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                        <h4 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">A1 Level - Beginner</h4>
-                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                        <h4 class="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">A1 Level - Beginner</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
                             <li><strong>Chapter 1:</strong> Basic pronouns and the verb "to be"</li>
                             <li><strong>Chapter 2:</strong> Colors, numbers, and basic vocabulary</li>
                             <li><strong>Chapter 3:</strong> Family vocabulary and possessive adjectives</li>
@@ -76,8 +61,8 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">A2 Level - Elementary</h4>
-                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                        <h4 class="text-lg font-bold text-green-600 dark:text-green-400 mb-2 mt-4 md:mt-0">A2 Level - Elementary</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
                             <li><strong>Chapter 1:</strong> Past tense and time expressions</li>
                             <li><strong>Chapter 2:</strong> Daily routines and adverbs of frequency</li>
                             <li><strong>Chapter 3:</strong> Shopping vocabulary and comparatives</li>
@@ -85,11 +70,10 @@
                         </ul>
                     </div>
                 </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
                     <div>
-                        <h4 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">B1 Level - Intermediate</h4>
-                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                        <h4 class="text-lg font-bold text-purple-600 dark:text-purple-400 mb-2">B1 Level - Intermediate</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
                             <li><strong>Chapter 1:</strong> Present perfect tense and experiences</li>
                             <li><strong>Chapter 2:</strong> Future forms and making plans</li>
                             <li><strong>Chapter 3:</strong> Modal verbs and giving advice</li>
@@ -97,218 +81,332 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">B2 Level - Upper-Intermediate</h4>
-                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                        <h4 class="text-lg font-bold text-orange-600 dark:text-orange-400 mb-2 mt-4 md:mt-0">B2 Level - Upper-Intermediate</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
                             <li><strong>Chapter 1:</strong> Conditionals and hypothetical situations</li>
                             <li><strong>Chapter 2:</strong> Passive voice and formal language</li>
                             <li><strong>Chapter 3:</strong> Reported speech and news reporting</li>
-                            <li><strong>Chapter 4:</strong> Complex sentence structures and academic writing</li>
+                            <li><strong>Chapter 4:</strong> Complex sentence structures</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
                     <div>
-                        <h4 class="text-xl font-bold text-teal-600 dark:text-teal-400 mb-3">C1 Level - Advanced</h4>
-                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
-                            <li><strong>Chapter 1:</strong> Advanced vocabulary and idiomatic expressions</li>
-                            <li><strong>Chapter 2:</strong> Complex grammar structures and nuance</li>
-                            <li><strong>Chapter 3:</strong> Persuasive language and debate skills</li>
-                            <li><strong>Chapter 4:</strong> Critical analysis and advanced reading</li>
+                        <h4 class="text-lg font-bold text-teal-600 dark:text-teal-400 mb-2">C1 Level - Advanced</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                            <li><strong>Chapter 1:</strong> Advanced vocabulary and idioms</li>
+                            <li><strong>Chapter 2:</strong> Complex grammar structures</li>
+                            <li><strong>Chapter 3:</strong> Persuasive language and debate</li>
+                            <li><strong>Chapter 4:</strong> Critical analysis and reading</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-3">C2 Level - Proficient</h4>
-                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
-                            <li><strong>Chapter 1:</strong> Native-like fluency and mastery of nuance</li>
-                            <li><strong>Chapter 2:</strong> Specialized vocabulary for professional contexts</li>
+                        <h4 class="text-lg font-bold text-pink-600 dark:text-pink-400 mb-2 mt-4 md:mt-0">C2 Level - Proficient</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                            <li><strong>Chapter 1:</strong> Native-like fluency</li>
+                            <li><strong>Chapter 2:</strong> Professional vocabulary</li>
                             <li><strong>Chapter 3:</strong> Sophisticated literary analysis</li>
-                            <li><strong>Chapter 4:</strong> Advanced rhetoric and speaking techniques</li>
+                            <li><strong>Chapter 4:</strong> Advanced rhetoric techniques</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <section>
-            <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">                <!-- A1 Card -->
-                <a href="chapters/a1/a1-chapter1.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
-                    <div class="p-8 flex flex-col items-center">
-                        <span class="text-4xl mb-3">🅰️1</span>
-                        <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">A1 Beginner</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-base text-center">Basic English for absolute beginners.</p>
+          <section>
+            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                <!-- A1 Card -->
+                <a href="chapters/a1/a1-chapter1.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🅰️1</span>
+                        <h4 class="text-xl font-bold text-blue-700 dark:text-blue-300 mb-1 sm:mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">A1 Beginner</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm text-center">Basic English for absolute beginners.</p>
                     </div>
                 </a>
                 <!-- A2 Card -->
-                <a href="chapters/a2/a2-chapter1.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-green-200 dark:border-green-800">
-                    <div class="p-8 flex flex-col items-center">
-                        <span class="text-4xl mb-3">🅰️2</span>
-                        <h4 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">A2 Elementary</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-base text-center">Simple communication, everyday expressions, and basic grammar.</p>
+                <a href="chapters/a2/a2-chapter1.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group border border-green-200 dark:border-green-800">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🅰️2</span>
+                        <h4 class="text-xl font-bold text-green-700 dark:text-green-300 mb-1 sm:mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">A2 Elementary</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm text-center">Simple communication and basic grammar.</p>
                     </div>
-                </a>
-                <!-- B1 Card -->
-                <a href="chapters/b1/b1-chapter1.html" class="course-card bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
-                    <div class="p-8 flex flex-col items-center">
-                        <span class="text-4xl mb-3">🅱️1</span>
-                        <h4 class="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2 group-hover:text-purple-900 dark:group-hover:text-purple-200 transition-colors">B1 Intermediate</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-base text-center">Conversations, opinions, and more complex grammar and vocabulary.</p>
+                </a>                <!-- B1 Card -->
+                <a href="chapters/b1/b1-chapter1.html" class="course-card bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🅱️1</span>
+                        <h4 class="text-xl font-bold text-purple-700 dark:text-purple-300 mb-1 sm:mb-2 group-hover:text-purple-900 dark:group-hover:text-purple-200 transition-colors">B1 Intermediate</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm text-center">Conversations and more complex grammar.</p>
                     </div>
                 </a>
                 <!-- B2 Card -->
-                <a href="chapters/b2/b2-chapter1.html" class="course-card bg-gradient-to-br from-orange-100 via-orange-50 to-white dark:from-orange-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-orange-200 dark:border-orange-800">
-                    <div class="p-8 flex flex-col items-center">
-                        <span class="text-4xl mb-3">🅱️2</span>
-                        <h4 class="text-2xl font-bold text-orange-700 dark:text-orange-300 mb-2 group-hover:text-orange-900 dark:group-hover:text-orange-200 transition-colors">B2 Upper-Intermediate</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-base text-center">Fluency in discussions, reading, and writing on a wide range of topics.</p>
+                <a href="chapters/b2/b2-chapter1.html" class="course-card bg-gradient-to-br from-orange-100 via-orange-50 to-white dark:from-orange-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group border border-orange-200 dark:border-orange-800">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🅱️2</span>
+                        <h4 class="text-xl font-bold text-orange-700 dark:text-orange-300 mb-1 sm:mb-2 group-hover:text-orange-900 dark:group-hover:text-orange-200 transition-colors">B2 Upper-Intermediate</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm text-center">Fluency in discussions and writing.</p>
                     </div>
                 </a>
                 <!-- C1 Card -->
-                <a href="chapters/c1/c1-chapter1.html" class="course-card bg-gradient-to-br from-teal-100 via-teal-50 to-white dark:from-teal-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-teal-200 dark:border-teal-800">
-                    <div class="p-8 flex flex-col items-center">
-                        <span class="text-4xl mb-3">🇨1</span>
-                        <h4 class="text-2xl font-bold text-teal-700 dark:text-teal-300 mb-2 group-hover:text-teal-900 dark:group-hover:text-teal-200 transition-colors">C1 Advanced</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-base text-center">Advanced understanding, academic and professional English.</p>
+                <a href="chapters/c1/c1-chapter1.html" class="course-card bg-gradient-to-br from-teal-100 via-teal-50 to-white dark:from-teal-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group border border-teal-200 dark:border-teal-800">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🇨1</span>
+                        <h4 class="text-xl font-bold text-teal-700 dark:text-teal-300 mb-1 sm:mb-2 group-hover:text-teal-900 dark:group-hover:text-teal-200 transition-colors">C1 Advanced</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm text-center">Advanced academic and professional English.</p>
                     </div>
                 </a>
                 <!-- C2 Card -->
-                <a href="chapters/c2/c2-chapter1.html" class="course-card bg-gradient-to-br from-pink-100 via-pink-50 to-white dark:from-pink-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-pink-200 dark:border-pink-800">
-                    <div class="p-8 flex flex-col items-center">
-                        <span class="text-4xl mb-3">🇨2</span>
-                        <h4 class="text-2xl font-bold text-pink-700 dark:text-pink-300 mb-2 group-hover:text-pink-900 dark:group-hover:text-pink-200 transition-colors">C2 Proficient</h4>
-                        <p class="text-slate-600 dark:text-slate-400 text-base text-center">Near-native proficiency, idioms, and advanced topics.</p>
+                <a href="chapters/c2/c2-chapter1.html" class="course-card bg-gradient-to-br from-pink-100 via-pink-50 to-white dark:from-pink-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 group border border-pink-200 dark:border-pink-800">
+                    <div class="p-4 sm:p-6 flex flex-col items-center">
+                        <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🇨2</span>
+                        <h4 class="text-xl font-bold text-pink-700 dark:text-pink-300 mb-1 sm:mb-2 group-hover:text-pink-900 dark:group-hover:text-pink-200 transition-colors">C2 Proficient</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm text-center">Near-native proficiency and advanced topics.</p>
                     </div>
                 </a>
             </div>
         </section>
-    </main>
-
-    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
-        &copy; 2025 Tutoring Website
+    </main>    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-8 sm:mt-12">
+        <div class="container mx-auto">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <p>&copy; 2025 3alemny Shokran</p>
+                <div class="flex gap-3">
+                    <a href="../../index.html" class="text-sm hover:text-blue-300 transition-colors">Home</a>
+                    <a href="../../auth/username-login.html" class="text-sm hover:text-blue-300 transition-colors">Login</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <!-- Lock overlays on course cards -->
-  <style>.locked { position: relative; pointer-events: none; opacity: 0.5; } .locked::after { content: '🔒'; position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; }</style>
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="../../index.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">🏠</div>
+            <div class="mobile-nav-text">Home</div>
+        </a>
+        <a href="../../courses/english/english-course.html" class="mobile-nav-item active">
+            <div class="mobile-nav-icon">📚</div>
+            <div class="mobile-nav-text">English</div>
+        </a>
+        <a href="../../courses/math/math-course.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">🧮</div>
+            <div class="mobile-nav-text">Math</div>
+        </a>
+        <a href="../../courses/science/science-course.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">🔬</div>
+            <div class="mobile-nav-text">Science</div>
+        </a>
+    </div>    <!-- Lock overlays on course cards -->
+  <style>
+    .locked { 
+      position: relative; 
+      pointer-events: none; 
+      opacity: 0.6; 
+    } 
+    .locked::after { 
+      content: '🔒'; 
+      position: absolute; 
+      top: 0.5rem; 
+      right: 0.5rem; 
+      font-size: 1.25rem;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.25rem;
+    }
+    
+    /* Add tap highlight for mobile */
+    .course-card {
+      -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+    }
+    
+    /* Better touch area for mobile buttons */
+    button, select {
+      min-height: 44px;
+    }
+    
+    /* Improve font readability on mobile */
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+    }
+  </style>
 
-  <script src="../../js/main.js"></script>
-  <script src="../../js/admin.js"></script>
-  <script>
+  <script src="../../js/main.js"></script>  <script>
     // Check username on load
     document.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem('special_username');
+      // Use the standard 'username' key that our login system uses
+      const saved = localStorage.getItem('username');
       if (!saved) {
-        // Assuming usernameModal is defined elsewhere or to be added if this feature is kept
-        // document.getElementById('usernameModal').classList.remove('hidden');
-        console.log("Username modal would be shown here.");
+        // Redirect to login page if no username found
+        window.location.href = '../../auth/username-login.html';
       }
       else {
         greetUser(saved);
+        initializeProgressIfNeeded(); // Make sure progress values are properly initialized
         applyChapterLocks();
       }
     });
-    // document.getElementById('modalSubmit').addEventListener('click', () => { // Assuming modalSubmit is part of usernameModal
-    //   const name = document.getElementById('modalUsername').value.trim();
-    //   if (!name) return;
-    //   localStorage.setItem('special_username', name);
+    
+    // Initialize progress values if they don't exist
+    function initializeProgressIfNeeded() {
+      // Check if progress values exist, if not, initialize them to 0
+      if (localStorage.getItem('a1_chapter1_progress') === null) {
+        localStorage.setItem('a1_chapter1_progress', '0');
+      }
+      if (localStorage.getItem('a2_chapter1_progress') === null) {
+        localStorage.setItem('a2_chapter1_progress', '0');
+      }
+      if (localStorage.getItem('b1_chapter1_progress') === null) {
+        localStorage.setItem('b1_chapter1_progress', '0');
+      }
+      if (localStorage.getItem('b2_chapter1_progress') === null) {
+        localStorage.setItem('b2_chapter1_progress', '0');
+      }
+      if (localStorage.getItem('c1_chapter1_progress') === null) {
+        localStorage.setItem('c1_chapter1_progress', '0');
+      }    }
     //   // device info
     //   localStorage.setItem('deviceInfo', JSON.stringify({ ua: navigator.userAgent, browser: navigator.platform }));
     //   document.getElementById('usernameModal').classList.add('hidden');
     //   greetUser(name);
     //   applyChapterLocks();
     // });
+    
     function greetUser(name) {
-      const header = document.querySelector('header');
-      const badge = document.createElement('div');
-      badge.textContent = `Hello, ${name}`;
-      badge.className = 'text-white font-semibold';
-      // Ensure it's added in a way that doesn't break layout, e.g., before the buttons div
-      const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
-      if (buttonsDiv) {
-        header.insertBefore(badge, buttonsDiv);
-      } else {
-        header.appendChild(badge);
-      }
-    }    function applyChapterLocks() {
-      // Check if admin is logged in
-      const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-      
-      // If admin is logged in, don't apply any locks
-      if (adminLoggedIn) {
-        // Remove any existing locks
-        document.querySelectorAll('.locked').forEach(element => {
-          element.classList.remove('locked');
-        });
-        
-        // Add admin indicator to the header
-        const header = document.querySelector('header');
-        if (header) {
-          const adminBadge = document.createElement('div');
-          adminBadge.id = 'adminBadge';
-          adminBadge.textContent = 'Admin Mode';
-          adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
-          
-          // Add the badge to the header if it doesn't already exist
-          if (!document.getElementById('adminBadge')) {
-            const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
-            if (buttonsDiv) {
-              header.insertBefore(adminBadge, buttonsDiv);
-            } else {
-              header.appendChild(adminBadge);
-            }
-          }
-        }
-        return; // Exit the function early, no locks needed
-      }
-      
-      const مستوىA1مكتمل = parseFloat(localStorage.getItem('a1_chapter1_progress')) >= 100;
-      const a1Card = document.querySelector('a[href="chapters/a1/a1-chapter1.html"]'); // Updated to new path
-
-      // Example: Lock A2 if A1 is not done
-      const a2CardLink = document.querySelector('a[href="chapters/a2/a2-chapter1.html"]');
-      if (a2CardLink && !مستوىA1مكتمل) {
-        a2CardLink.classList.add('locked');
-      }
-
-      const مستوىA2مكتمل = parseFloat(localStorage.getItem('a2_chapter1_progress')) >= 100;
-      const b1CardLink = document.querySelector('a[href="chapters/b1/b1-chapter1.html"]');
-      if (b1CardLink && !مستوىA2مكتمل) {
-        b1CardLink.classList.add('locked');
-      }
-      // continue for other levels... B2, C1, C2
-      const b1done = parseFloat(localStorage.getItem('b1_chapter1_progress')) >= 100;
-      const b2CardLink = document.querySelector('a[href="chapters/b2/b2-chapter1.html"]');
-      if (b2CardLink && !b1done) {
-        b2CardLink.classList.add('locked');
-      }
-
-      const b2done = parseFloat(localStorage.getItem('b2_chapter1_progress')) >= 100;
-      const c1CardLink = document.querySelector('a[href="chapters/c1/c1-chapter1.html"]');
-      if (c1CardLink && !b2done) {
-        c1CardLink.classList.add('locked');
-      }
-
-      const c1done = parseFloat(localStorage.getItem('c1_chapter1_progress')) >= 100;
-      const c2CardLink = document.querySelector('a[href="chapters/c2/c2-chapter1.html"]');
-      if (c2CardLink && !c1done) {
-        c2CardLink.classList.add('locked');
+      const userInfoDiv = document.getElementById('user-info');
+      if (userInfoDiv) {
+        const badge = document.createElement('div');
+        badge.textContent = `Hello, ${name}`;
+        badge.className = 'text-white font-semibold text-sm';
+        userInfoDiv.appendChild(badge);
       }
     }
+    
+    function applyChapterLocks() {
+      // Check if admin mode is enabled
+      const isAdminMode = localStorage.getItem('isAdmin') === 'true';
+      
+      // If admin mode is enabled, unlock all levels
+      if (isAdminMode) {
+        console.log("Admin mode detected: Unlocking all levels");
+        unlockAllLevels();
+        return;
+      }
+      
+      // Get progress values with safer parsing - default to 0 if undefined/null/NaN
+      const a1Progress = parseFloat(localStorage.getItem('a1_chapter1_progress')) || 0;
+      const a2Progress = parseFloat(localStorage.getItem('a2_chapter1_progress')) || 0;
+      const b1Progress = parseFloat(localStorage.getItem('b1_chapter1_progress')) || 0;
+      const b2Progress = parseFloat(localStorage.getItem('b2_chapter1_progress')) || 0;
+      const c1Progress = parseFloat(localStorage.getItem('c1_chapter1_progress')) || 0;
+      
+      // Check if levels are completed (100% progress)
+      const a1Completed = a1Progress >= 100;
+      const a2Completed = a2Progress >= 100;
+      const b1Completed = b1Progress >= 100;
+      const b2Completed = b2Progress >= 100;
+      const c1Completed = c1Progress >= 100;
+      
+      console.log("Progress values:", {a1: a1Progress, a2: a2Progress, b1: b1Progress, b2: b2Progress, c1: c1Progress});
+      console.log("Completion status:", {a1: a1Completed, a2: a2Completed, b1: b1Completed, b2: b2Completed, c1: c1Completed});
+      
+      // Unlock A1 by default
+      const a1Card = document.querySelector('a[href="chapters/a1/a1-chapter1.html"]');
+      if (a1Card && a1Card.classList.contains('locked')) {
+        a1Card.classList.remove('locked');
+      }
 
-    // Initialize theme and language from main.js, then apply page-specific logic
+      // Lock A2 if A1 is not done
+      const a2CardLink = document.querySelector('a[href="chapters/a2/a2-chapter1.html"]');
+      if (a2CardLink) {
+        if (!a1Completed) {
+          a2CardLink.classList.add('locked');
+        } else {
+          a2CardLink.classList.remove('locked');
+        }
+      }
+
+      // Lock B1 if A2 is not done
+      const b1CardLink = document.querySelector('a[href="chapters/b1/b1-chapter1.html"]');
+      if (b1CardLink) {
+        if (!a2Completed) {
+          b1CardLink.classList.add('locked');
+        } else {
+          b1CardLink.classList.remove('locked');
+        }
+      }
+      
+      // Lock B2 if B1 is not done
+      const b2CardLink = document.querySelector('a[href="chapters/b2/b2-chapter1.html"]');
+      if (b2CardLink) {
+        if (!b1Completed) {
+          b2CardLink.classList.add('locked');
+        } else {
+          b2CardLink.classList.remove('locked');
+        }
+      }
+
+      // Lock C1 if B2 is not done
+      const c1CardLink = document.querySelector('a[href="chapters/c1/c1-chapter1.html"]');
+      if (c1CardLink) {
+        if (!b2Completed) {
+          c1CardLink.classList.add('locked');
+        } else {
+          c1CardLink.classList.remove('locked');
+        }
+      }
+
+      // Lock C2 if C1 is not done
+      const c2CardLink = document.querySelector('a[href="chapters/c2/c2-chapter1.html"]');
+      if (c2CardLink) {
+        if (!c1Completed) {
+          c2CardLink.classList.add('locked');
+        } else {
+          c2CardLink.classList.remove('locked');
+        }
+      }    }    // Initialize theme and language from main.js, then apply page-specific logic
     document.addEventListener('DOMContentLoaded', () => {
         // main.js should handle initializeTheme() and loadTranslations()
         // Then, this page-specific logic can run
         if (typeof applyChapterLocks === "function") { // Ensure main.js might not have this
             applyChapterLocks();
         }
-         if (typeof greetUser === "function" && localStorage.getItem('special_username')) {
-            greetUser(localStorage.getItem('special_username'));
+        // Use the standard 'username' key for greeting
+        if (typeof greetUser === "function" && localStorage.getItem('username')) {
+            greetUser(localStorage.getItem('username'));
         }
     });
+      // Function to unlock all levels for admin mode
+    function unlockAllLevels() {
+      // Get all course card links
+      const courseCards = document.querySelectorAll('.course-card');
+      
+      // Remove the locked class from all cards
+      courseCards.forEach(card => {
+        if (card.classList.contains('locked')) {
+          card.classList.remove('locked');
+        }
+      });
+      
+      // Add admin indicator to header if not already present
+      if (!document.getElementById('adminModeIndicator')) {
+        const adminIndicator = document.createElement('div');
+        adminIndicator.id = 'adminModeIndicator';
+        adminIndicator.textContent = '👑 Admin';
+        adminIndicator.className = 'bg-red-600 text-white px-2 py-1 rounded-lg text-xs font-semibold';
+        
+        const userInfoDiv = document.getElementById('user-info');
+        if (userInfoDiv) {
+          userInfoDiv.appendChild(adminIndicator);
+        }
+      }
+    }
   </script>
 </body>
 </html>
-
-
-

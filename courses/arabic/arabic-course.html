@@ -2,8 +2,11 @@
 <html lang="ar" dir="rtl" class="dark">
 <head>
     <link rel="stylesheet" href="../css/enhanced-styles.css">
+    <link rel="stylesheet" href="../../css/mobile-optimized.css">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1E293B">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <title>Arabic Language Course</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,12 +33,11 @@
             </div>
         </div>
     </nav>
-    
-    <!-- Add margin-top to accommodate the fixed nav -->
+      <!-- Add margin-top to accommodate the fixed nav -->
     <div style="margin-top: 70px;"></div>
-  <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+  <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 mobile-header flex flex-col sm:flex-row justify-between items-center gap-4">
     <h1 class="text-2xl font-bold">الدورة العربية</h1>
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-4 flex-wrap justify-center">
       <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
         <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
         <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
@@ -49,26 +51,24 @@
       </select>
     </div>
   </header>
-
-  <main class="p-8 max-w-4xl mx-auto space-y-8 text-right">
+  <main class="p-4 sm:p-8 max-w-4xl mx-auto space-y-6 sm:space-y-8 text-right">
     <!-- What You Will Learn Section -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <h2 class="text-2xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">ماذا ستتعلم</h2>
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6">
+      <h2 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-blue-600 dark:text-blue-400">ماذا ستتعلم</h2>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-          <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">المستوى الابتدائي (A1)</h3>
-          <ul class="list-disc pr-5 space-y-2 text-gray-600 dark:text-gray-400">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div class="border border-blue-200 dark:border-blue-800 rounded-lg p-3 sm:p-4">
+          <h3 class="text-lg sm:text-xl font-bold text-blue-600 dark:text-blue-400 mb-2 sm:mb-3">المستوى الابتدائي (A1)</h3>
+          <ul class="list-disc pr-5 space-y-1 sm:space-y-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             <li><strong>الفصل 1:</strong> الأبجدية العربية والنطق الأساسي</li>
             <li><strong>الفصل 2:</strong> التحيات والتعارف الأساسية</li>
             <li><strong>الفصل 3:</strong> الأرقام والألوان والعبارات الشائعة</li>
             <li><strong>الفصل 4:</strong> المذكر والمؤنث والجمل البسيطة</li>
           </ul>
         </div>
-        
-        <div class="border border-green-200 dark:border-green-800 rounded-lg p-4">
-          <h3 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">المستوى المتوسط الأدنى (A2)</h3>
-          <ul class="list-disc pr-5 space-y-2 text-gray-600 dark:text-gray-400">
+          <div class="border border-green-200 dark:border-green-800 rounded-lg p-3 sm:p-4">
+          <h3 class="text-lg sm:text-xl font-bold text-green-600 dark:text-green-400 mb-2 sm:mb-3">المستوى المتوسط الأدنى (A2)</h3>
+          <ul class="list-disc pr-5 space-y-1 sm:space-y-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             <li><strong>الفصل 1:</strong> الأفعال الأساسية والزمن الحاضر</li>
             <li><strong>الفصل 2:</strong> الروتين اليومي والتعبيرات الزمنية</li>
             <li><strong>الفصل 3:</strong> المفردات العائلية والصفات</li>
@@ -77,10 +77,10 @@
         </div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        <div class="border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-          <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">المستوى المتوسط (B1)</h3>
-          <ul class="list-disc pr-5 space-y-2 text-gray-600 dark:text-gray-400">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
+        <div class="border border-purple-200 dark:border-purple-800 rounded-lg p-3 sm:p-4">
+          <h3 class="text-lg sm:text-xl font-bold text-purple-600 dark:text-purple-400 mb-2 sm:mb-3">المستوى المتوسط (B1)</h3>
+          <ul class="list-disc pr-5 space-y-1 sm:space-y-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             <li><strong>الفصل 1:</strong> الزمن الماضي والسرد</li>
             <li><strong>الفصل 2:</strong> المفردات المتقدمة والتعبيرات الثقافية</li>
             <li><strong>الفصل 3:</strong> قواعد الإعراب الأساسية</li>
@@ -88,9 +88,9 @@
           </ul>
         </div>
         
-        <div class="border border-orange-200 dark:border-orange-800 rounded-lg p-4">
-          <h3 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">المستوى المتوسط الأعلى (B2)</h3>
-          <ul class="list-disc pr-5 space-y-2 text-gray-600 dark:text-gray-400">
+        <div class="border border-orange-200 dark:border-orange-800 rounded-lg p-3 sm:p-4">
+          <h3 class="text-lg sm:text-xl font-bold text-orange-600 dark:text-orange-400 mb-2 sm:mb-3">المستوى المتوسط الأعلى (B2)</h3>
+          <ul class="list-disc pr-5 space-y-1 sm:space-y-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             <li><strong>الفصل 1:</strong> تراكيب نحوية متقدمة</li>
             <li><strong>الفصل 2:</strong> النصوص الأدبية والثقافة العربية</li>
             <li><strong>الفصل 3:</strong> المحادثات المتقدمة والتعبير عن الرأي</li>
@@ -99,10 +99,10 @@
         </div>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        <div class="border border-teal-200 dark:border-teal-800 rounded-lg p-4">
-          <h3 class="text-xl font-bold text-teal-600 dark:text-teal-400 mb-3">المستوى المتقدم (C1)</h3>
-          <ul class="list-disc pr-5 space-y-2 text-gray-600 dark:text-gray-400">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
+        <div class="border border-teal-200 dark:border-teal-800 rounded-lg p-3 sm:p-4">
+          <h3 class="text-lg sm:text-xl font-bold text-teal-600 dark:text-teal-400 mb-2 sm:mb-3">المستوى المتقدم (C1)</h3>
+          <ul class="list-disc pr-5 space-y-1 sm:space-y-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             <li><strong>الفصل 1:</strong> اللغة الإعلامية والمصطلحات المتخصصة</li>
             <li><strong>الفصل 2:</strong> البلاغة العربية وأساليب التعبير</li>
             <li><strong>الفصل 3:</strong> قراءات متقدمة من الأدب العربي</li>
@@ -110,9 +110,9 @@
           </ul>
         </div>
         
-        <div class="border border-pink-200 dark:border-pink-800 rounded-lg p-4">
-          <h3 class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-3">مستوى الإتقان (C2)</h3>
-          <ul class="list-disc pr-5 space-y-2 text-gray-600 dark:text-gray-400">
+        <div class="border border-pink-200 dark:border-pink-800 rounded-lg p-3 sm:p-4">
+          <h3 class="text-lg sm:text-xl font-bold text-pink-600 dark:text-pink-400 mb-2 sm:mb-3">مستوى الإتقان (C2)</h3>
+          <ul class="list-disc pr-5 space-y-1 sm:space-y-2 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
             <li><strong>الفصل 1:</strong> الطلاقة المتقدمة والتعبير البلاغي</li>
             <li><strong>الفصل 2:</strong> الكتابة الإبداعية والأكاديمية المتخصصة</li>
             <li><strong>الفصل 3:</strong> فهم اللهجات العربية المختلفة</li>
@@ -123,59 +123,136 @@
     </section>
     
     <!-- A1 Level -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">      <div class="flex items-center gap-4 mb-4 justify-end">
-        <h2 class="text-xl font-semibold">المستوى الابتدائي</h2>
-        <span class="bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">A1</span>
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6">      
+      <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4 justify-end">
+        <h2 class="text-lg sm:text-xl font-semibold">المستوى الابتدائي</h2>
+        <span class="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded-full font-semibold text-sm sm:text-base">A1</span>
       </div>
-      <a href="chapters/a1/a1-chapter1.html" class="block bg-gray-100 dark:bg-gray-700 p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition">
-        <h3 class="text-lg font-semibold">الفصل 1: الأبجدية العربية</h3>
-        <p class="text-gray-600 dark:text-gray-300">تعلم الأبجدية العربية والنطق الأساسي.</p>
+      <a href="chapters/a1/a1-chapter1.html" class="course-card block bg-gray-100 dark:bg-gray-700 p-3 sm:p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition min-h-[80px]">
+        <h3 class="text-base sm:text-lg font-semibold">الفصل 1: الأبجدية العربية</h3>
+        <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">تعلم الأبجدية العربية والنطق الأساسي.</p>
         <div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded mt-2">
-          <div class="h-2 bg-blue-500 rounded" style="width: 0%"></div>
+          <div class="h-2 bg-blue-500 rounded progress-bar" style="width: 0%"></div>
         </div>
       </a>
+    </section>    <!-- A2 & B1 Placeholder -->
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6">
+      <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4 justify-end">
+        <h2 class="text-lg sm:text-xl font-semibold">المستوى ما قبل المتوسط</h2>
+        <span class="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded-full font-semibold text-sm sm:text-base">A2</span>
+      </div>
+      <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">سيتم إضافة المحتوى قريبًا.</p>
     </section>
 
-    <!-- A2 & B1 Placeholder -->
-    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <div class="flex items-center gap-4 mb-4 justify-end">
-        <h2 class="text-xl font-semibold">المستوى ما قبل المتوسط</h2>
-        <span class="bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">A2</span>
+    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6">
+      <div class="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4 justify-end">
+        <h2 class="text-lg sm:text-xl font-semibold">المستوى المتوسط</h2>
+        <span class="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded-full font-semibold text-sm sm:text-base">B1</span>
       </div>
-      <p class="text-gray-600 dark:text-gray-300">سيتم إضافة المحتوى قريبًا.</p>
-    </section>
-
-    <section class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-      <div class="flex items-center gap-4 mb-4 justify-end">
-        <h2 class="text-xl font-semibold">المستوى المتوسط</h2>
-        <span class="bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">B1</span>
-      </div>
-      <p class="text-gray-600 dark:text-gray-300">سيتم إضافة المحتوى قريبًا.</p>
+      <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base">سيتم إضافة المحتوى قريبًا.</p>
     </section>
   </main>
-  <footer class="bg-gray-800 text-white p-4 text-center mt-12">&copy; 2025 Tutoring Website</footer>  
+  <footer class="bg-gray-800 text-white p-4 text-center mt-8 sm:mt-12 text-sm sm:text-base">&copy; 2025 Tutoring Website</footer>  
+  
+  <!-- Mobile Navigation Bar -->
+  <nav class="mobile-nav fixed bottom-0 left-0 right-0 bg-gray-800 text-white px-4 py-3 flex justify-around items-center z-10 md:hidden">
+    <a href="../../index.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <span class="text-xs mt-1">الرئيسية</span>
+    </a>
+    <a href="../../index.html#courses" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+      <span class="text-xs mt-1">الدورات</span>
+    </a>
+    <a href="../../profile/profile-setup.html" class="flex flex-col items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+      <span class="text-xs mt-1">الملف الشخصي</span>
+    </a>
+  </nav>
+  
   <script src="../../js/main.js"></script>
-  <script src="../../js/admin.js"></script>
-  <script>
+  <script src="../../js/admin.js"></script>  <script>
     // CSS for locked items
     document.head.insertAdjacentHTML('beforeend', `
       <style>
         .locked { 
           position: relative; 
           pointer-events: none; 
-          opacity: 0.5; 
+          opacity: 0.7; 
         } 
         .locked::after { 
           content: '🔒'; 
           position: absolute; 
-          top: 1rem; 
-          left: 1rem; /* Left for RTL languages */
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           font-size: 1.5rem; 
+          background-color: rgba(0, 0, 0, 0.5);
+          border-radius: 50%;
+          padding: 10px;
+          width: 50px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        /* Add extra padding at the bottom for mobile nav */
+        @media (max-width: 768px) {
+          body {
+            padding-bottom: 70px;
+          }
+          
+          /* Make the progress bar more visible on mobile */
+          .progress-bar {
+            height: 6px;
+          }
         }
       </style>
     `);
     
+    // Initialize progress variables if needed
+    function initializeProgressIfNeeded() {
+      // Check if arabic_a1_chapter1_progress exists in localStorage
+      if (localStorage.getItem('arabic_a1_chapter1_progress') === null) {
+        localStorage.setItem('arabic_a1_chapter1_progress', '0');
+      }
+      
+      // Update the progress bar width
+      updateProgressBars();
+    }
+    
+    // Update all progress bars based on localStorage values
+    function updateProgressBars() {
+      // Update A1 Chapter 1 progress bar
+      const a1Chapter1Progress = parseFloat(localStorage.getItem('arabic_a1_chapter1_progress') || '0');
+      const a1Chapter1Bar = document.querySelector('section:nth-of-type(3) .progress-bar');
+      if (a1Chapter1Bar) {
+        a1Chapter1Bar.style.width = `${a1Chapter1Progress}%`;
+      }
+    }
+    
     function applyChapterLocks() {
+      // Check if user is logged in
+      const username = localStorage.getItem('username');
+      if (!username) {
+        // Redirect to login page if not logged in
+        window.location.href = '../../auth/login.html';
+        return;
+      }
+      
+      // Update username display
+      const usernameDisplay = document.getElementById('username-display');
+      if (usernameDisplay) {
+        usernameDisplay.textContent = username;
+      }
+    
       // Check if admin is logged in
       const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
       
@@ -208,25 +285,44 @@
       }
       
       // Lock levels based on completion progress
-      const a1Complete = parseFloat(localStorage.getItem('arabic_a1_chapter1_progress')) >= 100;
+      const a1Complete = parseFloat(localStorage.getItem('arabic_a1_chapter1_progress') || '0') >= 100;
       
       // Apply locks to course sections (A2, B1, etc.)
-      const a2Section = document.querySelector('section:nth-of-type(3)');
-      const b1Section = document.querySelector('section:nth-of-type(4)');
+      const a2Section = document.querySelector('section:nth-of-type(4)');
+      const b1Section = document.querySelector('section:nth-of-type(5)');
       
       if (a2Section && !a1Complete) {
         a2Section.classList.add('locked');
+      } else if (a2Section && a1Complete) {
+        a2Section.classList.remove('locked');
       }
       
       if (b1Section && !a1Complete) {
         b1Section.classList.add('locked');
+      } else if (b1Section && a1Complete) {
+        b1Section.classList.remove('locked');
       }
     }
     
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', () => {
-      // main.js will handle theme and language initialization
+      // Initialize progress tracking
+      initializeProgressIfNeeded();
+      
+      // Apply chapter locks
       applyChapterLocks();
+      
+      // Add touch feedback to course cards
+      const courseCards = document.querySelectorAll('.course-card');
+      courseCards.forEach(card => {
+        card.addEventListener('touchstart', () => {
+          card.style.backgroundColor = 'var(--card-active-bg, #e5e7eb)';
+        });
+        
+        card.addEventListener('touchend', () => {
+          card.style.backgroundColor = '';
+        });
+      });
     });
   </script>
 </body>

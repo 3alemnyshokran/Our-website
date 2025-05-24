@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Added dark class -->
 <head>
-    <link rel="stylesheet" href="../css/enhanced-styles.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e40af">
     <title>Mathematics Course</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/mobile-optimized.css">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
     /* Basic styles for theme toggle icons */
@@ -17,87 +18,87 @@
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
-    <nav class="fixed top-0 w-full bg-slate-800 dark:bg-slate-900 shadow-md z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="../index.html" class="back-to-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                Back to Home
-            </a>
-            <div class="flex items-center gap-3">
-                <span id="username-display" class="text-white text-sm font-medium"></span>
+    <!-- Header -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <h1 class="text-xl md:text-2xl font-bold">Mathematics Course</h1>
+                <a href="../../index.html" class="ml-2 px-2 py-1 bg-blue-700 dark:bg-blue-800 rounded-lg text-xs hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors">
+                    Home
+                </a>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+                <div id="user-info" class="flex items-center mr-2">
+                    <!-- User greeting will be inserted here by JS -->
+                </div>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+                <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                </select>
             </div>
         </div>
-    </nav>
-    
-    <!-- Add margin-top to accommodate the fixed nav -->
-    <div style="margin-top: 70px;"></div>
-    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Mathematics Course</h1>
-        <div class="flex items-center gap-4">
-            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-                <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
-                <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
-            </button>
-            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-                <option value="en">English</option>
-                <option value="de">Deutsch</option>
-                <option value="ar">العربية</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-            </select>
-        </div>
-    </header>
-
-    <main class="p-8 max-w-4xl mx-auto space-y-8">
+    </header>    <main class="flex-grow container mx-auto px-4 py-4 sm:py-8">
+        <section class="text-center mb-6 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 text-blue-600 dark:text-blue-400">Mathematics Course</h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-2">From basic arithmetic to advanced calculus</p>
+        </section>
+        
         <!-- What You Will Learn Section -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <h2 class="text-2xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">What You Will Learn</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                    <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">Elementary Level (A1)</h3>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
-                        <li><strong>Chapter 1:</strong> Basic Arithmetic (addition, subtraction, multiplication, division)</li>
-                        <li><strong>Chapter 2:</strong> Fractions and Decimals</li>
-                        <li><strong>Chapter 3:</strong> Percentages and Ratios</li>
-                        <li><strong>Chapter 4:</strong> Basic Geometry (shapes and measurements)</li>
-                    </ul>
+        <section class="mb-8">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 sm:p-6 mb-4 sm:mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-blue-600 dark:text-blue-400 mb-2">Elementary Level (A1)</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                            <li><strong>Chapter 1:</strong> Basic Arithmetic (addition, subtraction, multiplication, division)</li>
+                            <li><strong>Chapter 2:</strong> Fractions and Decimals</li>
+                            <li><strong>Chapter 3:</strong> Percentages and Ratios</li>
+                            <li><strong>Chapter 4:</strong> Basic Geometry (shapes and measurements)</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold text-green-600 dark:text-green-400 mb-2 mt-4 md:mt-0">Intermediate Level (A2)</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                            <li><strong>Chapter 1:</strong> Algebra Basics (variables and expressions)</li>
+                            <li><strong>Chapter 2:</strong> Linear Equations and Inequalities</li>
+                            <li><strong>Chapter 3:</strong> Coordinate Geometry</li>
+                            <li><strong>Chapter 4:</strong> Data Analysis and Basic Statistics</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="border border-green-200 dark:border-green-800 rounded-lg p-4">
-                    <h3 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">Intermediate Level (A2)</h3>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
-                        <li><strong>Chapter 1:</strong> Algebra Basics (variables and expressions)</li>
-                        <li><strong>Chapter 2:</strong> Linear Equations and Inequalities</li>
-                        <li><strong>Chapter 3:</strong> Coordinate Geometry</li>
-                        <li><strong>Chapter 4:</strong> Data Analysis and Basic Statistics</li>
-                    </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">
+                    <div>
+                        <h4 class="text-lg font-bold text-purple-600 dark:text-purple-400 mb-2">Upper Intermediate Level (B1)</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                            <li><strong>Chapter 1:</strong> Quadratic Equations and Functions</li>
+                            <li><strong>Chapter 2:</strong> Trigonometry Fundamentals</li>
+                            <li><strong>Chapter 3:</strong> Exponents and Logarithms</li>
+                            <li><strong>Chapter 4:</strong> Probability and Advanced Statistics</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-bold text-orange-600 dark:text-orange-400 mb-2 mt-4 md:mt-0">Advanced Level (B2)</h4>
+                        <ul class="list-disc pl-5 space-y-1 sm:space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                            <li><strong>Chapter 1:</strong> Calculus Introduction (limits and derivatives)</li>
+                            <li><strong>Chapter 2:</strong> Integration Basics</li>
+                            <li><strong>Chapter 3:</strong> Vectors and Matrices</li>
+                            <li><strong>Chapter 4:</strong> Series and Sequences</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <div class="border border-purple-200 dark:border-purple-800 rounded-lg p-4">
-                    <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">Upper Intermediate Level (B1)</h3>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
-                        <li><strong>Chapter 1:</strong> Quadratic Equations and Functions</li>
-                        <li><strong>Chapter 2:</strong> Trigonometry Fundamentals</li>
-                        <li><strong>Chapter 3:</strong> Exponents and Logarithms</li>
-                        <li><strong>Chapter 4:</strong> Probability and Advanced Statistics</li>
-                    </ul>
-                </div>
-                
-                <div class="border border-orange-200 dark:border-orange-800 rounded-lg p-4">
-                    <h3 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">Advanced Level (B2)</h3>
-                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
-                        <li><strong>Chapter 1:</strong> Calculus Introduction (limits and derivatives)</li>
-                        <li><strong>Chapter 2:</strong> Integration Basics</li>
-                        <li><strong>Chapter 3:</strong> Vectors and Matrices</li>
-                        <li><strong>Chapter 4:</strong> Series and Sequences</li>
-                    </ul>
-                </div>
-            </div>
+        </section>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
                 <div class="border border-teal-200 dark:border-teal-800 rounded-lg p-4">
@@ -147,100 +148,230 @@
                 <p class="text-gray-600 dark:text-gray-300">Basic algebraic expressions and equations.</p>
                 <div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded mt-2">
                     <div class="h-2 bg-blue-500 rounded" style="width: 0%"></div>
+        <!-- Course Levels and Chapters -->
+        <section class="mb-8">
+            <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Content</h3>
+            
+            <!-- A1 Level -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 sm:p-6 mb-4 sm:mb-6">
+                <div class="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+                    <span class="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">A1</span>
+                    <h4 class="text-base sm:text-lg font-semibold">Elementary Level</h4>
                 </div>
-            </a>
-        </div>
-        <!-- B1 Level -->
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-            <div class="flex items-center gap-4 mb-4">
-                <span class="bg-blue-500 text-white px-3 py-1 rounded-full font-semibold">B1</span>
-                <h2 class="text-xl font-semibold">Intermediate Level</h2>
+                <div class="space-y-3">
+                    <a href="#" class="block bg-gray-100 dark:bg-slate-700 p-3 sm:p-4 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+                        <h5 class="text-sm sm:text-base font-semibold">Chapter 1: Basic Arithmetic</h5>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-400 mt-1">Addition, subtraction, multiplication and division</p>
+                        <div class="w-full h-2 bg-gray-200 dark:bg-slate-600 rounded mt-2">
+                            <div class="h-2 bg-blue-500 rounded" style="width: 75%"></div>
+                        </div>
+                    </a>
+                    <a href="#" class="block bg-gray-100 dark:bg-slate-700 p-3 sm:p-4 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+                        <h5 class="text-sm sm:text-base font-semibold">Chapter 2: Fractions and Decimals</h5>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-400 mt-1">Working with parts and decimal numbers</p>
+                        <div class="w-full h-2 bg-gray-200 dark:bg-slate-600 rounded mt-2">
+                            <div class="h-2 bg-blue-500 rounded" style="width: 50%"></div>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <a href="#" class="block bg-gray-100 dark:bg-gray-700 p-4 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition">
-                <h3 class="text-lg font-semibold">Chapter 4: Calculus</h3>
-                <p class="text-gray-600 dark:text-gray-300">Introduction to derivatives and integrals.</p>
-                <div class="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded mt-2">
-                    <div class="h-2 bg-blue-500 rounded" style="width: 0%"></div>
+            
+            <!-- A2 Level -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 sm:p-6 mb-4 sm:mb-6">
+                <div class="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+                    <span class="bg-green-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">A2</span>
+                    <h4 class="text-base sm:text-lg font-semibold">Intermediate Level</h4>
                 </div>
-            </a>
-        </div>
-    </main>    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
-        &copy; 2025 Tutoring Website
-    </footer>
-    <script src="../../js/main.js"></script>
+                <div class="space-y-3">
+                    <a href="#" class="block bg-gray-100 dark:bg-slate-700 p-3 sm:p-4 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+                        <h5 class="text-sm sm:text-base font-semibold">Chapter 1: Algebra Basics</h5>
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-400 mt-1">Variables, expressions and equations</p>
+                        <div class="w-full h-2 bg-gray-200 dark:bg-slate-600 rounded mt-2">
+                            <div class="h-2 bg-green-500 rounded" style="width: 25%"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- B1 Level -->
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-4 sm:p-6 mb-4 sm:mb-6">
+                <div class="flex items-center gap-2 sm:gap-4 mb-3 sm:mb-4">
+                    <span class="bg-purple-500 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">B1</span>
+                    <h4 class="text-base sm:text-lg font-semibold">Upper Intermediate Level</h4>
+                </div>
+                <a href="#" class="block bg-gray-100 dark:bg-slate-700 p-3 sm:p-4 rounded-lg hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors">
+                    <h5 class="text-sm sm:text-base font-semibold">Chapter 1: Quadratic Equations</h5>
+                    <p class="text-xs sm:text-sm text-gray-600 dark:text-slate-400 mt-1">Solving and graphing quadratic equations</p>
+                    <div class="w-full h-2 bg-gray-200 dark:bg-slate-600 rounded mt-2">
+                        <div class="h-2 bg-purple-500 rounded" style="width: 0%"></div>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav">
+        <a href="../../index.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span class="text-xs mt-1">Home</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            <span class="text-xs mt-1">Courses</span>
+        </a>
+        <a href="#" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span class="text-xs mt-1">Profile</span>
+        </a>
+    </div>
+
+    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12 pb-20 md:pb-4">
+        &copy; 2025 3alemny Shokran
+    </footer>    <script src="../../js/main.js"></script>
     <script src="../../js/admin.js"></script>
     <script>
-        // CSS for locked items
+        // CSS for locked items with mobile-friendly styling
         document.head.insertAdjacentHTML('beforeend', `
             <style>
                 .locked { 
                     position: relative; 
                     pointer-events: none; 
-                    opacity: 0.5; 
+                    opacity: 0.7; 
                 } 
                 .locked::after { 
                     content: '🔒'; 
                     position: absolute; 
-                    top: 1rem; 
-                    right: 1rem; 
-                    font-size: 1.5rem; 
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 2rem;
+                    background-color: rgba(0,0,0,0.5);
+                    border-radius: 50%;
+                    padding: 0.5rem;
+                    width: 3rem;
+                    height: 3rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                
+                @media (max-width: 640px) {
+                    .locked::after {
+                        font-size: 1.5rem;
+                        width: 2.5rem;
+                        height: 2.5rem;
+                    }
                 }
             </style>
         `);
         
-        function applyChapterLocks() {
-            // Check if admin is logged in
-            const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-            
-            // If admin is logged in, don't apply any locks
-            if (adminLoggedIn) {
-                // Remove any existing locks
-                document.querySelectorAll('.locked').forEach(element => {
-                    element.classList.remove('locked');
-                });
-                
-                // Add admin indicator to the header
-                const header = document.querySelector('header');
-                if (header) {
-                    const adminBadge = document.createElement('div');
-                    adminBadge.id = 'adminBadge';
-                    adminBadge.textContent = 'Admin Mode';
-                    adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
-                    
-                    // Add the badge to the header if it doesn't already exist
-                    if (!document.getElementById('adminBadge')) {
-                        const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
-                        if (buttonsDiv) {
-                            header.insertBefore(adminBadge, buttonsDiv);
-                        } else {
-                            header.appendChild(adminBadge);
-                        }
-                    }
-                }
-                return; // Exit the function early, no locks needed
+        // Check username on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Use the standard 'username' key that our login system uses
+            const saved = localStorage.getItem('username');
+            if (!saved) {
+                // Redirect to login page if no username found
+                window.location.href = '../../auth/username-login.html';
             }
-            
-            // Lock levels based on completion progress
-            const a1Complete = parseFloat(localStorage.getItem('math_a1_chapter1_progress')) >= 100;
-            
-            // Get all course sections
-            const a2Section = document.querySelector('div.bg-white:nth-of-type(3)');
-            const b1Section = document.querySelector('div.bg-white:nth-of-type(4)');
-            
-            // Apply locks
-            if (a2Section && !a1Complete) {
-                a2Section.classList.add('locked');
+            else {
+                greetUser(saved);
+                initializeProgressIfNeeded(); // Make sure progress values are properly initialized
+                applyChapterLocks();
             }
-            
-            if (b1Section && !a1Complete) {
-                b1Section.classList.add('locked');
+        });
+        
+        // Initialize progress values if they don't exist
+        function initializeProgressIfNeeded() {
+            // Check if progress values exist, if not, initialize them to 0
+            if (localStorage.getItem('math_a1_chapter1_progress') === null) {
+                localStorage.setItem('math_a1_chapter1_progress', '0');
+            }
+            if (localStorage.getItem('math_a2_chapter1_progress') === null) {
+                localStorage.setItem('math_a2_chapter1_progress', '0');
+            }
+            if (localStorage.getItem('math_b1_chapter1_progress') === null) {
+                localStorage.setItem('math_b1_chapter1_progress', '0');
             }
         }
         
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            applyChapterLocks();
-        });
+        // Function to greet the user
+        function greetUser(name) {
+            const userInfoDiv = document.getElementById('user-info');
+            
+            if (userInfoDiv) {
+                userInfoDiv.innerHTML = `
+                    <span class="text-white text-xs sm:text-sm font-medium">Hello, ${name}!</span>
+                `;
+            }
+        }
+        
+        function applyChapterLocks() {
+            // Check if admin is logged in
+            const isAdminMode = localStorage.getItem('isAdmin') === 'true';
+            
+            // If admin is logged in, don't apply any locks
+            if (isAdminMode) {
+                console.log("Admin mode detected: Unlocking all levels");
+                unlockAllLevels();
+                return;
+            }
+            
+            // Get progress values with safer parsing - default to 0 if undefined/null/NaN
+            const a1Progress = parseFloat(localStorage.getItem('math_a1_chapter1_progress')) || 0;
+            const a2Progress = parseFloat(localStorage.getItem('math_a2_chapter1_progress')) || 0;
+            
+            // Check if levels are completed (100% progress)
+            const a1Completed = a1Progress >= 100;
+            const a2Completed = a2Progress >= 100;
+            
+            console.log("Math progress values:", {a1: a1Progress, a2: a2Progress});
+            console.log("Math completion status:", {a1: a1Completed, a2: a2Completed});
+            
+            // Get all course sections
+            const a2Section = document.querySelector('section:nth-child(3) > div:nth-child(3)');
+            const b1Section = document.querySelector('section:nth-child(3) > div:nth-child(4)');
+            
+            // Apply locks
+            if (a2Section && !a1Completed) {
+                a2Section.classList.add('locked');
+            } else if (a2Section) {
+                a2Section.classList.remove('locked');
+            }
+            
+            if (b1Section && !a2Completed) {
+                b1Section.classList.add('locked');
+            } else if (b1Section) {
+                b1Section.classList.remove('locked');
+            }
+        }
+        
+        // Function to unlock all levels for admin mode
+        function unlockAllLevels() {
+            // Remove the locked class from all sections
+            document.querySelectorAll('.locked').forEach(element => {
+                element.classList.remove('locked');
+            });
+            
+            // Add admin indicator to header if not already present
+            if (!document.getElementById('adminModeIndicator')) {
+                const adminIndicator = document.createElement('div');
+                adminIndicator.id = 'adminModeIndicator';
+                adminIndicator.textContent = '👑 Admin';
+                adminIndicator.className = 'bg-red-600 text-white px-2 py-1 rounded-lg text-xs font-semibold';
+                
+                const userInfoDiv = document.getElementById('user-info');
+                if (userInfoDiv) {
+                    userInfoDiv.appendChild(adminIndicator);
+                }
+            }
+        }
     </script>
   </body>
 </html>

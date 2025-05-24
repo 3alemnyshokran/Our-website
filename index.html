@@ -2,10 +2,12 @@
 <html lang="en" class="dark"> <!-- Added dark class -->
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutoring Website - Enhanced</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e40af">
+  <title>3alemny Shokran - Educational Platform</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/mobile-optimized.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body {
@@ -75,28 +77,45 @@
                 </div>
             </form>
         </div>
-    </div>  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-      <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
-      <div class="flex items-center gap-3 sm:gap-4">
-        <!-- Admin Button -->
-        <button id="adminBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg shadow transition-colors">Admin</button>
-        <!-- Login button - visible when not logged in -->
-        <button id="login-btn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-          Login
-        </button>
-          <!-- Profile button - visible when logged in -->
-        <div id="profile-btn" class="relative">
-          <button class="flex items-center bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-            <span id="profile-username">Username</span>
-            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </div>  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md sticky-header">
+    <div class="container mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center">
+      <div class="flex justify-between items-center">
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold">3alemny Shokran</h1>
+        <div class="flex items-center gap-2 sm:hidden">
+          <button id="mobile-menu-btn" class="text-white px-2 py-1 rounded-lg">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
             </svg>
           </button>
         </div>
-        
-        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-          <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
-          <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+      </div>
+      
+      <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row sm:items-center sm:ml-auto mt-4 sm:mt-0 gap-3">
+        <div class="sm:ml-auto flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <button id="adminBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 text-sm rounded-lg shadow transition-colors">Admin</button>
+          
+          <!-- Login button - visible when not logged in -->
+          <button id="login-btn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-1.5 text-sm rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+            Login
+          </button>
+          
+          <!-- Profile button - visible when logged in -->
+          <div id="profile-btn" class="relative hidden">
+            <button class="flex items-center bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-1.5 text-sm rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+              <span id="profile-username">Username</span>
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+          </div>
+          
+          <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-1.5 text-sm rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+            <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+            <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+          </button>
+        </div>
+      </div>
+    </div>
         </button>
         <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
           <option value="en">English</option>

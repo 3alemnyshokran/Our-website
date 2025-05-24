@@ -474,20 +474,24 @@
                             header.insertBefore(adminBadge, buttonsDiv);
                         } else {
                             header.appendChild(adminBadge);
-                        }
-                    }
+                        }                    }
                 }
                 
-                // Unlock all content by setting progress to 100%
-                localStorage.setItem('a1_chapter1_progress', 100);
-                localStorage.setItem('a1_chapter2_progress', 100);
-                localStorage.setItem('a1_chapter3_progress', 100);
-                localStorage.setItem('a1_chapter4_progress', 100);
-                localStorage.setItem('a2_chapter1_progress', 100);
-                localStorage.setItem('a2_chapter2_progress', 100);
-                localStorage.setItem('b1_chapter1_progress', 100);
-                localStorage.setItem('b1_chapter2_progress', 100);
-                localStorage.setItem('b2_chapter1_progress', 100);
+                // Only unlock all content if it's truly an admin session
+                if (localStorage.getItem('isAdmin') === 'true') {
+                    // Unlock all content by setting progress to 100%
+                    localStorage.setItem('a1_chapter1_progress', 100);
+                    localStorage.setItem('a1_chapter2_progress', 100);
+                    localStorage.setItem('a1_chapter3_progress', 100);
+                    localStorage.setItem('a1_chapter4_progress', 100);
+                    localStorage.setItem('a2_chapter1_progress', 100);
+                    localStorage.setItem('a2_chapter2_progress', 100);
+                    localStorage.setItem('b1_chapter1_progress', 100);
+                    localStorage.setItem('b1_chapter2_progress', 100);
+                    localStorage.setItem('b2_chapter1_progress', 100);
+                    
+                    console.log('Admin privileges activated: All course levels unlocked');
+                }
             }
         });
 

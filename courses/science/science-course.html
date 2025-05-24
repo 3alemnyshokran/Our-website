@@ -1,61 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Added dark class -->
 <head>
-    <link rel="stylesheet" href="../css/enhanced-styles.css">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Science Course</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-    /* Basic styles for theme toggle icons */
-    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
-    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
-    html.dark .theme-btn .light-icon { display: inline; }
-    html.dark .theme-btn .dark-icon { display: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e40af">
+    <title>Science Course</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../../css/mobile-optimized.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+    </style>
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
-    <nav class="fixed top-0 w-full bg-slate-800 dark:bg-slate-900 shadow-md z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="../index.html" class="back-to-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-                Back to Home
-            </a>
-            <div class="flex items-center gap-3">
-                <span id="username-display" class="text-white text-sm font-medium"></span>
+    <!-- Header -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <h1 class="text-xl md:text-2xl font-bold">Science Course</h1>
+                <a href="../../index.html" class="ml-2 px-2 py-1 bg-blue-700 dark:bg-blue-800 rounded-lg text-xs hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors">
+                    Home
+                </a>
             </div>
-        </div>
-    </nav>
-    
-    <!-- Add margin-top to accommodate the fixed nav -->
-    <div style="margin-top: 70px;"></div>
-  <!-- Header -->
-  <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Science Course</h1>
-    <div class="flex items-center gap-4">
-      <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-        <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
-        <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
-      </button>
-      <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-        <option value="en">English</option>
-        <option value="de">Deutsch</option>
-        <option value="ar">العربية</option>
-        <option value="fr">Français</option>
-        <option value="es">Español</option>
-      </select>
-    </div>
-  </header>
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+                <div id="user-info" class="flex items-center mr-2">
+                    <!-- User greeting will be inserted here by JS -->
+                </div>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+                <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </div>    </header>
 
-  <main class="flex-grow container mx-auto px-4 py-8">
-    <section class="text-center mb-10">
-      <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">Science Course</h2>
-      <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">Learning from elementary to advanced</p>
-    </section>
+    <main class="flex-grow container mx-auto px-4 py-4 sm:py-8">
+        <section class="text-center mb-6 sm:mb-10">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 text-blue-600 dark:text-blue-400">Science Course</h2>
+            <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-2">Learning from elementary to advanced</p>
+        </section>
     
     <section class="mb-10">
       <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
@@ -124,113 +118,211 @@
         </div>
       </div>
     </section>
-    
-    <section>
-      <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section>
+      <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <!-- A1 Card -->
-        <a href="chapters/a1/science-basics.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
-          <div class="p-8 flex flex-col items-center">
-            <span class="text-4xl mb-3">🧪</span>
-            <h4 class="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">Elementary Level</h4>
-            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Basic science concepts and experiments.</p>
+        <a href="chapters/a1/science-basics.html" class="course-card bg-gradient-to-br from-blue-100 via-blue-50 to-white dark:from-blue-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 group border border-blue-200 dark:border-blue-800">
+          <div class="p-4 sm:p-6 flex flex-col items-center">
+            <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🧪</span>
+            <h4 class="text-lg sm:text-xl font-bold text-blue-700 dark:text-blue-300 mb-2 group-hover:text-blue-900 dark:group-hover:text-blue-200 transition-colors">Elementary Level</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center">Basic science concepts and experiments.</p>
           </div>
         </a>
         <!-- A2 Card -->
-        <a href="chapters/a2/earth-science.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-green-200 dark:border-green-800">
-          <div class="p-8 flex flex-col items-center">
-            <span class="text-4xl mb-3">🌍</span>
-            <h4 class="text-2xl font-bold text-green-700 dark:text-green-300 mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">Intermediate Level</h4>
-            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Earth science, weather patterns, and more.</p>
+        <a href="chapters/a2/earth-science.html" class="course-card bg-gradient-to-br from-green-100 via-green-50 to-white dark:from-green-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 group border border-green-200 dark:border-green-800">
+          <div class="p-4 sm:p-6 flex flex-col items-center">
+            <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🌍</span>
+            <h4 class="text-lg sm:text-xl font-bold text-green-700 dark:text-green-300 mb-2 group-hover:text-green-900 dark:group-hover:text-green-200 transition-colors">Intermediate Level</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center">Earth science, weather patterns, and more.</p>
           </div>
         </a>
         <!-- B1 Card -->
-        <a href="chapters/b1/biology-intro.html" class="course-card bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-900 dark:via-slate-800 dark:to-slate-900 rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
-          <div class="p-8 flex flex-col items-center">
-            <span class="text-4xl mb-3">🧬</span>
-            <h4 class="text-2xl font-bold text-purple-700 dark:text-purple-300 mb-2 group-hover:text-purple-900 dark:group-hover:text-purple-200 transition-colors">Advanced Level</h4>
-            <p class="text-slate-600 dark:text-slate-400 text-base text-center">Biology and living organisms.</p>
+        <a href="chapters/b1/biology-intro.html" class="course-card bg-gradient-to-br from-purple-100 via-purple-50 to-white dark:from-purple-900 dark:via-slate-800 dark:to-slate-900 rounded-xl shadow-md overflow-hidden hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 group border border-purple-200 dark:border-purple-800">
+          <div class="p-4 sm:p-6 flex flex-col items-center">
+            <span class="text-3xl sm:text-4xl mb-2 sm:mb-3">🧬</span>
+            <h4 class="text-lg sm:text-xl font-bold text-purple-700 dark:text-purple-300 mb-2 group-hover:text-purple-900 dark:group-hover:text-purple-200 transition-colors">Advanced Level</h4>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base text-center">Biology and living organisms.</p>
           </div>
-        </a>
-      </div>
+        </a>      </div>
     </section>
   </main>
-  <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
-    &copy; 2025 Tutoring Website
+  
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav">
+    <a href="../../index.html" class="mobile-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span class="text-xs mt-1">Home</span>
+    </a>
+    <a href="#" class="mobile-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <span class="text-xs mt-1">Courses</span>
+    </a>
+    <a href="#" class="mobile-nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        </svg>
+        <span class="text-xs mt-1">Profile</span>
+    </a>
+  </div>
+  
+  <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12 pb-20 md:pb-4">
+    &copy; 2025 3alemny Shokran
   </footer>
-  <script src="../../js/main.js"></script>
+    <script src="../../js/main.js"></script>
   <script src="../../js/admin.js"></script>
   <script>
-    // CSS for locked items
+    // CSS for locked items with mobile-friendly styling
     document.head.insertAdjacentHTML('beforeend', `
       <style>
         .locked { 
           position: relative; 
           pointer-events: none; 
-          opacity: 0.5; 
+          opacity: 0.7; 
         } 
         .locked::after { 
           content: '🔒'; 
           position: absolute; 
-          top: 1rem; 
-          right: 1rem; 
-          font-size: 1.5rem; 
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 2rem;
+          background-color: rgba(0,0,0,0.5);
+          border-radius: 50%;
+          padding: 0.5rem;
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        @media (max-width: 640px) {
+          .locked::after {
+            font-size: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+          }
         }
       </style>
     `);
     
-    function applyChapterLocks() {
-      // Check if admin is logged in
-      const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-      
-      // If admin is logged in, don't apply any locks
-      if (adminLoggedIn) {
-        // Remove any existing locks
-        document.querySelectorAll('.locked').forEach(element => {
-          element.classList.remove('locked');
-        });
-        
-        // Add admin indicator to the header
-        const header = document.querySelector('header');
-        if (header) {
-          const adminBadge = document.createElement('div');
-          adminBadge.id = 'adminBadge';
-          adminBadge.textContent = 'Admin Mode';
-          adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
-          
-          // Add the badge to the header if it doesn't already exist
-          if (!document.getElementById('adminBadge')) {
-            const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
-            if (buttonsDiv) {
-              header.insertBefore(adminBadge, buttonsDiv);
-            } else {
-              header.appendChild(adminBadge);
-            }
-          }
-        }
-        return; // Exit the function early, no locks needed
+    // Check username on load
+    document.addEventListener('DOMContentLoaded', () => {
+      // Use the standard 'username' key that our login system uses
+      const saved = localStorage.getItem('username');
+      if (!saved) {
+        // Redirect to login page if no username found
+        window.location.href = '../../auth/username-login.html';
       }
-      
-      // Lock levels based on completion progress
-      const elementaryComplete = parseFloat(localStorage.getItem('science_a1_chapter1_progress')) >= 100;
-      
-      // Apply locks to intermediate and advanced level cards
-      const intermediateLevelCard = document.querySelector('a[href="chapters/a2/earth-science.html"]');
-      const advancedLevelCard = document.querySelector('a[href="chapters/b1/biology-intro.html"]');
-      
-      if (intermediateLevelCard && !elementaryComplete) {
-        intermediateLevelCard.classList.add('locked');
+      else {
+        greetUser(saved);
+        initializeProgressIfNeeded(); // Make sure progress values are properly initialized
+        applyChapterLocks();
       }
-      
-      if (advancedLevelCard && !elementaryComplete) {
-        advancedLevelCard.classList.add('locked');
+    });
+    
+    // Initialize progress values if they don't exist
+    function initializeProgressIfNeeded() {
+      // Check if progress values exist, if not, initialize them to 0
+      if (localStorage.getItem('science_a1_chapter1_progress') === null) {
+        localStorage.setItem('science_a1_chapter1_progress', '0');
+      }
+      if (localStorage.getItem('science_a2_chapter1_progress') === null) {
+        localStorage.setItem('science_a2_chapter1_progress', '0');
+      }
+      if (localStorage.getItem('science_b1_chapter1_progress') === null) {
+        localStorage.setItem('science_b1_chapter1_progress', '0');
       }
     }
     
-    // Initialize when page loads
-    document.addEventListener('DOMContentLoaded', () => {
-      applyChapterLocks();
-    });
+    // Function to greet the user
+    function greetUser(name) {
+      const userInfoDiv = document.getElementById('user-info');
+      if (userInfoDiv) {
+        userInfoDiv.innerHTML = `
+          <span class="text-white text-xs sm:text-sm font-medium">Hello, ${name}!</span>
+        `;
+      }
+    }
+    
+    function applyChapterLocks() {
+      // Check if admin mode is enabled
+      const isAdminMode = localStorage.getItem('isAdmin') === 'true';
+      
+      // If admin mode is enabled, unlock all levels
+      if (isAdminMode) {
+        console.log("Admin mode detected: Unlocking all levels");
+        unlockAllLevels();
+        return;
+      }
+      
+      // Get progress values with safer parsing - default to 0 if undefined/null/NaN
+      const a1Progress = parseFloat(localStorage.getItem('science_a1_chapter1_progress')) || 0;
+      const a2Progress = parseFloat(localStorage.getItem('science_a2_chapter1_progress')) || 0;
+      
+      // Check if levels are completed (100% progress)
+      const a1Completed = a1Progress >= 100;
+      const a2Completed = a2Progress >= 100;
+      
+      console.log("Science progress values:", {a1: a1Progress, a2: a2Progress});
+      console.log("Science completion status:", {a1: a1Completed, a2: a2Completed});
+      
+      // Apply locks to intermediate and advanced level cards
+      const elementaryLevelCard = document.querySelector('a[href="chapters/a1/science-basics.html"]');
+      const intermediateLevelCard = document.querySelector('a[href="chapters/a2/earth-science.html"]');
+      const advancedLevelCard = document.querySelector('a[href="chapters/b1/biology-intro.html"]');
+      
+      // Elementary is always unlocked
+      if (elementaryLevelCard && elementaryLevelCard.classList.contains('locked')) {
+        elementaryLevelCard.classList.remove('locked');
+      }
+      
+      // Lock/unlock intermediate based on elementary completion
+      if (intermediateLevelCard) {
+        if (!a1Completed) {
+          intermediateLevelCard.classList.add('locked');
+        } else {
+          intermediateLevelCard.classList.remove('locked');
+        }
+      }
+      
+      // Lock/unlock advanced based on intermediate completion
+      if (advancedLevelCard) {
+        if (!a2Completed) {
+          advancedLevelCard.classList.add('locked');
+        } else {
+          advancedLevelCard.classList.remove('locked');
+        }
+      }
+    }
+    
+    // Function to unlock all levels for admin mode
+    function unlockAllLevels() {
+      // Remove the locked class from all course cards
+      document.querySelectorAll('.course-card').forEach(card => {
+        if (card.classList.contains('locked')) {
+          card.classList.remove('locked');
+        }
+      });
+      
+      // Add admin indicator to header if not already present
+      if (!document.getElementById('adminModeIndicator')) {
+        const adminIndicator = document.createElement('div');
+        adminIndicator.id = 'adminModeIndicator';
+        adminIndicator.textContent = '👑 Admin';
+        adminIndicator.className = 'bg-red-600 text-white px-2 py-1 rounded-lg text-xs font-semibold';
+        
+        const userInfoDiv = document.getElementById('user-info');
+        if (userInfoDiv) {
+          userInfoDiv.appendChild(adminIndicator);
+        }
+      }
+    }
   </script>
 </body>
 </html>

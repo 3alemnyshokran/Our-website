@@ -327,11 +327,54 @@
       </div>
     </div>
 
-    <!-- Courses Tab -->
-    <div id="courses-tab" class="tab-content hidden">
+    <!-- Courses Tab -->    <div id="courses-tab" class="tab-content hidden">
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-bold">Course Access</h2>
-        <div class="text-sm text-red-500 bg-red-100 dark:bg-red-900 dark:text-red-300 p-2 rounded">Admin Mode: All content unlocked</div>
+        <h2 class="text-2xl font-bold">Course Access Management</h2>
+        <div id="admin-mode-status" class="text-sm text-gray-500 bg-gray-100 dark:bg-gray-800 dark:text-gray-400 p-2 rounded">Admin Mode: Disabled</div>
+      </div>
+
+      <!-- Admin Controls -->
+      <div class="bg-white dark:bg-slate-800 shadow rounded-lg p-6 mb-8">
+        <h3 class="text-lg font-semibold mb-4">Course Progress Controls</h3>
+        
+        <div class="flex flex-col md:flex-row gap-4 mb-6">
+          <div class="flex-1">
+            <button id="enable-admin-mode" onclick="toggleAdminMode(true)" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg">
+              Enable Admin Mode
+            </button>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Grants special privileges for testing all courses.</p>
+          </div>
+          
+          <div class="flex-1">
+            <button id="disable-admin-mode" onclick="toggleAdminMode(false)" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-medium py-3 px-6 rounded-lg">
+              Disable Admin Mode
+            </button>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Return to normal user privileges.</p>
+          </div>
+          
+          <div class="flex-1">
+            <button id="unlock-all-courses" onclick="unlockAllCourses()" class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg">
+              Unlock All Courses
+            </button>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Set 100% progress for all courses and levels.</p>
+          </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1">
+            <button id="reset-all-progress" onclick="resetAllProgress()" class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg">
+              Reset All Progress
+            </button>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Clear all course progress for testing purposes.</p>
+          </div>
+          
+          <div class="flex-1">
+            <button id="reset-user-progress" onclick="resetSpecificUserProgress()" class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-medium py-3 px-6 rounded-lg">
+              Reset Specific User
+            </button>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Reset progress for a specific user.</p>
+          </div>
+        </div>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -767,8 +810,7 @@
       // This would be connected to an API endpoint for exporting user data
       alert('User data export functionality would be implemented here.');
     }
-    
-    // Helper function to format timestamps
+      // Helper function to format timestamps
     function formatTimestamp(timestamp) {
       if (!timestamp) return 'N/A';
       
@@ -780,9 +822,111 @@
       }
     }
     
+    // Admin mode functions
+    function toggleAdminMode(enable) {
+      if (enable) {
+        localStorage.setItem('isAdmin', 'true');
+        document.getElementById('admin-mode-status').textContent = 'Admin Mode: Enabled';
+        document.getElementById('admin-mode-status').className = 'text-sm text-green-500 bg-green-100 dark:bg-green-900 dark:text-green-300 p-2 rounded';
+        alert('Admin mode enabled. You now have access to all course content.');
+      } else {
+        localStorage.removeItem('isAdmin');
+        document.getElementById('admin-mode-status').textContent = 'Admin Mode: Disabled';
+        document.getElementById('admin-mode-status').className = 'text-sm text-gray-500 bg-gray-100 dark:bg-gray-800 dark:text-gray-400 p-2 rounded';
+        alert('Admin mode disabled. Course access now follows normal progression rules.');
+      }
+    }
+    
+    function unlockAllCourses() {
+      // Unlock all content by setting progress to 100%
+      localStorage.setItem('a1_chapter1_progress', 100);
+      localStorage.setItem('a1_chapter2_progress', 100);
+      localStorage.setItem('a1_chapter3_progress', 100);
+      localStorage.setItem('a1_chapter4_progress', 100);
+      localStorage.setItem('a2_chapter1_progress', 100);
+      localStorage.setItem('a2_chapter2_progress', 100);
+      localStorage.setItem('b1_chapter1_progress', 100);
+      localStorage.setItem('b1_chapter2_progress', 100);
+      localStorage.setItem('b2_chapter1_progress', 100);
+      localStorage.setItem('c1_chapter1_progress', 100);
+      localStorage.setItem('c2_chapter1_progress', 100);
+      
+      // Also set progress for other courses
+      localStorage.setItem('german_a1_chapter1_progress', 100);
+      localStorage.setItem('german_a2_chapter1_progress', 100);
+      localStorage.setItem('arabic_a1_chapter1_progress', 100);
+      localStorage.setItem('arabic_a2_chapter1_progress', 100);
+      localStorage.setItem('math_a1_chapter1_progress', 100);
+      localStorage.setItem('math_a2_chapter1_progress', 100);
+      localStorage.setItem('science_a1_chapter1_progress', 100);
+      localStorage.setItem('science_a2_chapter1_progress', 100);
+      
+      alert('All course progress set to 100%. All levels are now unlocked.');
+    }
+    
+    function resetAllProgress() {
+      // Reset all progress values to 0
+      localStorage.setItem('a1_chapter1_progress', 0);
+      localStorage.setItem('a1_chapter2_progress', 0);
+      localStorage.setItem('a1_chapter3_progress', 0);
+      localStorage.setItem('a1_chapter4_progress', 0);
+      localStorage.setItem('a2_chapter1_progress', 0);
+      localStorage.setItem('a2_chapter2_progress', 0);
+      localStorage.setItem('b1_chapter1_progress', 0);
+      localStorage.setItem('b1_chapter2_progress', 0);
+      localStorage.setItem('b2_chapter1_progress', 0);
+      localStorage.setItem('c1_chapter1_progress', 0);
+      localStorage.setItem('c2_chapter1_progress', 0);
+      
+      // Also reset progress for other courses
+      localStorage.setItem('german_a1_chapter1_progress', 0);
+      localStorage.setItem('german_a2_chapter1_progress', 0);
+      localStorage.setItem('arabic_a1_chapter1_progress', 0);
+      localStorage.setItem('arabic_a2_chapter1_progress', 0);
+      localStorage.setItem('math_a1_chapter1_progress', 0);
+      localStorage.setItem('math_a2_chapter1_progress', 0);
+      localStorage.setItem('science_a1_chapter1_progress', 0);
+      localStorage.setItem('science_a2_chapter1_progress', 0);
+      
+      alert('All course progress has been reset to 0%. Only A1 level is now unlocked.');
+    }
+    
+    function resetSpecificUserProgress() {
+      const username = prompt("Enter the username to reset progress for:");
+      if (username) {
+        // Save the current username
+        const currentUser = localStorage.getItem('username');
+        
+        // Temporarily set username to the target user
+        localStorage.setItem('username', username);
+        
+        // Reset all progress for this user
+        resetAllProgress();
+        
+        // Restore the original username
+        localStorage.setItem('username', currentUser);
+        
+        alert(`Progress reset for user: ${username}`);
+      }
+    }
+    
+    // Check admin status on page load
+    function checkAdminStatus() {
+      const isAdmin = localStorage.getItem('isAdmin') === 'true';
+      if (isAdmin) {
+        document.getElementById('admin-mode-status').textContent = 'Admin Mode: Enabled';
+        document.getElementById('admin-mode-status').className = 'text-sm text-green-500 bg-green-100 dark:bg-green-900 dark:text-green-300 p-2 rounded';
+      } else {
+        document.getElementById('admin-mode-status').textContent = 'Admin Mode: Disabled';
+        document.getElementById('admin-mode-status').className = 'text-sm text-gray-500 bg-gray-100 dark:bg-gray-800 dark:text-gray-400 p-2 rounded';
+      }
+    }
+    
     // Initialize
-    document.addEventListener('DOMContentLoaded', () => {      loadData();
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
       showTab('dashboard');
+      checkAdminStatus();
     });
   </script>
   
