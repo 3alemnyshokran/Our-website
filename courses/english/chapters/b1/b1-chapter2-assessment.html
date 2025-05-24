@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Chapter 2: Assessment - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-purple': '#6366F1',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
+        .question-container {
+            transition: all 0.3s ease;
+        }
+        
+        .choice-option {
+            transition: all 0.2s ease;
+        }
+        
+        .choice-option:hover {
+            transform: translateX(5px);
+        }
+        
+        .choice-option.selected {
+            border-color: #6366F1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .choice-option.correct {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .choice-option.incorrect {
+            border-color: #EF4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .answer-result {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        
+        .answer-result.show {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        
+        .progress-bar {
+            position: relative;
+            height: 10px;
+            background: #E5E7EB;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #6366F1;
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+        }
+        
+        .dark .progress-bar {
+            background: #4B5563;
+        }
+        
+        .fill-in-blank {
+            background: #F3F4F6;
+            border-bottom: 2px solid #6366F1;
+            padding: 0.25rem 0.5rem;
+            min-width: 120px;
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        .dark .fill-in-blank {
+            background: #374151;
+            border-bottom: 2px solid #6366F1;
+        }
+        
+        .fill-in-blank:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Added animation for the celebration */
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: confetti 5s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-purple-600 dark:bg-purple-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="./b1-chapter2.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">← Back to Lesson</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-purple-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">Chapter 2 Assessment: Narrative Tenses</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">Complete all 20 questions to demonstrate your mastery of narrative tenses. You need to score at least 80% to pass.</p>
+            
+            <div class="w-full mb-6">
+                <div class="flex justify-between text-sm mb-2">
+                    <span id="scoreDisplay">Score: 0%</span>
+                    <span id="progressText">0/20 Questions</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressBarInner" class="progress-bar-inner" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="assessmentContainer">
+            <div id="questionsContainer" class="space-y-6">
+                <!-- The questions will be dynamically inserted here -->
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button id="submitBtn" class="bg-purple-600 hover:bg-purple-700 text-white py-3 px-8 rounded-lg transition-colors">Submit Assessment</button>
+            </div>
+        </div>
+        
+        <div id="resultsContainer" class="hidden mt-8 p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md text-center">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Assessment Results</h3>
+            <div id="scoreResult" class="text-4xl font-bold mb-6">0/20</div>
+            <div id="percentageResult" class="text-2xl mb-6">0%</div>
+            <div id="passFailMessage" class="text-xl mb-8 font-medium"></div>
+            
+            <div id="nextStepsContainer" class="space-y-4">
+                <!-- Buttons for next steps will be added here based on pass/fail -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Initialize assessment
+            initializeAssessment();
+        });
+        
+        // Questions database
+        const questions = [
+            {
+                id: 1,
+                type: 'multiple-choice',
+                question: "When I arrived at the station, the train __________.",
+                options: [
+                    "already left",
+                    "had already left",
+                    "was already leaving",
+                    "has already left"
+                ],
+                correctAnswer: "had already left",
+                explanation: "We use past perfect (had + past participle) to describe an action that was completed before another action in the past."
+            },
+            {
+                id: 2,
+                type: 'multiple-choice',
+                question: "We __________ for three hours before we decided to take a break.",
+                options: [
+                    "were walking",
+                    "had walked",
+                    "had been walking",
+                    "walked"
+                ],
+                correctAnswer: "had been walking",
+                explanation: "Past perfect continuous (had been + verb-ing) is used to emphasize the duration of an action up to a specific moment in the past."
+            },
+            {
+                id: 3,
+                type: 'multiple-choice',
+                question: "Sarah __________ to the museum before, so she knew where everything was.",
+                options: [
+                    "went",
+                    "was going",
+                    "had gone",
+                    "had been going"
+                ],
+                correctAnswer: "had gone",
+                explanation: "Past perfect (had gone) shows an action completed before the time we are talking about in the past."
+            },
+            {
+                id: 4,
+                type: 'multiple-choice',
+                question: "It __________ when I woke up this morning.",
+                options: [
+                    "rained",
+                    "was raining",
+                    "had rained",
+                    "had been raining"
+                ],
+                correctAnswer: "was raining",
+                explanation: "Past continuous (was raining) describes an action in progress at a specific moment in the past."
+            },
+            {
+                id: 5,
+                type: 'multiple-choice',
+                question: "I __________ him several emails before he finally responded.",
+                options: [
+                    "sent",
+                    "was sending",
+                    "had sent",
+                    "had been sending"
+                ],
+                correctAnswer: "had sent",
+                explanation: "Past perfect (had sent) indicates that one action (sending emails) happened before another action in the past (he responded)."
+            },
+            {
+                id: 6,
+                type: 'multiple-choice',
+                question: "They __________ in the cafe when the celebrity walked in.",
+                options: [
+                    "sat",
+                    "were sitting",
+                    "had sat",
+                    "had been sitting"
+                ],
+                correctAnswer: "were sitting",
+                explanation: "Past continuous (were sitting) shows an action in progress when another action (the celebrity walking in) happened."
+            },
+            {
+                id: 7,
+                type: 'multiple-choice',
+                question: "Identify the narrative tense: 'She had written three novels before she turned thirty.'",
+                options: [
+                    "Past Simple",
+                    "Past Continuous",
+                    "Past Perfect",
+                    "Past Perfect Continuous"
+                ],
+                correctAnswer: "Past Perfect",
+                explanation: "This is the past perfect tense (had written), showing that the action was completed before another time in the past (turning thirty)."
+            },
+            {
+                id: 8,
+                type: 'multiple-choice',
+                question: "Identify the narrative tense: 'He realized that he had been driving in the wrong direction.'",
+                options: [
+                    "Past Simple",
+                    "Past Continuous",
+                    "Past Perfect",
+                    "Past Perfect Continuous"
+                ],
+                correctAnswer: "Past Perfect Continuous",
+                explanation: "This is the past perfect continuous (had been driving), showing a continuous action that happened before another past action (realized)."
+            },
+            {
+                id: 9,
+                type: 'multiple-choice',
+                question: "The concert __________ by the time we arrived at the venue.",
+                options: [
+                    "started",
+                    "was starting",
+                    "had started",
+                    "had been starting"
+                ],
+                correctAnswer: "had started",
+                explanation: "Past perfect (had started) is used for an action that was completed before another action in the past (we arrived)."
+            },
+            {
+                id: 10,
+                type: 'multiple-choice',
+                question: "What narrative tense would you use to describe the background or setting of a story?",
+                options: [
+                    "Past Simple",
+                    "Past Continuous",
+                    "Past Perfect",
+                    "Past Perfect Continuous"
+                ],
+                correctAnswer: "Past Continuous",
+                explanation: "Past continuous is commonly used to set the scene or describe the background in a story."
+            },
+            {
+                id: 11,
+                type: 'true-false',
+                question: "The past perfect is used to describe an action that happened before another action in the past.",
+                correctAnswer: true,
+                explanation: "Correct! The past perfect (had + past participle) is used for actions that happened before a specific time in the past."
+            },
+            {
+                id: 12,
+                type: 'true-false',
+                question: "Past continuous can be used for completed actions in the past.",
+                correctAnswer: false,
+                explanation: "Incorrect. Past continuous (was/were + verb-ing) is used for actions in progress at a specific time in the past, not for completed actions."
+            },
+            {
+                id: 13,
+                type: 'true-false',
+                question: "In storytelling, we often use only one narrative tense throughout the entire story.",
+                correctAnswer: false,
+                explanation: "Incorrect. In storytelling, we typically use a combination of narrative tenses to create a rich and detailed narrative."
+            },
+            {
+                id: 14,
+                type: 'true-false',
+                question: "Past perfect continuous emphasizes the duration of an action up to a specific moment in the past.",
+                correctAnswer: true,
+                explanation: "Correct! Past perfect continuous (had been + verb-ing) emphasizes the duration of an action that was in progress before another action in the past."
+            },
+            {
+                id: 15,
+                type: 'fill-in-blank',
+                question: "Complete with the appropriate narrative tense: 'By the time I got home, my roommate __________ (leave) for work.'",
+                correctAnswer: "had left",
+                explanation: "We use past perfect (had left) because the action of leaving happened before the speaker got home."
+            },
+            {
+                id: 16,
+                type: 'fill-in-blank',
+                question: "Complete with the appropriate narrative tense: 'I __________ (work) on the project for six hours when my computer crashed.'",
+                correctAnswer: "had been working",
+                explanation: "We use past perfect continuous (had been working) to emphasize the duration of working before the computer crashed."
+            },
+            {
+                id: 17,
+                type: 'fill-in-blank',
+                question: "Complete with the appropriate narrative tense: 'She __________ (watch) TV when the phone rang.'",
+                correctAnswer: "was watching",
+                explanation: "We use past continuous (was watching) because watching TV was in progress when the phone rang."
+            },
+            {
+                id: 18,
+                type: 'fill-in-blank',
+                question: "Complete with the appropriate narrative tense: 'Last summer, we __________ (visit) Rome for the first time.'",
+                correctAnswer: "visited",
+                explanation: "We use past simple (visited) for a completed action in the past with a specific time reference (last summer)."
+            },
+            {
+                id: 19,
+                type: 'multiple-choice',
+                question: "Choose the correct sequence of narrative tenses: 'When I __________ home, I realized that I __________ my keys at work.'",
+                options: [
+                    "arrived / left",
+                    "arrived / had left",
+                    "had arrived / left",
+                    "was arriving / had been leaving"
+                ],
+                correctAnswer: "arrived / had left",
+                explanation: "We use past simple (arrived) for the main event and past perfect (had left) for the action that happened before it."
+            },
+            {
+                id: 20,
+                type: 'multiple-choice',
+                question: "Choose the correct sequence of narrative tenses: 'The children __________ in the garden all afternoon because it __________ earlier.'",
+                options: [
+                    "played / rained",
+                    "were playing / had rained",
+                    "had played / was raining",
+                    "had been playing / had been raining"
+                ],
+                correctAnswer: "were playing / had rained",
+                explanation: "We use past continuous (were playing) for an ongoing activity and past perfect (had rained) for an action that was completed before the ongoing activity."
+            }
+        ];
+        
+        // Variables to track progress
+        let userAnswers = {};
+        let score = 0;
+        const totalQuestions = questions.length;
+        const passingScore = 0.8; // 80%
+        
+        // Initialize the assessment
+        function initializeAssessment() {
+            const questionsContainer = document.getElementById('questionsContainer');
+            
+            // Generate HTML for each question
+            questions.forEach(question => {
+                let questionHTML = '';
+                
+                if (question.type === 'multiple-choice') {
+                    questionHTML = generateMultipleChoiceHTML(question);
+                } else if (question.type === 'true-false') {
+                    questionHTML = generateTrueFalseHTML(question);
+                } else if (question.type === 'fill-in-blank') {
+                    questionHTML = generateFillInBlankHTML(question);
+                }
+                
+                questionsContainer.innerHTML += questionHTML;
+            });
+            
+            // Add event listeners for selecting options
+            document.querySelectorAll('.choice-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionId = this.closest('.question-container').id;
+                    selectOption(questionId, this);
+                });
+            });
+            
+            // Add event listener for true/false options
+            document.querySelectorAll('.tf-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionId = this.closest('.question-container').id;
+                    selectTrueFalseOption(questionId, this);
+                });
+            });
+            
+            // Add event listener for submitting the assessment
+            document.getElementById('submitBtn').addEventListener('click', submitAssessment);
+        }
+        
+        // Generate HTML for multiple choice questions
+        function generateMultipleChoiceHTML(question) {
+            let optionsHTML = '';
+            
+            question.options.forEach(option => {
+                optionsHTML += `
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="${option}">
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            return `
+                <div id="q${question.id}" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question ${question.id}</h3>
+                    <p class="mb-4">${question.question}</p>
+                    <div class="space-y-3">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Generate HTML for true/false questions
+        function generateTrueFalseHTML(question) {
+            return `
+                <div id="q${question.id}" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question ${question.id}</h3>
+                    <p class="mb-4">${question.question}</p>
+                    <div class="flex gap-4">
+                        <div class="tf-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg flex-1 text-center" data-value="true">
+                            True
+                        </div>
+                        <div class="tf-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg flex-1 text-center" data-value="false">
+                            False
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Generate HTML for fill-in-blank questions
+        function generateFillInBlankHTML(question) {
+            return `
+                <div id="q${question.id}" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                    <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question ${question.id}</h3>
+                    <p class="mb-4">${question.question}</p>
+                    <div class="mt-2">
+                        <input type="text" id="blank${question.id}" class="fill-in-blank w-full p-2" placeholder="Type your answer">
+                    </div>
+                </div>
+            `;
+        }
+        
+        // For selecting multiple choice options
+        function selectOption(questionId, element) {
+            // Remove 'selected' class from all options in this question
+            const options = document.querySelectorAll(`#${questionId} .choice-option`);
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add 'selected' class to the clicked option
+            element.classList.add('selected');
+            userAnswers[questionId] = element.getAttribute('data-value');
+        }
+        
+        // For selecting true/false options
+        function selectTrueFalseOption(questionId, element) {
+            // Remove 'selected' class from all options in this question
+            const options = document.querySelectorAll(`#${questionId} .tf-option`);
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add 'selected' class to the clicked option
+            element.classList.add('selected');
+            userAnswers[questionId] = element.getAttribute('data-value') === 'true';
+        }
+        
+        // Submit and grade the assessment
+        function submitAssessment() {
+            // Collect answers from fill-in-blank questions
+            questions.forEach(question => {
+                if (question.type === 'fill-in-blank') {
+                    const input = document.getElementById(`blank${question.id}`);
+                    if (input && input.value.trim() !== '') {
+                        userAnswers[`q${question.id}`] = input.value.trim().toLowerCase();
+                    }
+                }
+            });
+            
+            // Check if all questions are answered
+            const answeredQuestions = Object.keys(userAnswers).length;
+            if (answeredQuestions < totalQuestions) {
+                const remaining = totalQuestions - answeredQuestions;
+                alert(`Please answer all questions. You still have ${remaining} unanswered question${remaining === 1 ? '' : 's'}.`);
+                return;
+            }
+            
+            // Grade the assessment
+            score = 0;
+            questions.forEach(question => {
+                const questionId = `q${question.id}`;
+                const userAnswer = userAnswers[questionId];
+                
+                // For multiple choice and fill-in-blank
+                if (question.type === 'multiple-choice' || question.type === 'fill-in-blank') {
+                    if (userAnswer && userAnswer.toLowerCase() === question.correctAnswer.toLowerCase()) {
+                        score++;
+                    }
+                } 
+                // For true/false
+                else if (question.type === 'true-false') {
+                    if (userAnswer === question.correctAnswer) {
+                        score++;
+                    }
+                }
+            });
+            
+            // Calculate percentage
+            const percentage = (score / totalQuestions) * 100;
+            const passed = percentage >= passingScore * 100;
+            
+            // Display results
+            document.getElementById('assessmentContainer').classList.add('hidden');
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            
+            document.getElementById('scoreResult').textContent = `${score}/${totalQuestions}`;
+            document.getElementById('percentageResult').textContent = `${Math.round(percentage)}%`;
+            
+            const passFailElement = document.getElementById('passFailMessage');
+            const nextStepsContainer = document.getElementById('nextStepsContainer');
+            
+            if (passed) {
+                passFailElement.textContent = 'Congratulations! You passed the assessment!';
+                passFailElement.classList.add('text-green-600', 'dark:text-green-400');
+                
+                nextStepsContainer.innerHTML = `
+                    <p>You've successfully completed this chapter. You can now:</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+                        <a href="./b1-chapter3.html" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors">Continue to Next Chapter</a>
+                        <a href="../../english-course.html" class="bg-slate-600 hover:bg-slate-700 text-white py-2 px-6 rounded-lg transition-colors">Return to Course Home</a>
+                    </div>
+                `;
+                
+                // Create celebration effect
+                createConfetti();
+                
+                // Mark chapter as completed in localStorage
+                localStorage.setItem('b1_ch2_assessment_completed', 'true');
+                
+                // Unlock next chapter
+                localStorage.setItem('b1_ch3_unlocked', 'true');
+            } else {
+                passFailElement.textContent = 'You did not pass the assessment. Please review the chapter material and try again.';
+                passFailElement.classList.add('text-red-600', 'dark:text-red-400');
+                
+                nextStepsContainer.innerHTML = `
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mt-4">
+                        <a href="./b1-chapter2.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition-colors">Review Chapter Material</a>
+                        <button id="retryBtn" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors">Retry Assessment</button>
+                    </div>
+                `;
+                
+                // Add event listener for retry button
+                document.getElementById('retryBtn').addEventListener('click', function() {
+                    window.location.reload();
+                });
+            }
+        }
+        
+        // Create confetti celebration effect
+        function createConfetti() {
+            const colors = ['#6366F1', '#8B5CF6', '#EC4899', '#10B981', '#3B82F6', '#F59E0B'];
+            const confettiCount = 200;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    
+                    // Random positioning
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -20 + 'px';
+                    
+                    // Random color
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random size
+                    const size = Math.random() * 10 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // Random animation duration
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation ends
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 20);
+            }
+        }
+    </script>
+</body>
+</html>

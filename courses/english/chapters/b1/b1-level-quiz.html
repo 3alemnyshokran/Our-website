@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Level Final Quiz - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-purple': '#6366F1',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
+        .question-container {
+            transition: all 0.3s ease;
+        }
+        
+        .question-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .choice-option {
+            transition: all 0.2s ease;
+        }
+        
+        .choice-option:hover {
+            transform: translateX(5px);
+        }
+        
+        .choice-option.selected {
+            border-color: #6366F1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .choice-option.correct {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .choice-option.incorrect {
+            border-color: #EF4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .progress-bar {
+            position: relative;
+            height: 10px;
+            background: #E5E7EB;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #6366F1;
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+        }
+        
+        .dark .progress-bar {
+            background: #4B5563;
+        }
+        
+        .fill-in-blank {
+            background: #F3F4F6;
+            border-bottom: 2px solid #6366F1;
+            padding: 0.25rem 0.5rem;
+            min-width: 120px;
+            border-radius: 4px;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        .dark .fill-in-blank {
+            background: #374151;
+            border-bottom: 2px solid #6366F1;
+        }
+        
+        .fill-in-blank:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Certificate animation */
+        @keyframes certificateReveal {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .certificate {
+            animation: certificateReveal 1s ease-out forwards;
+        }
+        
+        /* Confetti animation */
+        @keyframes confetti {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(1000px) rotate(720deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: confetti 5s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-purple-600 dark:bg-purple-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">← Back to Course</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-purple-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div id="quizIntro" class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">B1 Level Final Quiz</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">Complete this quiz with a score of at least 80% to unlock the B2 level. This quiz covers all the key concepts from the B1 level.</p>
+            
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Before You Begin</h3>
+                <p class="mb-4">This quiz consists of 20 questions covering various aspects of B1 level English, including:</p>
+                
+                <ul class="list-disc pl-8 space-y-2 mb-6">
+                    <li>Narrative tenses (past simple, past continuous, past perfect, past perfect continuous)</li>
+                    <li>Present perfect vs. past simple</li>
+                    <li>Modal verbs and conditionals</li>
+                    <li>Phrasal verbs and idiomatic expressions</li>
+                    <li>Vocabulary related to various B1 topics</li>
+                </ul>
+                
+                <p class="mb-4">You'll need to answer at least 16 out of 20 questions correctly to pass the quiz and unlock the B2 level.</p>
+                
+                <div class="text-center mt-6">
+                    <button id="startQuizBtn" class="bg-purple-600 hover:bg-purple-700 text-white py-3 px-8 rounded-lg transition-colors text-lg font-medium">Start Quiz</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="quizContainer" class="hidden">
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-purple-600 dark:text-purple-400">B1 Final Quiz</h3>
+                    <div class="bg-purple-100 dark:bg-purple-900 px-4 py-2 rounded-lg">
+                        <span id="questionCounter" class="font-medium">Question 1/20</span>
+                    </div>
+                </div>
+                
+                <div class="w-full mb-4">
+                    <div class="progress-bar">
+                        <div id="progressBarInner" class="progress-bar-inner" style="width: 5%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="questionContainer" class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+                <!-- Question content will be dynamically inserted here -->
+            </div>
+            
+            <div class="flex justify-between">
+                <button id="prevBtn" class="bg-slate-500 hover:bg-slate-600 text-white py-2 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+                <button id="nextBtn" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors">Next</button>
+            </div>
+        </div>
+        
+        <div id="quizResults" class="hidden">
+            <h2 class="text-3xl font-bold mb-6 text-center text-purple-600 dark:text-purple-400">Quiz Results</h2>
+            
+            <div id="resultsSummary" class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-8 mb-8 text-center">
+                <div id="scoreDisplay" class="text-4xl font-bold mb-4">0/20</div>
+                <div id="percentageDisplay" class="text-2xl mb-6">0%</div>
+                <div id="passFail" class="text-xl font-semibold mb-6"></div>
+                
+                <div id="certificateContainer" class="hidden mb-8">
+                    <div class="certificate bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900 dark:to-indigo-900 border-8 border-double border-purple-300 dark:border-purple-700 p-8 rounded-lg max-w-2xl mx-auto">
+                        <div class="text-center">
+                            <h3 class="text-2xl font-bold mb-2 text-purple-700 dark:text-purple-300">Certificate of Completion</h3>
+                            <p class="mb-6 text-purple-600 dark:text-purple-400">This certifies that</p>
+                            <p class="text-3xl font-bold mb-6 text-purple-800 dark:text-purple-200" id="userNameCert">Student Name</p>
+                            <p class="mb-6 text-purple-600 dark:text-purple-400">has successfully completed the</p>
+                            <p class="text-2xl font-bold mb-6 text-purple-800 dark:text-purple-200">B1 Intermediate English Level</p>
+                            <p class="text-sm text-purple-600 dark:text-purple-400">Date: <span id="certDate"></span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="nextStepsContainer" class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <!-- Buttons will be added here based on pass/fail status -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Quiz questions
+        const quizQuestions = [
+            {
+                type: 'multiple-choice',
+                question: "Complete the sentence with the correct tense: 'She __________ in Paris for three years before she moved to London.'",
+                options: ["lived", "was living", "had lived", "had been living"],
+                correctAnswer: "had lived"
+            },
+            {
+                type: 'multiple-choice',
+                question: "Choose the correct sentence:",
+                options: [
+                    "I've been to Paris last summer.", 
+                    "I went to Paris last summer.", 
+                    "I have gone to Paris last summer.", 
+                    "I had been to Paris last summer."
+                ],
+                correctAnswer: "I went to Paris last summer."
+            },
+            {
+                type: 'multiple-choice',
+                question: "Fill in the blank: 'By the time I arrived, the meeting __________.'",
+                options: ["already started", "was already starting", "had already started", "has already started"],
+                correctAnswer: "had already started"
+            },
+            {
+                type: 'multiple-choice',
+                question: "Which sentence uses the past continuous correctly?",
+                options: [
+                    "I was cooking dinner when the phone rang.", 
+                    "I cooked dinner when the phone rang.", 
+                    "I had cooked dinner when the phone rang.", 
+                    "I had been cooking dinner when the phone rang."
+                ],
+                correctAnswer: "I was cooking dinner when the phone rang."
+            },
+            {
+                type: 'multiple-choice',
+                question: "Complete the conditional sentence: 'If I had more time, I __________ you.'",
+                options: ["will help", "would help", "would have helped", "had helped"],
+                correctAnswer: "would help"
+            },
+            {
+                type: 'multiple-choice',
+                question: "Choose the correct modal verb: 'You __________ wear a seatbelt when driving. It's the law.'",
+                options: ["might", "could", "must", "should"],
+                correctAnswer: "must"
+            },
+            {
+                type: 'multiple-choice',
+                question: "What's the meaning of the phrasal verb 'to put off'?",
+                options: ["to remove", "to delay", "to extinguish", "to irritate"],
+                correctAnswer: "to delay"
+            },
+            {
+                type: 'multiple-choice',
+                question: "Complete the sentence: 'She __________ me that she would arrive by 9 pm.'",
+                options: ["told", "said", "spoke", "talked"],
+                correctAnswer: "told"
+            },
+            {
+                type: 'fill-in-blank',
+                question: "Complete the sentence with the correct form of the verb 'break': 'The window __________ during the storm last night.'",
+                correctAnswer: "broke"
+            },
+            {
+                type: 'fill-in-blank',
+                question: "Complete the sentence with the correct form of the verb 'go': 'They __________ to the cinema three times this month.'",
+                correctAnswer: "have gone"
+            },
+            {
+                type: 'true-false',
+                question: "The present perfect tense is used to talk about experiences in the past with no specific time mentioned.",
+                correctAnswer: true
+            },
+            {
+                type: 'true-false',
+                question: "You can use 'will' in the if-clause of a first conditional sentence.",
+                correctAnswer: false
+            },
+            {
+                type: 'multiple-choice',
+                question: "Which sentence contains an error?",
+                options: [
+                    "I've been living here since three years.", 
+                    "I've been living here for three years.", 
+                    "I lived here for three years.", 
+                    "I had lived here for three years."
+                ],
+                correctAnswer: "I've been living here since three years."
+            },
+            {
+                type: 'multiple-choice',
+                question: "Which is the correct passive form of the sentence 'They built this house in 1980'?",
+                options: [
+                    "This house built in 1980.", 
+                    "This house was built in 1980.", 
+                    "This house has been built in 1980.", 
+                    "This house is built in 1980."
+                ],
+                correctAnswer: "This house was built in 1980."
+            },
+            {
+                type: 'multiple-choice',
+                question: "Choose the correct reported speech: Direct: 'I will call you tomorrow.' Reported: __________",
+                options: [
+                    "He said he will call me tomorrow.", 
+                    "He said he would call me tomorrow.", 
+                    "He said he would call me the next day.", 
+                    "He said he will call me the next day."
+                ],
+                correctAnswer: "He said he would call me the next day."
+            },
+            {
+                type: 'multiple-choice',
+                question: "Which word is a synonym for 'vital'?",
+                options: ["visible", "essential", "practical", "valuable"],
+                correctAnswer: "essential"
+            },
+            {
+                type: 'multiple-choice',
+                question: "Complete the idiom: 'It's raining __________.'",
+                options: ["dogs and cats", "cats and dogs", "heavily", "strongly"],
+                correctAnswer: "cats and dogs"
+            },
+            {
+                type: 'multiple-choice',
+                question: "Choose the correct preposition: 'I'm not very good __________ dancing.'",
+                options: ["at", "in", "on", "with"],
+                correctAnswer: "at"
+            },
+            {
+                type: 'fill-in-blank',
+                question: "Complete the sentence with the correct linking word: 'I wanted to go to the party, __________ I had to study for my exam.'",
+                correctAnswer: "but"
+            },
+            {
+                type: 'fill-in-blank',
+                question: "Complete the sentence: 'If he hadn't missed the bus, he __________ (arrive) on time.'",
+                correctAnswer: "would have arrived"
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let userAnswers = {};
+        let score = 0;
+        const passingScore = 0.8; // 80%
+        
+        // Event listeners
+        document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+        document.getElementById('prevBtn').addEventListener('click', showPreviousQuestion);
+        document.getElementById('nextBtn').addEventListener('click', handleNextButtonClick);
+        
+        // Start the quiz
+        function startQuiz() {
+            document.getElementById('quizIntro').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            showQuestion(currentQuestion);
+        }
+        
+        // Show a specific question
+        function showQuestion(index) {
+            const question = quizQuestions[index];
+            const questionContainer = document.getElementById('questionContainer');
+            
+            // Update question counter and progress bar
+            document.getElementById('questionCounter').textContent = `Question ${index + 1}/${quizQuestions.length}`;
+            document.getElementById('progressBarInner').style.width = `${((index + 1) / quizQuestions.length) * 100}%`;
+            
+            // Disable/enable prev button
+            document.getElementById('prevBtn').disabled = index === 0;
+            
+            // Update next button text for the last question
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.textContent = index === quizQuestions.length - 1 ? 'Finish Quiz' : 'Next';
+            
+            // Generate question HTML based on type
+            let questionHTML = '';
+            
+            questionHTML += `<h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question ${index + 1}</h3>`;
+            questionHTML += `<p class="mb-6">${question.question}</p>`;
+            
+            if (question.type === 'multiple-choice') {
+                questionHTML += '<div class="space-y-3">';
+                question.options.forEach(option => {
+                    const isSelected = userAnswers[index] === option;
+                    questionHTML += `
+                        <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg ${isSelected ? 'selected' : ''}" data-value="${option}">
+                            ${option}
+                        </div>
+                    `;
+                });
+                questionHTML += '</div>';
+            } else if (question.type === 'true-false') {
+                questionHTML += '<div class="flex gap-4">';
+                ['true', 'false'].forEach(option => {
+                    const isSelected = userAnswers[index] === (option === 'true');
+                    questionHTML += `
+                        <div class="tf-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg flex-1 text-center ${isSelected ? 'selected' : ''}" data-value="${option}">
+                            ${option.charAt(0).toUpperCase() + option.slice(1)}
+                        </div>
+                    `;
+                });
+                questionHTML += '</div>';
+            } else if (question.type === 'fill-in-blank') {
+                questionHTML += `
+                    <div class="mt-4">
+                        <input type="text" id="blank${index}" class="fill-in-blank w-full p-2" placeholder="Type your answer" value="${userAnswers[index] || ''}">
+                    </div>
+                `;
+            }
+            
+            questionContainer.innerHTML = questionHTML;
+            
+            // Add event listeners for options
+            if (question.type === 'multiple-choice') {
+                document.querySelectorAll('.choice-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        selectOption(index, this.getAttribute('data-value'));
+                    });
+                });
+            } else if (question.type === 'true-false') {
+                document.querySelectorAll('.tf-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        selectTrueFalseOption(index, this.getAttribute('data-value') === 'true');
+                    });
+                });
+            }
+        }
+        
+        // Select a multiple choice option
+        function selectOption(questionIndex, value) {
+            userAnswers[questionIndex] = value;
+            
+            // Update UI to show selected option
+            document.querySelectorAll('.choice-option').forEach(option => {
+                if (option.getAttribute('data-value') === value) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+        
+        // Select a true/false option
+        function selectTrueFalseOption(questionIndex, value) {
+            userAnswers[questionIndex] = value;
+            
+            // Update UI to show selected option
+            document.querySelectorAll('.tf-option').forEach(option => {
+                if ((option.getAttribute('data-value') === 'true' && value) || 
+                    (option.getAttribute('data-value') === 'false' && !value)) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+        }
+        
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        }
+        
+        // Handle next button click
+        function handleNextButtonClick() {
+            // If fill-in-blank, save the answer
+            const question = quizQuestions[currentQuestion];
+            if (question.type === 'fill-in-blank') {
+                const input = document.getElementById(`blank${currentQuestion}`);
+                userAnswers[currentQuestion] = input.value.trim();
+            }
+            
+            // If last question, finish the quiz
+            if (currentQuestion === quizQuestions.length - 1) {
+                finishQuiz();
+                return;
+            }
+            
+            // Otherwise, show next question
+            currentQuestion++;
+            showQuestion(currentQuestion);
+        }
+        
+        // Finish the quiz and calculate results
+        function finishQuiz() {
+            score = 0;
+            
+            // Grade each answer
+            quizQuestions.forEach((question, index) => {
+                const userAnswer = userAnswers[index];
+                
+                // Skip if no answer
+                if (userAnswer === undefined || userAnswer === '') return;
+                
+                // Check if correct
+                if (question.type === 'multiple-choice') {
+                    if (userAnswer === question.correctAnswer) score++;
+                } else if (question.type === 'true-false') {
+                    if (userAnswer === question.correctAnswer) score++;
+                } else if (question.type === 'fill-in-blank') {
+                    if (userAnswer.toLowerCase() === question.correctAnswer.toLowerCase()) score++;
+                }
+            });
+            
+            // Calculate percentage
+            const percentage = (score / quizQuestions.length) * 100;
+            const passed = percentage >= passingScore * 100;
+            
+            // Update results UI
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('quizResults').classList.remove('hidden');
+            
+            document.getElementById('scoreDisplay').textContent = `${score}/${quizQuestions.length}`;
+            document.getElementById('percentageDisplay').textContent = `${Math.round(percentage)}%`;
+            
+            const passFailElement = document.getElementById('passFail');
+            
+            if (passed) {
+                passFailElement.textContent = 'Congratulations! You have passed the B1 level quiz!';
+                passFailElement.classList.add('text-green-600', 'dark:text-green-400');
+                
+                // Show certificate
+                document.getElementById('certificateContainer').classList.remove('hidden');
+                document.getElementById('userNameCert').textContent = localStorage.getItem('special_username') || 'Student';
+                document.getElementById('certDate').textContent = new Date().toLocaleDateString();
+                
+                // Create confetti celebration
+                createConfetti();
+                
+                // Unlock B2 level
+                localStorage.setItem('b2_level_unlocked', 'true');
+                localStorage.setItem('b1_level_completed', 'true');
+                
+                // Next steps options
+                document.getElementById('nextStepsContainer').innerHTML = `
+                    <a href="../b2/b2-chapter1.html" class="bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg transition-colors font-medium">Start B2 Level</a>
+                    <a href="../../english-course.html" class="bg-slate-600 hover:bg-slate-700 text-white py-3 px-6 rounded-lg transition-colors font-medium">Return to Course Home</a>
+                `;
+            } else {
+                passFailElement.textContent = 'You did not pass the quiz. Please review the B1 materials and try again.';
+                passFailElement.classList.add('text-red-600', 'dark:text-red-400');
+                
+                // Next steps options
+                document.getElementById('nextStepsContainer').innerHTML = `
+                    <a href="../../english-course.html" class="bg-slate-600 hover:bg-slate-700 text-white py-3 px-6 rounded-lg transition-colors font-medium">Return to Course Home</a>
+                    <button id="retryBtn" class="bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg transition-colors font-medium">Retry Quiz</button>
+                `;
+                
+                // Add event listener for retry button
+                document.getElementById('retryBtn').addEventListener('click', function() {
+                    window.location.reload();
+                });
+            }
+        }
+        
+        // Create confetti celebration effect
+        function createConfetti() {
+            const colors = ['#6366F1', '#8B5CF6', '#EC4899', '#10B981', '#3B82F6', '#F59E0B'];
+            const confettiCount = 200;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    
+                    // Random positioning
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = -20 + 'px';
+                    
+                    // Random color
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    
+                    // Random size
+                    const size = Math.random() * 10 + 5;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // Random animation duration
+                    confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    // Remove confetti after animation ends
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }, i * 20);
+            }
+        }
+    </script>
+</body>
+</html>

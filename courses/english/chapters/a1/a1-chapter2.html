@@ -183,71 +183,82 @@
         
         <div class="feedback-message text-center font-semibold my-4 min-h-[1.5em] text-lg" id="feedbackMessage"></div>
 
-        <div class="content-section bg-gray-50 dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-dark-text">Basic Colors</h2>
+        <div class="content-section bg-gray-50 dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border">            <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-dark-text">Basic Colors</h2>
             <p class="text-gray-600 dark:text-dark-secondary-text mb-5">Colors are important for describing the world around us. Here are some basic colors in English:</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right mb-5" dir="rtl">
+                الألوان مهمة لوصف العالم من حولنا. فيما يلي بعض الألوان الأساسية باللغة الإنجليزية:
+            </p>
             
             <div class="vocabulary-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-5">
                 <!-- Tailwind classes for colors, ensuring text contrast -->
-                <div class="vocabulary-item bg-red-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Red</h3></div>
-                <div class="vocabulary-item bg-blue-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Blue</h3></div>
-                <div class="vocabulary-item bg-green-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Green</h3></div>
-                <div class="vocabulary-item bg-yellow-400 text-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Yellow</h3></div>
-                <div class="vocabulary-item bg-black text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Black</h3></div>
-                <div class="vocabulary-item bg-white text-gray-800 border border-gray-300 dark:border-dark-border p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">White</h3></div>
-                <div class="vocabulary-item bg-purple-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Purple</h3></div>
-                <div class="vocabulary-item bg-orange-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Orange</h3></div>
+                <div class="vocabulary-item bg-red-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Red</h3><p class="text-white text-sm">(أحمر)</p></div>
+                <div class="vocabulary-item bg-blue-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Blue</h3><p class="text-white text-sm">(أزرق)</p></div>
+                <div class="vocabulary-item bg-green-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Green</h3><p class="text-white text-sm">(أخضر)</p></div>
+                <div class="vocabulary-item bg-yellow-400 text-gray-800 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Yellow</h3><p class="text-gray-800 text-sm">(أصفر)</p></div>
+                <div class="vocabulary-item bg-black text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Black</h3><p class="text-white text-sm">(أسود)</p></div>
+                <div class="vocabulary-item bg-white text-gray-800 border border-gray-300 dark:border-dark-border p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">White</h3><p class="text-gray-800 text-sm">(أبيض)</p></div>
+                <div class="vocabulary-item bg-purple-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Purple</h3><p class="text-white text-sm">(بنفسجي)</p></div>
+                <div class="vocabulary-item bg-orange-500 text-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 text-center"><h3 class="font-semibold text-lg">Orange</h3><p class="text-white text-sm">(برتقالي)</p></div>
             </div>
         </div>
 
-        <!-- Question Structure (Repeated for each question) -->
-        <div class="question-container bg-white dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border" id="q1">
+        <!-- Question Structure (Repeated for each question) -->        <div class="question-container bg-white dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border" id="q1">
             <h3 class="text-xl font-semibold mb-3 text-gray-700 dark:text-dark-text">Practice Question 1</h3>
             <p class="text-gray-600 dark:text-dark-secondary-text mb-4">What color is the sky on a clear day?</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right mb-4" dir="rtl">
+                ما هو لون السماء في يوم صافٍ؟
+            </p>
             <input type="text" class="answer-input w-full p-3 border border-gray-300 dark:border-dark-border rounded-lg bg-gray-50 dark:bg-dark-hover-bg dark:text-dark-text focus:ring-2 focus:ring-custom-blue dark:focus:ring-dark-primary focus:border-transparent outline-none transition-all" id="q1-input" placeholder="Type your answer" autocomplete="off">
             <button class="check-answer-btn bg-custom-blue hover:bg-blue-600 dark:bg-dark-primary dark:hover:bg-blue-700 text-white font-bold py-2.5 px-5 rounded-lg mt-4 w-full transition duration-150 ease-in-out transform hover:scale-105" onclick="checkAnswerWithFeedback('q1', 'blue')">Check Answer</button>
             <div class="answer-result mt-4 p-3 rounded-lg text-sm font-medium"></div>
             <div class="hints-container mt-3 p-3 bg-blue-50 dark:bg-opacity-10 dark:bg-dark-primary rounded-lg hidden">
                 <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hint:</strong> Look up at a clear sky. What color do you see?</p>
+                <p class="text-sm text-blue-700 dark:text-blue-300 text-right" dir="rtl"><strong>تلميح:</strong> انظر إلى السماء الصافية. ما اللون الذي تراه؟</p>
             </div>
         </div>
         <!-- Repeat for q2, q3, q4, q5, q6, q7 with similar Tailwind and dark mode classes -->
         <div class="question-container bg-white dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border" id="q2">
             <h3 class="text-xl font-semibold mb-3 text-gray-700 dark:text-dark-text">Practice Question 2</h3>
             <p class="text-gray-600 dark:text-dark-secondary-text mb-4">What color are most bananas?</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right mb-4" dir="rtl">
+                ما هو لون معظم الموز؟
+            </p>
             <input type="text" class="answer-input w-full p-3 border border-gray-300 dark:border-dark-border rounded-lg bg-gray-50 dark:bg-dark-hover-bg dark:text-dark-text focus:ring-2 focus:ring-custom-blue dark:focus:ring-dark-primary focus:border-transparent outline-none transition-all" id="q2-input" placeholder="Type your answer" autocomplete="off">
             <button class="check-answer-btn bg-custom-blue hover:bg-blue-600 dark:bg-dark-primary dark:hover:bg-blue-700 text-white font-bold py-2.5 px-5 rounded-lg mt-4 w-full transition duration-150 ease-in-out transform hover:scale-105" onclick="checkAnswerWithFeedback('q2', 'yellow')">Check Answer</button>
             <div class="answer-result mt-4 p-3 rounded-lg text-sm font-medium"></div>
             <div class="hints-container mt-3 p-3 bg-blue-50 dark:bg-opacity-10 dark:bg-dark-primary rounded-lg hidden">
                 <p class="text-sm text-blue-700 dark:text-blue-300"><strong>Hint:</strong> Bananas are typically a bright, sunny color.</p>
+                <p class="text-sm text-blue-700 dark:text-blue-300 text-right" dir="rtl"><strong>تلميح:</strong> الموز عادة ما يكون بلون مشرق وشمسي.</p>
             </div>
         </div>
         
-        <div class="content-section bg-gray-50 dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-dark-text">Numbers 1-20</h2>
+        <div class="content-section bg-gray-50 dark:bg-dark-card p-5 md:p-6 rounded-lg shadow-md mb-6 border border-gray-200 dark:border-dark-border">            <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-dark-text">Numbers 1-20</h2>
             <p class="text-gray-600 dark:text-dark-secondary-text mb-5">Learning numbers is essential for shopping, telling time, and more.</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right mb-5" dir="rtl">
+                تعلم الأرقام ضروري للتسوق، وإخبار الوقت، والمزيد.
+            </p>
             <div class="vocabulary-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 <!-- Numbers with Tailwind styling -->
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">1</h3><p class="text-gray-600 dark:text-dark-secondary-text">One</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">2</h3><p class="text-gray-600 dark:text-dark-secondary-text">Two</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">3</h3><p class="text-gray-600 dark:text-dark-secondary-text">Three</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">4</h3><p class="text-gray-600 dark:text-dark-secondary-text">Four</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">5</h3><p class="text-gray-600 dark:text-dark-secondary-text">Five</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">6</h3><p class="text-gray-600 dark:text-dark-secondary-text">Six</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">7</h3><p class="text-gray-600 dark:text-dark-secondary-text">Seven</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">8</h3><p class="text-gray-600 dark:text-dark-secondary-text">Eight</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">9</h3><p class="text-gray-600 dark:text-dark-secondary-text">Nine</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">10</h3><p class="text-gray-600 dark:text-dark-secondary-text">Ten</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">11</h3><p class="text-gray-600 dark:text-dark-secondary-text">Eleven</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">12</h3><p class="text-gray-600 dark:text-dark-secondary-text">Twelve</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">13</h3><p class="text-gray-600 dark:text-dark-secondary-text">Thirteen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">14</h3><p class="text-gray-600 dark:text-dark-secondary-text">Fourteen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">15</h3><p class="text-gray-600 dark:text-dark-secondary-text">Fifteen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">16</h3><p class="text-gray-600 dark:text-dark-secondary-text">Sixteen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">17</h3><p class="text-gray-600 dark:text-dark-secondary-text">Seventeen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">18</h3><p class="text-gray-600 dark:text-dark-secondary-text">Eighteen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">19</h3><p class="text-gray-600 dark:text-dark-secondary-text">Nineteen</p></div>
-                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">20</h3><p class="text-gray-600 dark:text-dark-secondary-text">Twenty</p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">1</h3><p class="text-gray-600 dark:text-dark-secondary-text">One <span class="text-sm">(واحد)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">2</h3><p class="text-gray-600 dark:text-dark-secondary-text">Two <span class="text-sm">(اثنان)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">3</h3><p class="text-gray-600 dark:text-dark-secondary-text">Three <span class="text-sm">(ثلاثة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">4</h3><p class="text-gray-600 dark:text-dark-secondary-text">Four <span class="text-sm">(أربعة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">5</h3><p class="text-gray-600 dark:text-dark-secondary-text">Five <span class="text-sm">(خمسة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">6</h3><p class="text-gray-600 dark:text-dark-secondary-text">Six <span class="text-sm">(ستة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">7</h3><p class="text-gray-600 dark:text-dark-secondary-text">Seven <span class="text-sm">(سبعة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">8</h3><p class="text-gray-600 dark:text-dark-secondary-text">Eight <span class="text-sm">(ثمانية)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">9</h3><p class="text-gray-600 dark:text-dark-secondary-text">Nine <span class="text-sm">(تسعة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">10</h3><p class="text-gray-600 dark:text-dark-secondary-text">Ten <span class="text-sm">(عشرة)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">11</h3><p class="text-gray-600 dark:text-dark-secondary-text">Eleven <span class="text-sm">(أحد عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">12</h3><p class="text-gray-600 dark:text-dark-secondary-text">Twelve <span class="text-sm">(اثنا عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">13</h3><p class="text-gray-600 dark:text-dark-secondary-text">Thirteen <span class="text-sm">(ثلاثة عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">14</h3><p class="text-gray-600 dark:text-dark-secondary-text">Fourteen <span class="text-sm">(أربعة عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">15</h3><p class="text-gray-600 dark:text-dark-secondary-text">Fifteen <span class="text-sm">(خمسة عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">16</h3><p class="text-gray-600 dark:text-dark-secondary-text">Sixteen <span class="text-sm">(ستة عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">17</h3><p class="text-gray-600 dark:text-dark-secondary-text">Seventeen <span class="text-sm">(سبعة عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">18</h3><p class="text-gray-600 dark:text-dark-secondary-text">Eighteen <span class="text-sm">(ثمانية عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">19</h3><p class="text-gray-600 dark:text-dark-secondary-text">Nineteen <span class="text-sm">(تسعة عشر)</span></p></div>
+                <div class="vocabulary-item bg-gray-100 dark:bg-dark-hover-bg p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow duration-200"><h3 class="font-bold text-2xl text-gray-800 dark:text-dark-text">20</h3><p class="text-gray-600 dark:text-dark-secondary-text">Twenty <span class="text-sm">(عشرون)</span></p></div>
             </div>
         </div>
 

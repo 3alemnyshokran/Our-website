@@ -77,29 +77,227 @@
             const html = document.documentElement;
             html.classList.toggle('dark');
             localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-        });
-        // Assessment questions
-        const questions = [
-            { q: 'Which greeting is appropriate at 8:00 AM?', options: ['Good night', 'Good morning', 'Good evening', 'Bye'], answer: 'Good morning' },
-            { q: 'How do you introduce yourself?', options: ['I am from Egypt.', 'My name is...', 'Goodbye!', 'How are you?'], answer: 'My name is...' },
-            { q: 'What do you say when meeting someone for the first time?', options: ['See you soon!', 'Nice to meet you', 'Good night', 'I am fine'], answer: 'Nice to meet you' },
-            { q: 'Which is a question about someone\'s origin?', options: ['Where are you from?', 'How are you?', 'Good morning', 'Bye'], answer: 'Where are you from?' },
-            { q: 'Choose the correct response: "How are you?"', options: ['My name is...', 'I\'m fine, thank you.', 'Good night!', 'See you later!'], answer: "I'm fine, thank you." },
-            { q: 'Which phrase is used to say goodbye at night?', options: ['Good morning', 'Good night', 'Hello', 'How are you?'], answer: 'Good night' },
-            { q: 'What do you say if you want to meet again soon?', options: ['See you later!', 'Good morning!', 'How are you?', 'My name is...'], answer: 'See you later!' },
-            { q: 'Which is NOT a greeting?', options: ['Hello', 'Goodbye', 'Good morning', 'Good evening'], answer: 'Goodbye' },
-            { q: 'Complete: Person A: "Hello! What\'s your name?" Person B: "_______."', options: ['I am from Spain.', 'My name is...', 'Good night!', 'How are you?'], answer: 'My name is...' },
-            { q: 'Which phrase is used when leaving?', options: ['Goodbye', 'Hello', 'How are you?', 'Good morning'], answer: 'Goodbye' },
-            { q: 'What is a polite way to ask about someone\'s feelings?', options: ['Where are you from?', 'How are you?', 'Good night!', 'Bye'], answer: 'How are you?' },
-            { q: 'Choose the correct response: "What\'s your name?"', options: ['I\'m fine, thank you.', 'My name is Ahmed.', 'See you soon!', 'Good night!'], answer: 'My name is Ahmed.' },
-            { q: 'Which phrase is NOT a way to say goodbye?', options: ['Bye!', 'See you soon!', 'Good night!', 'How are you?'], answer: 'How are you?' },
-            { q: 'Complete: Person A: "Good night!" Person B: "_______."', options: ['Good night!', 'How are you?', 'My name is...', 'See you soon!'], answer: 'Good night!' },
-            { q: 'Which greeting is used in the afternoon?', options: ['Good morning', 'Good afternoon', 'Good night', 'Bye'], answer: 'Good afternoon' },
-            { q: 'What do you say when you leave a friend?', options: ['Goodbye', 'Hello', 'How are you?', 'Good morning'], answer: 'Goodbye' },
-            { q: 'Which phrase is used to ask about someone\'s country?', options: ['Where are you from?', 'How are you?', 'Good night!', 'Bye'], answer: 'Where are you from?' },
-            { q: 'Choose the correct response: "It was nice meeting you!"', options: ['Goodbye!', 'How are you?', 'My name is...', 'Good morning!'], answer: 'Goodbye!' },
-            { q: 'Which phrase is a greeting?', options: ['Hello', 'Bye', 'See you soon!', 'Good night!'], answer: 'Hello' },
-            { q: 'What do you say before sleeping?', options: ['Good night', 'Good morning', 'Hello', 'Bye'], answer: 'Good night' }
+        });        // Assessment questions
+        const questions = [            { 
+              q: 'Which greeting is appropriate at 8:00 AM?', 
+              ar: 'أي تحية مناسبة في الساعة 8:00 صباحًا؟',
+              options: [
+                {en: 'Good night', ar: 'تصبح على خير'}, 
+                {en: 'Good morning', ar: 'صباح الخير'}, 
+                {en: 'Good evening', ar: 'مساء الخير'}, 
+                {en: 'Bye', ar: 'مع السلامة'}
+              ], 
+              answer: 'Good morning' 
+            },
+            { 
+              q: 'How do you introduce yourself?', 
+              ar: 'كيف تقدم نفسك؟',
+              options: [
+                {en: 'I am from Egypt.', ar: 'أنا من مصر.'}, 
+                {en: 'My name is...', ar: 'اسمي هو...'}, 
+                {en: 'Goodbye!', ar: 'وداعًا!'}, 
+                {en: 'How are you?', ar: 'كيف حالك؟'}
+              ], 
+              answer: 'My name is...' 
+            },
+            { 
+              q: 'What do you say when meeting someone for the first time?', 
+              ar: 'ماذا تقول عند مقابلة شخص للمرة الأولى؟',
+              options: [
+                {en: 'See you soon!', ar: 'أراك قريبًا!'}, 
+                {en: 'Nice to meet you', ar: 'تشرفت بمقابلتك'}, 
+                {en: 'Good night', ar: 'تصبح على خير'}, 
+                {en: 'I am fine', ar: 'أنا بخير'}
+              ], 
+              answer: 'Nice to meet you' 
+            },
+            { 
+              q: 'Which is a question about someone\'s origin?', 
+              ar: 'أي من الأسئلة التالية يسأل عن أصل الشخص؟',
+              options: [
+                {en: 'Where are you from?', ar: 'من أين أنت؟'}, 
+                {en: 'How are you?', ar: 'كيف حالك؟'}, 
+                {en: 'Good morning', ar: 'صباح الخير'}, 
+                {en: 'Bye', ar: 'مع السلامة'}
+              ], 
+              answer: 'Where are you from?' 
+            },
+            { 
+              q: 'Choose the correct response: "How are you?"', 
+              ar: 'اختر الرد الصحيح: "كيف حالك؟"',
+              options: [
+                {en: 'My name is...', ar: 'اسمي هو...'}, 
+                {en: 'I\'m fine, thank you.', ar: 'أنا بخير، شكرًا لك.'}, 
+                {en: 'Good night!', ar: 'تصبح على خير!'}, 
+                {en: 'See you later!', ar: 'أراك لاحقًا!'}
+              ], 
+              answer: "I'm fine, thank you." 
+            },
+            { 
+              q: 'Which phrase is used to say goodbye at night?',
+              ar: 'أي عبارة تستخدم لتقول وداعاً في الليل؟',
+              options: [
+                {en: 'Good morning', ar: 'صباح الخير'},
+                {en: 'Good night', ar: 'تصبح على خير'},
+                {en: 'Hello', ar: 'مرحباً'},
+                {en: 'How are you?', ar: 'كيف حالك؟'}
+              ],
+              answer: 'Good night' 
+            },
+            { 
+              q: 'What do you say if you want to meet again soon?',
+              ar: 'ماذا تقول إذا كنت تريد أن تلتقي مرة أخرى قريباً؟', 
+              options: [
+                {en: 'See you later!', ar: 'أراك لاحقاً!'},
+                {en: 'Good morning!', ar: 'صباح الخير!'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'My name is...', ar: 'اسمي هو...'}
+              ],
+              answer: 'See you later!' 
+            },
+            { 
+              q: 'Which is NOT a greeting?',
+              ar: 'أي مما يلي ليس تحية؟',
+              options: [
+                {en: 'Hello', ar: 'مرحباً'},
+                {en: 'Goodbye', ar: 'وداعاً'},
+                {en: 'Good morning', ar: 'صباح الخير'},
+                {en: 'Good evening', ar: 'مساء الخير'}
+              ], 
+              answer: 'Goodbye' 
+            },
+            { 
+              q: 'Complete: Person A: "Hello! What\'s your name?" Person B: "_______."',
+              ar: 'أكمل: الشخص أ: "مرحباً! ما اسمك؟" الشخص ب: "_______."',
+              options: [
+                {en: 'I am from Spain.', ar: 'أنا من إسبانيا.'},
+                {en: 'My name is...', ar: 'اسمي هو...'},
+                {en: 'Good night!', ar: 'تصبح على خير!'},
+                {en: 'How are you?', ar: 'كيف حالك؟'}
+              ],
+              answer: 'My name is...' 
+            },
+            { 
+              q: 'Which phrase is used when leaving?',
+              ar: 'أي عبارة تستخدم عند المغادرة؟',
+              options: [
+                {en: 'Goodbye', ar: 'وداعاً'},
+                {en: 'Hello', ar: 'مرحباً'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'Good morning', ar: 'صباح الخير'}
+              ],
+              answer: 'Goodbye' 
+            },
+            { 
+              q: 'What is a polite way to ask about someone\'s feelings?',
+              ar: 'ما هي الطريقة المهذبة للسؤال عن مشاعر شخص ما؟',
+              options: [
+                {en: 'Where are you from?', ar: 'من أين أنت؟'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'Good night!', ar: 'تصبح على خير!'},
+                {en: 'Bye', ar: 'مع السلامة'}
+              ],
+              answer: 'How are you?' 
+            },
+            { 
+              q: 'Choose the correct response: "What\'s your name?"',
+              ar: 'اختر الرد الصحيح: "ما اسمك؟"',
+              options: [
+                {en: 'I\'m fine, thank you.', ar: 'أنا بخير، شكراً لك.'},
+                {en: 'My name is Ahmed.', ar: 'اسمي أحمد.'},
+                {en: 'See you soon!', ar: 'أراك قريباً!'},
+                {en: 'Good night!', ar: 'تصبح على خير!'}
+              ],
+              answer: 'My name is Ahmed.' 
+            },
+            { 
+              q: 'Which phrase is NOT a way to say goodbye?',
+              ar: 'أي عبارة ليست طريقة لقول وداعاً؟',
+              options: [
+                {en: 'Bye!', ar: 'مع السلامة!'},
+                {en: 'See you soon!', ar: 'أراك قريباً!'},
+                {en: 'Good night!', ar: 'تصبح على خير!'},
+                {en: 'How are you?', ar: 'كيف حالك؟'}
+              ],
+              answer: 'How are you?' 
+            },
+            { 
+              q: 'Complete: Person A: "Good night!" Person B: "_______."',
+              ar: 'أكمل: الشخص أ: "تصبح على خير!" الشخص ب: "_______."',
+              options: [
+                {en: 'Good night!', ar: 'تصبح على خير!'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'My name is...', ar: 'اسمي هو...'},
+                {en: 'See you soon!', ar: 'أراك قريباً!'}
+              ],
+              answer: 'Good night!' 
+            },
+            { 
+              q: 'Which greeting is used in the afternoon?',
+              ar: 'أي تحية تستخدم في فترة ما بعد الظهر؟',
+              options: [
+                {en: 'Good morning', ar: 'صباح الخير'},
+                {en: 'Good afternoon', ar: 'مساء الخير (بعد الظهر)'},
+                {en: 'Good night', ar: 'تصبح على خير'},
+                {en: 'Bye', ar: 'مع السلامة'}
+              ],
+              answer: 'Good afternoon' 
+            },
+            { 
+              q: 'What do you say when you leave a friend?',
+              ar: 'ماذا تقول عندما تغادر صديقاً؟',
+              options: [
+                {en: 'Goodbye', ar: 'وداعاً'},
+                {en: 'Hello', ar: 'مرحباً'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'Good morning', ar: 'صباح الخير'}
+              ],
+              answer: 'Goodbye' 
+            },
+            { 
+              q: 'Which phrase is used to ask about someone\'s country?',
+              ar: 'أي عبارة تستخدم للسؤال عن بلد شخص ما؟',
+              options: [
+                {en: 'Where are you from?', ar: 'من أين أنت؟'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'Good night!', ar: 'تصبح على خير!'},
+                {en: 'Bye', ar: 'مع السلامة'}
+              ],
+              answer: 'Where are you from?' 
+            },
+            { 
+              q: 'Choose the correct response: "It was nice meeting you!"',
+              ar: 'اختر الرد الصحيح: "كان من دواعي سروري مقابلتك!"',
+              options: [
+                {en: 'Goodbye!', ar: 'وداعاً!'},
+                {en: 'How are you?', ar: 'كيف حالك؟'},
+                {en: 'My name is...', ar: 'اسمي هو...'},
+                {en: 'Good morning!', ar: 'صباح الخير!'}
+              ],
+              answer: 'Goodbye!' 
+            },
+            { 
+              q: 'Which phrase is a greeting?',
+              ar: 'أي عبارة هي تحية؟',
+              options: [
+                {en: 'Hello', ar: 'مرحباً'},
+                {en: 'Bye', ar: 'مع السلامة'},
+                {en: 'See you soon!', ar: 'أراك قريباً!'},
+                {en: 'Good night!', ar: 'تصبح على خير!'}
+              ],
+              answer: 'Hello' 
+            },
+            { 
+              q: 'What do you say before sleeping?',
+              ar: 'ماذا تقول قبل النوم؟',
+              options: [
+                {en: 'Good night', ar: 'تصبح على خير'},
+                {en: 'Good morning', ar: 'صباح الخير'},
+                {en: 'Hello', ar: 'مرحباً'},
+                {en: 'Bye', ar: 'مع السلامة'}
+              ],
+              answer: 'Good night' 
+            }
         ];
         const totalQuestions = questions.length;
         let currentQuestion = 1;

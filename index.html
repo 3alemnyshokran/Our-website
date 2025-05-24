@@ -44,10 +44,30 @@
           <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-colors">Login</button>
         </form>
       </div>
-    </div>  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    </div>  <div id="adminLoginModal" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-xl p-6 w-full max-w-md">
+            <h3 class="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">Admin Login</h3>
+            <form id="adminLoginForm" class="space-y-4">
+                <div>
+                    <label for="adminUsername" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
+                    <input type="text" id="adminUsername" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white" placeholder="Admin username">
+                </div>
+                <div>
+                    <label for="adminPassword" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
+                    <input type="password" id="adminPassword" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white" placeholder="Admin password">
+                </div>
+                <div id="adminLoginError" class="text-red-500 text-sm hidden"></div>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" id="adminLoginCancel" class="px-4 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg">Cancel</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
       <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Admin Button -->
+        <button id="adminBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg shadow transition-colors">Admin</button>
         <!-- Login button - visible when not logged in -->
         <button id="login-btn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
           Login
@@ -366,6 +386,159 @@
     
     // Initialize user state
     updateUserState();
+    
+    // Admin login functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const adminBtn = document.getElementById('adminBtn');
+      const adminLoginModal = document.getElementById('adminLoginModal');
+      const adminLoginForm = document.getElementById('adminLoginForm');
+      const adminLoginCancel = document.getElementById('adminLoginCancel');
+      const adminLoginError = document.getElementById('adminLoginError');
+      
+      // Admin credentials
+      const ADMIN_USERNAME = 'admins';
+      const ADMIN_PASSWORD = 'anadmin2231';
+      
+      // Show admin login modal when admin button is clicked
+      if (adminBtn) {
+        adminBtn.addEventListener('click', function() {
+          adminLoginModal.classList.remove('hidden');
+        });
+      }
+      
+      // Hide admin login modal when cancel button is clicked
+      if (adminLoginCancel) {
+        adminLoginCancel.addEventListener('click', function() {
+          adminLoginModal.classList.add('hidden');
+          adminLoginForm.reset();
+          adminLoginError.classList.add('hidden');
+        });
+      }
+      
+      // Handle admin login form submission
+      if (adminLoginForm) {
+        adminLoginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const username = document.getElementById('adminUsername').value;
+          const password = document.getElementById('adminPassword').value;
+          
+          if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+            // Store admin login status
+            localStorage.setItem('adminLoggedIn', 'true');
+            
+            // Redirect to admin access page or dashboard based on URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectTo = urlParams.get('redirect');
+              if (redirectTo === 'dashboard') {
+              window.location.href = 'admin/dashboard.html';
+            } else {
+              // Create a drop-down menu for admin access
+              adminLoginModal.classList.add('hidden');
+              
+              // Replace admin button with admin menu
+              const adminMenu = document.createElement('div');
+              adminMenu.className = 'relative';
+              adminMenu.innerHTML = `
+                <button id="adminMenuBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg shadow transition-colors flex items-center">
+                  <span>Admin</span>
+                  <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div id="adminDropdown" class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg z-10 hidden">
+                  <a href="courses/english/english-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-t-lg">English Course</a>
+                  <a href="courses/german/german-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">German Course</a>
+                  <a href="courses/arabic/arabic-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">Arabic Course</a>
+                  <a href="courses/math/math-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">Math Course</a>
+                  <a href="courses/science/science-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">Science Course</a>
+                  <div class="border-t border-slate-200 dark:border-slate-700 my-1"></div>
+                  <a href="admin/dashboard.html" class="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-700">Admin Dashboard</a>
+                  <button id="adminLogout" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-b-lg">Logout</button>
+                </div>
+              `;
+              
+              adminBtn.parentNode.replaceChild(adminMenu, adminBtn);
+              
+              // Toggle admin dropdown menu
+              const adminMenuBtn = document.getElementById('adminMenuBtn');
+              const adminDropdown = document.getElementById('adminDropdown');
+              
+              adminMenuBtn.addEventListener('click', function() {
+                adminDropdown.classList.toggle('hidden');
+              });
+              
+              // Close dropdown when clicking outside
+              document.addEventListener('click', function(event) {
+                if (!adminMenu.contains(event.target)) {
+                  adminDropdown.classList.add('hidden');
+                }
+              });
+              
+              // Handle admin logout
+              document.getElementById('adminLogout').addEventListener('click', function() {
+                localStorage.removeItem('adminLoggedIn');
+                window.location.reload();
+              });
+            }
+          } else {
+            // Show error message
+            adminLoginError.textContent = 'Invalid username or password';
+            adminLoginError.classList.remove('hidden');
+          }
+        });
+      }
+      
+      // Check if admin is already logged in
+      if (localStorage.getItem('adminLoggedIn') === 'true') {
+        // Create admin menu
+        if (adminBtn) {
+          const adminMenu = document.createElement('div');
+          adminMenu.className = 'relative';
+          adminMenu.innerHTML = `
+            <button id="adminMenuBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg shadow transition-colors flex items-center">
+              <span>Admin</span>
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div id="adminDropdown" class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg z-10 hidden">
+              <a href="courses/english/english-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-t-lg">English Course</a>
+              <a href="courses/german/german-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">German Course</a>
+              <a href="courses/arabic/arabic-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">Arabic Course</a>
+              <a href="courses/math/math-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">Math Course</a>
+              <a href="courses/science/science-course.html" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700">Science Course</a>
+              <div class="border-t border-slate-200 dark:border-slate-700 my-1"></div>
+              <a href="admin/dashboard.html" class="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-700">Admin Dashboard</a>
+              <button id="adminLogout" class="w-full text-left px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-b-lg">Logout</button>
+            </div>
+          `;
+          
+          adminBtn.parentNode.replaceChild(adminMenu, adminBtn);
+          
+          // Toggle admin dropdown menu
+          const adminMenuBtn = document.getElementById('adminMenuBtn');
+          const adminDropdown = document.getElementById('adminDropdown');
+          
+          adminMenuBtn.addEventListener('click', function() {
+            adminDropdown.classList.toggle('hidden');
+          });
+          
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(event) {
+            if (!adminMenu.contains(event.target)) {
+              adminDropdown.classList.add('hidden');
+            }
+          });
+          
+          // Handle admin logout
+          document.getElementById('adminLogout').addEventListener('click', function() {
+            localStorage.removeItem('adminLoggedIn');
+            window.location.reload();
+          });
+        }
+      }
+    });
   </script>
   <!-- Vercel Analytics -->
   <script type="module">

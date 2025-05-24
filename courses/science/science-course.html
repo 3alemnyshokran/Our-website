@@ -39,6 +39,75 @@
       <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">Science Course</h2>
       <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">Learning from elementary to advanced</p>
     </section>
+    
+    <section class="mb-10">
+      <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
+      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">Elementary Level</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Introduction to Scientific Method</li>
+              <li><strong>Chapter 2:</strong> States of Matter and Basic Properties</li>
+              <li><strong>Chapter 3:</strong> Plant and Animal Life Cycles</li>
+              <li><strong>Chapter 4:</strong> Forces and Simple Machines</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">Intermediate Level</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Basic Chemistry and Chemical Reactions</li>
+              <li><strong>Chapter 2:</strong> Human Body Systems</li>
+              <li><strong>Chapter 3:</strong> Earth Science and Weather</li>
+              <li><strong>Chapter 4:</strong> Energy Types and Transformations</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <h4 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">Upper Intermediate Level</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Atomic Structure and Periodic Table</li>
+              <li><strong>Chapter 2:</strong> Genetics and Heredity</li>
+              <li><strong>Chapter 3:</strong> Motion, Forces, and Newton's Laws</li>
+              <li><strong>Chapter 4:</strong> Ecosystems and Environmental Science</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">Advanced Level</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Organic Chemistry</li>
+              <li><strong>Chapter 2:</strong> Cellular Biology and Biochemistry</li>
+              <li><strong>Chapter 3:</strong> Electricity and Magnetism</li>
+              <li><strong>Chapter 4:</strong> Plate Tectonics and Earth Systems</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <h4 class="text-xl font-bold text-teal-600 dark:text-teal-400 mb-3">Expert Level</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Quantum Mechanics Fundamentals</li>
+              <li><strong>Chapter 2:</strong> Advanced Molecular Biology</li>
+              <li><strong>Chapter 3:</strong> Thermodynamics and Statistical Mechanics</li>
+              <li><strong>Chapter 4:</strong> Astronomy and Astrophysics</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-3">Master Level</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Particle Physics and Standard Model</li>
+              <li><strong>Chapter 2:</strong> Evolutionary Biology and Genomics</li>
+              <li><strong>Chapter 3:</strong> Advanced Materials Science</li>
+              <li><strong>Chapter 4:</strong> Theoretical Physics and Cosmology</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <section>
       <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -69,11 +138,82 @@
       </div>
     </section>
   </main>
-
   <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
     &copy; 2025 Tutoring Website
   </footer>
-
   <script src="../../js/main.js"></script>
+  <script src="../../js/admin.js"></script>
+  <script>
+    // CSS for locked items
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        .locked { 
+          position: relative; 
+          pointer-events: none; 
+          opacity: 0.5; 
+        } 
+        .locked::after { 
+          content: '🔒'; 
+          position: absolute; 
+          top: 1rem; 
+          right: 1rem; 
+          font-size: 1.5rem; 
+        }
+      </style>
+    `);
+    
+    function applyChapterLocks() {
+      // Check if admin is logged in
+      const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+      
+      // If admin is logged in, don't apply any locks
+      if (adminLoggedIn) {
+        // Remove any existing locks
+        document.querySelectorAll('.locked').forEach(element => {
+          element.classList.remove('locked');
+        });
+        
+        // Add admin indicator to the header
+        const header = document.querySelector('header');
+        if (header) {
+          const adminBadge = document.createElement('div');
+          adminBadge.id = 'adminBadge';
+          adminBadge.textContent = 'Admin Mode';
+          adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+          
+          // Add the badge to the header if it doesn't already exist
+          if (!document.getElementById('adminBadge')) {
+            const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+            if (buttonsDiv) {
+              header.insertBefore(adminBadge, buttonsDiv);
+            } else {
+              header.appendChild(adminBadge);
+            }
+          }
+        }
+        return; // Exit the function early, no locks needed
+      }
+      
+      // Lock levels based on completion progress
+      const elementaryComplete = parseFloat(localStorage.getItem('science_a1_chapter1_progress')) >= 100;
+      
+      // Apply locks to intermediate and advanced level cards
+      const intermediateLevelCard = document.querySelector('a[href="chapters/a2/earth-science.html"]');
+      const advancedLevelCard = document.querySelector('a[href="chapters/b1/biology-intro.html"]');
+      
+      if (intermediateLevelCard && !elementaryComplete) {
+        intermediateLevelCard.classList.add('locked');
+      }
+      
+      if (advancedLevelCard && !elementaryComplete) {
+        advancedLevelCard.classList.add('locked');
+      }
+    }
+    
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      applyChapterLocks();
+    });
+  </script>
 </body>
 </html>

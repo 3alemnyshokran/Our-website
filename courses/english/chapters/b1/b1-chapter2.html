@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Chapter 2: Narrative Tenses - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#1877F2',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8 flex items-center justify-between">
+            <div>
+                <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">B1 Level: Chapter 2 - Narrative Tenses</h2>
+                <p class="text-slate-600 dark:text-slate-400">Learn how to tell engaging stories using different past tenses and narrative techniques.</p>
+            </div>
+            <div class="bg-purple-100 dark:bg-purple-900 px-4 py-2 rounded-lg shadow">
+                <span id="completionStatus" class="font-medium">0% Complete</span>
+            </div>
+        </div>
+        
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Learning Objectives</h3>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Understand and use the past simple, past continuous, past perfect, and past perfect continuous tenses</li>
+                <li>Learn how to sequence events in a story</li>
+                <li>Develop vocabulary for storytelling and narratives</li>
+                <li>Practice using time expressions to link parts of a story</li>
+                <li>Improve oral and written storytelling skills</li>
+            </ul>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Key Vocabulary</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <h4 class="font-bold mb-2">Narrative Verbs</h4>
+                    <ul class="space-y-1">
+                        <li>Announce</li>
+                        <li>Claim</li>
+                        <li>Confess</li>
+                        <li>Describe</li>
+                        <li>Explain</li>
+                        <li>Mention</li>
+                        <li>Recall</li>
+                        <li>Respond</li>
+                        <li>Reveal</li>
+                        <li>State</li>
+                        <li>Suggest</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Time Expressions</h4>
+                    <ul class="space-y-1">
+                        <li>All of a sudden</li>
+                        <li>At first</li>
+                        <li>By the time</li>
+                        <li>Eventually</li>
+                        <li>In the meantime</li>
+                        <li>Meanwhile</li>
+                        <li>Previously</li>
+                        <li>Suddenly</li>
+                        <li>The moment that</li>
+                        <li>While</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Story Elements</h4>
+                    <ul class="space-y-1">
+                        <li>Character</li>
+                        <li>Climax</li>
+                        <li>Conflict</li>
+                        <li>Ending</li>
+                        <li>Introduction</li>
+                        <li>Plot</li>
+                        <li>Resolution</li>
+                        <li>Setting</li>
+                        <li>Theme</li>
+                        <li>Twist</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Grammar: Narrative Tenses</h3>
+            <div class="space-y-6">
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Past Simple</h4>
+                    <p class="mb-2">Used for completed actions in the past, often the main events in a story.</p>
+                    <ul class="space-y-1">
+                        <li><strong>Form:</strong> Subject + V2 (past form)</li>
+                        <li><strong>Example:</strong> "I <span class="text-green-600 dark:text-green-400">arrived</span> at the party at 8 PM."</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Past Continuous</h4>
+                    <p class="mb-2">Used for actions that were in progress at a specific time in the past or for setting the scene.</p>
+                    <ul class="space-y-1">
+                        <li><strong>Form:</strong> Subject + was/were + verb-ing</li>
+                        <li><strong>Example:</strong> "When I arrived, they <span class="text-green-600 dark:text-green-400">were dancing</span> in the living room."</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Past Perfect</h4>
+                    <p class="mb-2">Used for actions that happened before another action in the past.</p>
+                    <ul class="space-y-1">
+                        <li><strong>Form:</strong> Subject + had + past participle</li>
+                        <li><strong>Example:</strong> "By the time I arrived, most guests <span class="text-green-600 dark:text-green-400">had already left</span>."</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Past Perfect Continuous</h4>
+                    <p class="mb-2">Used for ongoing actions that started before and continued up to another action in the past.</p>
+                    <ul class="space-y-1">
+                        <li><strong>Form:</strong> Subject + had been + verb-ing</li>
+                        <li><strong>Example:</strong> "She was tired because she <span class="text-green-600 dark:text-green-400">had been working</span> all night."</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Using Narrative Tenses Together</h4>
+                    <p class="mb-2">Example paragraph:</p>
+                    <p class="italic">"It <span class="text-green-600 dark:text-green-400">was raining</span> (past continuous - setting) when I <span class="text-purple-600 dark:text-purple-400">arrived</span> (past simple - main event) at the station. The train <span class="text-blue-600 dark:text-blue-400">had already left</span> (past perfect - earlier event) by the time I got there. I <span class="text-orange-600 dark:text-orange-400">had been waiting</span> (past perfect continuous - ongoing action) for a taxi for twenty minutes when my friend <span class="text-purple-600 dark:text-purple-400">called</span> (past simple - main event) to offer me a ride."</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Practice Exercise 1: Identifying Narrative Tenses</h3>
+            <p class="mb-4">Read the following story and identify the different narrative tenses used:</p>
+            <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg mb-4">
+                <p>Last summer, I <u>visited</u> my grandparents who <u>lived</u> in a small coastal town. When I <u>arrived</u>, my grandmother <u>was cooking</u> dinner. She <u>had prepared</u> my favorite dessert earlier that day. My grandfather <u>had been working</u> in the garden all afternoon and <u>was</u> quite tired. After dinner, we <u>sat</u> on the porch and <u>watched</u> the sunset. It <u>was</u> the most beautiful sunset I <u>had ever seen</u>.</p>
+            </div>
+            <div class="mt-4 text-center">
+                <button class="show-answers bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg">Show Answers</button>
+                <div class="answers hidden mt-4 p-4 bg-green-50 dark:bg-green-900 rounded-lg text-left">
+                    <ul class="space-y-1">
+                        <li><strong>Past simple:</strong> visited, lived, arrived, sat, watched, was</li>
+                        <li><strong>Past continuous:</strong> was cooking</li>
+                        <li><strong>Past perfect:</strong> had prepared, had ever seen</li>
+                        <li><strong>Past perfect continuous:</strong> had been working</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Practice Exercise 2: Complete the Story</h3>
+            <p class="mb-4">Fill in the gaps with the correct form of the verbs in brackets, using appropriate narrative tenses:</p>
+            <ol class="list-decimal pl-6 space-y-3">
+                <li>By the time we reached the theater, the movie ____________ (already/start).</li>
+                <li>Sarah ____________ (walk) down the street when she ____________ (notice) the old bookshop.</li>
+                <li>They ____________ (wait) for three hours before the bus finally ____________ (arrive).</li>
+                <li>When I ____________ (get) to the restaurant, my friends ____________ (already/order) food.</li>
+                <li>The ground was wet because it ____________ (rain) all night.</li>
+                <li>I ____________ (study) English for five years before I ____________ (move) to London.</li>
+                <li>While he ____________ (sleep), someone ____________ (break) into his house.</li>
+                <li>She ____________ (just/finish) her homework when her friends ____________ (call).</li>
+            </ol>
+            <div class="mt-4 text-center">
+                <button class="show-answers bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg">Show Answers</button>
+                <div class="answers hidden mt-4 p-4 bg-green-50 dark:bg-green-900 rounded-lg">
+                    <ol class="list-decimal pl-6 space-y-1">
+                        <li>had already started</li>
+                        <li>was walking, noticed</li>
+                        <li>had been waiting, arrived</li>
+                        <li>got, had already ordered</li>
+                        <li>had been raining</li>
+                        <li>had been studying, moved</li>
+                        <li>was sleeping, broke</li>
+                        <li>had just finished, called</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Speaking Activity: Tell a Story</h3>
+            <p class="mb-4">Prepare a short story (2-3 minutes) about an interesting, surprising, or frightening experience you have had. Use the following structure:</p>
+            <ul class="list-disc pl-6 space-y-2 mb-4">
+                <li><strong>Setting the scene:</strong> Use past continuous to describe where you were and what was happening</li>
+                <li><strong>Background information:</strong> Use past perfect to mention events that had happened before</li>
+                <li><strong>Main events:</strong> Use past simple to tell what happened</li>
+                <li><strong>Duration:</strong> Use past perfect continuous for actions that had been happening for some time</li>
+                <li><strong>Use time expressions</strong> to connect different parts of your story</li>
+            </ul>
+            <p>Remember to include how you felt and what you learned from the experience.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Writing Exercise</h3>
+            <p class="mb-4">Write a short story (120-150 words) based on the following picture prompt. Use at least one example of each narrative tense we've studied:</p>
+            <div class="w-full h-64 bg-gray-300 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+                <p class="text-center text-gray-600 dark:text-gray-400">
+                    [Image: An abandoned bicycle leaning against a tree next to a lake at sunset]
+                </p>
+            </div>
+            <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                <p class="italic">Example beginning:</p>
+                <p>The sun was setting over the lake as I approached the shoreline. I had been walking for hours, trying to clear my mind after the argument with my sister. Suddenly, I noticed an old bicycle leaning against a tree...</p>
+            </div>
+        </div>        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Practice Questions</h3>
+            <p class="mb-4">Test your understanding of narrative tenses with these interactive practice questions:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="./b1-chapter2-questions1.html" class="bg-purple-100 dark:bg-purple-900 p-4 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors flex items-center">
+                    <div class="mr-3 w-12 h-12 bg-purple-500 dark:bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">1</div>
+                    <div>
+                        <h4 class="font-bold">Past Simple & Past Continuous</h4>
+                        <p class="text-sm">Practice using these tenses to describe past actions and set scenes</p>
+                        <div id="part1Status" class="mt-1 text-xs font-medium text-purple-700 dark:text-purple-300">Not started</div>
+                    </div>
+                </a>
+                <a href="./b1-chapter2-questions2.html" class="bg-purple-100 dark:bg-purple-900 p-4 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors flex items-center">
+                    <div class="mr-3 w-12 h-12 bg-purple-500 dark:bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">2</div>
+                    <div>
+                        <h4 class="font-bold">Past Perfect & Past Perfect Continuous</h4>
+                        <p class="text-sm">Practice using these tenses to relate past events chronologically</p>
+                        <div id="part2Status" class="mt-1 text-xs font-medium text-purple-700 dark:text-purple-300">Not started</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-purple-500 to-purple-700 dark:from-purple-700 dark:to-purple-900 text-white rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4">Chapter Assessment</h3>
+            <p class="mb-4">Test your knowledge with our comprehensive assessment. Complete the assessment to mark this chapter as finished.</p>
+            <a href="./b1-chapter2-assessment.html" class="inline-block bg-white text-purple-600 hover:bg-slate-100 py-2 px-4 rounded-lg font-semibold">Start Assessment</a>
+        </div>
+
+        <div class="flex justify-between mt-8">
+            <a href="./b1-chapter1.html" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">← Previous Chapter</a>
+            <a href="./b1-chapter3.html" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Next Chapter →</a>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+    </footer>    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Update completion status
+            updateCompletionStatus();
+            updatePartStatus();
+        });
+        
+        // Show/hide answers
+        const showAnswerBtns = document.querySelectorAll('.show-answers');
+        showAnswerBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const answersDiv = this.nextElementSibling;
+                answersDiv.classList.toggle('hidden');
+                this.textContent = answersDiv.classList.contains('hidden') ? 'Show Answers' : 'Hide Answers';
+            });
+        });
+        
+        // Update overall completion status
+        function updateCompletionStatus() {
+            const completionStatus = document.getElementById('completionStatus');
+            const part1Completed = localStorage.getItem('b1_ch2_part1_completed') === 'true';
+            const part2Completed = localStorage.getItem('b1_ch2_part2_completed') === 'true';
+            const assessmentCompleted = localStorage.getItem('b1_ch2_assessment_completed') === 'true';
+            
+            let completionPercentage = 0;
+            if (part1Completed) completionPercentage += 33;
+            if (part2Completed) completionPercentage += 33;
+            if (assessmentCompleted) completionPercentage += 34;
+            
+            completionStatus.textContent = `${completionPercentage}% Complete`;
+            
+            // If all parts completed, update the chapter completion status
+            if (completionPercentage === 100) {
+                localStorage.setItem('b1_ch2_completed', 'true');
+            }
+        }
+        
+        // Update individual part status
+        function updatePartStatus() {
+            const part1Status = document.getElementById('part1Status');
+            const part2Status = document.getElementById('part2Status');
+            
+            if (localStorage.getItem('b1_ch2_part1_completed') === 'true') {
+                part1Status.textContent = 'Completed';
+                part1Status.classList.add('text-green-600', 'dark:text-green-400');
+            } else {
+                part1Status.textContent = 'Not started';
+            }
+            
+            if (localStorage.getItem('b1_ch2_part2_completed') === 'true') {
+                part2Status.textContent = 'Completed';
+                part2Status.classList.add('text-green-600', 'dark:text-green-400');
+            } else {
+                part2Status.textContent = 'Not started';
+            }
+        }
+    </script>
+</body>
+</html>

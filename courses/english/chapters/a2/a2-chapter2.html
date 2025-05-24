@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Chapter 2: Daily Routines - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-blue': '#1877F2',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-blue-600 dark:text-blue-400">A2 Level: Chapter 2 - Daily Routines</h2>
+            <p class="text-slate-600 dark:text-slate-400">Learn about daily routines, time expressions, and basic conversational skills.</p>
+            <p class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mb-5" dir="rtl">
+                تعلم عن الروتين اليومي، والتعبيرات الزمنية، ومهارات المحادثة الأساسية.
+            </p>
+        </div>
+        
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Learning Objectives</h3>
+            <ul class="list-disc pl-6 space-y-2">
+                <li>Talk about daily routines using present simple</li>
+                <li>Learn time expressions (in the morning, at noon, etc.)</li>
+                <li>Describe the frequency of activities using adverbs of frequency</li>
+                <li>Ask and answer questions about daily habits</li>
+                <li>Compare weekday and weekend routines</li>
+            </ul>
+            <div class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mt-4" dir="rtl">
+                <h3 class="font-bold mb-2">أهداف التعلم:</h3>
+                <ul class="list-disc pr-6 space-y-1">
+                    <li>التحدث عن الروتين اليومي باستخدام المضارع البسيط</li>
+                    <li>تعلم التعبيرات الزمنية (في الصباح، في الظهيرة، إلخ)</li>
+                    <li>وصف تكرار الأنشطة باستخدام ظروف التكرار</li>
+                    <li>طرح والإجابة على أسئلة حول العادات اليومية</li>
+                    <li>مقارنة روتين أيام الأسبوع وعطلة نهاية الأسبوع</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Key Vocabulary</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <h4 class="font-bold mb-2">Daily Activities</h4>
+                    <ul class="space-y-1">
+                        <li>Wake up <span class="text-emerald-600 dark:text-emerald-400 text-sm">(الاستيقاظ)</span></li>
+                        <li>Take a shower <span class="text-emerald-600 dark:text-emerald-400 text-sm">(الاستحمام)</span></li>
+                        <li>Get dressed <span class="text-emerald-600 dark:text-emerald-400 text-sm">(ارتداء الملابس)</span></li>
+                        <li>Have breakfast <span class="text-emerald-600 dark:text-emerald-400 text-sm">(تناول الإفطار)</span></li>
+                        <li>Brush teeth <span class="text-emerald-600 dark:text-emerald-400 text-sm">(تنظيف الأسنان)</span></li>
+                        <li>Go to work/school <span class="text-emerald-600 dark:text-emerald-400 text-sm">(الذهاب إلى العمل/المدرسة)</span></li>
+                        <li>Have lunch <span class="text-emerald-600 dark:text-emerald-400 text-sm">(تناول الغداء)</span></li>
+                        <li>Go home <span class="text-emerald-600 dark:text-emerald-400 text-sm">(العودة إلى المنزل)</span></li>
+                        <li>Have dinner <span class="text-emerald-600 dark:text-emerald-400 text-sm">(تناول العشاء)</span></li>
+                        <li>Watch TV <span class="text-emerald-600 dark:text-emerald-400 text-sm">(مشاهدة التلفاز)</span></li>
+                        <li>Go to bed <span class="text-emerald-600 dark:text-emerald-400 text-sm">(الذهاب إلى النوم)</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Time Expressions</h4>
+                    <ul class="space-y-1">
+                        <li>In the morning <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في الصباح)</span></li>
+                        <li>In the afternoon <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في فترة بعد الظهر)</span></li>
+                        <li>In the evening <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في المساء)</span></li>
+                        <li>At night <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في الليل)</span></li>
+                        <li>At 7 o'clock <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في الساعة السابعة)</span></li>
+                        <li>At noon <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في الظهيرة)</span></li>
+                        <li>At midnight <span class="text-emerald-600 dark:text-emerald-400 text-sm">(في منتصف الليل)</span></li>
+                        <li>Early <span class="text-emerald-600 dark:text-emerald-400 text-sm">(مبكراً)</span></li>
+                        <li>Late <span class="text-emerald-600 dark:text-emerald-400 text-sm">(متأخراً)</span></li>
+                        <li>Before <span class="text-emerald-600 dark:text-emerald-400 text-sm">(قبل)</span></li>
+                        <li>After <span class="text-emerald-600 dark:text-emerald-400 text-sm">(بعد)</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Adverbs of Frequency</h4>
+                    <ul class="space-y-1">
+                        <li>Always (100%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(دائماً)</span></li>
+                        <li>Usually (90%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(عادة)</span></li>
+                        <li>Normally (75%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(بشكل طبيعي)</span></li>
+                        <li>Often (70%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(غالباً)</span></li>
+                        <li>Sometimes (50%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أحياناً)</span></li>
+                        <li>Occasionally (30%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(من حين لآخر)</span></li>
+                        <li>Rarely (10%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(نادراً)</span></li>
+                        <li>Never (0%) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أبداً)</span></li>
+                        <li>Once a week <span class="text-emerald-600 dark:text-emerald-400 text-sm">(مرة في الأسبوع)</span></li>
+                        <li>Twice a month <span class="text-emerald-600 dark:text-emerald-400 text-sm">(مرتين في الشهر)</span></li>
+                        <li>Every day <span class="text-emerald-600 dark:text-emerald-400 text-sm">(كل يوم)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mt-4" dir="rtl">
+                <h3 class="font-bold mb-2">المفردات الرئيسية:</h3>
+                <p>هذه المفردات ستساعدك على التحدث عن روتينك اليومي والتعبير عن الوقت وتكرار الأنشطة. تأكد من حفظ هذه المفردات وممارستها في جمل مفيدة.</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Grammar: Present Simple for Routines</h3>
+            <div class="space-y-4">
+                <p>We use the Present Simple tense to talk about regular habits and daily routines.</p>
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Structure:</h4>
+                    <ul class="space-y-2">
+                        <li><strong>Positive:</strong> Subject + Verb (+ s/es for he/she/it) + Object/Complement</li>
+                        <li><strong>Example:</strong> I <span class="text-green-600 dark:text-green-400">wake up</span> at 7 am. / She <span class="text-green-600 dark:text-green-400">wakes up</span> at 7 am.</li>
+                        <li><strong>Negative:</strong> Subject + don't/doesn't + Verb + Object/Complement</li>
+                        <li><strong>Example:</strong> I <span class="text-red-600 dark:text-red-400">don't wake up</span> early on weekends. / She <span class="text-red-600 dark:text-red-400">doesn't wake up</span> early on weekends.</li>
+                        <li><strong>Question:</strong> Do/Does + Subject + Verb + Object/Complement?</li>
+                        <li><strong>Example:</strong> <span class="text-blue-600 dark:text-blue-400">Do you wake up</span> early? / <span class="text-blue-600 dark:text-blue-400">Does she wake up</span> early?</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                    <h4 class="font-bold mb-2">Position of Adverbs of Frequency:</h4>
+                    <ul class="space-y-2">
+                        <li>With main verbs: <strong>Subject + Adverb + Verb</strong></li>
+                        <li><span class="text-blue-600 dark:text-blue-400">I usually eat</span> breakfast at 8 am.</li>
+                        <li>With verb 'to be': <strong>Subject + be + Adverb</strong></li>
+                        <li><span class="text-blue-600 dark:text-blue-400">She is always</span> on time.</li>
+                    </ul>
+                </div>
+                <div class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mt-4" dir="rtl">
+                    <h4 class="font-bold mb-2">القواعد: المضارع البسيط للروتين اليومي</h4>
+                    <p>نستخدم زمن المضارع البسيط للتحدث عن العادات المنتظمة والروتين اليومي.</p>
+                    
+                    <h5 class="font-bold mt-3 mb-1">التركيب:</h5>
+                    <ul class="space-y-1 pr-4">
+                        <li><strong>الإيجابي:</strong> الفاعل + الفعل (+ s/es لـ he/she/it) + المفعول/التكملة</li>
+                        <li><strong>مثال:</strong> أستيقظ الساعة 7 صباحاً. / تستيقظ الساعة 7 صباحاً.</li>
+                        <li><strong>النفي:</strong> الفاعل + don't/doesn't + الفعل + المفعول/التكملة</li>
+                        <li><strong>مثال:</strong> لا أستيقظ مبكراً في عطلة نهاية الأسبوع. / لا تستيقظ مبكراً في عطلة نهاية الأسبوع.</li>
+                        <li><strong>السؤال:</strong> Do/Does + الفاعل + الفعل + المفعول/التكملة؟</li>
+                        <li><strong>مثال:</strong> هل تستيقظ مبكراً؟ / هل تستيقظ هي مبكراً؟</li>
+                    </ul>
+                    
+                    <h5 class="font-bold mt-3 mb-1">موضع ظروف التكرار:</h5>
+                    <ul class="space-y-1 pr-4">
+                        <li>مع الأفعال الرئيسية: <strong>الفاعل + ظرف التكرار + الفعل</strong></li>
+                        <li><strong>مثال:</strong> أنا عادة آكل الإفطار في الساعة 8 صباحاً.</li>
+                        <li>مع فعل 'to be': <strong>الفاعل + be + ظرف التكرار</strong></li>
+                        <li><strong>مثال:</strong> هي دائماً في الموعد المحدد.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Practice Exercise 1: Daily Routines</h3>
+            <p class="mb-4">Complete the sentences with the correct form of the verbs in brackets:</p>
+            <p class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mb-4" dir="rtl">
+                أكمل الجمل باستخدام الصيغة الصحيحة للأفعال بين الأقواس:
+            </p>
+            <ol class="list-decimal pl-6 space-y-3">
+                <li>Maria ____________ (wake up) at 6:30 every morning. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(تستيقظ ماريا الساعة 6:30 كل صباح)</span></li>
+                <li>I ____________ (not/have) breakfast on weekdays. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أنا لا أتناول الإفطار في أيام الأسبوع)</span></li>
+                <li>____________ they ____________ (go) to school by bus? <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هل يذهبون إلى المدرسة بالحافلة؟)</span></li>
+                <li>My brother ____________ (brush) his teeth twice a day. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أخي ينظف أسنانه مرتين في اليوم)</span></li>
+                <li>We ____________ (watch) TV in the evening. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(نحن نشاهد التلفاز في المساء)</span></li>
+                <li>She ____________ (not/work) on weekends. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هي لا تعمل في عطلة نهاية الأسبوع)</span></li>
+                <li>____________ you ____________ (exercise) regularly? <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هل تمارس الرياضة بانتظام؟)</span></li>
+                <li>The shops ____________ (open) at 9 am. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(المتاجر تفتح الساعة 9 صباحاً)</span></li>
+                <li>He ____________ (study) English three times a week. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هو يدرس الإنجليزية ثلاث مرات في الأسبوع)</span></li>
+                <li>My parents ____________ (have) dinner at 7 pm. <span class="text-emerald-600 dark:text-emerald-400 text-sm">(والداي يتناولان العشاء الساعة 7 مساءً)</span></li>
+            </ol>
+            <div class="mt-4 text-center">
+                <button class="show-answers bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">Show Answers</button>
+                <div class="answers hidden mt-4 p-4 bg-green-50 dark:bg-green-900 rounded-lg">
+                    <ol class="list-decimal pl-6 space-y-1">
+                        <li>Maria <strong>wakes up</strong> at 6:30 every morning.</li>
+                        <li>I <strong>don't have</strong> breakfast on weekdays.</li>
+                        <li><strong>Do</strong> they <strong>go</strong> to school by bus?</li>
+                        <li>My brother <strong>brushes</strong> his teeth twice a day.</li>
+                        <li>We <strong>watch</strong> TV in the evening.</li>
+                        <li>She <strong>doesn't work</strong> on weekends.</li>
+                        <li><strong>Do</strong> you <strong>exercise</strong> regularly?</li>
+                        <li>The shops <strong>open</strong> at 9 am.</li>
+                        <li>He <strong>studies</strong> English three times a week.</li>
+                        <li>My parents <strong>have</strong> dinner at 7 pm.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Practice Exercise 2: Adverbs of Frequency</h3>
+            <p class="mb-4">Rewrite the sentences using the adverbs of frequency in brackets:</p>
+            <p class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mb-4" dir="rtl">
+                أعد كتابة الجمل باستخدام ظروف التكرار بين الأقواس:
+            </p>
+            <ol class="list-decimal pl-6 space-y-3">
+                <li>I drink coffee in the morning. (always) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أنا أشرب القهوة في الصباح. (دائماً))</span></li>
+                <li>She is late for work. (never) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هي متأخرة عن العمل. (أبداً))</span></li>
+                <li>They watch movies on weekends. (sometimes) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هم يشاهدون الأفلام في عطلة نهاية الأسبوع. (أحياناً))</span></li>
+                <li>He forgets his keys. (often) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هو ينسى مفاتيحه. (غالباً))</span></li>
+                <li>We go to the gym. (twice a week) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(نحن نذهب إلى صالة الألعاب الرياضية. (مرتين في الأسبوع))</span></li>
+                <li>My sister calls me. (rarely) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أختي تتصل بي. (نادراً))</span></li>
+                <li>Tom eats fast food. (occasionally) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(توم يأكل الوجبات السريعة. (من حين لآخر))</span></li>
+                <li>I am tired in the morning. (usually) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(أنا متعب في الصباح. (عادة))</span></li>
+                <li>They visit their grandparents. (every Sunday) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(هم يزورون أجدادهم. (كل أحد))</span></li>
+                <li>The children play in the park. (normally) <span class="text-emerald-600 dark:text-emerald-400 text-sm">(الأطفال يلعبون في الحديقة. (بشكل طبيعي))</span></li>
+            </ol>
+            <div class="mt-4 text-center">
+                <button class="show-answers bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">Show Answers</button>
+                <div class="answers hidden mt-4 p-4 bg-green-50 dark:bg-green-900 rounded-lg">
+                    <ol class="list-decimal pl-6 space-y-1">
+                        <li>I <strong>always</strong> drink coffee in the morning.</li>
+                        <li>She is <strong>never</strong> late for work.</li>
+                        <li>They <strong>sometimes</strong> watch movies on weekends.</li>
+                        <li>He <strong>often</strong> forgets his keys.</li>
+                        <li>We go to the gym <strong>twice a week</strong>.</li>
+                        <li>My sister <strong>rarely</strong> calls me.</li>
+                        <li>Tom <strong>occasionally</strong> eats fast food.</li>
+                        <li>I am <strong>usually</strong> tired in the morning.</li>
+                        <li>They visit their grandparents <strong>every Sunday</strong>.</li>
+                        <li>The children <strong>normally</strong> play in the park.</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Speaking Activity: My Daily Routine</h3>
+            <p class="mb-4">Prepare to talk about your daily routine. Think about:</p>
+            <ul class="list-disc pl-6 space-y-2 mb-4">
+                <li>What time do you wake up?</li>
+                <li>What do you have for breakfast?</li>
+                <li>How do you get to work/school?</li>
+                <li>What do you do in the afternoon?</li>
+                <li>What time do you eat dinner?</li>
+                <li>What do you do in the evening?</li>
+                <li>What time do you go to bed?</li>
+                <li>How is your weekend routine different from your weekday routine?</li>
+            </ul>
+            <p>Use adverbs of frequency to make your description more detailed.</p>
+            
+            <div class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mt-4" dir="rtl">
+                <h4 class="font-bold mb-2">نشاط التحدث: روتيني اليومي</h4>
+                <p class="mb-3">استعد للتحدث عن روتينك اليومي. فكر في:</p>
+                <ul class="list-disc pr-6 space-y-1 mb-3">
+                    <li>في أي وقت تستيقظ؟</li>
+                    <li>ماذا تتناول في وجبة الإفطار؟</li>
+                    <li>كيف تذهب إلى العمل/المدرسة؟</li>
+                    <li>ماذا تفعل في فترة بعد الظهر؟</li>
+                    <li>في أي وقت تتناول العشاء؟</li>
+                    <li>ماذا تفعل في المساء؟</li>
+                    <li>في أي وقت تذهب إلى النوم؟</li>
+                    <li>كيف يختلف روتينك في عطلة نهاية الأسبوع عن روتينك في أيام الأسبوع؟</li>
+                </ul>
+                <p>استخدم ظروف التكرار لجعل وصفك أكثر تفصيلاً.</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Writing Exercise</h3>
+            <p class="mb-4">Write a short paragraph (60-80 words) about your typical day. Use the present simple tense and include at least 5 adverbs of frequency.</p>
+            <div class="bg-slate-100 dark:bg-slate-700 p-4 rounded-lg">
+                <p class="italic">Example:</p>
+                <p>I <strong>usually</strong> wake up at 7 am and <strong>always</strong> take a shower before breakfast. I <strong>often</strong> have coffee and toast in the morning. I go to work by bus and <strong>normally</strong> arrive at 9 am. In the afternoon, I have lunch with my colleagues. I <strong>sometimes</strong> go to the gym after work. In the evening, I <strong>rarely</strong> watch TV because I prefer reading books. I <strong>never</strong> go to bed late during weekdays.</p>
+            </div>
+            
+            <div class="text-sm text-emerald-700 dark:text-emerald-400 border-r-4 border-emerald-500 pr-3 text-right mt-4" dir="rtl">
+                <h4 class="font-bold mb-2">تمرين الكتابة</h4>
+                <p class="mb-3">اكتب فقرة قصيرة (60-80 كلمة) عن يومك النموذجي. استخدم زمن المضارع البسيط وأدرج على الأقل 5 ظروف تكرار.</p>
+                
+                <div class="bg-slate-200 dark:bg-slate-600 p-3 rounded-lg mb-2">
+                    <p class="font-italic">مثال:</p>
+                    <p>عادةً أستيقظ في الساعة 7 صباحاً وأستحم دائماً قبل الإفطار. غالباً ما أتناول القهوة والخبز المحمص في الصباح. أذهب إلى العمل بالحافلة وعادة ما أصل في الساعة 9 صباحاً. في فترة ما بعد الظهر، أتناول الغداء مع زملائي. أذهب أحياناً إلى صالة الألعاب الرياضية بعد العمل. في المساء، نادراً ما أشاهد التلفاز لأنني أفضل قراءة الكتب. أنا لا أذهب أبداً إلى السرير متأخراً خلال أيام الأسبوع.</p>
+                </div>
+                
+                <p class="text-xs opacity-75">تذكر أن تستخدم ظروف التكرار في المكان المناسب في الجملة: قبل الفعل الرئيسي، ولكن بعد فعل "to be".</p>
+            </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-700 dark:to-blue-900 text-white rounded-xl shadow-md p-6 mb-8">
+            <h3 class="text-2xl font-bold mb-4">Chapter Quiz</h3>
+            <p class="mb-4">Test your knowledge with our interactive quiz. Complete the quiz to mark this chapter as finished.</p>
+            <p class="text-sm text-white text-right mb-4" dir="rtl">
+                اختبر معرفتك من خلال الاختبار التفاعلي. أكمل الاختبار لتحديد هذا الفصل كمُنتهي.
+            </p>
+            <a href="#" class="inline-block bg-white text-blue-600 hover:bg-slate-100 py-2 px-4 rounded-lg font-semibold">Start Quiz</a>
+        </div>
+
+        <div class="flex justify-between mt-8">
+            <a href="./a2-chapter1.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">← Previous Chapter</a>
+            <a href="./a2-chapter3.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Next Chapter →</a>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Show/hide answers
+        const showAnswerBtns = document.querySelectorAll('.show-answers');
+        showAnswerBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const answersDiv = this.nextElementSibling;
+                answersDiv.classList.toggle('hidden');
+                this.textContent = answersDiv.classList.contains('hidden') ? 'Show Answers' : 'Hide Answers';
+            });
+        });
+    </script>
+</body>
+</html>

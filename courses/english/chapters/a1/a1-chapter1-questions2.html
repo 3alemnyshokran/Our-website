@@ -1,0 +1,143 @@
+<!-- Practice Set 2: Family Vocabulary -->
+<!-- This file will contain interactive questions on family vocabulary, styled and structured like a1-chapter3-questions1.html. Content will be added next. -->
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 Chapter 1: Family Vocabulary - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .question-container { transition: all 0.3s ease; }
+        .question-container:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .progress-fill { animation: 1s ease-out 0s 1 slideInFromLeft; }
+        @keyframes slideInFromLeft { 0% { transform: translateX(-100%); } 100% { transform: translateX(0); } }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
+                <a href="./a1-chapter1.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
+            </div>
+        </div>
+    </header>
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-blue-600 dark:text-blue-400">Family Vocabulary Practice</h2>
+            <p class="text-slate-600 dark:text-slate-400">Test your understanding of English family vocabulary with these practice questions.</p>
+            <div class="mt-4 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 flex items-center">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 mr-4">
+                    <div class="progress-fill bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/4 Questions</span>
+            </div>
+        </div>
+        <div id="quiz-container" class="space-y-8 mb-8">            <!-- Question 1 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6" data-question="1">
+                <h3 class="text-xl font-bold mb-4">Question 1</h3>
+                <p class="mb-4">Complete the sentence: "My mother's father is my _____."</p>
+                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
+                  أكمل الجملة: "والد أمي هو _____ بالنسبة لي."
+                  <br>
+                  <span class="text-xs opacity-75">تلميح: فكر في العلاقات العائلية. والد الأم هو...</span>
+                </p>
+                <input type="text" class="answer-input w-full border border-slate-300 dark:border-slate-600 rounded px-3 py-2 mb-2" placeholder="Type your answer">
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 2 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="2">
+                <h3 class="text-xl font-bold mb-4">Question 2</h3>
+                <p class="mb-4">Complete the sentence: "My father's sister is my _____."</p>
+                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
+                  أكمل الجملة: "أخت أبي هي _____ بالنسبة لي."
+                  <br>
+                  <span class="text-xs opacity-75">تلميح: ماذا تسمي أخت والدك؟</span>
+                </p>
+                <input type="text" class="answer-input w-full border border-slate-300 dark:border-slate-600 rounded px-3 py-2 mb-2" placeholder="Type your answer">
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 3 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="3">
+                <h3 class="text-xl font-bold mb-4">Question 3</h3>
+                <p class="mb-4">Who is your father's son? (if you are a boy)</p>
+                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
+                  من هو ابن والدك؟ (إذا كنت صبياً)
+                  <br>
+                  <span class="text-xs opacity-75">تلميح: فكر في الأشقاء. أنت وأخوك هما...</span>
+                </p>
+                <input type="text" class="answer-input w-full border border-slate-300 dark:border-slate-600 rounded px-3 py-2 mb-2" placeholder="Type your answer">
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+            <!-- Question 4 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="4">
+                <h3 class="text-xl font-bold mb-4">Question 4</h3>
+                <p class="mb-4">Who is your mother's daughter? (if you are a girl)</p>
+                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
+                  من هي ابنة والدتك؟ (إذا كنت فتاة)
+                  <br>
+                  <span class="text-xs opacity-75">تلميح: فكر في الأخوات. أنت وأختك هما...</span>
+                </p>
+                <input type="text" class="answer-input w-full border border-slate-300 dark:border-slate-600 rounded px-3 py-2 mb-2" placeholder="Type your answer">
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+        </div>
+        <div class="flex justify-between">
+            <a href="./a1-chapter1-questions1.html" class="text-blue-600 dark:text-blue-400 underline">Previous Practice Set</a>
+            <a href="./a1-chapter1.html" class="text-blue-600 dark:text-blue-400 underline">Back to Chapter</a>
+        </div>
+    </main>
+    <script>
+        // Interactive quiz logic
+        const questions = [
+            { answer: 'grandfather' },
+            { answer: 'aunt' },
+            { answer: 'brother' },
+            { answer: 'sister' }
+        ];
+        let current = 0;
+        let correctCount = 0;
+        const containers = document.querySelectorAll('.question-container');
+        const progressFill = document.querySelector('.progress-fill');
+        const progressText = document.getElementById('progress-text');
+        function showQuestion(idx) {
+            containers.forEach((c, i) => c.classList.toggle('hidden', i !== idx));
+            progressFill.style.width = `${((idx) / questions.length) * 100}%`;
+            progressText.textContent = `${idx}/${questions.length} Questions`;
+        }
+        function checkAnswer(idx) {
+            const input = containers[idx].querySelector('.answer-input');
+            const feedback = containers[idx].querySelector('.feedback');
+            if (input.value.trim().toLowerCase() === questions[idx].answer.toLowerCase()) {
+                feedback.textContent = '✓ Correct!';
+                feedback.className = 'mt-4 feedback text-green-600 font-semibold';
+                correctCount++;
+                setTimeout(() => {
+                    if (idx < questions.length - 1) {
+                        showQuestion(idx + 1);
+                    } else {
+                        progressFill.style.width = '100%';
+                        progressText.textContent = `${questions.length}/${questions.length} Questions`;
+                        alert('Practice complete!');
+                    }
+                }, 800);
+            } else {
+                feedback.textContent = '✗ Try again!';
+                feedback.className = 'mt-4 feedback text-red-600 font-semibold';
+            }
+        }
+        containers.forEach((container, idx) => {
+            const input = container.querySelector('.answer-input');
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkAnswer(idx);
+            });
+        });
+        showQuestion(0);
+    </script>
+</body>
+</html>

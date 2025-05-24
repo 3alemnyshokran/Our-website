@@ -39,6 +39,75 @@
       <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">German Course</h2>
       <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">Learn German from A1 to C2 levels</p>
     </section>
+    
+    <section class="mb-10">
+      <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
+      <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <h4 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">A1 Level - Beginner</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Basic greetings and introductions</li>
+              <li><strong>Chapter 2:</strong> Numbers, colors, and common objects</li>
+              <li><strong>Chapter 3:</strong> Definite and indefinite articles</li>
+              <li><strong>Chapter 4:</strong> Regular verbs and simple sentences</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">A2 Level - Elementary</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Past tense (Perfekt) and time expressions</li>
+              <li><strong>Chapter 2:</strong> Daily routines and separable verbs</li>
+              <li><strong>Chapter 3:</strong> Modal verbs and sentence structure</li>
+              <li><strong>Chapter 4:</strong> Dative case and prepositions</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <h4 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">B1 Level - Intermediate</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Präteritum (simple past) and narrative</li>
+              <li><strong>Chapter 2:</strong> Passive voice and formal communication</li>
+              <li><strong>Chapter 3:</strong> Subjunctive mood (Konjunktiv II)</li>
+              <li><strong>Chapter 4:</strong> Relative clauses and complex sentences</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">B2 Level - Upper-Intermediate</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Advanced grammar structures</li>
+              <li><strong>Chapter 2:</strong> Genitive case and academic writing</li>
+              <li><strong>Chapter 3:</strong> Idiomatic expressions and colloquialisms</li>
+              <li><strong>Chapter 4:</strong> Reading comprehension and discussion</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div>
+            <h4 class="text-xl font-bold text-teal-600 dark:text-teal-400 mb-3">C1 Level - Advanced</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Advanced vocabulary for professional contexts</li>
+              <li><strong>Chapter 2:</strong> Complex sentence structures and nuance</li>
+              <li><strong>Chapter 3:</strong> German literature and cultural references</li>
+              <li><strong>Chapter 4:</strong> Debates and persuasive communication</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-3">C2 Level - Proficient</h4>
+            <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+              <li><strong>Chapter 1:</strong> Near-native fluency and sophistication</li>
+              <li><strong>Chapter 2:</strong> Specialized vocabulary for academic fields</li>
+              <li><strong>Chapter 3:</strong> Stylistic writing and rhetorical devices</li>
+              <li><strong>Chapter 4:</strong> Advanced cultural competence and dialect understanding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <section>
       <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -61,11 +130,78 @@
       </div>
     </section>
   </main>
-
   <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
     &copy; 2025 Tutoring Website
   </footer>
-
   <script src="../../js/main.js"></script>
+  <script src="../../js/admin.js"></script>
+  <script>
+    // CSS for locked items
+    document.head.insertAdjacentHTML('beforeend', `
+      <style>
+        .locked { 
+          position: relative; 
+          pointer-events: none; 
+          opacity: 0.5; 
+        } 
+        .locked::after { 
+          content: '🔒'; 
+          position: absolute; 
+          top: 1rem; 
+          right: 1rem; 
+          font-size: 1.5rem; 
+        }
+      </style>
+    `);
+    
+    function applyChapterLocks() {
+      // Check if admin is logged in
+      const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+      
+      // If admin is logged in, don't apply any locks
+      if (adminLoggedIn) {
+        // Remove any existing locks
+        document.querySelectorAll('.locked').forEach(element => {
+          element.classList.remove('locked');
+        });
+        
+        // Add admin indicator to the header
+        const header = document.querySelector('header');
+        if (header) {
+          const adminBadge = document.createElement('div');
+          adminBadge.id = 'adminBadge';
+          adminBadge.textContent = 'Admin Mode';
+          adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+          
+          // Add the badge to the header if it doesn't already exist
+          if (!document.getElementById('adminBadge')) {
+            const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+            if (buttonsDiv) {
+              header.insertBefore(adminBadge, buttonsDiv);
+            } else {
+              header.appendChild(adminBadge);
+            }
+          }
+        }
+        return; // Exit the function early, no locks needed
+      }
+      
+      // Lock levels based on completion progress
+      const a1Complete = parseFloat(localStorage.getItem('german_a1_chapter1_progress')) >= 100;
+      
+      // Lock A2 if A1 is not complete
+      const a2CardLink = document.querySelector('a[href="chapters/a2/a2-chapter1.html"]');
+      if (a2CardLink && !a1Complete) {
+        a2CardLink.classList.add('locked');
+      }
+      
+      // Add more level locks as needed
+    }
+    
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      applyChapterLocks();
+    });
+  </script>
 </body>
 </html>

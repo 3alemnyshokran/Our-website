@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A1 Chapter 3: Greetings & Introductions - 3alemny Shokran</title>
+    <title>B1 Chapter 1: Practice Questions 2 - 3alemny Shokran</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'custom-blue': '#3b82f6',
+                        'custom-purple': '#6366F1',
                         'dark-bg': '#18191A',
                         'dark-card': '#242526',
                         'dark-text': '#E4E6EB',
@@ -46,8 +46,8 @@
         }
         
         .choice-option.selected {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
+            border-color: #6366F1;
+            background: rgba(99, 102, 241, 0.1);
         }
         
         /* Progress bar animations */
@@ -82,14 +82,14 @@
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
-    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+    <header class="bg-purple-600 dark:bg-purple-700 text-white shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold">3alemny Shokran</h1>
             <div class="flex items-center gap-4">
-                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
-                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
-                <a href="./a1-chapter3.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
-                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
+                <a href="./b1-chapter1.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-purple-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
                     <span class="light-icon">☀️</span>
                     <span class="dark-icon">🌙</span>
                 </button>
@@ -99,35 +99,33 @@
 
     <main class="flex-grow container mx-auto px-4 py-6">
         <div class="mb-8">
-            <h2 class="text-3xl font-bold mb-2 text-blue-600 dark:text-blue-400">Greetings & Introductions Practice</h2>
-            <p class="text-slate-600 dark:text-slate-400">Test your understanding of English greetings and introductions with these practice questions.</p>
-            <div class="mt-4 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 flex items-center">
+            <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">Expressing Opinions Practice</h2>
+            <p class="text-slate-600 dark:text-slate-400">Test your ability to express and understand opinions in English.</p>
+            <div class="mt-4 bg-purple-100 dark:bg-purple-900 rounded-lg p-4 flex items-center">
                 <div class="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 mr-4">
-                    <div class="progress-fill bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    <div class="progress-fill bg-purple-600 h-2.5 rounded-full" style="width: 0%"></div>
                 </div>
-                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/8 Questions</span>
+                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/10 Questions</span>
             </div>
         </div>
 
-        <div id="quiz-container" class="space-y-8 mb-8">            <!-- Question 1 -->
+        <div id="quiz-container" class="space-y-8 mb-8">
+            <!-- Question 1 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6" data-question="1">
-                <h3 class="text-xl font-bold mb-4">Question 1</h3>
-                <p class="mb-4">Which greeting would you use at 9:00 AM?</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    أي تحية تستخدمها في الساعة 9:00 صباحًا؟
-                </p>
+                <h3 class="text-xl font-bold mb-4">Question 1: Expressing Preferences</h3>
+                <p class="mb-4">Which phrase is best for expressing a preference in a polite way?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning" data-correct="true">
-                        Good morning <span class="text-gray-500 dark:text-gray-400 text-sm">(صباح الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I want this one.">
+                        I want this one.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good afternoon">
-                        Good afternoon <span class="text-gray-500 dark:text-gray-400 text-sm">(مساء الخير - بعد الظهر)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You should choose this one.">
+                        You should choose this one.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good evening">
-                        Good evening <span class="text-gray-500 dark:text-gray-400 text-sm">(مساء الخير - المساء)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I'd prefer this one, if that's okay." data-correct="true">
+                        I'd prefer this one, if that's okay.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good night">
-                        Good night <span class="text-gray-500 dark:text-gray-400 text-sm">(تصبح على خير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="This is the best one.">
+                        This is the best one.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -135,48 +133,41 @@
 
             <!-- Question 2 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="2">
-                <h3 class="text-xl font-bold mb-4">Question 2</h3>
-                <p class="mb-4">Complete the dialogue:</p>
-                <p>Person A: "Hello, my name is Tom."<br>Person B: "Hello Tom, ..."</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    أكمل الحوار:<br>
-                    الشخص أ: "مرحبا، اسمي توم."<br>
-                    الشخص ب: "مرحبا توم، ..."
-                </p>
+                <h3 class="text-xl font-bold mb-4">Question 2: Agreeing with an Opinion</h3>
+                <p class="mb-4">Someone says: "I think the film was really interesting." Which response shows that you agree?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I'm from Spain">
-                        I'm from Spain <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا من إسبانيا)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I don't think so.">
+                        I don't think so.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Nice to meet you" data-correct="true">
-                        Nice to meet you <span class="text-gray-500 dark:text-gray-400 text-sm">(تشرفت بمقابلتك)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You're absolutely right. I enjoyed it too." data-correct="true">
+                        You're absolutely right. I enjoyed it too.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning">
-                        Good morning <span class="text-gray-500 dark:text-gray-400 text-sm">(صباح الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="That's just your opinion.">
+                        That's just your opinion.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you">
-                        How are you <span class="text-gray-500 dark:text-gray-400 text-sm">(كيف حالك)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I see what you mean, but I found it boring.">
+                        I see what you mean, but I found it boring.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
-            </div>            <!-- Question 3 -->
+            </div>
+
+            <!-- Question 3 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="3">
-                <h3 class="text-xl font-bold mb-4">Question 3</h3>
-                <p class="mb-4">Which greeting would you NOT use at 7:00 PM?</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    أي تحية لا تستخدمها في الساعة 7:00 مساءً؟
-                </p>
+                <h3 class="text-xl font-bold mb-4">Question 3: Disagreeing Politely</h3>
+                <p class="mb-4">Which is the most polite way to disagree with someone's opinion?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hello">
-                        Hello <span class="text-gray-500 dark:text-gray-400 text-sm">(مرحبا)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You're wrong about that.">
+                        You're wrong about that.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hi">
-                        Hi <span class="text-gray-500 dark:text-gray-400 text-sm">(أهلا)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I couldn't disagree more.">
+                        I couldn't disagree more.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good evening">
-                        Good evening <span class="text-gray-500 dark:text-gray-400 text-sm">(مساء الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="That's a terrible idea.">
+                        That's a terrible idea.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning" data-correct="true">
-                        Good morning <span class="text-gray-500 dark:text-gray-400 text-sm">(صباح الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I see your point, but I have a different perspective." data-correct="true">
+                        I see your point, but I have a different perspective.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -184,23 +175,20 @@
 
             <!-- Question 4 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="4">
-                <h3 class="text-xl font-bold mb-4">Question 4</h3>
-                <p class="mb-4">How would you introduce yourself?</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    كيف تقدم نفسك؟
-                </p>
+                <h3 class="text-xl font-bold mb-4">Question 4: Asking for Opinions</h3>
+                <p class="mb-4">Which question is best for asking someone's opinion about a serious topic?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is..." data-correct="true">
-                        My name is... <span class="text-gray-500 dark:text-gray-400 text-sm">(اسمي هو...)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Do you like this?">
+                        Do you like this?
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I called...">
-                        I called... <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا اتصلت... - غير صحيح لتقديم النفس)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="What do you think about this issue?" data-correct="true">
+                        What do you think about this issue?
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Your name is...">
-                        Your name is... <span class="text-gray-500 dark:text-gray-400 text-sm">(اسمك هو... - لتقديم شخص آخر)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Is this good or bad?">
+                        Is this good or bad?
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Me am...">
-                        Me am... <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا أكون... - غير صحيح نحوياً)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Do you agree with me?">
+                        Do you agree with me?
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -208,21 +196,20 @@
 
             <!-- Question 5 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="5">
-                <h3 class="text-xl font-bold mb-4">Question 5</h3>
-                <p class="mb-4">Complete the dialogue:</p>
-                <p>Person A: "Hello! What's your name?"<br>Person B: "..."</p>
+                <h3 class="text-xl font-bold mb-4">Question 5: Introducing an Opinion</h3>
+                <p class="mb-4">Which phrase is best for introducing your opinion in a formal discussion?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am from Canada">
-                        I am from Canada
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I know that...">
+                        I know that...
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is John" data-correct="true">
-                        My name is John
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Listen to me...">
+                        Listen to me...
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Nice to meet you">
-                        Nice to meet you
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="In my opinion..." data-correct="true">
+                        In my opinion...
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you">
-                        How are you
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You should know that...">
+                        You should know that...
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -230,20 +217,20 @@
 
             <!-- Question 6 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="6">
-                <h3 class="text-xl font-bold mb-4">Question 6</h3>
-                <p class="mb-4">Which of these is NOT a common way to introduce yourself?</p>
+                <h3 class="text-xl font-bold mb-4">Question 6: Neutral Language</h3>
+                <p class="mb-4">Which sentence uses neutral language to express an opinion?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hello, I'm John">
-                        Hello, I'm John
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="This restaurant is definitely the best in town.">
+                        This restaurant is definitely the best in town.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is Mary">
-                        My name is Mary
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Only a fool would eat at that restaurant.">
+                        Only a fool would eat at that restaurant.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am Sarah">
-                        I am Sarah
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Based on my experience, the service at this restaurant is quite good." data-correct="true">
+                        Based on my experience, the service at this restaurant is quite good.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They call me David" data-correct="true">
-                        They call me David
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Everyone knows this restaurant is overpriced.">
+                        Everyone knows this restaurant is overpriced.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -251,20 +238,20 @@
 
             <!-- Question 7 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="7">
-                <h3 class="text-xl font-bold mb-4">Question 7</h3>
-                <p class="mb-4">How would you tell someone where you're from?</p>
+                <h3 class="text-xl font-bold mb-4">Question 7: Strong Opinions</h3>
+                <p class="mb-4">Which phrase expresses a strong opinion in an acceptable way?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I from Japan">
-                        I from Japan
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I strongly believe that this approach would be beneficial." data-correct="true">
+                        I strongly believe that this approach would be beneficial.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am from Japan" data-correct="true">
-                        I am from Japan
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Only an idiot would suggest such a thing.">
+                        Only an idiot would suggest such a thing.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Me from Japan">
-                        Me from Japan
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You must be joking if you think that's a good idea.">
+                        You must be joking if you think that's a good idea.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="From Japan I am">
-                        From Japan I am
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Everyone with any sense agrees with me.">
+                        Everyone with any sense agrees with me.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -272,20 +259,62 @@
 
             <!-- Question 8 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="8">
-                <h3 class="text-xl font-bold mb-4">Question 8</h3>
-                <p class="mb-4">Choose the correct dialogue:</p>
+                <h3 class="text-xl font-bold mb-4">Question 8: Partially Agreeing</h3>
+                <p class="mb-4">Which phrase is best for partially agreeing with someone?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Hello! My am John. B: Nice meet you.">
-                        A: Hello! My am John.<br>B: Nice meet you.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Yes, but you're wrong about...">
+                        Yes, but you're wrong about...
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Hi! I'm Sarah. B: Nice to meet you." data-correct="true">
-                        A: Hi! I'm Sarah.<br>B: Nice to meet you.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I agree with some parts of what you said, particularly..." data-correct="true">
+                        I agree with some parts of what you said, particularly...
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Good morning! I David. B: I Mary.">
-                        A: Good morning! I David.<br>B: I Mary.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You've got it half right.">
+                        You've got it half right.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Hello! Where you from? B: My name is Luis.">
-                        A: Hello! Where you from?<br>B: My name is Luis.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Let me tell you where you're mistaken...">
+                        Let me tell you where you're mistaken...
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="9">
+                <h3 class="text-xl font-bold mb-4">Question 9: Comparing Opinions</h3>
+                <p class="mb-4">Which sentence correctly compares opinions?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My opinion is better than yours.">
+                        My opinion is better than yours.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You think that, but I think this.">
+                        You think that, but I think this.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="While some people believe X, others argue that Y." data-correct="true">
+                        While some people believe X, others argue that Y.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Most experts disagree with you.">
+                        Most experts disagree with you.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="10">
+                <h3 class="text-xl font-bold mb-4">Question 10: Opinion vs. Fact</h3>
+                <p class="mb-4">Which statement represents an opinion rather than a fact?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Paris is the capital of France.">
+                        Paris is the capital of France.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="The Earth orbits around the Sun.">
+                        The Earth orbits around the Sun.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Water boils at 100 degrees Celsius at sea level.">
+                        Water boils at 100 degrees Celsius at sea level.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="This painting is the most beautiful artwork in the museum." data-correct="true">
+                        This painting is the most beautiful artwork in the museum.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -293,20 +322,20 @@
 
             <!-- Results Section -->
             <div id="results-container" class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 text-center hidden">
-                <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Quiz Results</h3>
-                <div class="score-display text-5xl font-bold my-6 text-blue-600 dark:text-blue-400">0/8</div>
+                <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Quiz Results</h3>
+                <div class="score-display text-5xl font-bold my-6 text-purple-600 dark:text-purple-400">0/10</div>
                 <p id="pass-message" class="text-lg mb-6"></p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button id="retry-button" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Try Again</button>
-                    <a href="./a1-chapter3-questions2.html" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg">Next Practice Set</a>
-                    <a href="./a1-chapter3.html" class="bg-slate-600 hover:bg-slate-700 text-white py-2 px-6 rounded-lg">Back to Chapter</a>
+                    <button id="retry-button" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Try Again</button>
+                    <a href="./b1-chapter1-assessment.html" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg">Chapter Assessment</a>
+                    <a href="./b1-chapter1.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Back to Chapter</a>
                 </div>
             </div>
         </div>
 
         <div class="navigation-buttons text-center mb-6 hidden">
             <button id="prev-button" class="bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-2 px-6 rounded-lg mr-3">Previous</button>
-            <button id="next-button" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Next</button>
+            <button id="next-button" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Next</button>
         </div>
     </main>
 
@@ -478,10 +507,10 @@
             const passingScore = Math.ceil(questions.length * 0.7); // 70% to pass
             
             if (score >= passingScore) {
-                passMessage.textContent = 'Congratulations! You\'ve mastered greetings and introductions.';
+                passMessage.textContent = 'Congratulations! You\'ve mastered expressing opinions in English.';
                 passMessage.className = 'text-lg mb-6 text-green-600 dark:text-green-400';
                 // Mark this part as completed
-                localStorage.setItem('a1_ch3_part1_completed', 'true');
+                localStorage.setItem('b1_ch1_part2_completed', 'true');
                 // Show confetti
                 createConfetti(100);
             } else {

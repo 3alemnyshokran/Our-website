@@ -46,6 +46,11 @@
             Account Recovery
           </button>
         </li>
+        <li>
+          <button onclick="showTab('courses')" class="w-full text-left px-4 py-2 rounded hover:bg-slate-700" id="tab-courses">
+            Course Access
+          </button>
+        </li>
       </ul>
     </nav>
     
@@ -319,6 +324,119 @@
         <div id="recovery-results" class="p-4 bg-slate-50 dark:bg-slate-900 rounded border border-slate-200 dark:border-slate-700">
           <p class="text-slate-600 dark:text-slate-400 text-center">Enter search criteria above to find user login history</p>
         </div>
+      </div>
+    </div>
+
+    <!-- Courses Tab -->
+    <div id="courses-tab" class="tab-content hidden">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold">Course Access</h2>
+        <div class="text-sm text-red-500 bg-red-100 dark:bg-red-900 dark:text-red-300 p-2 rounded">Admin Mode: All content unlocked</div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <!-- English Course Card -->
+        <a href="courses/english/english-course.html" class="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="bg-blue-500 dark:bg-blue-700 text-white p-4">
+            <h3 class="text-xl font-bold">English Course</h3>
+            <p class="text-sm opacity-90">All levels available</p>
+          </div>
+          <div class="p-4">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Complete English curriculum from A1 to C2</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 rounded text-xs">A1</span>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 rounded text-xs">A2</span>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 rounded text-xs">B1</span>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 rounded text-xs">B2</span>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 rounded text-xs">C1</span>
+              <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 rounded text-xs">C2</span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Arabic Course Card -->
+        <a href="courses/arabic/arabic-course.html" class="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="bg-green-500 dark:bg-green-700 text-white p-4">
+            <h3 class="text-xl font-bold">Arabic Course</h3>
+            <p class="text-sm opacity-90">All levels available</p>
+          </div>
+          <div class="p-4">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Complete Arabic curriculum from A1 to C2</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded text-xs">A1</span>
+              <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded text-xs">A2</span>
+              <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded text-xs">B1</span>
+              <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded text-xs">B2</span>
+              <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded text-xs">C1</span>
+              <span class="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 rounded text-xs">C2</span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- German Course Card -->
+        <a href="courses/german/german-course.html" class="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="bg-amber-500 dark:bg-amber-700 text-white p-4">
+            <h3 class="text-xl font-bold">German Course</h3>
+            <p class="text-sm opacity-90">All levels available</p>
+          </div>
+          <div class="p-4">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Complete German curriculum from A1 to C2</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-300 rounded text-xs">A1</span>
+              <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-300 rounded text-xs">A2</span>
+              <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-300 rounded text-xs">B1</span>
+              <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-300 rounded text-xs">B2</span>
+              <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-300 rounded text-xs">C1</span>
+              <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-300 rounded text-xs">C2</span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Math Course Card -->
+        <a href="courses/math/math-course.html" class="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="bg-indigo-500 dark:bg-indigo-700 text-white p-4">
+            <h3 class="text-xl font-bold">Math Course</h3>
+            <p class="text-sm opacity-90">All levels available</p>
+          </div>
+          <div class="p-4">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Complete Math curriculum from basic to advanced</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-300 rounded text-xs">Elementary</span>
+              <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-300 rounded text-xs">Intermediate</span>
+              <span class="px-2 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-300 rounded text-xs">Advanced</span>
+            </div>
+          </div>
+        </a>
+        
+        <!-- Science Course Card -->
+        <a href="courses/science/science-course.html" class="bg-white dark:bg-slate-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="bg-rose-500 dark:bg-rose-700 text-white p-4">
+            <h3 class="text-xl font-bold">Science Course</h3>
+            <p class="text-sm opacity-90">All levels available</p>
+          </div>
+          <div class="p-4">
+            <p class="text-sm text-slate-600 dark:text-slate-400 mb-3">Complete Science curriculum from basic to advanced</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-2 py-1 bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-300 rounded text-xs">Physics</span>
+              <span class="px-2 py-1 bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-300 rounded text-xs">Chemistry</span>
+              <span class="px-2 py-1 bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-300 rounded text-xs">Biology</span>
+            </div>
+          </div>
+        </a>
+      </div>
+      
+      <div class="bg-white dark:bg-slate-800 rounded-lg shadow-md p-6 mb-8">
+        <h3 class="text-xl font-bold mb-4 text-blue-600 dark:text-blue-400">Admin Controls</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <button class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded">Create New Course</button>
+          <button class="bg-green-600 hover:bg-green-700 text-white p-3 rounded">Edit Existing Course</button>
+          <button class="bg-amber-600 hover:bg-amber-700 text-white p-3 rounded">Manage Course Access</button>
+          <button class="bg-purple-600 hover:bg-purple-700 text-white p-3 rounded">Create Chapter Template</button>
+        </div>
+      </div>
+      
+      <div class="bg-slate-100 dark:bg-slate-800 rounded-lg p-4 text-sm text-slate-600 dark:text-slate-400">
+        <p>As an admin, you have full access to all courses, chapters, and assessments. Changes made here will be reflected for all users.</p>
       </div>
     </div>
   </main>

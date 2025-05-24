@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A1 Chapter 3: Greetings & Introductions - 3alemny Shokran</title>
+    <title>B1 Chapter 1: Practice Questions 1 - 3alemny Shokran</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -11,7 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'custom-blue': '#3b82f6',
+                        'custom-purple': '#6366F1',
                         'dark-bg': '#18191A',
                         'dark-card': '#242526',
                         'dark-text': '#E4E6EB',
@@ -46,8 +46,8 @@
         }
         
         .choice-option.selected {
-            border-color: #3b82f6;
-            background: rgba(59, 130, 246, 0.1);
+            border-color: #6366F1;
+            background: rgba(99, 102, 241, 0.1);
         }
         
         /* Progress bar animations */
@@ -82,14 +82,14 @@
     </style>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
-    <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+    <header class="bg-purple-600 dark:bg-purple-700 text-white shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold">3alemny Shokran</h1>
             <div class="flex items-center gap-4">
-                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
-                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
-                <a href="./a1-chapter3.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
-                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
+                <a href="./b1-chapter1.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-purple-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
                     <span class="light-icon">☀️</span>
                     <span class="dark-icon">🌙</span>
                 </button>
@@ -97,86 +97,82 @@
         </div>
     </header>
 
-    <main class="flex-grow container mx-auto px-4 py-6">
-        <div class="mb-8">
-            <h2 class="text-3xl font-bold mb-2 text-blue-600 dark:text-blue-400">Greetings & Introductions Practice</h2>
-            <p class="text-slate-600 dark:text-slate-400">Test your understanding of English greetings and introductions with these practice questions.</p>
-            <div class="mt-4 bg-blue-100 dark:bg-blue-900 rounded-lg p-4 flex items-center">
+    <main class="flex-grow container mx-auto px-4 py-6">        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">Present Perfect Practice</h2>
+            <p class="text-slate-600 dark:text-slate-400">Test your understanding of the present perfect tense with these practice questions.</p>
+            <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-purple-500 pr-3 text-right mb-4" dir="rtl">
+                اختبر فهمك لزمن المضارع التام مع أسئلة التدريب هذه.
+            </p>
+            <div class="mt-4 bg-purple-100 dark:bg-purple-900 rounded-lg p-4 flex items-center">
                 <div class="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 mr-4">
-                    <div class="progress-fill bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+                    <div class="progress-fill bg-purple-600 h-2.5 rounded-full" style="width: 0%"></div>
                 </div>
-                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/8 Questions</span>
+                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/10 Questions</span>
             </div>
         </div>
 
         <div id="quiz-container" class="space-y-8 mb-8">            <!-- Question 1 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6" data-question="1">
-                <h3 class="text-xl font-bold mb-4">Question 1</h3>
-                <p class="mb-4">Which greeting would you use at 9:00 AM?</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    أي تحية تستخدمها في الساعة 9:00 صباحًا؟
+                <h3 class="text-xl font-bold mb-4">Question 1: Fill in the blank with the correct form</h3>
+                <p class="mb-4">Sarah _______ (visit) many countries in Europe.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-purple-500 pr-3 text-right mb-4" dir="rtl">
+                    سارة _______ (زارت) العديد من البلدان في أوروبا.
                 </p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning" data-correct="true">
-                        Good morning <span class="text-gray-500 dark:text-gray-400 text-sm">(صباح الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="visits">
+                        visits <span class="text-gray-500 dark:text-gray-400 text-sm">(تزور)</span>
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good afternoon">
-                        Good afternoon <span class="text-gray-500 dark:text-gray-400 text-sm">(مساء الخير - بعد الظهر)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="visited">
+                        visited <span class="text-gray-500 dark:text-gray-400 text-sm">(زارت)</span>
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good evening">
-                        Good evening <span class="text-gray-500 dark:text-gray-400 text-sm">(مساء الخير - المساء)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="has visited" data-correct="true">
+                        has visited <span class="text-gray-500 dark:text-gray-400 text-sm">(قد زارت)</span>
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good night">
-                        Good night <span class="text-gray-500 dark:text-gray-400 text-sm">(تصبح على خير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="is visiting">
+                        is visiting <span class="text-gray-500 dark:text-gray-400 text-sm">(تزور حاليًا)</span>
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>            <!-- Question 2 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="2">
+                <h3 class="text-xl font-bold mb-4">Question 2: Choose the correct sentence</h3>
+                <p class="mb-4">Which sentence uses the present perfect correctly?</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-purple-500 pr-3 text-right mb-4" dir="rtl">
+                    أي جملة تستخدم زمن المضارع التام بشكل صحيح؟
+                </p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am living in this city since 2010.">
+                        I am living in this city since 2010. <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا أعيش في هذه المدينة منذ عام 2010.)</span>
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have lived in this city since 2010." data-correct="true">
+                        I have lived in this city since 2010. <span class="text-gray-500 dark:text-gray-400 text-sm">(لقد عشت في هذه المدينة منذ عام 2010.)</span>
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I live in this city since 2010.">
+                        I live in this city since 2010. <span class="text-gray-500 dark:text-gray-400 text-sm">(أعيش في هذه المدينة منذ عام 2010.)</span>
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I lived in this city since 2010.">
+                        I lived in this city since 2010. <span class="text-gray-500 dark:text-gray-400 text-sm">(عشت في هذه المدينة منذ عام 2010.)</span>
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
             </div>
 
-            <!-- Question 2 -->
-            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="2">
-                <h3 class="text-xl font-bold mb-4">Question 2</h3>
-                <p class="mb-4">Complete the dialogue:</p>
-                <p>Person A: "Hello, my name is Tom."<br>Person B: "Hello Tom, ..."</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    أكمل الحوار:<br>
-                    الشخص أ: "مرحبا، اسمي توم."<br>
-                    الشخص ب: "مرحبا توم، ..."
-                </p>
-                <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I'm from Spain">
-                        I'm from Spain <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا من إسبانيا)</span>
-                    </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Nice to meet you" data-correct="true">
-                        Nice to meet you <span class="text-gray-500 dark:text-gray-400 text-sm">(تشرفت بمقابلتك)</span>
-                    </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning">
-                        Good morning <span class="text-gray-500 dark:text-gray-400 text-sm">(صباح الخير)</span>
-                    </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you">
-                        How are you <span class="text-gray-500 dark:text-gray-400 text-sm">(كيف حالك)</span>
-                    </div>
-                </div>
-                <div class="mt-4 feedback hidden"></div>
-            </div>            <!-- Question 3 -->
+            <!-- Question 3 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="3">
-                <h3 class="text-xl font-bold mb-4">Question 3</h3>
-                <p class="mb-4">Which greeting would you NOT use at 7:00 PM?</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    أي تحية لا تستخدمها في الساعة 7:00 مساءً؟
-                </p>
+                <h3 class="text-xl font-bold mb-4">Question 3: Fill in the blank</h3>
+                <p class="mb-4">She _______ never _______ to Australia.</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hello">
-                        Hello <span class="text-gray-500 dark:text-gray-400 text-sm">(مرحبا)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="has, went">
+                        has, went
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hi">
-                        Hi <span class="text-gray-500 dark:text-gray-400 text-sm">(أهلا)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="have, been">
+                        have, been
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good evening">
-                        Good evening <span class="text-gray-500 dark:text-gray-400 text-sm">(مساء الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="is, going">
+                        is, going
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Good morning" data-correct="true">
-                        Good morning <span class="text-gray-500 dark:text-gray-400 text-sm">(صباح الخير)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="has, been" data-correct="true">
+                        has, been
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -184,23 +180,20 @@
 
             <!-- Question 4 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="4">
-                <h3 class="text-xl font-bold mb-4">Question 4</h3>
-                <p class="mb-4">How would you introduce yourself?</p>
-                <p class="mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right" dir="rtl">
-                    كيف تقدم نفسك؟
-                </p>
+                <h3 class="text-xl font-bold mb-4">Question 4: Using "just" with Present Perfect</h3>
+                <p class="mb-4">Which sentence uses "just" with the present perfect correctly?</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is..." data-correct="true">
-                        My name is... <span class="text-gray-500 dark:text-gray-400 text-sm">(اسمي هو...)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I just arrived at home.">
+                        I just arrived at home.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I called...">
-                        I called... <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا اتصلت... - غير صحيح لتقديم النفس)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have just arrive at home.">
+                        I have just arrive at home.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Your name is...">
-                        Your name is... <span class="text-gray-500 dark:text-gray-400 text-sm">(اسمك هو... - لتقديم شخص آخر)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have just arrived at home." data-correct="true">
+                        I have just arrived at home.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Me am...">
-                        Me am... <span class="text-gray-500 dark:text-gray-400 text-sm">(أنا أكون... - غير صحيح نحوياً)</span>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I just have arrived at home.">
+                        I just have arrived at home.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -208,21 +201,20 @@
 
             <!-- Question 5 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="5">
-                <h3 class="text-xl font-bold mb-4">Question 5</h3>
-                <p class="mb-4">Complete the dialogue:</p>
-                <p>Person A: "Hello! What's your name?"<br>Person B: "..."</p>
+                <h3 class="text-xl font-bold mb-4">Question 5: Present Perfect vs Past Simple</h3>
+                <p class="mb-4">Choose the correct sentence for this situation: "Talking about a movie you saw last week"</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am from Canada">
-                        I am from Canada
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have seen a great movie last week.">
+                        I have seen a great movie last week.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is John" data-correct="true">
-                        My name is John
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I saw a great movie last week." data-correct="true">
+                        I saw a great movie last week.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Nice to meet you">
-                        Nice to meet you
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have been seeing a great movie last week.">
+                        I have been seeing a great movie last week.
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="How are you">
-                        How are you
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am seeing a great movie last week.">
+                        I am seeing a great movie last week.
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -230,20 +222,20 @@
 
             <!-- Question 6 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="6">
-                <h3 class="text-xl font-bold mb-4">Question 6</h3>
-                <p class="mb-4">Which of these is NOT a common way to introduce yourself?</p>
+                <h3 class="text-xl font-bold mb-4">Question 6: Using "ever" in questions</h3>
+                <p class="mb-4">Complete the question: "_______ you _______ eaten sushi?"</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Hello, I'm John">
-                        Hello, I'm John
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Did, ever">
+                        Did, ever
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="My name is Mary">
-                        My name is Mary
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Are, ever">
+                        Are, ever
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am Sarah">
-                        I am Sarah
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Have, ever" data-correct="true">
+                        Have, ever
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They call me David" data-correct="true">
-                        They call me David
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Have, never">
+                        Have, never
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -251,20 +243,20 @@
 
             <!-- Question 7 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="7">
-                <h3 class="text-xl font-bold mb-4">Question 7</h3>
-                <p class="mb-4">How would you tell someone where you're from?</p>
+                <h3 class="text-xl font-bold mb-4">Question 7: Using "already" with Present Perfect</h3>
+                <p class="mb-4">Complete the sentence: "I _______ _______ finished my homework."</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I from Japan">
-                        I from Japan
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="did already">
+                        did already
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am from Japan" data-correct="true">
-                        I am from Japan
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="already have">
+                        already have
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Me from Japan">
-                        Me from Japan
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="have already" data-correct="true">
+                        have already
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="From Japan I am">
-                        From Japan I am
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="am already">
+                        am already
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -272,20 +264,62 @@
 
             <!-- Question 8 -->
             <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="8">
-                <h3 class="text-xl font-bold mb-4">Question 8</h3>
-                <p class="mb-4">Choose the correct dialogue:</p>
+                <h3 class="text-xl font-bold mb-4">Question 8: Using "yet" in negative statements</h3>
+                <p class="mb-4">Complete the sentence: "They _______ _______ arrived _______ ."</p>
                 <div class="space-y-2">
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Hello! My am John. B: Nice meet you.">
-                        A: Hello! My am John.<br>B: Nice meet you.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="haven't, yet, -" data-correct="true">
+                        haven't, -, yet
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Hi! I'm Sarah. B: Nice to meet you." data-correct="true">
-                        A: Hi! I'm Sarah.<br>B: Nice to meet you.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="didn't, -, yet">
+                        didn't, -, yet
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Good morning! I David. B: I Mary.">
-                        A: Good morning! I David.<br>B: I Mary.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="hasn't, -, already">
+                        hasn't, -, already
                     </div>
-                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="A: Hello! Where you from? B: My name is Luis.">
-                        A: Hello! Where you from?<br>B: My name is Luis.
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="aren't, yet, -">
+                        aren't, yet, -
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="9">
+                <h3 class="text-xl font-bold mb-4">Question 9: Present Perfect for Life Experiences</h3>
+                <p class="mb-4">Which sentence is an appropriate use of the present perfect for a life experience?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I went to France three times.">
+                        I went to France three times.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I go to France every summer.">
+                        I go to France every summer.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have been to France three times." data-correct="true">
+                        I have been to France three times.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I am going to France next month.">
+                        I am going to France next month.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="10">
+                <h3 class="text-xl font-bold mb-4">Question 10: Present Perfect with Time Expressions</h3>
+                <p class="mb-4">Which time expression is NOT typically used with the present perfect?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="since" >
+                        since
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="for">
+                        for
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="already">
+                        already
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="yesterday" data-correct="true">
+                        yesterday
                     </div>
                 </div>
                 <div class="mt-4 feedback hidden"></div>
@@ -293,20 +327,20 @@
 
             <!-- Results Section -->
             <div id="results-container" class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 text-center hidden">
-                <h3 class="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">Quiz Results</h3>
-                <div class="score-display text-5xl font-bold my-6 text-blue-600 dark:text-blue-400">0/8</div>
+                <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Quiz Results</h3>
+                <div class="score-display text-5xl font-bold my-6 text-purple-600 dark:text-purple-400">0/10</div>
                 <p id="pass-message" class="text-lg mb-6"></p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <button id="retry-button" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Try Again</button>
-                    <a href="./a1-chapter3-questions2.html" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg">Next Practice Set</a>
-                    <a href="./a1-chapter3.html" class="bg-slate-600 hover:bg-slate-700 text-white py-2 px-6 rounded-lg">Back to Chapter</a>
+                    <button id="retry-button" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Try Again</button>
+                    <a href="./b1-chapter1-questions2.html" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg">Next Practice Set</a>
+                    <a href="./b1-chapter1.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Back to Chapter</a>
                 </div>
             </div>
         </div>
 
         <div class="navigation-buttons text-center mb-6 hidden">
             <button id="prev-button" class="bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-2 px-6 rounded-lg mr-3">Previous</button>
-            <button id="next-button" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Next</button>
+            <button id="next-button" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Next</button>
         </div>
     </main>
 
@@ -478,10 +512,10 @@
             const passingScore = Math.ceil(questions.length * 0.7); // 70% to pass
             
             if (score >= passingScore) {
-                passMessage.textContent = 'Congratulations! You\'ve mastered greetings and introductions.';
+                passMessage.textContent = 'Congratulations! You've mastered the present perfect tense.';
                 passMessage.className = 'text-lg mb-6 text-green-600 dark:text-green-400';
                 // Mark this part as completed
-                localStorage.setItem('a1_ch3_part1_completed', 'true');
+                localStorage.setItem('b1_ch1_part1_completed', 'true');
                 // Show confetti
                 createConfetti(100);
             } else {

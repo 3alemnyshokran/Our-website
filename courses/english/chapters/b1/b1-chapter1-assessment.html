@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Chapter 1: Assessment - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-purple': '#6366F1',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
+        .question-container {
+            transition: all 0.3s ease;
+        }
+        
+        .question-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .choice-option {
+            transition: all 0.2s ease;
+        }
+        
+        .choice-option:hover {
+            transform: translateX(5px);
+        }
+        
+        .choice-option.selected {
+            border-color: #6366F1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        /* Progress bar animations */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        .progress-fill {
+            animation: 1s ease-out 0s 1 slideInFromLeft;
+        }
+        
+        /* Certificate styles */
+        .certificate {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .certificate::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="rgba(0,0,0,0.05)" stroke-width="2" d="M50,10 A40,40 0 1,1 49.9,10 z"/></svg>') repeat;
+            z-index: 0;
+            opacity: 0.4;
+        }
+        
+        .certificate-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .certificate-seal {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border: 5px solid rgba(255,255,255,0.5);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* Confetti animation */
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #ffd700;
+            opacity: 0;
+            pointer-events: none;
+            animation: confetti-fall 5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-purple-600 dark:bg-purple-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="../../../../index.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Home</a>
+                <a href="../../english-course.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Course Home</a>
+                <a href="./b1-chapter1.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">Chapter Content</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-purple-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">B1 Chapter 1: Final Assessment</h2>
+            <p class="text-slate-600 dark:text-slate-400">This assessment will test your understanding of Present Perfect tense and expressing opinions in English.</p>
+            <div class="mt-4 bg-purple-100 dark:bg-purple-900 rounded-lg p-4 flex items-center">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 rounded-full h-2.5 mr-4">
+                    <div class="progress-fill bg-purple-600 h-2.5 rounded-full" style="width: 0%"></div>
+                </div>
+                <span id="progress-text" class="text-sm font-medium whitespace-nowrap">0/20 Questions</span>
+            </div>
+        </div>
+
+        <div id="quiz-container" class="space-y-8 mb-8">
+            <!-- Question 1 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6" data-question="1">
+                <h3 class="text-xl font-bold mb-4">Question 1</h3>
+                <p class="mb-4">Complete the sentence: "She ______ (never/visit) New York before last year."</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="never visits">
+                        never visits
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="has never visited">
+                        has never visited
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="never visited">
+                        never visited
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="had never visited" data-correct="true">
+                        had never visited
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Questions 2-20 would follow the same pattern -->
+            <!-- Question 2 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="2">
+                <h3 class="text-xl font-bold mb-4">Question 2</h3>
+                <p class="mb-4">Which sentence uses the present perfect correctly?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have been to Italy three years ago.">
+                        I have been to Italy three years ago.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="She has lived here since five years.">
+                        She has lived here since five years.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="We have finished our homework yesterday.">
+                        We have finished our homework yesterday.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They have traveled to many countries in Europe." data-correct="true">
+                        They have traveled to many countries in Europe.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="3">
+                <h3 class="text-xl font-bold mb-4">Question 3</h3>
+                <p class="mb-4">Which expression is used to ask about experiences in the present perfect?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Have you ever..." data-correct="true">
+                        Have you ever...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Did you ever...">
+                        Did you ever...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Are you ever...">
+                        Are you ever...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Were you ever...">
+                        Were you ever...
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="4">
+                <h3 class="text-xl font-bold mb-4">Question 4</h3>
+                <p class="mb-4">Which phrase would you use to politely disagree with someone's opinion in a formal setting?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I don't think that's right.">
+                        I don't think that's right.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="That's not correct at all.">
+                        That's not correct at all.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I'm afraid I have a different perspective on this matter." data-correct="true">
+                        I'm afraid I have a different perspective on this matter.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You've got it wrong.">
+                        You've got it wrong.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="5">
+                <h3 class="text-xl font-bold mb-4">Question 5</h3>
+                <p class="mb-4">Complete the sentence with the correct form: "I _______ (just/finish) my homework when you called."</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="just finished">
+                        just finished
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="have just finished">
+                        have just finished
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="had just finished" data-correct="true">
+                        had just finished
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="was just finishing">
+                        was just finishing
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="6">
+                <h3 class="text-xl font-bold mb-4">Question 6</h3>
+                <p class="mb-4">Which statement shows a strong opinion expressed in an appropriate way?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Anyone who disagrees with me is wrong.">
+                        Anyone who disagrees with me is wrong.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I firmly believe this is the best approach for several reasons." data-correct="true">
+                        I firmly believe this is the best approach for several reasons.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="This is definitely the only way to solve the problem.">
+                        This is definitely the only way to solve the problem.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="It's obvious that my solution is correct.">
+                        It's obvious that my solution is correct.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="7">
+                <h3 class="text-xl font-bold mb-4">Question 7</h3>
+                <p class="mb-4">Choose the correct sentence:</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They yet haven't arrived.">
+                        They yet haven't arrived.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They haven't arrived yet." data-correct="true">
+                        They haven't arrived yet.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They haven't yet arrived.">
+                        They haven't yet arrived.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Yet they haven't arrived.">
+                        Yet they haven't arrived.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="8">
+                <h3 class="text-xl font-bold mb-4">Question 8</h3>
+                <p class="mb-4">Which statement is factual rather than an opinion?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Shakespeare was the greatest playwright who ever lived.">
+                        Shakespeare was the greatest playwright who ever lived.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Italian food is better than French cuisine.">
+                        Italian food is better than French cuisine.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Everyone should visit Paris at least once.">
+                        Everyone should visit Paris at least once.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="The Eiffel Tower is 324 meters tall." data-correct="true">
+                        The Eiffel Tower is 324 meters tall.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="9">
+                <h3 class="text-xl font-bold mb-4">Question 9</h3>
+                <p class="mb-4">Choose the correct sentence for a situation when someone has just arrived:</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="She is just arrived.">
+                        She is just arrived.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="She has just arrived." data-correct="true">
+                        She has just arrived.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="She just has arrived.">
+                        She just has arrived.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="She was just arrived.">
+                        She was just arrived.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="10">
+                <h3 class="text-xl font-bold mb-4">Question 10</h3>
+                <p class="mb-4">Which phrase is best for asking someone to elaborate on their opinion?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Tell me more about that, please." data-correct="true">
+                        Tell me more about that, please.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I need you to explain better.">
+                        I need you to explain better.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="That's not clear enough.">
+                        That's not clear enough.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Why do you think that way?">
+                        Why do you think that way?
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 11 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="11">
+                <h3 class="text-xl font-bold mb-4">Question 11</h3>
+                <p class="mb-4">Complete the sentence: "They _______ (live) in this city for 10 years."</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="are living">
+                        are living
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="live">
+                        live
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="lived">
+                        lived
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="have lived" data-correct="true">
+                        have lived
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 12 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="12">
+                <h3 class="text-xl font-bold mb-4">Question 12</h3>
+                <p class="mb-4">Which sentence shows that you are open to changing your opinion?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="This is what I believe, but I'm willing to consider other viewpoints." data-correct="true">
+                        This is what I believe, but I'm willing to consider other viewpoints.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I've made up my mind and that's final.">
+                        I've made up my mind and that's final.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="You'll have a hard time changing my opinion.">
+                        You'll have a hard time changing my opinion.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I know I'm right about this.">
+                        I know I'm right about this.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 13 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="13">
+                <h3 class="text-xl font-bold mb-4">Question 13</h3>
+                <p class="mb-4">Choose the correct sentence with "already":</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I already have seen that movie.">
+                        I already have seen that movie.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have seen already that movie.">
+                        I have seen already that movie.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have already seen that movie." data-correct="true">
+                        I have already seen that movie.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Already I have seen that movie.">
+                        Already I have seen that movie.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 14 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="14">
+                <h3 class="text-xl font-bold mb-4">Question 14</h3>
+                <p class="mb-4">Which phrase is used to introduce a contrasting opinion?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="In addition to that...">
+                        In addition to that...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Similarly...">
+                        Similarly...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="On the other hand..." data-correct="true">
+                        On the other hand...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Furthermore...">
+                        Furthermore...
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 15 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="15">
+                <h3 class="text-xl font-bold mb-4">Question 15</h3>
+                <p class="mb-4">Which pair of time expressions can be used with the present perfect?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="yesterday / last week">
+                        yesterday / last week
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="at 2 PM / in 2020">
+                        at 2 PM / in 2020
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="since / for" data-correct="true">
+                        since / for
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="ago / last month">
+                        ago / last month
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 16 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="16">
+                <h3 class="text-xl font-bold mb-4">Question 16</h3>
+                <p class="mb-4">Which sentence shows that you value someone's opinion while disagreeing?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I appreciate your input, but I think we should consider another approach." data-correct="true">
+                        I appreciate your input, but I think we should consider another approach.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="That's an interesting idea, though it's not quite right.">
+                        That's an interesting idea, though it's not quite right.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I understand what you're saying, but the facts suggest otherwise.">
+                        I understand what you're saying, but the facts suggest otherwise.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Thanks for sharing, but I have a better idea.">
+                        Thanks for sharing, but I have a better idea.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 17 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="17">
+                <h3 class="text-xl font-bold mb-4">Question 17</h3>
+                <p class="mb-4">Complete the sentence: "_______ you ever _______ to Japan?"</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Did, go">
+                        Did, go
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Are, going">
+                        Are, going
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Have, been" data-correct="true">
+                        Have, been
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Will, travel">
+                        Will, travel
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 18 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="18">
+                <h3 class="text-xl font-bold mb-4">Question 18</h3>
+                <p class="mb-4">Which expression is NOT typically used when expressing opinions?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I believe that...">
+                        I believe that...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="In my view...">
+                        In my view...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="It is a fact that..." data-correct="true">
+                        It is a fact that...
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="From my perspective...">
+                        From my perspective...
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 19 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="19">
+                <h3 class="text-xl font-bold mb-4">Question 19</h3>
+                <p class="mb-4">Choose the correct sentence:</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="I have gone to the mall yesterday.">
+                        I have gone to the mall yesterday.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="She has been living here for five years." data-correct="true">
+                        She has been living here for five years.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="We have met two days ago.">
+                        We have met two days ago.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="They have studied English since three years.">
+                        They have studied English since three years.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Question 20 -->
+            <div class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 hidden" data-question="20">
+                <h3 class="text-xl font-bold mb-4">Question 20</h3>
+                <p class="mb-4">What is the best way to respond when someone asks for your opinion about a sensitive topic?</p>
+                <div class="space-y-2">
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Tell them exactly what you think without filtering.">
+                        Tell them exactly what you think without filtering.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Say that you don't want to discuss sensitive topics.">
+                        Say that you don't want to discuss sensitive topics.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Express your views respectfully, acknowledging that others may have different perspectives." data-correct="true">
+                        Express your views respectfully, acknowledging that others may have different perspectives.
+                    </div>
+                    <div class="choice-option cursor-pointer border border-slate-300 dark:border-slate-600 rounded-lg p-3" data-value="Agree with whatever the other person thinks to avoid conflict.">
+                        Agree with whatever the other person thinks to avoid conflict.
+                    </div>
+                </div>
+                <div class="mt-4 feedback hidden"></div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-container" class="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6 text-center hidden">
+                <h3 class="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">Assessment Results</h3>
+                <div class="score-display text-5xl font-bold my-6 text-purple-600 dark:text-purple-400">0/20</div>
+                <p id="pass-message" class="text-lg mb-6"></p>
+                
+                <!-- Certificate will appear here if passed -->
+                <div id="certificate-container" class="hidden my-8">
+                    <div class="certificate rounded-xl p-8 max-w-2xl mx-auto">
+                        <div class="certificate-content text-center">
+                            <h3 class="text-3xl font-bold mb-4 text-purple-700">Certificate of Completion</h3>
+                            <p class="text-lg mb-6">This is to certify that</p>
+                            <p class="text-2xl font-bold mb-6 text-purple-800">Student</p>
+                            <p class="text-lg mb-8">has successfully completed</p>
+                            <p class="text-xl font-semibold mb-2 text-purple-700">B1 English - Chapter 1</p>
+                            <p class="text-md mb-6">Experiences and Opinions</p>
+                            
+                            <div class="flex justify-center mb-6">
+                                <div class="certificate-seal">B1</div>
+                            </div>
+                            
+                            <p class="text-sm mt-8">Issued on <span id="certificate-date"></span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button id="retry-button" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Try Again</button>
+                    <a href="./b1-chapter1.html" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg">Back to Chapter</a>
+                    <a href="./b1-chapter2.html" class="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-lg">Next Chapter</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-buttons text-center mb-6 hidden">
+            <button id="prev-button" class="bg-slate-300 dark:bg-slate-700 text-slate-800 dark:text-slate-200 py-2 px-6 rounded-lg mr-3">Previous</button>
+            <button id="next-button" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg">Next</button>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Set certificate date
+        const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        if (document.getElementById('certificate-date')) {
+            document.getElementById('certificate-date').textContent = today;
+        }
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Quiz functionality
+        const quizContainer = document.getElementById('quiz-container');
+        const questions = quizContainer.querySelectorAll('.question-container');
+        const resultsContainer = document.getElementById('results-container');
+        const navigationButtons = document.querySelector('.navigation-buttons');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const progressBar = document.querySelector('.progress-fill');
+        const progressText = document.getElementById('progress-text');
+        const retryButton = document.getElementById('retry-button');
+        const certificateContainer = document.getElementById('certificate-container');
+        
+        let currentQuestion = 1;
+        let score = 0;
+        let userAnswers = {};
+        
+        // Initialize quiz
+        function initQuiz() {
+            showQuestion(1);
+            updateNavButtons();
+            navigationButtons.classList.remove('hidden');
+        }
+        
+        // Show a specific question
+        function showQuestion(questionNumber) {
+            questions.forEach(question => {
+                question.classList.add('hidden');
+            });
+            
+            const questionToShow = document.querySelector(`[data-question="${questionNumber}"]`);
+            if (questionToShow) {
+                questionToShow.classList.remove('hidden');
+                currentQuestion = questionNumber;
+                updateProgress();
+            }
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const percentage = ((currentQuestion - 1) / questions.length) * 100;
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `${currentQuestion-1}/${questions.length} Questions`;
+        }
+        
+        // Update navigation buttons
+        function updateNavButtons() {
+            prevButton.disabled = currentQuestion === 1;
+            prevButton.classList.toggle('opacity-50', currentQuestion === 1);
+            
+            if (currentQuestion > questions.length - 1) {
+                nextButton.textContent = 'Show Results';
+            } else {
+                nextButton.textContent = 'Next';
+            }
+        }
+        
+        // Setup choice options
+        questions.forEach(question => {
+            const options = question.querySelectorAll('.choice-option');
+            const feedback = question.querySelector('.feedback');
+            
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Store user's answer
+                    const questionNumber = question.dataset.question;
+                    userAnswers[questionNumber] = {
+                        selected: this.dataset.value,
+                        isCorrect: this.dataset.correct === 'true'
+                    };
+                    
+                    // Show feedback
+                    feedback.classList.remove('hidden');
+                    if (this.dataset.correct === 'true') {
+                        feedback.innerHTML = '<div class="p-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded">Correct! Well done.</div>';
+                    } else {
+                        const correctOption = Array.from(options).find(opt => opt.dataset.correct === 'true');
+                        feedback.innerHTML = `<div class="p-2 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded">Incorrect. The correct answer is: ${correctOption ? correctOption.dataset.value : 'Not found'}</div>`;
+                    }
+                });
+            });
+        });
+        
+        // Navigation buttons event listeners
+        prevButton.addEventListener('click', function() {
+            if (currentQuestion > 1) {
+                showQuestion(currentQuestion - 1);
+                updateNavButtons();
+            }
+        });
+        
+        nextButton.addEventListener('click', function() {
+            if (currentQuestion < questions.length) {
+                showQuestion(currentQuestion + 1);
+                updateNavButtons();
+            } else {
+                showResults();
+            }
+        });
+        
+        // Retry button
+        retryButton.addEventListener('click', function() {
+            resultsContainer.classList.add('hidden');
+            if (certificateContainer) {
+                certificateContainer.classList.add('hidden');
+            }
+            userAnswers = {};
+            score = 0;
+            
+            // Reset all questions and selections
+            questions.forEach(question => {
+                const options = question.querySelectorAll('.choice-option');
+                options.forEach(option => option.classList.remove('selected'));
+                
+                const feedback = question.querySelector('.feedback');
+                feedback.classList.add('hidden');
+            });
+            
+            showQuestion(1);
+            updateNavButtons();
+            navigationButtons.classList.remove('hidden');
+        });
+        
+        // Show quiz results
+        function showResults() {
+            navigationButtons.classList.add('hidden');
+            questions.forEach(question => question.classList.add('hidden'));
+            
+            // Calculate score
+            score = 0;
+            Object.values(userAnswers).forEach(answer => {
+                if (answer.isCorrect) score++;
+            });
+            
+            const scoreDisplay = resultsContainer.querySelector('.score-display');
+            scoreDisplay.textContent = `${score}/${questions.length}`;
+            
+            const passMessage = document.getElementById('pass-message');
+            const passingScore = Math.ceil(questions.length * 0.8); // 80% to pass
+            
+            if (score >= passingScore) {
+                passMessage.textContent = 'Congratulations! You\'ve successfully completed Chapter 1!';
+                passMessage.className = 'text-lg mb-6 text-green-600 dark:text-green-400';
+                
+                // Show certificate if passed
+                if (certificateContainer) {
+                    certificateContainer.classList.remove('hidden');
+                }
+                
+                // Mark this chapter as completed
+                localStorage.setItem('b1_ch1_assessment_completed', 'true');
+                localStorage.setItem('b1_ch1_completed', 'true');
+                
+                // Show confetti
+                createConfetti(150);
+            } else {
+                passMessage.textContent = 'Keep practicing! Try again to achieve a passing score of 80%.';
+                passMessage.className = 'text-lg mb-6 text-orange-600 dark:text-orange-400';
+            }
+            
+            resultsContainer.classList.remove('hidden');
+            
+            // Update progress to 100%
+            progressBar.style.width = '100%';
+            progressText.textContent = `${questions.length}/${questions.length} Questions`;
+        }
+        
+        // Confetti effect
+        function createConfetti(count) {
+            const colors = ['#ffd700', '#ff4e33', '#33ff4e', '#4e33ff', '#ff33a8'];
+            
+            for (let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.body.appendChild(confetti);
+                
+                // Remove confetti after animation completes
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+        
+        // Initialize the quiz
+        initQuiz();
+    </script>
+</body>
+</html>

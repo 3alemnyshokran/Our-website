@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+            <div id="adminBadge" class="bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold">Admin Mode</div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+            <a href="../index.html" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Back to Home</a>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <section class="mb-10">
+            <h2 class="text-3xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">Welcome to Admin Dashboard</h2>
+            <p class="text-lg text-center text-slate-600 dark:text-slate-400 mb-8">Manage all aspects of the 3alemny Shokran educational platform</p>
+        
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Platform Stats Card -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">Platform Statistics</h3>
+                    <div class="space-y-3">
+                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Total Users:</span> <span class="font-semibold">1,248</span></p>
+                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Active Courses:</span> <span class="font-semibold">5</span></p>
+                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Course Completions:</span> <span class="font-semibold">348</span></p>
+                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Assessments Taken:</span> <span class="font-semibold">1,892</span></p>
+                    </div>
+                </div>
+                
+                <!-- Course Management Card -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-green-600 dark:text-green-400 mb-4">Course Management</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../courses/english/english-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇬🇧</span> English Course</a></li>
+                        <li><a href="../courses/german/german-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇩🇪</span> German Course</a></li>
+                        <li><a href="../courses/arabic/arabic-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇸🇦</span> Arabic Course</a></li>
+                        <li><a href="../courses/math/math-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🔢</span> Math Course</a></li>
+                        <li><a href="../courses/science/science-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🔬</span> Science Course</a></li>
+                    </ul>
+                    <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition-colors">Add New Course</button>
+                </div>
+                
+                <!-- User Management Card -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400 mb-4">User Management</h3>
+                    <div class="flex flex-col space-y-2">
+                        <button class="bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg transition-colors">View All Users</button>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors">View Progress Reports</button>
+                        <button class="bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg transition-colors">Manage Permissions</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-10">
+            <h2 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300">Recent User Activity</h2>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                    <thead class="bg-gray-50 dark:bg-slate-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">User</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Action</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Course</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Ahmed S.</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Completed Chapter</td>
+                            <td class="px-6 py-4 whitespace-nowrap">English A1 Ch.2</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Today, 10:23 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Sarah K.</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Started Course</td>
+                            <td class="px-6 py-4 whitespace-nowrap">German A1</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Today, 09:47 AM</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Mohammed A.</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Failed Assessment</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Math A2 Ch.1</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Yesterday, 08:12 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Fatima R.</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Passed Assessment</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Arabic B1 Ch.3</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Yesterday, 06:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">John D.</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Registered</td>
+                            <td class="px-6 py-4 whitespace-nowrap">N/A</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Yesterday, 02:15 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="flex justify-center mt-4">
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">View All Activity</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center">
+        &copy; 2025 3alemny Shokran Educational Platform | Admin Access
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Check admin login status
+            const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            if (!adminLoggedIn) {
+                // Redirect non-admin users back to home page
+                window.location.href = '../index.html';
+                alert('Admin access required. Please log in as an administrator.');
+            }
+        });
+    </script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

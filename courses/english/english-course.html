@@ -39,6 +39,75 @@
             <h2 class="text-3xl sm:text-4xl font-semibold mb-3 text-blue-600 dark:text-blue-400">English Course</h2>
             <p class="text-lg text-slate-600 dark:text-slate-400 mb-2">All levels from A1 to C2</p>
         </section>
+        
+        <section class="mb-10">
+            <h3 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg p-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">A1 Level - Beginner</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Chapter 1:</strong> Basic pronouns and the verb "to be"</li>
+                            <li><strong>Chapter 2:</strong> Colors, numbers, and basic vocabulary</li>
+                            <li><strong>Chapter 3:</strong> Family vocabulary and possessive adjectives</li>
+                            <li><strong>Chapter 4:</strong> Simple present tense and everyday activities</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">A2 Level - Elementary</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Chapter 1:</strong> Past tense and time expressions</li>
+                            <li><strong>Chapter 2:</strong> Daily routines and adverbs of frequency</li>
+                            <li><strong>Chapter 3:</strong> Shopping vocabulary and comparatives</li>
+                            <li><strong>Chapter 4:</strong> Giving directions and prepositions of place</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">B1 Level - Intermediate</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Chapter 1:</strong> Present perfect tense and experiences</li>
+                            <li><strong>Chapter 2:</strong> Future forms and making plans</li>
+                            <li><strong>Chapter 3:</strong> Modal verbs and giving advice</li>
+                            <li><strong>Chapter 4:</strong> Narrative tenses and storytelling</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">B2 Level - Upper-Intermediate</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Chapter 1:</strong> Conditionals and hypothetical situations</li>
+                            <li><strong>Chapter 2:</strong> Passive voice and formal language</li>
+                            <li><strong>Chapter 3:</strong> Reported speech and news reporting</li>
+                            <li><strong>Chapter 4:</strong> Complex sentence structures and academic writing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-teal-600 dark:text-teal-400 mb-3">C1 Level - Advanced</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Chapter 1:</strong> Advanced vocabulary and idiomatic expressions</li>
+                            <li><strong>Chapter 2:</strong> Complex grammar structures and nuance</li>
+                            <li><strong>Chapter 3:</strong> Persuasive language and debate skills</li>
+                            <li><strong>Chapter 4:</strong> Critical analysis and advanced reading</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-3">C2 Level - Proficient</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600 dark:text-slate-400">
+                            <li><strong>Chapter 1:</strong> Native-like fluency and mastery of nuance</li>
+                            <li><strong>Chapter 2:</strong> Specialized vocabulary for professional contexts</li>
+                            <li><strong>Chapter 3:</strong> Sophisticated literary analysis</li>
+                            <li><strong>Chapter 4:</strong> Advanced rhetoric and speaking techniques</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section>
             <h3 class="text-2xl font-semibold mb-8 text-center text-slate-700 dark:text-slate-300 tracking-tight">Course Levels</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">                <!-- A1 Card -->
@@ -101,6 +170,7 @@
   <style>.locked { position: relative; pointer-events: none; opacity: 0.5; } .locked::after { content: '🔒'; position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; }</style>
 
   <script src="../../js/main.js"></script>
+  <script src="../../js/admin.js"></script>
   <script>
     // Check username on load
     document.addEventListener('DOMContentLoaded', () => {
@@ -137,8 +207,38 @@
       } else {
         header.appendChild(badge);
       }
-    }
-    function applyChapterLocks() {
+    }    function applyChapterLocks() {
+      // Check if admin is logged in
+      const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+      
+      // If admin is logged in, don't apply any locks
+      if (adminLoggedIn) {
+        // Remove any existing locks
+        document.querySelectorAll('.locked').forEach(element => {
+          element.classList.remove('locked');
+        });
+        
+        // Add admin indicator to the header
+        const header = document.querySelector('header');
+        if (header) {
+          const adminBadge = document.createElement('div');
+          adminBadge.id = 'adminBadge';
+          adminBadge.textContent = 'Admin Mode';
+          adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+          
+          // Add the badge to the header if it doesn't already exist
+          if (!document.getElementById('adminBadge')) {
+            const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+            if (buttonsDiv) {
+              header.insertBefore(adminBadge, buttonsDiv);
+            } else {
+              header.appendChild(adminBadge);
+            }
+          }
+        }
+        return; // Exit the function early, no locks needed
+      }
+      
       const مستوىA1مكتمل = parseFloat(localStorage.getItem('a1_chapter1_progress')) >= 100;
       const a1Card = document.querySelector('a[href="chapters/a1/a1-chapter1.html"]'); // Updated to new path
 

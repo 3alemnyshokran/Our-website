@@ -34,6 +34,77 @@
     </header>
 
     <main class="p-8 max-w-4xl mx-auto space-y-8">
+        <!-- What You Will Learn Section -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+            <h2 class="text-2xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">What You Will Learn</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                    <h3 class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-3">Elementary Level (A1)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><strong>Chapter 1:</strong> Basic Arithmetic (addition, subtraction, multiplication, division)</li>
+                        <li><strong>Chapter 2:</strong> Fractions and Decimals</li>
+                        <li><strong>Chapter 3:</strong> Percentages and Ratios</li>
+                        <li><strong>Chapter 4:</strong> Basic Geometry (shapes and measurements)</li>
+                    </ul>
+                </div>
+                
+                <div class="border border-green-200 dark:border-green-800 rounded-lg p-4">
+                    <h3 class="text-xl font-bold text-green-600 dark:text-green-400 mb-3">Intermediate Level (A2)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><strong>Chapter 1:</strong> Algebra Basics (variables and expressions)</li>
+                        <li><strong>Chapter 2:</strong> Linear Equations and Inequalities</li>
+                        <li><strong>Chapter 3:</strong> Coordinate Geometry</li>
+                        <li><strong>Chapter 4:</strong> Data Analysis and Basic Statistics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+                    <h3 class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">Upper Intermediate Level (B1)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><strong>Chapter 1:</strong> Quadratic Equations and Functions</li>
+                        <li><strong>Chapter 2:</strong> Trigonometry Fundamentals</li>
+                        <li><strong>Chapter 3:</strong> Exponents and Logarithms</li>
+                        <li><strong>Chapter 4:</strong> Probability and Advanced Statistics</li>
+                    </ul>
+                </div>
+                
+                <div class="border border-orange-200 dark:border-orange-800 rounded-lg p-4">
+                    <h3 class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-3">Advanced Level (B2)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><strong>Chapter 1:</strong> Calculus Introduction (limits and derivatives)</li>
+                        <li><strong>Chapter 2:</strong> Integration Basics</li>
+                        <li><strong>Chapter 3:</strong> Vectors and Matrices</li>
+                        <li><strong>Chapter 4:</strong> Series and Sequences</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div class="border border-teal-200 dark:border-teal-800 rounded-lg p-4">
+                    <h3 class="text-xl font-bold text-teal-600 dark:text-teal-400 mb-3">Expert Level (C1)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><strong>Chapter 1:</strong> Multivariable Calculus</li>
+                        <li><strong>Chapter 2:</strong> Differential Equations</li>
+                        <li><strong>Chapter 3:</strong> Complex Numbers and Functions</li>
+                        <li><strong>Chapter 4:</strong> Linear Algebra Applications</li>
+                    </ul>
+                </div>
+                
+                <div class="border border-pink-200 dark:border-pink-800 rounded-lg p-4">
+                    <h3 class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-3">Master Level (C2)</h3>
+                    <ul class="list-disc pl-5 space-y-2 text-gray-600 dark:text-gray-400">
+                        <li><strong>Chapter 1:</strong> Abstract Algebra</li>
+                        <li><strong>Chapter 2:</strong> Real Analysis</li>
+                        <li><strong>Chapter 3:</strong> Topology Fundamentals</li>
+                        <li><strong>Chapter 4:</strong> Number Theory and Cryptography</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
         <!-- A1 Level -->
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
             <div class="flex items-center gap-4 mb-4">
@@ -76,10 +147,83 @@
                 </div>
             </a>
         </div>
-    </main>
-
-    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
+    </main>    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-12">
         &copy; 2025 Tutoring Website
-    </footer>    <script src="../../js/main.js"></script>
+    </footer>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script>
+        // CSS for locked items
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                .locked { 
+                    position: relative; 
+                    pointer-events: none; 
+                    opacity: 0.5; 
+                } 
+                .locked::after { 
+                    content: '🔒'; 
+                    position: absolute; 
+                    top: 1rem; 
+                    right: 1rem; 
+                    font-size: 1.5rem; 
+                }
+            </style>
+        `);
+        
+        function applyChapterLocks() {
+            // Check if admin is logged in
+            const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            
+            // If admin is logged in, don't apply any locks
+            if (adminLoggedIn) {
+                // Remove any existing locks
+                document.querySelectorAll('.locked').forEach(element => {
+                    element.classList.remove('locked');
+                });
+                
+                // Add admin indicator to the header
+                const header = document.querySelector('header');
+                if (header) {
+                    const adminBadge = document.createElement('div');
+                    adminBadge.id = 'adminBadge';
+                    adminBadge.textContent = 'Admin Mode';
+                    adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+                    
+                    // Add the badge to the header if it doesn't already exist
+                    if (!document.getElementById('adminBadge')) {
+                        const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+                        if (buttonsDiv) {
+                            header.insertBefore(adminBadge, buttonsDiv);
+                        } else {
+                            header.appendChild(adminBadge);
+                        }
+                    }
+                }
+                return; // Exit the function early, no locks needed
+            }
+            
+            // Lock levels based on completion progress
+            const a1Complete = parseFloat(localStorage.getItem('math_a1_chapter1_progress')) >= 100;
+            
+            // Get all course sections
+            const a2Section = document.querySelector('div.bg-white:nth-of-type(3)');
+            const b1Section = document.querySelector('div.bg-white:nth-of-type(4)');
+            
+            // Apply locks
+            if (a2Section && !a1Complete) {
+                a2Section.classList.add('locked');
+            }
+            
+            if (b1Section && !a1Complete) {
+                b1Section.classList.add('locked');
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            applyChapterLocks();
+        });
+    </script>
   </body>
 </html>

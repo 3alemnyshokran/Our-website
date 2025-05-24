@@ -316,60 +316,13 @@
           <button data-skill="prepositions" class="skill-btn bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Prepositions</button>
         </div>
 
-        <!-- Question Modal -->
-        <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden">
-          <div class="bg-slate-800 p-6 rounded-lg shadow-xl w-full max-w-md">
-            <h3 id="modalSkillTitle" class="text-xl font-bold mb-4 text-blue-400"></h3>
-            <p id="modalQuestion" class="text-gray-200 mb-4"></p>
-            <input id="modalAnswer" type="text" class="w-full border border-gray-600 rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-700 text-white placeholder-gray-400" placeholder="Your answer">
-            <div class="flex justify-between items-center mt-4">
-              <button id="prevQuestion" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md disabled:opacity-50 transition-colors text-sm font-medium">Previous</button>
-              <button id="checkAnswer" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md transition-colors text-sm font-medium">Check</button>
-              <button id="nextQuestion" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md disabled:opacity-50 transition-colors text-sm font-medium">Next</button>
-            </div>
-            <p id="modalFeedback" class="mt-4 font-medium text-sm"></p>
-            <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-200 text-2xl font-bold">&times;</button>
-          </div>
-        </div>
-
-        <div class="skill-progress">
-            <div class="progress-label">Mastery: <span id="masteryPercentage">0%</span></div>
-            <div class="skill-progress-fill" id="progressBar"></div>
-        </div>
-
-        <div class="streak-counter">
-            <span class="streak-icon">🔥</span>
-            <span id="currentStreak">0</span> correct in a row!
-        </div>
-
-        <!-- Lesson Section -->
-        <div id="lessonSection" class="content-section p-6">
-            <h2 class="lesson-title">Lesson: Subject Pronouns</h2>
-            <p class="lesson-paragraph">In English, we use subject pronouns to refer to people or things without using their names. The main subject pronouns are:</p>
-            <ul class="lesson-list mb-6">
-                <li>I (first person singular)</li>
-                <li>You (second person singular/plural)</li>
-                <li>He/She/It (third person singular)</li>
-                <li>We (first person plural)</li>
-                <li>They (third person plural)</li>
+        <!-- Practice Questions & Assessment Links -->
+        <div class="content-section bg-blue-50 dark:bg-gray-900 border border-blue-200 dark:border-gray-700 rounded-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4 text-blue-700 dark:text-blue-300">Practice Questions</h2>
+            <ul class="list-disc ml-6 space-y-2">
+                <li><a href="./a1-chapter1-questions1.html" class="text-blue-600 dark:text-blue-400 underline font-semibold">Practice Set 1: Pronouns, Verb To Be</a></li>
+                <li><a href="./a1-chapter1-questions2.html" class="text-blue-600 dark:text-blue-400 underline font-semibold">Practice Set 2: Family Vocabulary</a></li>
             </ul>
-            <button id="startTraining" class="action-button start-training-btn">Start Training</button>
-        </div>
-
-        <!-- Training Section -->
-        <div id="trainingSection" class="content-section p-6 hidden">
-            <h2 class="lesson-title">Training: Subject Pronouns</h2>
-            <div class="question-container p-4 mb-4">
-                <h3 class="question-title">Practice Question 1</h3>
-                <p class="lesson-paragraph">Complete the sentence: "_____ am a student." (Use the correct subject pronoun)</p>
-                <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer" autocomplete="off">
-                <button class="check-answer-btn action-button mt-3" onclick="checkAnswerWithFeedback('q1', 'I')">Check Answer</button>
-                <div class="answer-result mt-3"></div>
-                <div class="hints-container mt-3">
-                    <p><strong>Hint:</strong> When talking about yourself, which pronoun do you use?</p>
-                </div>
-            </div>
-            <button id="backToLesson" class="action-button back-to-lesson-btn">Back to Lesson</button>
         </div>
 
         <!-- Dark mode adjustments for tables -->
@@ -420,28 +373,6 @@
             </table>
         </div>
         
-        <div class="question-container" id="q4">
-            <h3>Practice Question 4</h3>
-            <p>Complete the sentence: "He _____ from Spain." (Use the correct form of "to be")</p>
-            <input type="text" class="answer-input" id="q4-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q4', 'is')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> For "he," we use the form "is" of the verb "to be".</p>
-            </div>
-        </div>
-        
-        <div class="question-container" id="q5">
-            <h3>Practice Question 5</h3>
-            <p>Complete the sentence: "We _____ in the classroom." (Use the correct form of "to be")</p>
-            <input type="text" class="answer-input" id="q5-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q5', 'are')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> For "we," which form of "to be" do we use?</p>
-            </div>
-        </div>
-        
         <div class="content-section">
             <h2>Family Vocabulary</h2>
             <p>Learning family vocabulary is essential for basic communication. Here are some common family words:</p>
@@ -457,83 +388,6 @@
                 <li>Cousin - aunt's or uncle's child</li>
             </ul>
         </div>
-        
-        <div class="question-container" id="q6">
-            <h3>Practice Question 6</h3>
-            <p>Complete the sentence: "My mother's father is my _____."</p>
-            <input type="text" class="answer-input" id="q6-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q6', 'grandfather')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> Think about family relationships. Your mother's father is your...</p>
-            </div>
-        </div>
-        
-        <div class="question-container" id="q7">
-            <h3>Practice Question 7</h3>
-            <p>Complete the sentence: "My father's sister is my _____."</p>
-            <input type="text" class="answer-input" id="q7-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q7', 'aunt')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> What do you call your parent's sister?</p>
-            </div>
-        </div>
-
-        <div class="question-container" id="q4">
-            <h3>Practice Question 4</h3>
-            <p>Choose the correct form: "He ___ a doctor." (am / is / are)</p>
-            <input type="text" class="answer-input" id="q4-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q4', 'is')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> For he/she/it, which form of "to be" do we use?</p>
-            </div>
-        </div>
-
-        <div class="question-container" id="q5">
-            <h3>Practice Question 5</h3>
-            <p>Choose the correct form: "We ___ friends." (am / is / are)</p>
-            <input type="text" class="answer-input" id="q5-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q5', 'are')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> For we/you/they, which form of "to be" do we use?</p>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <h2>Simple Vocabulary: Family</h2>
-            <ul>
-                <li>Mother</li>
-                <li>Father</li>
-                <li>Brother</li>
-                <li>Sister</li>
-                <li>Friend</li>
-            </ul>
-        </div>
-
-        <div class="question-container" id="q6">
-            <h3>Practice Question 6</h3>
-            <p>Who is your father's son? (if you are a boy)</p>
-            <input type="text" class="answer-input" id="q6-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q6', 'brother')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> Think about your siblings.</p>
-            </div>
-        </div>
-
-        <div class="question-container" id="q7">
-            <h3>Practice Question 7</h3>
-            <p>Who is your mother's daughter? (if you are a girl)</p>
-            <input type="text" class="answer-input" id="q7-input" placeholder="Type your answer" autocomplete="off">
-            <button class="check-answer-btn" onclick="checkAnswerWithFeedback('q7', 'sister')">Check Answer</button>
-            <div class="answer-result"></div>
-            <div class="hints-container">
-                <p><strong>Hint:</strong> Think about your siblings.</p>
-            </div>
-        </div>
 
         <div class="navigation">
             <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
@@ -548,13 +402,58 @@
             document.documentElement.classList.remove('dark');
         }
 
-        // Initialize theme toggle button
+        // Check for admin login and show indicator if admin is logged in
         document.addEventListener('DOMContentLoaded', function() {
+            // Check if admin is logged in
+            const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            
+            if (adminLoggedIn) {
+                // Add admin indicator to the header
+                const header = document.querySelector('header');
+                if (header) {
+                    const adminBadge = document.createElement('div');
+                    adminBadge.id = 'adminBadge';
+                    adminBadge.textContent = 'Admin Mode';
+                    adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+                    
+                    // Add the badge to the header if it doesn't already exist
+                    if (!document.getElementById('adminBadge')) {
+                        const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+                        if (buttonsDiv) {
+                            header.insertBefore(adminBadge, buttonsDiv);
+                        } else {
+                            header.appendChild(adminBadge);
+                        }
+                    }
+                }
+                
+                // Unlock all content by setting progress to 100%
+                localStorage.setItem('a1_chapter1_progress', 100);
+                localStorage.setItem('a1_chapter2_progress', 100);
+                localStorage.setItem('a1_chapter3_progress', 100);
+                localStorage.setItem('a1_chapter4_progress', 100);
+                localStorage.setItem('a2_chapter1_progress', 100);
+                localStorage.setItem('a2_chapter2_progress', 100);
+                localStorage.setItem('b1_chapter1_progress', 100);
+                localStorage.setItem('b1_chapter2_progress', 100);
+                
+                // If there are specific UI elements showing progress, update them
+                const progressBar = document.getElementById('progressBar');
+                const masteryPercentage = document.getElementById('masteryPercentage');
+                const overallProgress = document.getElementById('overallProgress');
+                
+                if (progressBar) progressBar.style.width = '100%';
+                if (masteryPercentage) masteryPercentage.textContent = '100%';
+                if (overallProgress) overallProgress.textContent = '100%';
+            }
+            
+            // Initialize theme toggle button
             const themeToggleBtn = document.getElementById('theme-toggle');
             if (themeToggleBtn) {
                 themeToggleBtn.addEventListener('click', toggleTheme);
             }
         });
+
         let streak = 0;
         let questionsAnswered = 0;
         const totalQuestions = 7;
@@ -754,12 +653,11 @@
             document.getElementById('startTraining').addEventListener('click', function() {
                 document.getElementById('lessonSection').classList.add('hidden');
                 document.getElementById('trainingSection').classList.remove('hidden');
-            });
-
-            document.getElementById('backToLesson').addEventListener('click', function() {
+            });            document.getElementById('backToLesson').addEventListener('click', function() {
                 document.getElementById('trainingSection').classList.add('hidden');
                 document.getElementById('lessonSection').classList.remove('hidden');
             });
     </script>
+    <script src="../../../../js/admin.js"></script>
 </body>
 </html>

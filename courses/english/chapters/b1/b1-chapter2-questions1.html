@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B1 Chapter 2: Practice Questions 1 - 3alemny Shokran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-purple': '#6366F1',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .theme-btn .light-icon { display: none; }
+        .theme-btn .dark-icon { display: inline; }
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
+        .question-container {
+            transition: all 0.3s ease;
+        }
+        
+        .question-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .choice-option {
+            transition: all 0.2s ease;
+        }
+        
+        .choice-option:hover {
+            transform: translateX(5px);
+        }
+        
+        .choice-option.selected {
+            border-color: #6366F1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .choice-option.correct {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .choice-option.incorrect {
+            border-color: #EF4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .answer-result {
+            transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        
+        .answer-result.show {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        
+        .progress-bar {
+            position: relative;
+            height: 8px;
+            background: #E5E7EB;
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #6366F1;
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+        }
+        
+        .dark .progress-bar {
+            background: #4B5563;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
+    <header class="bg-purple-600 dark:bg-purple-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">3alemny Shokran</h1>
+            <div class="flex items-center gap-4">
+                <a href="./b1-chapter2.html" class="bg-white dark:bg-slate-800 text-purple-600 dark:text-purple-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">← Back to Lesson</a>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-purple-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold mb-2 text-purple-600 dark:text-purple-400">Practice Questions - Part 1</h2>
+            <p class="text-slate-600 dark:text-slate-400 mb-6">Test your understanding of past simple and past continuous tenses.</p>
+            
+            <div class="w-full mb-6">
+                <div class="flex justify-between text-sm mb-2">
+                    <span>Progress</span>
+                    <span id="progressText">0/4 Questions</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressBarInner" class="progress-bar-inner" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="questionContainer" class="space-y-8">
+            <!-- Question 1 -->
+            <div id="q1" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question 1</h3>
+                <p class="mb-4">Complete the sentence with the correct past tense form:</p>
+                <p class="mb-6 text-lg">"While I <span class="underline">____________</span> (walk) home, I saw an old friend."</p>
+                
+                <div class="space-y-3">
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="walked" onclick="selectOption('q1', this)">
+                        walked
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="was walking" onclick="selectOption('q1', this)">
+                        was walking
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="had walked" onclick="selectOption('q1', this)">
+                        had walked
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="had been walking" onclick="selectOption('q1', this)">
+                        had been walking
+                    </div>
+                </div>
+                
+                <button id="checkBtn1" class="mt-6 bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors" onclick="checkAnswer('q1', 'was walking')">Check Answer</button>
+                
+                <div id="result1" class="answer-result p-4 rounded-lg">
+                    <p id="resultText1" class="font-medium"></p>
+                    <div id="explanation1" class="mt-2 text-slate-600 dark:text-slate-400"></div>
+                </div>
+            </div>
+            
+            <!-- Question 2 -->
+            <div id="q2" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question 2</h3>
+                <p class="mb-4">Choose the correct option to complete the story:</p>
+                <p class="mb-6 text-lg">"I got home late last night. It <span class="underline">____________</span> heavily, so I was completely wet."</p>
+                
+                <div class="space-y-3">
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="rained" onclick="selectOption('q2', this)">
+                        rained
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="was raining" onclick="selectOption('q2', this)">
+                        was raining
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="had rained" onclick="selectOption('q2', this)">
+                        had rained
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="had been raining" onclick="selectOption('q2', this)">
+                        had been raining
+                    </div>
+                </div>
+                
+                <button id="checkBtn2" class="mt-6 bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors" onclick="checkAnswer('q2', 'was raining')">Check Answer</button>
+                
+                <div id="result2" class="answer-result p-4 rounded-lg">
+                    <p id="resultText2" class="font-medium"></p>
+                    <div id="explanation2" class="mt-2 text-slate-600 dark:text-slate-400"></div>
+                </div>
+            </div>
+            
+            <!-- Question 3 -->
+            <div id="q3" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question 3</h3>
+                <p class="mb-4">Identify the correct narrative tense in this sentence:</p>
+                <p class="mb-6 text-lg">"We visited the museum and <span class="underline font-bold">learned</span> about ancient civilizations."</p>
+                
+                <div class="space-y-3">
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="past simple" onclick="selectOption('q3', this)">
+                        Past Simple
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="past continuous" onclick="selectOption('q3', this)">
+                        Past Continuous
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="past perfect" onclick="selectOption('q3', this)">
+                        Past Perfect
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="past perfect continuous" onclick="selectOption('q3', this)">
+                        Past Perfect Continuous
+                    </div>
+                </div>
+                
+                <button id="checkBtn3" class="mt-6 bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors" onclick="checkAnswer('q3', 'past simple')">Check Answer</button>
+                
+                <div id="result3" class="answer-result p-4 rounded-lg">
+                    <p id="resultText3" class="font-medium"></p>
+                    <div id="explanation3" class="mt-2 text-slate-600 dark:text-slate-400"></div>
+                </div>
+            </div>
+            
+            <!-- Question 4 -->
+            <div id="q4" class="question-container bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-600 dark:text-purple-400">Question 4</h3>
+                <p class="mb-4">Complete the following sentence:</p>
+                <p class="mb-6 text-lg">"The children <span class="underline">____________</span> (play) in the garden when it started to rain."</p>
+                
+                <div class="space-y-3">
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="played" onclick="selectOption('q4', this)">
+                        played
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="were playing" onclick="selectOption('q4', this)">
+                        were playing
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="had played" onclick="selectOption('q4', this)">
+                        had played
+                    </div>
+                    <div class="choice-option cursor-pointer p-4 border border-slate-300 dark:border-slate-600 rounded-lg" data-value="had been playing" onclick="selectOption('q4', this)">
+                        had been playing
+                    </div>
+                </div>
+                
+                <button id="checkBtn4" class="mt-6 bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition-colors" onclick="checkAnswer('q4', 'were playing')">Check Answer</button>
+                
+                <div id="result4" class="answer-result p-4 rounded-lg">
+                    <p id="resultText4" class="font-medium"></p>
+                    <div id="explanation4" class="mt-2 text-slate-600 dark:text-slate-400"></div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <button id="completeBtn" class="mt-8 bg-green-600 hover:bg-green-700 text-white py-3 px-8 rounded-lg transition-colors hidden" onclick="completeSection()">Mark Section Complete</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center">
+        <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                const isDark = document.documentElement.classList.contains('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+            
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        // Variables to track progress
+        let selectedAnswers = {};
+        let correctAnswers = 0;
+        const totalQuestions = 4;
+        
+        // For selecting options
+        function selectOption(questionId, element) {
+            // Remove 'selected' class from all options in this question
+            const options = document.querySelectorAll(`#${questionId} .choice-option`);
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add 'selected' class to the clicked option
+            element.classList.add('selected');
+            selectedAnswers[questionId] = element.getAttribute('data-value');
+        }
+        
+        // For checking answers
+        function checkAnswer(questionId, correctAnswer) {
+            const resultDiv = document.getElementById(`result${questionId.substr(1)}`);
+            const resultText = document.getElementById(`resultText${questionId.substr(1)}`);
+            const explanation = document.getElementById(`explanation${questionId.substr(1)}`);
+            const checkBtn = document.getElementById(`checkBtn${questionId.substr(1)}`);
+            
+            if (!selectedAnswers[questionId]) {
+                alert('Please select an answer first.');
+                return;
+            }
+            
+            const userAnswer = selectedAnswers[questionId].toLowerCase();
+            const isCorrect = userAnswer === correctAnswer.toLowerCase();
+            
+            // Show the result
+            resultDiv.classList.add('show');
+            
+            if (isCorrect) {
+                correctAnswers++;
+                resultDiv.classList.add('bg-green-50', 'dark:bg-green-900', 'border-green-200', 'dark:border-green-800');
+                resultText.textContent = '✓ Correct!';
+                resultText.classList.add('text-green-600', 'dark:text-green-400');
+                
+                // Explanations for each question
+                if (questionId === 'q1') {
+                    explanation.innerHTML = "We use <strong>past continuous</strong> (was/were + verb-ing) to describe an action that was in progress at a specific time in the past. Here, walking was in progress when the speaker saw their friend.";
+                } else if (questionId === 'q2') {
+                    explanation.innerHTML = "We use <strong>past continuous</strong> to describe the background or ongoing situation. The rain was happening continuously when the speaker got home.";
+                } else if (questionId === 'q3') {
+                    explanation.innerHTML = "<strong>Past simple</strong> is used for completed actions in the past. 'Learned' is the past simple form of 'learn', indicating a completed action.";
+                } else if (questionId === 'q4') {
+                    explanation.innerHTML = "We use <strong>past continuous</strong> (were + verb-ing) to describe an activity in progress when another action (it started to rain) happened.";
+                }
+                
+                // Mark correct option
+                const options = document.querySelectorAll(`#${questionId} .choice-option`);
+                options.forEach(option => {
+                    if (option.getAttribute('data-value').toLowerCase() === correctAnswer.toLowerCase()) {
+                        option.classList.add('correct');
+                    }
+                    // Disable clicking
+                    option.style.pointerEvents = 'none';
+                });
+                
+                // Disable check button
+                checkBtn.disabled = true;
+                checkBtn.classList.add('bg-gray-400', 'hover:bg-gray-400', 'cursor-not-allowed');
+            } else {
+                resultDiv.classList.add('bg-red-50', 'dark:bg-red-900', 'border-red-200', 'dark:border-red-800');
+                resultText.textContent = '✗ Incorrect. Try again!';
+                resultText.classList.add('text-red-600', 'dark:text-red-400');
+                
+                // Mark incorrect option
+                const selectedOption = document.querySelector(`#${questionId} .choice-option.selected`);
+                selectedOption.classList.add('incorrect');
+                
+                // Remove selected class for retry
+                setTimeout(() => {
+                    selectedOption.classList.remove('selected', 'incorrect');
+                    selectedAnswers[questionId] = null;
+                    resultDiv.classList.remove('show');
+                }, 2000);
+            }
+            
+            updateProgress();
+        }
+        
+        // Update progress
+        function updateProgress() {
+            const answeredQuestions = Object.keys(selectedAnswers).filter(key => selectedAnswers[key] !== null).length;
+            const progressPercent = (correctAnswers / totalQuestions) * 100;
+            
+            document.getElementById('progressText').textContent = `${correctAnswers}/${totalQuestions} Questions`;
+            document.getElementById('progressBarInner').style.width = `${progressPercent}%`;
+            
+            // Show complete button if all questions answered correctly
+            if (correctAnswers === totalQuestions) {
+                document.getElementById('completeBtn').classList.remove('hidden');
+            }
+        }
+        
+        // Mark section as complete
+        function completeSection() {
+            localStorage.setItem('b1_ch2_part1_completed', 'true');
+            alert('Great job! You have completed this section. Returning to the chapter page.');
+            window.location.href = './b1-chapter2.html';
+        }
+    </script>
+</body>
+</html>
