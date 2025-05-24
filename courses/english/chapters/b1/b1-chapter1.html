@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Present Perfect - B1 Level | Chapter 1</title>
   <link rel="stylesheet" href="../../../../css/styles.css">
+  <link rel="stylesheet" href="../../../../css/enhanced-styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -277,26 +278,65 @@
     .hints-container.show {
         display: block;
     }
+
+    /* Navigation styles */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #1e293b; /* Darker background for nav */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+    }
+
+    nav .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0.75rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+        color: #7c3aed; /* Tailwind purple-600 */
+    }
+
+    /* Add margin-top to accommodate the fixed nav */
+    .mt-nav {
+        margin-top: 70px;
+    }
   </style>
 </head>
 <body class="bg-custom-gray dark:bg-dark-bg">
     <!-- Add navigation header with theme toggle -->
-    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
-        <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
-        <div class="flex items-center gap-4">
-            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-                <span class="light-icon">☀️</span>
-                <span class="dark-icon">🌙</span>
-            </button>
-            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-                <option value="de">Deutsch</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-            </select>
+    <nav class="fixed top-0 w-full bg-slate-800 dark:bg-slate-900 shadow-md z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../../../../index.html" class="back-to-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Back to Home
+            </a>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+                <span id="username-display" class="text-white text-sm font-medium"></span>
+            </div>
         </div>
-    </header>
+    </nav>
+    
+    <!-- Add margin-top to accommodate the fixed nav -->
+    <div style="margin-top: 70px;"></div>
 
     <div class="chapter-container p-6 md:p-8 lg:p-10 dark:bg-gray-800">
         <div class="level-badge" data-i18n="levelB1">B1 - Intermediate</div>
@@ -402,22 +442,40 @@
     
     <script src="../../../../js/main.js"></script>
     <script>
-        // Ensure theme persistence if using localStorage for theme preference
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        // Functions for navigation
-        function previousChapter() {
-            window.location.href = '../../a2/a2-chapter2.html';
-        }
-
-        function nextChapter() {
-            window.location.href = './b1-chapter2.html';
-        }
+        // Add theme toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Set theme based on saved preference
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // Check for saved username and display it
+            const savedUsername = localStorage.getItem('username');
+            const usernameDisplay = document.getElementById('username-display');
+            
+            if (savedUsername) {
+                usernameDisplay.textContent = `Logged in as: ${savedUsername}`;
+            } else {
+                // Redirect to login if no username found
+                window.location.href = '../../../../auth/username-login.html';
+            }
+        });
     </script>
     <script src="../../../../js/admin.js"></script>
 </body>
 </html>
+

@@ -35,6 +35,26 @@
     </style>
 </head>
 <body class="bg-custom-gray dark:bg-dark-bg">
+    <nav class="fixed top-0 w-full bg-slate-800 dark:bg-slate-900 shadow-md z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../../../../../../../../index.html" class="back-to-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Back to Home
+            </a>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+                <span id="username-display" class="text-white text-sm font-medium"></span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Add margin-top to accommodate the fixed nav -->
+    <div style="margin-top: 70px;"></div>
     <!-- Add navigation header with theme toggle -->
     <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
         <a href="../../german-course.html" class="text-lg font-bold">← Back to German Course</a>

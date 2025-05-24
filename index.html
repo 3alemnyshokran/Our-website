@@ -25,6 +25,18 @@
     } else {
       document.documentElement.classList.remove('dark')
     }
+    
+    // Check if user is logged in (username exists in localStorage)
+    // If not, redirect to the username-login page
+    document.addEventListener('DOMContentLoaded', function() {
+      const username = localStorage.getItem('username');
+      if (!username) {
+        window.location.href = 'auth/username-login.html';
+      } else {
+        // Update welcome message with username
+        document.getElementById('welcomeUser').textContent = username;
+      }
+    });
   </script>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
@@ -72,11 +84,10 @@
         <button id="login-btn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
           Login
         </button>
-        
-        <!-- Profile button - visible when logged in -->
-        <div id="profile-btn" class="hidden relative">
+          <!-- Profile button - visible when logged in -->
+        <div id="profile-btn" class="relative">
           <button class="flex items-center bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-            <span>Username</span>
+            <span id="profile-username">Username</span>
             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
@@ -544,6 +555,46 @@
   <script type="module">
     import { Analytics } from "https://cdn.jsdelivr.net/npm/@vercel/analytics/+esm";
     Analytics();
+  </script>
+  <script>
+    // Initialize theme toggle and update username display
+    document.addEventListener('DOMContentLoaded', function() {
+      // Theme toggle functionality
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      themeToggleBtn.addEventListener('click', function() {
+        document.documentElement.classList.toggle('dark');
+        
+        if (document.documentElement.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+        } else {
+          localStorage.setItem('theme', 'light');
+        }
+      });
+      
+      // Username and login/profile button handling
+      const username = localStorage.getItem('username');
+      const loginBtn = document.getElementById('login-btn');
+      const profileBtn = document.getElementById('profile-btn');
+      const profileUsername = document.getElementById('profile-username');
+      const welcomeUser = document.getElementById('welcomeUser');
+      
+      if (username) {
+        // User is logged in
+        loginBtn.classList.add('hidden');
+        profileBtn.classList.remove('hidden');
+        profileUsername.textContent = username;
+        welcomeUser.textContent = username;
+      } else {
+        // No user logged in
+        loginBtn.classList.remove('hidden');
+        profileBtn.classList.add('hidden');
+      }
+      
+      // Login button click event
+      loginBtn.addEventListener('click', function() {
+        window.location.href = 'auth/username-login.html';
+      });
+    });
   </script>
 </body>
 </html>
