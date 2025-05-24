@@ -1,236 +1,619 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English A2 - Chapter 1</title>
-  <link rel="stylesheet" href="../../../../css/styles.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {
-                colors: {
-                    'custom-gray': '#F0F2F5',
-                    'custom-blue': '#1877F2',
-                    'custom-green': '#42B72A',
-                    'dark-bg': '#18191A',
-                    'dark-card': '#242526',
-                    'dark-text': '#E4E6EB',
-                    'dark-border': '#3A3B3C',
-                    'dark-primary': '#2D88FF',
-                    'dark-secondary': '#B0B3B8',
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elementary English - A2 Level | Chapter 1</title>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'custom-gray': '#F0F2F5',
+                        'custom-blue': '#1877F2',
+                        'custom-green': '#42B72A',
+                        'dark-bg': '#18191A',
+                        'dark-card': '#242526',
+                        'dark-text': '#E4E6EB',
+                        'dark-border': '#3A3B3C',
+                        'dark-primary': '#2D88FF',
+                        'dark-secondary': '#B0B3B8',
+                    }
                 }
             }
         }
-    }
-  </script>
-  <style>
-    /* Basic styles for theme toggle icons */
-    .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
-    .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
-    html.dark .theme-btn .light-icon { display: inline; }
-    html.dark .theme-btn .dark-icon { display: none; }
-    
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body{font-family:'Inter',sans-serif;}
-  </style>
-</head>
-<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col">
-  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
-      <div class="flex items-center gap-4">
-        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-            <span class="light-icon">☀️</span>
-            <span class="dark-icon">🌙</span>
-        </button>
-        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-        </select>
-      </div>
-    </div>
-  </header>
-  <main class="flex-grow container mx-auto px-4 py-8">
-    <section class="max-w-2xl mx-auto">
-      <!-- Welcome banner with username -->
-      <div class="bg-gradient-to-r from-blue-600 to-blue-500 text-white p-4 rounded-t-xl shadow-lg flex justify-between items-center">
-        <div>
-          <p class="font-medium text-lg">Welcome back, <span id="usernameDisplay" class="font-bold text-yellow-300">Learner</span>!</p>
-          <p class="text-sm text-blue-100">Ready to improve your English skills?</p>
-        </div>
-        <div class="bg-white/10 px-3 py-2 rounded-lg text-sm">
-          Your progress: <span id="progressDisplay">0%</span>
-        </div>
-      </div>
-      
-      <div class="bg-white dark:bg-slate-800 p-8 rounded-b-xl shadow-xl">
-        <h2 class="text-2xl font-bold mb-4 text-green-700 dark:text-green-300">A2 Elementary - Chapter 1: Everyday Life</h2>
-        <p class="mb-4">In this chapter, you will learn how to talk about your daily routine, family, and use simple past tense.</p>
-      <h3 class="text-xl font-semibold mt-6 mb-2">Key Vocabulary</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Wake up, get up, have breakfast, go to work/school, come home, have dinner, go to bed</li>
-        <li>Mother, father, sister, brother, parents, children</li>
-        <li>Yesterday, last week, last year</li>
-      </ul>
-      <h3 class="text-xl font-semibold mt-6 mb-2">Grammar Focus: Simple Past Tense</h3>
-      <p class="mb-2">The simple past is used for actions that happened in the past. Example: "I visited my friend yesterday."</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>I played football last weekend.</li>
-        <li>She watched a movie yesterday.</li>
-        <li>We went to the park.</li>
-      </ul>
-      <h3 class="text-xl font-semibold mt-6 mb-2">Practice</h3>
-      <ol class="list-decimal pl-6">
-        <li>Write five sentences about what you did last weekend.</li>
-        <li>Describe your family using the new vocabulary.</li>
-      </ol>
-      <h3 class="text-xl font-semibold mt-6 mb-2">IXL-Style Practice: Daily Routine</h3>      <div class="question-container" id="q1">
-        <p>Fill in the blank: "I _____ up at 7 o'clock every day."</p>
-        <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right mb-4" dir="rtl">
-            املأ الفراغ: "I _____ up at 7 o'clock every day." (أنا _____ في الساعة 7 كل يوم.)
-        </p>
-        <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q1','wake')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <div class="question-container" id="q2">
-        <p>Choose the correct word: "She _____ breakfast at 8:00."</p>
-        <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q2','has')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <div class="question-container" id="q3">
-        <p>Fill in the blank: "We _____ to school by bus."</p>
-        <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q3','go')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <h3 class="text-xl font-semibold mt-6 mb-2">IXL-Style Practice: Simple Past Tense</h3>
-      <div class="question-container" id="q4">
-        <p>Change to past tense: "I play football."</p>
-        <input type="text" class="answer-input" id="q4-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q4','played football')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <div class="question-container" id="q5">
-        <p>Change to past tense: "She watches a movie."</p>
-        <input type="text" class="answer-input" id="q5-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q5','watched a movie')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <div class="question-container" id="q6">
-        <p>Fill in the blank: "Yesterday, we _____ to the park."</p>
-        <input type="text" class="answer-input" id="q6-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q6','went')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <h3 class="text-xl font-semibold mt-6 mb-2">IXL-Style Practice: Family Vocabulary</h3>
-      <div class="question-container" id="q7">
-        <p>Who is your mother's son?</p>
-        <input type="text" class="answer-input" id="q7-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q7','brother')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <div class="question-container" id="q8">
-        <p>Who is your father's daughter?</p>
-        <input type="text" class="answer-input" id="q8-input" placeholder="Type your answer">
-        <button class="check-answer-btn" onclick="checkA2Answer('q8','sister')">Check Answer</button>
-        <div class="answer-result"></div>
-      </div>
-      <script>
-      // Cookie utility functions
-      function getCookie(name) {
-          const nameEQ = name + "=";
-          const ca = document.cookie.split(';');
-          for (let i = 0; i < ca.length; i++) {
-              let c = ca[i];
-              while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-              if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-          }
-          return null;
-      }
-      
-      // Variables to track progress
-      let questionsAnswered = 0;
-      const totalQuestions = 8; // Update if you add more questions
-      
-      // Display username from localStorage or cookies
-      function displayUsername() {
-          const usernameElement = document.getElementById('usernameDisplay');
-          // Try to get username from localStorage first, then from cookies
-          const username = localStorage.getItem('special_username') || getCookie('username') || 'Learner';
-          usernameElement.textContent = username;
-          
-          // Load saved progress if available
-          const savedProgress = localStorage.getItem('a2_chapter1_progress');
-          if (savedProgress) {
-              document.getElementById('progressDisplay').textContent = `${Math.round(savedProgress)}%`;
-          }
-      }
-      
-      // Call displayUsername when page loads
-      document.addEventListener('DOMContentLoaded', displayUsername);
-      
-      function checkA2Answer(qid, correct) {
-        const input = document.getElementById(qid+'-input');
-        const result = input.parentElement.querySelector('.answer-result');
-        if (input.value.trim().toLowerCase() === correct.toLowerCase()) {
-          questionsAnswered++;
-          result.textContent = '✓ Correct!';
-          result.style.color = '#2e7d32';
-          input.disabled = true;
-          
-          // Update and save progress
-          const progress = (questionsAnswered / totalQuestions) * 100;
-          document.getElementById('progressDisplay').textContent = `${Math.round(progress)}%`;
-          localStorage.setItem('a2_chapter1_progress', progress);
-        } else {
-          result.textContent = '✗ Try again!';
-          result.style.color = '#d32f2f';
+    </script>
+    <style>
+        /* Basic styles for theme toggle icons */
+        .theme-btn .light-icon { display: none; } /* Hidden by default, shown in light mode if JS requires */
+        .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
+        html.dark .theme-btn .light-icon { display: inline; }
+        html.dark .theme-btn .dark-icon { display: none; }
+        
+        .chapter-container {
+            max-width: 900px; /* Increased max-width for better spacing */
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #1f2937; /* Tailwind gray-800 for dark theme */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
         }
-      }
-      document.querySelectorAll('.answer-input').forEach(input => {
-        input.addEventListener('keypress', function(e) {
-          if (e.key === 'Enter') {
-            const qid = this.id.split('-')[0];
-            const answers = {
-              'q1':'wake', 'q2':'has', 'q3':'go',
-              'q4':'played football', 'q5':'watched a movie', 'q6':'went',
-              'q7':'brother', 'q8':'sister'
-            };
-            checkA2Answer(qid, answers[qid]);
-          }
+
+        .level-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: #ca8a04; /* Tailwind yellow-600 for A2 level */
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #374151; /* Tailwind gray-700 for dark theme */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
+        }
+
+        .lesson-title {
+            font-size: 1.75rem; /* Larger lesson titles */
+            color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+            margin-bottom: 1rem;
+        }
+
+        .lesson-paragraph {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #d1d5db; /* Tailwind gray-300 for dark theme */
+            margin-bottom: 1rem;
+        }
+
+        .lesson-list {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            color: #d1d5db; /* Tailwind gray-300 for dark theme */
+        }
+
+        .action-button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .question-container {
+            background: #374151; /* Tailwind gray-700 for dark theme */
+            border-left: 4px solid #ca8a04; /* Tailwind yellow-600 for A2 level */
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px var(--hover-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .question-title {
+            font-size: 1.25rem;
+            color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+            margin-bottom: 0.5rem;
+        }
+
+        .exercise {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--card-bg);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: #ca8a04; /* Tailwind yellow-600 for A2 level */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #4b5563; /* Tailwind gray-600 for dark theme */
+            border-radius: 8px;
+            background: #374151; /* Tailwind gray-700 for dark theme */
+            color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            border-color: #ca8a04; /* Tailwind yellow-600 for A2 level */
+            box-shadow: 0 0 0 2px rgba(202, 138, 4, 0.4); /* Focus ring for dark theme */
+            outline: none;
+        }
+
+        .check-answer-btn {
+            background: #16a34a; /* Tailwind green-600 */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .check-answer-btn:hover {
+            background: #15803d; /* Tailwind green-700 */
+            transform: translateY(-2px);
+        }
+
+        .answer-result {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .answer-result.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .answer-result.correct {
+            background: rgba(76, 175, 80, 0.2); /* Adjusted for dark theme */
+            color: #6ee7b7; /* Tailwind green-300 for dark theme */
+        }
+
+        .answer-result.incorrect {
+            background: rgba(244, 67, 54, 0.2); /* Adjusted for dark theme */
+            color: #fca5a5; /* Tailwind red-300 for dark theme */
+        }
+
+        .skill-btn {
+            background-color: #374151;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .skill-btn:hover {
+            background-color: #4b5563;
+        }
+
+        /* Modal styles */
+        #questionModal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0 0 0 / 50%); /* Black w/ opacity */
+        }
+
+        #questionModal .modal-content {
+            background-color: #1f2937;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #444;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #questionModal h3 {
+            color: #f3f4f6;
+        }
+
+        #questionModal p {
+            color: #d1d5db;
+        }
+
+        #questionModal input {
+            background-color: #374151;
+            color: #f3f4f6;
+            border: 1px solid #4b5563;
+        }
+
+        #questionModal button {
+            background-color: #ca8a04;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #questionModal button:hover {
+            background-color: #b77c03;
+        }
+    </style>
+</head>
+<body class="bg-custom-gray dark:bg-dark-bg">
+    <!-- Add navigation header with theme toggle -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+        <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="chapter-container p-6 md:p-8 lg:p-10 dark:bg-gray-800">
+        <div class="level-badge" data-i18n="levelA2">A2 - Elementary</div>
+        <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Chapter 1: Everyday Life</h1>
+        
+        <!-- Skill Selection -->
+        <div class="flex flex-wrap gap-3 mt-6 mb-8">
+          <button data-skill="daily-routine" class="skill-btn bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Daily Routine</button>
+          <button data-skill="simple-past" class="skill-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Simple Past</button>
+          <button data-skill="family" class="skill-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Family Vocabulary</button>
+        </div>
+        
+        <!-- Question Modal -->
+        <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-lg w-full">
+            <div class="flex justify-between items-center mb-4">
+              <h3 id="modalSkillTitle" class="text-xl font-bold text-gray-800 dark:text-white">Skill Title</h3>
+              <button id="closeModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div class="mb-4">
+              <p id="modalQuestion" class="text-gray-700 dark:text-gray-200 text-lg mb-3">Question text goes here?</p>
+              <input id="modalAnswer" type="text" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white" placeholder="Your answer">
+              <p id="modalFeedback" class="mt-2 text-gray-600 dark:text-gray-300 hidden"></p>
+            </div>
+            <div class="flex justify-between">
+              <button id="prevQuestion" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50">Previous</button>
+              <button id="checkAnswer" class="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700">Check Answer</button>
+              <button id="nextQuestion" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-section">
+            <h2>Daily Routine Vocabulary</h2>
+            <p>Learn how to talk about your daily activities in English:</p>
+            <ul>
+                <li>Wake up, get up, have breakfast, go to work/school, come home, have dinner, go to bed</li>
+                <li>In the morning, in the afternoon, in the evening, at night</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Simple Past Tense</h2>
+            <p>The simple past is used for actions that happened in the past. Example: "I visited my friend yesterday."</p>
+            <ul>
+                <li>I played football last weekend.</li>
+                <li>She watched a movie yesterday.</li>
+                <li>We went to the park.</li>
+            </ul>
+            
+            <table class="mt-4 w-full border-collapse">
+                <thead>
+                    <tr>
+                        <th class="border p-2 text-left text-gray-300">Regular Verbs</th>
+                        <th class="border p-2 text-left text-gray-300">Irregular Verbs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">play → played</td>
+                        <td class="border p-2">go → went</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">work → worked</td>
+                        <td class="border p-2">see → saw</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">watch → watched</td>
+                        <td class="border p-2">have → had</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="content-section">
+            <h2>Family Vocabulary</h2>
+            <p>Learning family vocabulary is essential for basic communication. Here are some common family words:</p>
+            <ul>
+                <li>Mother (mom) - female parent</li>
+                <li>Father (dad) - male parent</li>
+                <li>Sister - female sibling</li>
+                <li>Brother - male sibling</li>
+                <li>Grandmother - mother's or father's mother</li>
+                <li>Grandfather - mother's or father's father</li>
+                <li>Aunt - parent's sister</li>
+                <li>Uncle - parent's brother</li>
+                <li>Cousin - aunt's or uncle's child</li>
+            </ul>
+        </div>
+
+        <!-- Practice Questions -->
+        <div class="content-section">
+            <h2>Practice Questions</h2>
+            
+            <div class="question-container" id="q1">
+                <p>Fill in the blank: "I _____ up at 7 o'clock every day."</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-blue-500 pr-3 text-right mb-4" dir="rtl">
+                    املأ الفراغ: "I _____ up at 7 o'clock every day." (أنا _____ في الساعة 7 كل يوم.)
+                </p>
+                <input type="text" class="answer-input" id="q1-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q1','wake')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <div class="question-container" id="q2">
+                <p>Choose the correct word: "She _____ breakfast at 8:00."</p>
+                <input type="text" class="answer-input" id="q2-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q2','has')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <div class="question-container" id="q3">
+                <p>Fill in the blank: "We _____ to school by bus."</p>
+                <input type="text" class="answer-input" id="q3-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q3','go')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <h3 class="text-xl font-semibold mt-6 mb-2">Simple Past Tense Practice</h3>
+            
+            <div class="question-container" id="q4">
+                <p>Change to past tense: "I play football."</p>
+                <input type="text" class="answer-input" id="q4-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q4','played football')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <div class="question-container" id="q5">
+                <p>Change to past tense: "She watches a movie."</p>
+                <input type="text" class="answer-input" id="q5-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q5','watched a movie')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <div class="question-container" id="q6">
+                <p>Fill in the blank: "Yesterday, we _____ to the park."</p>
+                <input type="text" class="answer-input" id="q6-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q6','went')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <h3 class="text-xl font-semibold mt-6 mb-2">Family Vocabulary Practice</h3>
+            
+            <div class="question-container" id="q7">
+                <p>Who is your mother's son?</p>
+                <input type="text" class="answer-input" id="q7-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q7','brother')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+            
+            <div class="question-container" id="q8">
+                <p>Who is your father's daughter?</p>
+                <input type="text" class="answer-input" id="q8-input" placeholder="Type your answer">
+                <button class="check-answer-btn" onclick="checkA2Answer('q8','sister')">Check Answer</button>
+                <div class="answer-result"></div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+            <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+        </div>
+    </div>
+    
+    <script src="../../../js/main.js"></script>
+    <script>
+        // Ensure theme persistence if using localStorage for theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Check for admin login and show indicator if admin is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if admin is logged in
+            const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+            
+            if (adminLoggedIn) {
+                // Add admin indicator to the header
+                const header = document.querySelector('header');
+                if (header) {
+                    const adminBadge = document.createElement('div');
+                    adminBadge.id = 'adminBadge';
+                    adminBadge.textContent = 'Admin Mode';
+                    adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+                    
+                    // Add the badge to the header if it doesn't already exist
+                    if (!document.getElementById('adminBadge')) {
+                        const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+                        if (buttonsDiv) {
+                            header.insertBefore(adminBadge, buttonsDiv);
+                        } else {
+                            header.appendChild(adminBadge);
+                        }
+                    }
+                }
+                
+                // Unlock all content by setting progress to 100%
+                localStorage.setItem('a1_chapter1_progress', 100);
+                localStorage.setItem('a1_chapter2_progress', 100);
+                localStorage.setItem('a1_chapter3_progress', 100);
+                localStorage.setItem('a1_chapter4_progress', 100);
+                localStorage.setItem('a2_chapter1_progress', 100);
+                localStorage.setItem('a2_chapter2_progress', 100);
+                localStorage.setItem('b1_chapter1_progress', 100);
+                localStorage.setItem('b1_chapter2_progress', 100);
+            }
         });
-      });
-      </script>
-    </section>
-  </main>  <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
-    <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
-    <p class="text-sm">Designed with Tailwind CSS</p>
-  </footer>
-  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-  <script src="../../../../js/main.js"></script>
+
+        // Variables to track progress
+        let questionsAnswered = 0;
+        const totalQuestions = 8; // Update if you add more questions
+        
+        // Display username from localStorage or cookies
+        function displayUsername() {
+            const usernameElement = document.getElementById('usernameDisplay');
+            // Try to get username from localStorage first, then from cookies
+            const username = localStorage.getItem('special_username') || getCookie('username') || 'Learner';
+            if (usernameElement) {
+                usernameElement.textContent = username;
+            }
+            
+            // Load saved progress if available
+            const savedProgress = localStorage.getItem('a2_chapter1_progress');
+            if (savedProgress) {
+                const progressDisplay = document.getElementById('progressDisplay');
+                if (progressDisplay) {
+                    progressDisplay.textContent = `${Math.round(savedProgress)}%`;
+                }
+            }
+        }
+        
+        // Call displayUsername when page loads
+        document.addEventListener('DOMContentLoaded', displayUsername);
+        
+        // Cookie utility functions
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+            }
+            return null;
+        }
+        
+        function checkA2Answer(qid, correct) {
+            const input = document.getElementById(qid+'-input');
+            const result = input.parentElement.querySelector('.answer-result');
+            if (input.value.trim().toLowerCase() === correct.toLowerCase()) {
+                questionsAnswered++;
+                result.textContent = '✓ Correct!';
+                result.className = 'answer-result correct show';
+                input.disabled = true;
+                
+                // Update and save progress
+                const progress = (questionsAnswered / totalQuestions) * 100;
+                const progressDisplay = document.getElementById('progressDisplay');
+                if (progressDisplay) {
+                    progressDisplay.textContent = `${Math.round(progress)}%`;
+                }
+                localStorage.setItem('a2_chapter1_progress', progress);
+            } else {
+                result.textContent = '✗ Try again!';
+                result.className = 'answer-result incorrect show';
+            }
+        }
+        
+        document.querySelectorAll('.answer-input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const qid = this.id.split('-')[0];
+                    const answers = {
+                        'q1':'wake', 'q2':'has', 'q3':'go',
+                        'q4':'played football', 'q5':'watched a movie', 'q6':'went',
+                        'q7':'brother', 'q8':'sister'
+                    };
+                    checkA2Answer(qid, answers[qid]);
+                }
+            });
+        });
+
+        // Skill question sets
+        const skills = {
+            'daily-routine': [
+                { q: 'I _____ up at 7 o\'clock every day.', a: 'wake' },
+                { q: 'She _____ breakfast at 8:00.', a: 'has' },
+                { q: 'We _____ to school by bus.', a: 'go' }
+            ],
+            'simple-past': [
+                { q: 'Change to past tense: "I play football."', a: 'played football' },
+                { q: 'Change to past tense: "She watches a movie."', a: 'watched a movie' },
+                { q: 'Yesterday, we _____ to the park.', a: 'went' }
+            ],
+            'family': [
+                { q: 'Who is your mother\'s son?', a: 'brother' },
+                { q: 'Who is your father\'s daughter?', a: 'sister' }
+            ]
+        };
+        
+        let currentSkill = null, currentIndex = 0;
+        
+        document.querySelectorAll('.skill-btn').forEach(btn => btn.addEventListener('click', ()=>{
+            currentSkill = btn.dataset.skill;
+            currentIndex = 0;
+            // Here would be modal-based question display similar to A1 chapter
+            // You could implement a modal for questions if desired
+        }));
+    </script>
+  <script src="../../../../js/admin.js"></script>
+  <script src="../../../../js/a2-questions.js"></script>
   <script>
-    // Initialize theme toggle button
-    document.addEventListener('DOMContentLoaded', function() {
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      if (themeToggleBtn) {
-          themeToggleBtn.addEventListener('click', toggleTheme);
-      }
-      
-      // Ensure theme persistence
-      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-      } else {
-          document.documentElement.classList.remove('dark');
-      }
-    });
+    // Navigation functions
+    function nextChapter() {
+      window.location.href = './a2-chapter2.html';
+    }
+    
+    function previousChapter() {
+      window.location.href = '../a1/a1-chapter4.html';
+    }
   </script>
 </body>
 </html>

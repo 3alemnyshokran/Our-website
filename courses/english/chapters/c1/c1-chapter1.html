@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English C1 - Chapter 1</title>
+  <title>Academic English - C1 Level | Chapter 1</title>
   <link rel="stylesheet" href="../../../../css/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -33,68 +33,429 @@
     html.dark .theme-btn .light-icon { display: inline; }
     html.dark .theme-btn .dark-icon { display: none; }
     
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body{font-family:'Inter',sans-serif;}
+    .chapter-container {
+        max-width: 900px; /* Increased max-width for better spacing */
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #1f2937; /* Tailwind gray-800 for dark theme */
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    }
+
+    .level-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        background: #14b8a6; /* Tailwind teal-500 for dark theme */
+        color: white;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .content-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
+    }
+
+    .lesson-title {
+        font-size: 1.75rem; /* Larger lesson titles */
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        margin-bottom: 1rem;
+    }
+
+    .lesson-paragraph {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+        margin-bottom: 1rem;
+    }
+
+    .lesson-list {
+        list-style-type: disc;
+        margin-left: 1.5rem;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+    }
+
+    .action-button {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor: pointer;
+    }
+
+    .action-button:hover {
+        transform: translateY(-2px);
+    }
+
+    .start-training-btn {
+        background-color: #14b8a6; /* Tailwind teal-500 */
+        color: white;
+    }
+
+    .start-training-btn:hover {
+        background-color: #0d9488; /* Tailwind teal-600 */
+    }
+
+    .back-to-lesson-btn {
+        background-color: #ef4444; /* Tailwind red-500 */
+        color: white;
+    }
+
+    .back-to-lesson-btn:hover {
+        background-color: #dc2626; /* Tailwind red-600 */
+    }
+
+    .question-container {
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        border-left: 4px solid #14b8a6; /* Tailwind teal-500 for dark theme */
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px var(--hover-shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .question-title {
+        font-size: 1.25rem;
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        margin-bottom: 0.5rem;
+    }
+
+    .exercise {
+        border-left: 4px solid var(--primary-color);
+        padding-left: 15px;
+        margin: 20px 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 10px;
+        background: var(--card-bg);
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background: var(--primary-color);
+        border-radius: 5px;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .answer-input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #4b5563; /* Tailwind gray-600 for dark theme */
+        border-radius: 8px;
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .answer-input:focus {
+        border-color: #14b8a6; /* Tailwind teal-500 for dark theme */
+        box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.4); /* Focus ring for dark theme */
+        outline: none;
+    }
+
+    .check-answer-btn {
+        background: #16a34a; /* Tailwind green-600 */
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .check-answer-btn:hover {
+        background: #15803d; /* Tailwind green-700 */
+        transform: translateY(-2px);
+    }
+
+    .answer-result {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .answer-result.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .answer-result.correct {
+        background: rgba(76, 175, 80, 0.2); /* Adjusted for dark theme */
+        color: #6ee7b7; /* Tailwind green-300 for dark theme */
+    }
+
+    .answer-result.incorrect {
+        background: rgba(244, 67, 54, 0.2); /* Adjusted for dark theme */
+        color: #fca5a5; /* Tailwind red-300 for dark theme */
+    }
+
+    .skill-progress {
+        position: relative;
+        background: rgba(var(--primary-color-rgb), 0.1);
+        height: 8px;
+        border-radius: 4px;
+        margin: 20px 0;
+        overflow: hidden;
+    }
+
+    .skill-progress-fill {
+        height: 100%;
+        background: var(--primary-color);
+        width: 0%;
+        transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-label {
+        position: absolute;
+        right: 0;
+        top: -25px;
+        font-size: 0.9rem;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+    }
+
+    .streak-counter {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        margin: 10px 0;
+        font-weight: 500;
+    }
+
+    .streak-counter .streak-icon {
+        margin-right: 8px;
+        font-size: 1.2rem;
+    }
+
+    .feedback-message {
+        font-size: 1.1rem;
+        margin: 15px 0;
+        text-align: center;
+        min-height: 1.5em;
+    }
+
+    .hints-container {
+        margin-top: 15px;
+        padding: 12px;
+        background: rgba(var(--primary-color-rgb), 0.05);
+        border-radius: 8px;
+        display: none;
+    }
+
+    .hints-container.show {
+        display: block;
+    }
+
+    /* Additional styles for C1 chapter to match A1 level UI style */
+    body {
+        background-color: #f9fafb; /* Tailwind gray-100 */
+        color: #111827; /* Tailwind gray-900 */
+    }
+
+    .chapter-container {
+        background-color: #ffffff; /* White background for chapters */
+        border: 1px solid #e5e7eb; /* Tailwind gray-300 */
+    }
+
+    .level-badge {
+        background: #2563eb; /* Tailwind blue-600 */
+    }
+
+    .content-section {
+        background: #f3f4f6; /* Tailwind gray-200 */
+    }
+
+    .lesson-title {
+        color: #1f2937; /* Tailwind gray-800 */
+    }
+
+    .lesson-paragraph,
+    .lesson-list {
+        color: #374151; /* Tailwind gray-700 */
+    }
+
+    .action-button {
+        background-color: #2563eb; /* Tailwind blue-600 */
+        color: white;
+    }
+
+    .action-button:hover {
+        background-color: #1d4ed8; /* Tailwind blue-700 */
+    }
+
+    .navigation {
+        margin-top: 40px;
+    }
+
+    .nav-button {
+        background: #2563eb; /* Tailwind blue-600 */
+        color: white;
+    }
+
+    .nav-button:hover {
+        background: #1d4ed8; /* Tailwind blue-700 */
+    }
   </style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col">
-  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
-      <div class="flex items-center gap-4">
-        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-            <span class="light-icon">☀️</span>
-            <span class="dark-icon">🌙</span>
-        </button>
-        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-        </select>
-      </div>
+<body class="bg-custom-gray dark:bg-dark-bg">
+    <!-- Add navigation header with theme toggle -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+        <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="chapter-container p-6 md:p-8 lg:p-10 dark:bg-gray-800">
+        <div class="level-badge" data-i18n="levelC1">C1 - Advanced</div>
+        <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Chapter 1: Academic English</h1>
+        
+        <!-- Skill Selection -->
+        <div class="flex flex-wrap gap-3 mt-6 mb-8">
+          <button data-skill="academic-writing" class="skill-btn bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Academic Writing</button>
+          <button data-skill="advanced-vocab" class="skill-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Advanced Vocabulary</button>
+          <button data-skill="connectors" class="skill-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Advanced Connectors</button>
+          <button data-skill="critical-thinking" class="skill-btn bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Critical Thinking</button>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Academic Writing Structure</h2>
+            <p class="mb-4 text-gray-600 dark:text-gray-300">Academic writing follows a specific structure that helps present ideas clearly and logically:</p>
+            
+            <table class="mt-4 w-full border-collapse">
+                <thead>
+                    <tr>
+                        <th class="border p-2 text-left text-gray-300">Section</th>
+                        <th class="border p-2 text-left text-gray-300">Purpose</th>
+                        <th class="border p-2 text-left text-gray-300">Key Elements</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">Introduction</td>
+                        <td class="border p-2">Present the topic and thesis statement</td>
+                        <td class="border p-2">Background information, thesis statement, outline of main points</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">Body Paragraphs</td>
+                        <td class="border p-2">Present and analyze evidence</td>
+                        <td class="border p-2">Topic sentences, evidence, analysis, transitions</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">Conclusion</td>
+                        <td class="border p-2">Summarize and restate thesis</td>
+                        <td class="border p-2">Summary of main points, restatement of thesis, final thoughts</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">References</td>
+                        <td class="border p-2">Cite sources</td>
+                        <td class="border p-2">List of all sources cited in the paper</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Advanced Connectors and Transitions</h2>
+            <p class="mb-4 text-gray-600 dark:text-gray-300">At C1 level, you should use sophisticated connectors to enhance the flow of your writing:</p>
+            <ul class="list-disc pl-6 mb-4 text-gray-600 dark:text-gray-300">
+                <li><strong>Adding information:</strong> Furthermore, moreover, in addition to, as well as, not only...but also</li>
+                <li><strong>Contrast:</strong> However, nevertheless, nonetheless, on the contrary, in contrast, whereas</li>
+                <li><strong>Cause and effect:</strong> Consequently, as a result, therefore, thus, hence, due to, owing to</li>
+                <li><strong>Examples:</strong> For instance, to illustrate, such as, particularly, specifically</li>
+                <li><strong>Time and sequence:</strong> Subsequently, meanwhile, initially, ultimately, eventually</li>
+                <li><strong>Emphasis:</strong> Indeed, certainly, undoubtedly, clearly, notably</li>
+                <li><strong>Concluding:</strong> In conclusion, to summarize, overall, on the whole, in summary</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Critical Thinking in Academic English</h2>
+            <p class="mb-4 text-gray-600 dark:text-gray-300">Critical thinking is essential for academic writing and involves analyzing information objectively:</p>
+            <ul class="list-disc pl-6 mb-4 text-gray-600 dark:text-gray-300">
+                <li>Evaluating sources for credibility and relevance</li>
+                <li>Identifying assumptions and biases</li>
+                <li>Distinguishing between fact and opinion</li>
+                <li>Recognizing logical fallacies</li>
+                <li>Developing and supporting well-reasoned arguments</li>
+                <li>Considering alternative perspectives</li>
+            </ul>
+            <p class="mt-4 text-gray-600 dark:text-gray-300">When writing academically, use phrases like:</p>
+            <ul class="list-disc pl-6 mb-4 text-gray-600 dark:text-gray-300">
+                <li>"This suggests that..." rather than "I think that..."</li>
+                <li>"Evidence indicates..." rather than "It seems to me..."</li>
+                <li>"Research demonstrates..." rather than "Everyone knows..."</li>
+                <li>"It could be argued that..." when presenting alternative views</li>
+            </ul>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+            <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+        </div>
     </div>
-  </header>
-  <main class="flex-grow container mx-auto px-4 py-8">
-    <section class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl">
-      <h2 class="text-2xl font-bold mb-4 text-teal-700 dark:text-teal-300">C1 Advanced - Chapter 1: Academic English</h2>
-      <p class="mb-4">In this chapter, you will learn how to write academic essays, understand lectures, and use advanced connectors and vocabulary.</p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Firstly, secondly, finally</li>
-        <li>In conclusion, therefore, however</li>
-        <li>According to recent research...</li>
-        <li>It is important to note that...</li>
-      </ul>
-      <h3 class="text-xl font-semibold mt-6 mb-2">Grammar Focus: Complex Sentences</h3>
-      <p class="mb-2">Use subordinate clauses to add detail and complexity. Example: "Although it was raining, we went outside."</p>
-      <h3 class="text-xl font-semibold mt-6 mb-2">Practice</h3>
-      <ol class="list-decimal pl-6">
-        <li>Write an introduction for an academic essay.</li>
-        <li>Listen to a short lecture and summarize the main points.</li>
-      </ol>
-    </section>
-  </main>
-  <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
-    <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
-    <p class="text-sm">Designed with Tailwind CSS</p>  </footer>
-  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-  <script src="../../../../js/main.js"></script>
-  <script>
-    // Initialize theme toggle button
-    document.addEventListener('DOMContentLoaded', function() {
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      if (themeToggleBtn) {
-          themeToggleBtn.addEventListener('click', toggleTheme);
-      }
-      
-      // Ensure theme persistence
-      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-      } else {
-          document.documentElement.classList.remove('dark');
-      }
-    });
-  </script>
+    
+    <script src="../../../../js/main.js"></script>
+    <script>
+        // Ensure theme persistence if using localStorage for theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Functions for navigation
+        function previousChapter() {
+            window.location.href = '../b2/b2-chapter1.html';
+        }
+
+        function nextChapter() {
+            window.location.href = '../c2/c2-chapter1.html';
+        }
+    </script>
+    <script src="../../../../js/admin.js"></script>
 </body>
 </html>

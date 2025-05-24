@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>English B1 - Chapter 1</title>
+  <title>Present Perfect - B1 Level | Chapter 1</title>
   <link rel="stylesheet" href="../../../../css/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -33,147 +33,391 @@
     html.dark .theme-btn .light-icon { display: inline; }
     html.dark .theme-btn .dark-icon { display: none; }
     
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body{font-family:'Inter',sans-serif;}
+    .chapter-container {
+        max-width: 900px; /* Increased max-width for better spacing */
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #1f2937; /* Tailwind gray-800 for dark theme */
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    }
+
+    .level-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        background: #7c3aed; /* Tailwind purple-600 for dark theme */
+        color: white;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .content-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
+    }
+
+    .lesson-title {
+        font-size: 1.75rem; /* Larger lesson titles */
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        margin-bottom: 1rem;
+    }
+
+    .lesson-paragraph {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+        margin-bottom: 1rem;
+    }
+
+    .lesson-list {
+        list-style-type: disc;
+        margin-left: 1.5rem;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+    }
+
+    .action-button {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor: pointer;
+    }
+
+    .action-button:hover {
+        transform: translateY(-2px);
+    }
+
+    .start-training-btn {
+        background-color: #7c3aed; /* Tailwind purple-600 */
+        color: white;
+    }
+
+    .start-training-btn:hover {
+        background-color: #6d28d9; /* Tailwind purple-700 */
+    }
+
+    .back-to-lesson-btn {
+        background-color: #ef4444; /* Tailwind red-500 */
+        color: white;
+    }
+
+    .back-to-lesson-btn:hover {
+        background-color: #dc2626; /* Tailwind red-600 */
+    }
+
+    .question-container {
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        border-left: 4px solid #7c3aed; /* Tailwind purple-600 for dark theme */
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px var(--hover-shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .question-title {
+        font-size: 1.25rem;
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        margin-bottom: 0.5rem;
+    }
+
+    .exercise {
+        border-left: 4px solid var(--primary-color);
+        padding-left: 15px;
+        margin: 20px 0;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 10px;
+        background: var(--card-bg);
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+
+    .progress-bar-fill {
+        height: 100%;
+        background: var(--primary-color);
+        border-radius: 5px;
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .answer-input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #4b5563; /* Tailwind gray-600 for dark theme */
+        border-radius: 8px;
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .answer-input:focus {
+        border-color: #7c3aed; /* Tailwind purple-600 for dark theme */
+        box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.4); /* Focus ring for dark theme */
+        outline: none;
+    }
+
+    .check-answer-btn {
+        background: #16a34a; /* Tailwind green-600 */
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .check-answer-btn:hover {
+        background: #15803d; /* Tailwind green-700 */
+        transform: translateY(-2px);
+    }
+
+    .answer-result {
+        margin-top: 15px;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .answer-result.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .answer-result.correct {
+        background: rgba(76, 175, 80, 0.2); /* Adjusted for dark theme */
+        color: #6ee7b7; /* Tailwind green-300 for dark theme */
+    }
+
+    .answer-result.incorrect {
+        background: rgba(244, 67, 54, 0.2); /* Adjusted for dark theme */
+        color: #fca5a5; /* Tailwind red-300 for dark theme */
+    }
+
+    .skill-progress {
+        position: relative;
+        background: rgba(var(--primary-color-rgb), 0.1);
+        height: 8px;
+        border-radius: 4px;
+        margin: 20px 0;
+        overflow: hidden;
+    }
+
+    .skill-progress-fill {
+        height: 100%;
+        background: var(--primary-color);
+        width: 0%;
+        transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-label {
+        position: absolute;
+        right: 0;
+        top: -25px;
+        font-size: 0.9rem;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+    }
+
+    .streak-counter {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 16px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        margin: 10px 0;
+        font-weight: 500;
+    }
+
+    .streak-counter .streak-icon {
+        margin-right: 8px;
+        font-size: 1.2rem;
+    }
+
+    .feedback-message {
+        font-size: 1.1rem;
+        margin: 15px 0;
+        text-align: center;
+        min-height: 1.5em;
+    }
+
+    .hints-container {
+        margin-top: 15px;
+        padding: 12px;
+        background: rgba(var(--primary-color-rgb), 0.05);
+        border-radius: 8px;
+        display: none;
+    }
+
+    .hints-container.show {
+        display: block;
+    }
   </style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col">
-  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
-      <div class="flex items-center gap-4">
-        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-            <span class="light-icon">☀️</span>
-            <span class="dark-icon">🌙</span>
-        </button>
-        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-        </select>
-      </div>
+<body class="bg-custom-gray dark:bg-dark-bg">
+    <!-- Add navigation header with theme toggle -->
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+        <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+        <div class="flex items-center gap-4">
+            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                <span class="light-icon">☀️</span>
+                <span class="dark-icon">🌙</span>
+            </button>
+            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="chapter-container p-6 md:p-8 lg:p-10 dark:bg-gray-800">
+        <div class="level-badge" data-i18n="levelB1">B1 - Intermediate</div>
+        <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Chapter 1: Present Perfect and Experiences</h1>
+        
+        <!-- Skill Selection -->
+        <div class="flex flex-wrap gap-3 mt-6 mb-8">
+          <button data-skill="present-perfect" class="skill-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Present Perfect</button>
+          <button data-skill="experiences" class="skill-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Talking About Experiences</button>
+          <button data-skill="opinions" class="skill-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Expressing Opinions</button>
+          <button data-skill="adverbs" class="skill-btn bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Time Adverbs</button>
+        </div>
+
+        <!-- Practice Questions & Assessment Links -->
+        <div class="content-section bg-blue-50 dark:bg-gray-900 border border-blue-200 dark:border-gray-700 rounded-lg p-6 mb-8">
+            <h2 class="text-xl font-bold mb-4 text-purple-700 dark:text-purple-300">Practice Questions</h2>
+            <ul class="list-disc ml-6 space-y-2">
+                <li><a href="./b1-chapter1-questions1.html" class="text-purple-600 dark:text-purple-400 underline font-semibold">Practice Set 1: Present Perfect</a></li>
+                <li><a href="./b1-chapter1-questions2.html" class="text-purple-600 dark:text-purple-400 underline font-semibold">Practice Set 2: Talking About Experiences</a></li>
+            </ul>
+        </div>
+
+        <!-- Content Sections -->
+        <div class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Present Perfect Tense</h2>
+            <p class="mb-4 text-gray-600 dark:text-gray-300">The present perfect is used for experiences and actions that have happened at an unspecified time. Example: "I have visited London."</p>
+            
+            <table class="mt-4 w-full border-collapse">
+                <thead>
+                    <tr>
+                        <th class="border p-2 text-left text-gray-300">Subject</th>
+                        <th class="border p-2 text-left text-gray-300">Have/Has</th>
+                        <th class="border p-2 text-left text-gray-300">Past Participle</th>
+                        <th class="border p-2 text-left text-gray-300">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">I</td>
+                        <td class="border p-2">have</td>
+                        <td class="border p-2">worked</td>
+                        <td class="border p-2">I have worked here for two years.</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">You</td>
+                        <td class="border p-2">have</td>
+                        <td class="border p-2">seen</td>
+                        <td class="border p-2">You have seen this movie before.</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">He/She/It</td>
+                        <td class="border p-2">has</td>
+                        <td class="border p-2">been</td>
+                        <td class="border p-2">She has been to Paris twice.</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">We</td>
+                        <td class="border p-2">have</td>
+                        <td class="border p-2">eaten</td>
+                        <td class="border p-2">We have eaten Italian food before.</td>
+                    </tr>
+                    <tr class="bg-gray-800">
+                        <td class="border p-2">They</td>
+                        <td class="border p-2">have</td>
+                        <td class="border p-2">lived</td>
+                        <td class="border p-2">They have lived here since 2010.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Time Expressions with Present Perfect</h2>
+            <p class="mb-4 text-gray-600 dark:text-gray-300">Several time expressions are commonly used with the present perfect tense:</p>
+            <ul class="list-disc pl-6 mb-4 text-gray-600 dark:text-gray-300">
+                <li><strong>Ever</strong> - "Have you ever been to Japan?" (asking about experiences)</li>
+                <li><strong>Never</strong> - "I have never tried sushi." (negative experience)</li>
+                <li><strong>Just</strong> - "I have just finished my homework." (very recent past)</li>
+                <li><strong>Already</strong> - "She has already seen that movie." (something happened earlier than expected)</li>
+                <li><strong>Yet</strong> - "Have you done your homework yet?" (up to now, in questions and negatives)</li>
+                <li><strong>Since</strong> - "I have lived here since 2010." (from a specific point in the past until now)</li>
+                <li><strong>For</strong> - "She has worked here for five years." (duration)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Expressing Opinions</h2>
+            <p class="mb-4 text-gray-600 dark:text-gray-300">At the B1 level, you can express more complex opinions using a variety of phrases:</p>
+            <ul class="list-disc pl-6 mb-4 text-gray-600 dark:text-gray-300">
+                <li>"In my opinion, this restaurant is excellent."</li>
+                <li>"I believe that learning languages is important."</li>
+                <li>"I think that the government should invest more in education."</li>
+                <li>"From my point of view, the solution is simple."</li>
+                <li>"I agree/disagree with the idea that..."</li>
+            </ul>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+            <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+        </div>
     </div>
-  </header>
-  <main class="flex-grow container mx-auto px-4 py-8">
-    <section class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl">      <h2 class="text-2xl font-bold mb-4 text-purple-700 dark:text-purple-300">B1 Intermediate - Chapter 1: Experiences and Opinions</h2>
-      <div class="flex justify-between items-center mb-4">
-        <p>In this chapter, you will learn how to talk about your experiences, express opinions, and use the present perfect tense.</p>
-        <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-purple-500 pr-3 text-right mt-2" dir="rtl">
-          في هذا الفصل، ستتعلم كيفية التحدث عن تجاربك، والتعبير عن آرائك، واستخدام زمن المضارع التام.
-        </p>
-        <div class="bg-purple-100 dark:bg-purple-900 px-3 py-1 rounded-lg">
-          <span id="completionStatus" class="text-sm font-medium text-purple-700 dark:text-purple-300">0% Complete</span>
-        </div>
-      </div>
-      <h3 class="text-xl font-semibold mt-6 mb-2">Key Vocabulary</h3>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Experience, travel, visit, try, enjoy, opinion, agree, disagree</li>
-        <li>Already, yet, ever, never, just</li>
-      </ul>      <h3 class="text-xl font-semibold mt-6 mb-2">Grammar Focus: Present Perfect</h3>
-      <p class="mb-2">The present perfect is used for experiences and actions that have happened at an unspecified time. Example: "I have visited London."</p>
-      <p class="text-sm text-gray-600 dark:text-gray-400 border-r-4 border-purple-500 pr-3 text-right mb-2" dir="rtl">
-        يستخدم زمن المضارع التام للتجارب والأفعال التي حدثت في وقت غير محدد. مثال: "لقد زرت لندن."
-      </p>
-      <ul class="list-disc pl-6 mb-4">
-        <li>Have you ever eaten sushi?</li>
-        <li>I have just finished my homework.</li>
-        <li>She has never been to Paris.</li>
-      </ul>
-      <ul class="list-disc pl-6 mb-4 text-sm text-gray-600 dark:text-gray-400 border-r-4 border-purple-500 pr-3 text-right" dir="rtl">
-        <li>هل سبق لك أن أكلت السوشي؟</li>
-        <li>لقد انتهيت للتو من واجبي المنزلي.</li>
-        <li>هي لم تذهب أبدًا إلى باريس.</li>
-      </ul><h3 class="text-xl font-semibold mt-6 mb-2">Practice</h3>
-      <ol class="list-decimal pl-6 mb-6">
-        <li>Write about an experience you have had using the present perfect.</li>
-        <li>Express your opinion about a movie or book.</li>
-      </ol>
-
-      <div class="bg-purple-100 dark:bg-purple-900 p-4 rounded-xl mb-6">
-        <h3 class="text-lg font-semibold mb-2 text-purple-700 dark:text-purple-300">Practice Questions</h3>
-        <p class="mb-3">Test your understanding with these interactive practice questions:</p>
-        <div class="flex flex-col space-y-2">
-          <a href="./b1-chapter1-questions1.html" class="flex items-center bg-white dark:bg-slate-700 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
-            <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">1</span>
-            <div>
-              <span class="font-medium">Present Perfect Practice</span>
-              <div id="part1Status" class="text-sm text-purple-600 dark:text-purple-300">Not started</div>
-            </div>
-          </a>
-          <a href="./b1-chapter1-questions2.html" class="flex items-center bg-white dark:bg-slate-700 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
-            <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3">2</span>
-            <div>
-              <span class="font-medium">Expressing Opinions Practice</span>
-              <div id="part2Status" class="text-sm text-purple-600 dark:text-purple-300">Not started</div>
-            </div>
-          </a>
-        </div>
-      </div>
-
-      <div class="bg-gradient-to-r from-purple-500 to-purple-700 dark:from-purple-700 dark:to-purple-900 text-white p-4 rounded-xl">
-        <h3 class="text-lg font-semibold mb-2">Chapter Assessment</h3>
-        <p class="mb-3">Test your knowledge with our comprehensive chapter assessment. Complete it to mark this chapter as finished.</p>
-        <a href="./b1-chapter1-assessment.html" class="inline-block bg-white text-purple-600 hover:bg-slate-100 py-2 px-4 rounded-lg font-medium">Start Assessment</a>
-      </div>
-    </section>
-  </main><footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
-    <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
-    <p class="text-sm">Designed with Tailwind CSS</p>
-  </footer>  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-  <script src="../../../../js/main.js"></script>
-  <script>
-    // Initialize theme toggle button
-    document.addEventListener('DOMContentLoaded', function() {
-      const themeToggleBtn = document.getElementById('theme-toggle');
-      if (themeToggleBtn) {
-          themeToggleBtn.addEventListener('click', toggleTheme);
-      }
-      
-      // Ensure theme persistence
-      if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark');
-      } else {
-          document.documentElement.classList.remove('dark');
-      }
-      
-      // Update practice status
-      updatePracticeStatus();    });
     
-    // Update practice status based on localStorage
-    function updatePracticeStatus() {
-      const part1Status = document.getElementById('part1Status');
-      const part2Status = document.getElementById('part2Status');
-      const completionStatus = document.getElementById('completionStatus');
-      
-      let completionPercentage = 0;
-      
-      if (localStorage.getItem('b1_ch1_part1_completed') === 'true') {
-        part1Status.textContent = 'Completed';
-        part1Status.classList.add('text-green-600', 'dark:text-green-400', 'font-medium');
-        completionPercentage += 33;
-      }
-      
-      if (localStorage.getItem('b1_ch1_part2_completed') === 'true') {
-        part2Status.textContent = 'Completed';
-        part2Status.classList.add('text-green-600', 'dark:text-green-400', 'font-medium');
-        completionPercentage += 33;
-      }
-      
-      if (localStorage.getItem('b1_ch1_assessment_completed') === 'true') {
-        completionPercentage += 34;
-        localStorage.setItem('b1_ch1_completed', 'true');
-      }
-      
-      completionStatus.textContent = `${completionPercentage}% Complete`;
-    }
-    
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-      const isDark = document.documentElement.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    }
-  </script>
+    <script src="../../../../js/main.js"></script>
+    <script>
+        // Ensure theme persistence if using localStorage for theme preference
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Functions for navigation
+        function previousChapter() {
+            window.location.href = '../../a2/a2-chapter2.html';
+        }
+
+        function nextChapter() {
+            window.location.href = './b1-chapter2.html';
+        }
+    </script>
+    <script src="../../../../js/admin.js"></script>
 </body>
 </html>

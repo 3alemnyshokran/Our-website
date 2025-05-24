@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English C2 - Chapter 1</title>
-  <link rel="stylesheet" href="../../../../css/styles.css">
+  <link rel="stylesheet" href="../../../css/styles.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,15 +33,145 @@
     html.dark .theme-btn .light-icon { display: inline; }
     html.dark .theme-btn .dark-icon { display: none; }
     
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-    body{font-family:'Inter',sans-serif;}
+    .chapter-container {
+        max-width: 900px; /* Increased max-width for better spacing */
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #1f2937; /* Tailwind gray-800 for dark theme */
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    }
+
+    .level-badge {
+        display: inline-block;
+        padding: 5px 15px;
+        background: #db2777; /* Tailwind pink-600 for C2 level */
+        color: white;
+        border-radius: 20px;
+        margin-bottom: 20px;
+    }
+
+    .content-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for sections */
+    }
+
+    .lesson-title {
+        font-size: 1.75rem; /* Larger lesson titles */
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        margin-bottom: 1rem;
+    }
+
+    .lesson-paragraph {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+        margin-bottom: 1rem;
+    }
+
+    .lesson-list {
+        list-style-type: disc;
+        margin-left: 1.5rem;
+        color: #d1d5db; /* Tailwind gray-300 for dark theme */
+    }
+
+    .action-button {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor: pointer;
+    }
+
+    .action-button:hover {
+        transform: translateY(-2px);
+    }
+
+    .question-container {
+        background: #374151; /* Tailwind gray-700 for dark theme */
+        border-left: 4px solid #db2777; /* Tailwind pink-600 for C2 level */
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px var(--hover-shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .question-title {
+        font-size: 1.25rem;
+        color: #f3f4f6; /* Tailwind gray-100 for dark theme */
+        margin-bottom: 0.5rem;
+    }
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .nav-button {
+        padding: 10px 20px;
+        background: #db2777; /* Tailwind pink-600 for C2 level */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .skill-btn {
+        background-color: #374151;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .skill-btn:hover {
+        background-color: #4b5563;
+    }
+
+    /* Modal styles */
+    #questionModal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 50;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0 0 0 / 50%); /* Black w/ opacity */
+    }
+
+    #questionModal .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #questionModal h3 {
+        margin-top: 0;
+    }
+
+    #questionModal button {
+        cursor: pointer;
+    }
   </style>
 </head>
-<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col">
-  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
-      <div class="flex items-center gap-4">
+<body class="bg-custom-gray dark:bg-dark-bg">
+  <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
+    <a href="../../english-course.html" class="text-lg font-bold">← Back to English Course</a>
+    <div class="flex items-center gap-4">
         <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
             <span class="light-icon">☀️</span>
             <span class="dark-icon">🌙</span>
@@ -53,12 +183,56 @@
             <option value="fr">Français</option>
             <option value="es">Español</option>
         </select>
-      </div>
     </div>
   </header>
-  <main class="flex-grow container mx-auto px-4 py-8">
-    <section class="max-w-2xl mx-auto bg-white dark:bg-slate-800 p-8 rounded-xl shadow-xl">
-      <h2 class="text-2xl font-bold mb-4 text-pink-700 dark:text-pink-300">C2 Proficient - Chapter 1: Idioms and Advanced Topics</h2>
+
+  <div class="chapter-container p-6 md:p-8 lg:p-10 dark:bg-gray-800">
+    <div class="level-badge" data-i18n="levelC2">C2 - Proficient</div>
+    <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">Chapter 1: Idioms and Advanced Topics</h1>
+    
+    <!-- Skill Selection -->
+    <div class="flex flex-wrap gap-3 mt-6 mb-8">
+      <button data-skill="idioms" class="skill-btn bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Idioms</button>
+      <button data-skill="advanced-grammar" class="skill-btn bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Advanced Grammar</button>
+      <button data-skill="discourse-markers" class="skill-btn bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Discourse Markers</button>
+      <button data-skill="complex-topics" class="skill-btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-md hover:shadow-lg transition-all">Complex Topics</button>
+    </div>
+
+    <!-- Question Modal -->
+    <div id="questionModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-lg w-full">
+        <div class="flex justify-between items-center mb-4">
+          <h3 id="modalSkillTitle" class="text-xl font-bold text-gray-800 dark:text-white">Skill Title</h3>
+          <button id="closeModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="mb-4">
+          <p id="modalQuestion" class="text-gray-700 dark:text-gray-200 text-lg mb-3">Question text goes here?</p>
+          <input id="modalAnswer" type="text" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-white" placeholder="Your answer">
+          <p id="modalFeedback" class="mt-2 text-gray-600 dark:text-gray-300 hidden"></p>
+        </div>
+        <div class="flex justify-between">
+          <button id="prevQuestion" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50">Previous</button>
+          <button id="checkAnswer" class="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700">Check Answer</button>
+          <button id="nextQuestion" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 disabled:opacity-50">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Practice Questions & Assessment Links -->
+    <div class="content-section bg-pink-50 dark:bg-gray-900 border border-pink-200 dark:border-gray-700 rounded-lg p-6 mb-8">
+        <h2 class="text-xl font-bold mb-4 text-pink-700 dark:text-pink-300">Practice Questions</h2>
+        <ul class="list-disc ml-6 space-y-2">
+            <li><a href="./c2-chapter1-questions1.html" class="text-pink-600 dark:text-pink-400 underline font-semibold">Practice Set 1: Idioms</a></li>
+            <li><a href="./c2-chapter1-questions2.html" class="text-pink-600 dark:text-pink-400 underline font-semibold">Practice Set 2: Advanced Grammar</a></li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+      <h2 class="text-xl font-bold mb-4">Idioms and Expressions</h2>
       <p class="mb-4">In this chapter, you will learn about idiomatic expressions, phrasal verbs, and how to discuss complex topics fluently.</p>
       <ul class="list-disc pl-6 mb-4">
         <li>Break the ice</li>
@@ -66,6 +240,9 @@
         <li>Once in a blue moon</li>
         <li>To be on the same page</li>
       </ul>
+    </div>
+
+    <div class="content-section">
       <h3 class="text-xl font-semibold mt-6 mb-2">Grammar Focus: Advanced Structures</h3>
       <p class="mb-2">Use inversion, cleft sentences, and other advanced grammar. Example: "Never have I seen such a beautiful view."</p>
       <h3 class="text-xl font-semibold mt-6 mb-2">Practice</h3>
@@ -73,13 +250,15 @@
         <li>Use three idioms in a short story.</li>
         <li>Discuss a complex topic using advanced grammar.</li>
       </ol>
-    </section>
-  </main>
-  <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
-    <p>&copy; <span id="currentYear"></span> 3alemny Shokran. All rights reserved.</p>
-    <p class="text-sm">Designed with Tailwind CSS</p>  </footer>
-  <script>document.getElementById('currentYear').textContent = new Date().getFullYear();</script>
-  <script src="../../../../js/main.js"></script>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-button" onclick="previousChapter()" data-i18n="previousLesson">Previous Lesson</button>
+        <button class="nav-button" onclick="nextChapter()" data-i18n="nextLesson">Next Lesson</button>
+    </div>
+  </div>
+
+  <script src="../../../js/main.js"></script>
   <script>
     // Initialize theme toggle button
     document.addEventListener('DOMContentLoaded', function() {
@@ -94,7 +273,143 @@
       } else {
           document.documentElement.classList.remove('dark');
       }
+
+      // Check for admin login and show indicator if admin is logged in
+      const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
+      
+      if (adminLoggedIn) {
+          // Add admin indicator to the header
+          const header = document.querySelector('header');
+          if (header) {
+              const adminBadge = document.createElement('div');
+              adminBadge.id = 'adminBadge';
+              adminBadge.textContent = 'Admin Mode';
+              adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+              
+              // Add the badge to the header if it doesn't already exist
+              if (!document.getElementById('adminBadge')) {
+                  const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
+                  if (buttonsDiv) {
+                      header.insertBefore(adminBadge, buttonsDiv);
+                  } else {
+                      header.appendChild(adminBadge);
+                  }
+              }
+          }
+          
+          // Unlock all content by setting progress to 100%
+          localStorage.setItem('a1_chapter1_progress', 100);
+          localStorage.setItem('a1_chapter2_progress', 100);
+          localStorage.setItem('a1_chapter3_progress', 100);
+          localStorage.setItem('a1_chapter4_progress', 100);
+          localStorage.setItem('a2_chapter1_progress', 100);
+          localStorage.setItem('a2_chapter2_progress', 100);
+          localStorage.setItem('b1_chapter1_progress', 100);
+          localStorage.setItem('b1_chapter2_progress', 100);
+          localStorage.setItem('c1_chapter1_progress', 100);
+          localStorage.setItem('c2_chapter1_progress', 100);
+      }
+
+      // Skill question sets
+      const skills = {
+          'idioms': [
+              { q: 'What does "break the ice" mean?', a: 'to make people feel more comfortable in a social situation' },
+              { q: 'What does "hit the books" mean?', a: 'to study' },
+              { q: 'What does "once in a blue moon" mean?', a: 'very rarely' }
+          ],
+          'advanced-grammar': [
+              { q: 'Rewrite using inversion: "I have never seen such a beautiful view."', a: 'never have I seen such a beautiful view' },
+              { q: 'Create a cleft sentence with "It was": "John found the solution."', a: 'it was John who found the solution' }
+          ],
+          'discourse-markers': [
+              { q: 'Which discourse marker shows contrast?', a: 'however' },
+              { q: 'Which discourse marker shows addition?', a: 'furthermore' }
+          ],
+          'complex-topics': [
+              { q: 'Use three advanced expressions to discuss climate change.', a: 'open-ended' },
+              { q: 'Use formal language to propose a solution to a social problem.', a: 'open-ended' }
+          ]
+      };
+      
+      let currentSkill = null, currentIndex = 0;
+      
+      document.querySelectorAll('.skill-btn').forEach(btn => btn.addEventListener('click', ()=>{
+          currentSkill = btn.dataset.skill;
+          currentIndex = 0;
+          // Here would be modal-based question display similar to A1 chapter
+          // You could implement a modal for questions if desired
+          showQuestionModal();
+      }));
+
+      // Modal functionality
+      const modal = document.getElementById('questionModal');
+      const closeModalBtn = document.getElementById('closeModal');
+      const prevQuestionBtn = document.getElementById('prevQuestion');
+      const nextQuestionBtn = document.getElementById('nextQuestion');
+      const checkAnswerBtn = document.getElementById('checkAnswer');
+      const modalQuestion = document.getElementById('modalQuestion');
+      const modalAnswer = document.getElementById('modalAnswer');
+      const modalFeedback = document.getElementById('modalFeedback');
+
+      function showQuestionModal() {
+          modal.classList.remove('hidden');
+          loadQuestion();
+      }
+
+      function hideQuestionModal() {
+          modal.classList.add('hidden');
+      }
+
+      function loadQuestion() {
+          const questionData = skills[currentSkill][currentIndex];
+          modalQuestion.textContent = questionData.q;
+          modalAnswer.value = '';
+          modalFeedback.classList.add('hidden');
+      }
+
+      closeModalBtn.addEventListener('click', hideQuestionModal);
+
+      prevQuestionBtn.addEventListener('click', () => {
+          if (currentIndex > 0) {
+              currentIndex--;
+              loadQuestion();
+          }
+      });
+
+      nextQuestionBtn.addEventListener('click', () => {
+          if (currentIndex < skills[currentSkill].length - 1) {
+              currentIndex++;
+              loadQuestion();
+          }
+      });
+
+      checkAnswerBtn.addEventListener('click', () => {
+          const userAnswer = modalAnswer.value.trim();
+          const correctAnswer = skills[currentSkill][currentIndex].a;
+
+          if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+              modalFeedback.textContent = 'Correct!';
+              modalFeedback.classList.remove('hidden', 'text-red-500');
+              modalFeedback.classList.add('text-green-500');
+          } else {
+              modalFeedback.textContent = `Incorrect. The correct answer is: ${correctAnswer}`;
+              modalFeedback.classList.remove('hidden', 'text-green-500');
+              modalFeedback.classList.add('text-red-500');
+          }
+      });
     });
+  </script>  <script src="../../../../js/admin.js"></script>
+  <script src="../../../../js/c2-questions.js"></script>
+  <script>
+    // Navigation functions
+    function nextChapter() {
+      // Redirect to the next chapter when it's created
+      alert('Next chapter coming soon!');
+    }
+    
+    function previousChapter() {
+      window.location.href = '../c1/c1-chapter1.html';
+    }
   </script>
 </body>
 </html>
