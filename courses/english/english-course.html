@@ -6,7 +6,8 @@
     <title>English Language Course</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../../css/mobile-optimized.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/global-mobile.css">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
     /* Basic styles for theme toggle icons if needed, Tailwind handles dark mode via 'dark' class on html */
@@ -255,22 +256,55 @@
     
     // Initialize progress values if they don't exist
     function initializeProgressIfNeeded() {
+      // Add proper namespacing for English course progress values
+      const progressKeys = [
+        'english_a1_chapter1_progress',
+        'english_a2_chapter1_progress',
+        'english_b1_chapter1_progress', 
+        'english_b2_chapter1_progress',
+        'english_c1_chapter1_progress',
+        'english_c2_chapter1_progress'
+      ];
+      
       // Check if progress values exist, if not, initialize them to 0
-      if (localStorage.getItem('a1_chapter1_progress') === null) {
-        localStorage.setItem('a1_chapter1_progress', '0');
+      progressKeys.forEach(key => {
+        if (localStorage.getItem(key) === null) {
+          localStorage.setItem(key, '0');
+        } else {
+          // Ensure the progress value is valid (between 0 and 100)
+          const progress = parseFloat(localStorage.getItem(key));
+          if (isNaN(progress) || progress < 0 || progress > 100) {
+            localStorage.setItem(key, '0');
+            console.log(`Reset invalid progress value for ${key}`);
+          }
+        }
+      });
+      
+      // For backward compatibility - migrate old keys to new namespaced keys
+      migrateProgressKeys();
+    }
+    
+    // Migrate old progress keys to new namespaced format
+    function migrateProgressKeys() {
+      const oldToNewKeys = {
+        'a1_chapter1_progress': 'english_a1_chapter1_progress',
+        'a2_chapter1_progress': 'english_a2_chapter1_progress',
+        'b1_chapter1_progress': 'english_b1_chapter1_progress',
+        'b2_chapter1_progress': 'english_b2_chapter1_progress',
+        'c1_chapter1_progress': 'english_c1_chapter1_progress'
+      };
+      
+      for (const [oldKey, newKey] of Object.entries(oldToNewKeys)) {
+        const oldValue = localStorage.getItem(oldKey);
+        if (oldValue !== null) {
+          // Only set the new key if it doesn't already exist
+          if (localStorage.getItem(newKey) === null) {
+            localStorage.setItem(newKey, oldValue);
+            console.log(`Migrated ${oldKey} to ${newKey}`);
+          }
+        }
       }
-      if (localStorage.getItem('a2_chapter1_progress') === null) {
-        localStorage.setItem('a2_chapter1_progress', '0');
-      }
-      if (localStorage.getItem('b1_chapter1_progress') === null) {
-        localStorage.setItem('b1_chapter1_progress', '0');
-      }
-      if (localStorage.getItem('b2_chapter1_progress') === null) {
-        localStorage.setItem('b2_chapter1_progress', '0');
-      }
-      if (localStorage.getItem('c1_chapter1_progress') === null) {
-        localStorage.setItem('c1_chapter1_progress', '0');
-      }    }
+    }
     //   // device info
     //   localStorage.setItem('deviceInfo', JSON.stringify({ ua: navigator.userAgent, browser: navigator.platform }));
     //   document.getElementById('usernameModal').classList.add('hidden');
@@ -287,8 +321,7 @@
         userInfoDiv.appendChild(badge);
       }
     }
-    
-    function applyChapterLocks() {
+      function applyChapterLocks() {
       // Check if admin mode is enabled
       const isAdminMode = localStorage.getItem('isAdmin') === 'true';
       
@@ -300,11 +333,11 @@
       }
       
       // Get progress values with safer parsing - default to 0 if undefined/null/NaN
-      const a1Progress = parseFloat(localStorage.getItem('a1_chapter1_progress')) || 0;
-      const a2Progress = parseFloat(localStorage.getItem('a2_chapter1_progress')) || 0;
-      const b1Progress = parseFloat(localStorage.getItem('b1_chapter1_progress')) || 0;
-      const b2Progress = parseFloat(localStorage.getItem('b2_chapter1_progress')) || 0;
-      const c1Progress = parseFloat(localStorage.getItem('c1_chapter1_progress')) || 0;
+      const a1Progress = parseFloat(localStorage.getItem('english_a1_chapter1_progress')) || 0;
+      const a2Progress = parseFloat(localStorage.getItem('english_a2_chapter1_progress')) || 0;
+      const b1Progress = parseFloat(localStorage.getItem('english_b1_chapter1_progress')) || 0;
+      const b2Progress = parseFloat(localStorage.getItem('english_b2_chapter1_progress')) || 0;
+      const c1Progress = parseFloat(localStorage.getItem('english_c1_chapter1_progress')) || 0;
       
       // Check if levels are completed (100% progress)
       const a1Completed = a1Progress >= 100;
@@ -408,5 +441,43 @@
       }
     }
   </script>
+  
+  <script src="../../js/mobile-utils.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Apply mobile optimizations
+      if (typeof applyMobileOptimizations === 'function') {
+        applyMobileOptimizations();
+      }
+    });
+  </script>
+  
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav hidden">
+    <a href="../../index.html" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+      <span>A1</span>
+    </a>
+    <a href="#" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+      <span>B1</span>
+    </a>
+    <a href="#" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+      </svg>
+      <span>C1</span>
+    </a>
+  </div>
 </body>
 </html>

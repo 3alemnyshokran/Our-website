@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1f2937">
     <title>Basic Arithmetic | Chapter 1</title>
     <link rel="stylesheet" href="../../../../css/styles.css">
+    <link rel="stylesheet" href="../../../../css/global-mobile.css">
+    <link rel="stylesheet" href="mobile-styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -283,40 +286,43 @@
             } else {
                 document.documentElement.classList.remove('dark');
             }
-        });
-
-        // Handle Enter key press
-        document.querySelectorAll('.answer-input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const questionId = this.id.split('-')[0];
-                    const correctAnswer = {
-                        'q1': '22',
-                        'q2': '15',
-                        'q3': '14'
-                    }[questionId];
-                    checkAnswerWithFeedback(questionId, correctAnswer);
-                }
-            });
-        });        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            updateMasteryProgress();
-            updateStreakCounter();
             
-            // Initialize theme toggle button
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', toggleTheme);
-            }
-            
-            // Ensure theme persistence
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
+            // Apply mobile optimizations
+            if (typeof applyMobileOptimizations === 'function') {
+                applyMobileOptimizations();
             }
         });
     </script>
     <script src="../../../../js/main.js"></script>
+    <script src="../../../../js/progress-utils.js"></script>
+    <script src="../../../../js/mobile-utils.js"></script>
+    
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav hidden">
+        <a href="../../../../index.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            <span>Home</span>
+        </a>
+        <a href="../../math-course.html" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            <span>Course</span>
+        </a>
+        <button id="mobile-prev" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Prev</span>
+        </button>
+        <button id="mobile-next" class="mobile-nav-item">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>Next</span>
+        </button>
+    </div>
 </body>
 </html>

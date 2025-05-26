@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="ar" dir="rtl" class="dark">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e40af">
     <title>Arabic Alphabet - A1 Level | Chapter 1</title>
-    <link rel="stylesheet" href="../../../../css/styles.css"> <!-- Adjusted path -->
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <link rel="stylesheet" href="../../../../css/global-mobile.css">
+    <link rel="stylesheet" href="mobile-styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,6 +34,9 @@
         .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
         html.dark .theme-btn .light-icon { display: inline; }
         html.dark .theme-btn .dark-icon { display: none; }
+        
+        /* Arabic text styling */
+        .arabic-text {
             font-size: 1.5rem;
             text-align: right;
             direction: rtl;
@@ -39,12 +44,48 @@
         }
 
         .phonetic {
-            color: var(--secondary-color); /* Consider dark mode for this */
+            color: var(--secondary-color);
             font-size: 0.9rem;
-            margin-left: 10px;
+            margin-right: 10px;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .arabic-text {
+                font-size: 1.25rem;
+            }
+            
+            .phonetic {
+                font-size: 0.8rem;
+                display: block;
+                margin-top: 0.25rem;
+            }
+            
+            .letter-card {
+                padding: 0.5rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Optimize touch targets */
+            .check-answer-btn, .nav-button {
+                min-height: 44px;
+                font-size: 1rem;
+            }
+            
+            /* Optimize input fields */
+            .answer-input {
+                font-size: 1rem;
+                padding: 0.75rem;
+                min-height: 44px;
+            }
         }
 
         /* Dark theme adjustments - can be expanded */
+        .dark .chapter-container {
+            background-color: #1e293b; /* slate-800 */
+            color: #e2e8f0; /* slate-200 */
+        }
+                /* Dark theme adjustments */
         .dark .chapter-container {
             background-color: #1e293b; /* slate-800 */
             color: #e2e8f0; /* slate-200 */
@@ -96,9 +137,33 @@
         }
     </style>
 </head>
-<body class="bg-custom-gray dark:bg-dark-bg">
-    <nav class="fixed top-0 w-full bg-slate-800 dark:bg-slate-900 shadow-md z-10">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+<body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200">
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <h1 class="text-xl md:text-2xl font-bold">الأبجدية العربية</h1>
+                <a href="../../arabic-course.html" class="mr-2 px-2 py-1 bg-blue-700 dark:bg-blue-800 rounded-lg text-xs hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors">
+                    العودة إلى الدورة
+                </a>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+                <div id="user-info" class="flex items-center ml-2">
+                    <!-- User greeting will be inserted here by JS -->
+                </div>
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
+                    <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
+                </button>
+                <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+        </div>
+    </header>
             <a href="../../../../../../../../index.html" class="back-to-home">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -224,6 +289,14 @@
             const percentage = totalQuestions > 0 ? (questionsAnswered / totalQuestions) * 100 : 0;
             document.getElementById('masteryPercentage').textContent = `${Math.round(percentage)}%`;
             document.getElementById('progressBar').style.width = `${percentage}%`;
+            
+            // Update the progress in localStorage with the correct namespaced key
+            localStorage.setItem('arabic_beginner_chapter1_progress', Math.round(percentage).toString());
+            
+            // Call displayArabicProgress if available from progress-utils.js
+            if (typeof ProgressUtils !== 'undefined' && typeof ProgressUtils.displayArabicProgress === 'function') {
+                ProgressUtils.displayArabicProgress();
+            }
         }
 
         function showFeedback(message, isCorrect) {
@@ -287,6 +360,50 @@
         // const usernameDisplay = document.getElementById('usernameDisplay');
         // if(usernameDisplay) usernameDisplay.textContent = username;
 
+    </script>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="../../../../index.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">🏠</div>
+            <div class="mobile-nav-text">الرئيسية</div>
+        </a>
+        <a href="../../arabic-course.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">📚</div>
+            <div class="mobile-nav-text">الدورة</div>
+        </a>
+        <a href="#" class="mobile-nav-item active">
+            <div class="mobile-nav-icon">📝</div>
+            <div class="mobile-nav-text">الفصل</div>
+        </a>
+        <a href="#" onclick="document.getElementById('q1').scrollIntoView({behavior: 'smooth'}); return false;" class="mobile-nav-item">
+            <div class="mobile-nav-icon">⚙️</div>
+            <div class="mobile-nav-text">تمرين</div>
+        </a>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center mt-8 sm:mt-12">
+        <div class="container mx-auto">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <p>&copy; 2025 3alemny Shokran</p>
+                <div class="flex gap-3">
+                    <a href="../../../../index.html" class="text-sm hover:text-blue-300 transition-colors">الرئيسية</a>
+                    <a href="../../arabic-course.html" class="text-sm hover:text-blue-300 transition-colors">العودة إلى الدورة</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../../../../js/progress-utils.js"></script>
+    <script src="../../../../js/mobile-utils.js"></script>
+    <script>
+        // Apply mobile optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof applyMobileOptimizations === 'function') {
+                applyMobileOptimizations();
+            }
+        });
     </script>
     <script src="../../../../js/admin.js"></script>
 </body>

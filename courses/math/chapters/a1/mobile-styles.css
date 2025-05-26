@@ -1,0 +1,115 @@
+/* Mobile optimization styles for Math chapter pages */
+
+/* Base mobile styles */
+@media (max-width: 640px) {
+    .chapter-container {
+        margin: 20px auto 80px; /* Add bottom margin for mobile nav */
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .content-section {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .lesson-title {
+        font-size: 1.4rem;
+    }
+    
+    /* Improve touch targets */
+    .action-button, 
+    button,
+    .nav-button,
+    .skill-btn,
+    .check-answer-btn {
+        min-height: 44px;
+        width: 100%;
+        padding: 14px 20px; /* Larger touch target */
+        margin-bottom: 10px;
+    }
+    
+    /* Make forms more mobile-friendly */
+    .answer-input {
+        padding: 14px; /* Larger touch target */
+        font-size: 16px; /* Prevent iOS zoom on input focus */
+    }
+    
+    /* Improve spacing for mobile */
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 70px; /* Space for mobile nav bar */
+    }
+    
+    /* Add tap highlight color for mobile */
+    a, button, input[type="button"], input[type="submit"] {
+        -webkit-tap-highlight-color: rgba(59, 130, 246, 0.5);
+    }
+    
+    /* Tables need to be responsive */
+    table {
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+    
+    /* Math-specific mobile optimizations */
+    .math-formula {
+        overflow-x: auto;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 1rem;
+    }
+    
+    /* Step by step containers */
+    .step-by-step {
+        padding: 10px;
+        margin: 10px 0;
+    }
+    
+    .step {
+        padding: 8px;
+        margin: 8px 0;
+    }
+    
+    /* Math problem containers */
+    .problem-container {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    /* Interactive calculators */
+    .calculator-container {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    
+    .calculator-button {
+        min-width: 44px;
+        min-height: 44px;
+        margin: 2px;
+    }
+    
+    /* Graph and visual elements */
+    .graph-container {
+        overflow-x: auto;
+        max-width: 100%;
+    }
+    
+    /* Mobile navigation */
+    .mobile-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #1f2937;
+        border-top: 1px solid #374151;
+        padding: 8px 0;
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+}

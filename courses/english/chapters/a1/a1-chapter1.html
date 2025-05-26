@@ -2,10 +2,13 @@
 <html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1f2937">
     <title>Basic Grammar - A1 Level | Chapter 1</title>
     <link rel="stylesheet" href="../../../../css/styles.css">
     <link rel="stylesheet" href="../../../../css/enhanced-styles.css">
+    <link rel="stylesheet" href="../../../../css/mobile-optimized.css">
+    <link rel="stylesheet" href="./mobile-styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -321,6 +324,47 @@
         .content-container {
             margin-top: 70px;
         }
+
+        /* Mobile navigation styles */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1f2937; /* Tailwind gray-800 */
+            color: white;
+            padding: 10px 0;
+            z-index: 1000;
+            border-top: 1px solid #374151; /* Tailwind gray-700 */
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 0;
+        }
+
+        .mobile-nav-icon {
+            font-size: 1.5rem;
+            margin-bottom: 4px;
+        }
+
+        .mobile-nav.active {
+            background-color: #2563eb; /* Tailwind blue-600 */
+        }
+
+        /* Show mobile nav on small screens */
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body class="bg-custom-gray dark:bg-dark-bg">
@@ -594,7 +638,10 @@
             document.getElementById('masteryPercentage').textContent = `${Math.round(progress)}%`;
             document.getElementById('overallProgress').textContent = `${Math.round(progress)}%`;
             
-            // Save progress to localStorage
+            // Save progress to localStorage with proper namespacing
+            localStorage.setItem('english_a1_chapter1_progress', progress);
+            
+            // For backward compatibility, also update the old key
             localStorage.setItem('a1_chapter1_progress', progress);
         }
 
@@ -627,17 +674,26 @@
                 if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
             }
             return null;
-        }
-
-        // Display the username
+        }        // Display the username
         function displayUsername() {
             const usernameElement = document.getElementById('usernameDisplay');
             // Try to get username from localStorage first, then from cookies
             const username = localStorage.getItem('special_username') || getCookie('username') || 'Learner';
             usernameElement.textContent = username;
             
-            // Load saved progress if available
-            const savedProgress = localStorage.getItem('a1_chapter1_progress');
+            // Load saved progress if available - use namespaced key first, fall back to old key
+            let savedProgress = localStorage.getItem('english_a1_chapter1_progress');
+            if (savedProgress === null) {
+                // Try the old key format for backward compatibility
+                savedProgress = localStorage.getItem('a1_chapter1_progress');
+                
+                // If found with old key, migrate it to the new key
+                if (savedProgress !== null) {
+                    localStorage.setItem('english_a1_chapter1_progress', savedProgress);
+                    console.log('Migrated progress from old key to namespaced key');
+                }
+            }
+            
             if (savedProgress) {
                 document.getElementById('progressBar').style.width = `${savedProgress}%`;
                 document.getElementById('masteryPercentage').textContent = `${Math.round(savedProgress)}%`;
@@ -743,5 +799,25 @@
             });
     </script>
     <script src="../../../../js/admin.js"></script>
+
+    <!-- Mobile Navigation Bar -->
+    <div class="mobile-nav">
+        <a href="../../../../index.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">🏠</div>
+            <div class="mobile-nav-text">Home</div>
+        </a>
+        <a href="../../../english/english-course.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">📚</div>
+            <div class="mobile-nav-text">Courses</div>
+        </a>
+        <a href="#" class="mobile-nav-item active">
+            <div class="mobile-nav-icon">📝</div>
+            <div class="mobile-nav-text">A1-Ch1</div>
+        </a>
+        <a href="./a1-chapter1-questions1.html" class="mobile-nav-item">
+            <div class="mobile-nav-icon">✓</div>
+            <div class="mobile-nav-text">Practice</div>
+        </a>
+    </div>
 </body>
 </html>

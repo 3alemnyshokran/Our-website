@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Added dark class -->
-<head>
-  <meta charset="UTF-8">
+<head>  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#1e40af">
   <title>3alemny Shokran - Educational Platform</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/mobile-optimized.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/global-mobile.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body {
@@ -613,7 +613,42 @@
       loginBtn.addEventListener('click', function() {
         window.location.href = 'auth/username-login.html';
       });
+      
+      // Apply mobile optimizations
+      if (typeof applyMobileOptimizations === 'function') {
+        applyMobileOptimizations();
+      }
     });
   </script>
+  
+  <script src="js/mobile-utils.js"></script>
+  
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav hidden">
+    <a href="index.html" class="mobile-nav-item active">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="courses/english/english-course.html" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+      </svg>
+      <span>English</span>
+    </a>
+    <a href="courses/german/german-course.html" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+      </svg>
+      <span>German</span>
+    </a>
+    <a href="auth/username-login.html" id="mobile-login-btn" class="mobile-nav-item">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+      <span>Login</span>
+    </a>
+  </div>
 </body>
 </html>

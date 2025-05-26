@@ -2,10 +2,12 @@
 <html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e40af">
   <title>Welcome to 3alemny Shokran</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../css/enhanced-styles.css">
+  <link rel="stylesheet" href="../css/mobile-optimized.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body { 
@@ -42,52 +44,82 @@
       0% { transform: scale(0.9); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
+    
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+      .login-card {
+        width: 90% !important;
+        padding: 1.5rem !important;
+      }
+      
+      .login-input {
+        min-height: 44px;
+        font-size: 16px !important; /* Prevents iOS zoom on input focus */
+      }
+      
+      .login-button {
+        min-height: 44px;
+        font-size: 16px !important;
+      }
+      
+      /* Improve touch target size */
+      button, a {
+        min-height: 44px;
+        padding: 0.5rem 1rem;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
   <div class="animated-bg"></div>
-  
-  <div class="absolute top-4 right-4">
+    <div class="absolute top-4 right-4">
     <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
       <span class="light-icon">☀️</span> <!-- Sun icon for light mode -->
       <span class="dark-icon">🌙</span> <!-- Moon icon for dark mode -->
     </button>
   </div>
   
-  <div class="w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl card-pop">
+  <div class="login-card w-full max-w-md bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl card-pop">
     <div id="welcome-back" class="hidden">
-      <h1 class="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6">Welcome Back!</h1>
-      <h2 id="welcome-username" class="text-2xl text-center text-slate-700 dark:text-slate-300 mb-8">Hello, Friend</h2>
+      <h1 class="text-2xl sm:text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-4 sm:mb-6">Welcome Back!</h1>
+      <h2 id="welcome-username" class="text-xl sm:text-2xl text-center text-slate-700 dark:text-slate-300 mb-6 sm:mb-8">Hello, Friend</h2>
       
       <div class="flex flex-col items-center space-y-4">
-        <a href="../index.html" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:-translate-y-1 text-center">
+        <a href="../index.html" class="login-button w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:-translate-y-1 text-center">
           Continue Learning
         </a>
-        <button id="change-user" class="text-blue-600 dark:text-blue-400 hover:underline">Not you? Use a different name</button>
+        <button id="change-user" class="login-button text-blue-600 dark:text-blue-400 hover:underline py-2">Not you? Use a different name</button>
       </div>
     </div>
     
     <div id="login-form-container">
-      <h1 class="text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-6">3alemny Shokran</h1>
-      <h2 class="text-xl text-center text-slate-700 dark:text-slate-300 mb-8">Your Learning Journey Begins</h2>
-      
-      <form id="usernameForm" class="space-y-6">
+      <h1 class="text-2xl sm:text-3xl font-bold text-center text-blue-600 dark:text-blue-400 mb-4 sm:mb-6">3alemny Shokran</h1>
+      <h2 class="text-lg sm:text-xl text-center text-slate-700 dark:text-slate-300 mb-6 sm:mb-8">Your Learning Journey Begins</h2>
+        <form id="usernameForm" class="space-y-5 sm:space-y-6">
         <div>
           <label for="username" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Enter Your Name</label>
           <input type="text" id="username" name="username" required 
-                class="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" 
+                class="login-input w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" 
                 placeholder="What should we call you?">
-          <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">This will be used to personalize your learning experience</p>
+          <p class="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">This will be used to personalize your learning experience</p>
         </div>
         
         <button type="submit" 
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:-translate-y-1">
+                class="login-button w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800 transition-all duration-300 hover:-translate-y-1">
           Start Learning
         </button>
       </form>
     </div>
   </div>
-  <script>
+  
+  <!-- Mobile back button -->
+  <div class="fixed bottom-4 left-4 sm:hidden">
+    <a href="../index.html" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 p-3 rounded-full shadow-lg flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+    </a>
+  </div>  <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Set up theme toggle
       const themeToggleBtn = document.getElementById('theme-toggle');
@@ -117,11 +149,72 @@
         document.getElementById('welcome-back').classList.remove('hidden');
         document.getElementById('login-form-container').classList.add('hidden');
         
-        // Auto-redirect after 2 seconds
+        // Auto-redirect after 3 seconds for better UX
+        const redirectTime = isMobileDevice() ? 1500 : 2000; // Faster redirect on mobile
         setTimeout(function() {
           window.location.href = '../index.html';
-        }, 2000);
+        }, redirectTime);
       }
+      
+      // Handle username form submission
+      const usernameForm = document.getElementById('usernameForm');
+      
+      usernameForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const usernameInput = document.getElementById('username');
+        const username = usernameInput.value.trim();
+        
+        if (username) {
+          // Save username
+          localStorage.setItem('username', username);
+          
+          // Save device info for analytics
+          try {
+            const deviceInfo = {
+              userAgent: navigator.userAgent,
+              screenWidth: window.innerWidth,
+              screenHeight: window.innerHeight,
+              isMobile: isMobileDevice(),
+              platform: navigator.platform,
+              language: navigator.language
+            };
+            localStorage.setItem('deviceInfo', JSON.stringify(deviceInfo));
+          } catch (error) {
+            console.log("Could not save device info", error);
+          }
+          
+          // Provide haptic feedback on mobile devices if available
+          if (navigator.vibrate && isMobileDevice()) {
+            navigator.vibrate(50);
+          }
+          
+          // Redirect to homepage
+          window.location.href = '../index.html';
+        }
+      });
+      
+      // Change user button
+      const changeUserBtn = document.getElementById('change-user');
+      if (changeUserBtn) {
+        changeUserBtn.addEventListener('click', function() {
+          document.getElementById('welcome-back').classList.add('hidden');
+          document.getElementById('login-form-container').classList.remove('hidden');
+          document.getElementById('username').focus();
+        });
+      }
+      
+      // Function to detect mobile devices
+      function isMobileDevice() {
+        return (window.innerWidth < 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+      }
+      
+      // Focus the username input when page loads (only if form is visible)
+      if (!savedUsername) {
+        document.getElementById('username').focus();
+      }
+    });
+  </script>
       
       // Handle username form submission
       document.getElementById('usernameForm').addEventListener('submit', function(e) {

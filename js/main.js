@@ -21,6 +21,9 @@ function initializeTheme(forcedTheme) {
     document.body.setAttribute('data-theme', savedTheme);
     
     updateThemeIcon(savedTheme);
+    
+    // Update theme-color meta tag for mobile browsers
+    updateMobileThemeColor(savedTheme);
 }
 
 function toggleTheme() {
@@ -38,6 +41,9 @@ function toggleTheme() {
     
     // Update icons
     updateThemeIcon(newTheme);
+    
+    // Update theme-color meta tag for mobile browsers
+    updateMobileThemeColor(newTheme);
 }
 
 function updateThemeIcon(theme) {
@@ -592,4 +598,66 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.body.classList.remove('modal-open');
         });
     }
+
+    // Mobile-specific initializations
+    initializeMobileFeatures();
 });
+
+function updateMobileThemeColor(theme) {
+    // Update theme-color meta tag for mobile browsers
+    let themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    
+    if (!themeColorMeta) {
+        themeColorMeta = document.createElement('meta');
+        themeColorMeta.name = 'theme-color';
+        document.head.appendChild(themeColorMeta);
+    }
+    
+    themeColorMeta.content = theme === 'dark' ? '#0f172a' : '#1e40af';
+}
+
+// Detect if the user is on a mobile device
+function isMobile() {
+    return (window.innerWidth <= 640) || 
+           (navigator.maxTouchPoints > 0) || 
+           /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Mobile-specific optimizations
+function initializeMobileFeatures() {
+    if (!isMobile()) return;
+    
+    // Ensure viewport meta is set correctly
+    let viewportMeta = document.querySelector('meta[name="viewport"]');
+    
+    if (!viewportMeta) {
+        viewportMeta = document.createElement('meta');
+        viewportMeta.name = 'viewport';
+        document.head.appendChild(viewportMeta);
+    }
+    
+    viewportMeta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    
+    // Add mobile device class to body
+    document.body.classList.add('mobile-device');
+    
+    // Optimize touch targets
+    document.querySelectorAll('button, a, input[type="submit"], .course-card')
+        .forEach(el => {
+            if (el.offsetHeight < 44) {
+                el.style.minHeight = '44px';
+            }
+        });
+        
+    // Collect analytics about mobile usage
+    if (localStorage.getItem('mobile_device_info') === null) {
+        localStorage.setItem('mobile_device_info', JSON.stringify({
+            userAgent: navigator.userAgent,
+            screenWidth: window.innerWidth,
+            screenHeight: window.innerHeight,
+            pixelRatio: window.devicePixelRatio,
+            orientation: window.screen.orientation ? window.screen.orientation.type : 'unknown',
+            timestamp: new Date().toISOString()
+        }));
+    }
+}
