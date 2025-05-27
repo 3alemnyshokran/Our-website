@@ -7,131 +7,202 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        html, body {
+            font-family: 'Inter', sans-serif;
+        }
         /* Basic styles for theme toggle icons */
         .theme-btn .light-icon { display: none; }
         .theme-btn .dark-icon { display: inline; }
         html.dark .theme-btn .light-icon { display: inline; }
         html.dark .theme-btn .dark-icon { display: none; }
+
+        /* Enhanced mobile/tablet responsiveness */
+        @media (max-width: 1024px) {
+            .main-cards-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .header-actions {
+                width: 100%;
+                margin-top: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+            .header-actions > * {
+                margin-bottom: 0.5rem;
+            }
+            .header-actions select, .header-actions button, .header-actions a {
+                width: 100%;
+                text-align: center;
+            }
+            .main-cards-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem;
+            }
+            .main-cards-grid > div {
+                min-width: 0;
+            }
+            .recent-activity-table-container {
+                overflow-x: auto;
+            }
+            .recent-activity-table-container table {
+                min-width: 600px;
+            }
+        }
+        /* Card hover and shadow for modern look */
+        .main-cards-grid > div {
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .main-cards-grid > div:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.12);
+        }
+        /* Button improvements */
+        button, .header-actions a {
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        button:active, .header-actions a:active {
+            transform: scale(0.98);
+        }
+        /* Table improvements */
+        th, td {
+            vertical-align: middle !important;
+        }
+        /* Footer improvements */
+        footer {
+            border-top: 1px solid #334155;
+            background: linear-gradient(90deg, #334155 0%, #1e293b 100%);
+        }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-slate-900 text-gray-800 dark:text-slate-200 min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4 flex justify-between items-center">
-        <div class="flex items-center gap-4">
-            <h1 class="text-2xl font-bold">Admin Dashboard</h1>
-            <div id="adminBadge" class="bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold">Admin Mode</div>
-        </div>
-        <div class="flex items-center gap-4">
-            <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
-                <span class="light-icon">☀️</span>
-                <span class="dark-icon">🌙</span>
-            </button>
-            <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-                <option value="en">English</option>
-                <option value="de">Deutsch</option>
-                <option value="ar">العربية</option>
-                <option value="fr">Français</option>
-                <option value="es">Español</option>
-            </select>
-            <a href="../index.html" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Back to Home</a>
+    <header class="bg-blue-600 dark:bg-blue-700 text-white p-4">
+        <div class="container mx-auto flex flex-wrap justify-between items-center header-container">
+            <div class="flex items-center gap-4">
+                <h1 class="text-xl sm:text-2xl font-bold">Admin Dashboard</h1>
+                <div id="adminBadge" class="bg-red-600 text-white px-3 py-1 rounded-lg text-xs sm:text-sm font-semibold">Admin Mode</div>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4 header-actions">
+                <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+                    <span class="light-icon">☀️</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+                <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-gray-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
+                    <option value="en">English</option>
+                    <option value="de">Deutsch</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                </select>
+                <a href="../index.html" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">Back to Home</a>
+            </div>
         </div>
     </header>
 
     <main class="flex-grow container mx-auto px-4 py-8">
         <section class="mb-10">
-            <h2 class="text-3xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">Welcome to Admin Dashboard</h2>
-            <p class="text-lg text-center text-slate-600 dark:text-slate-400 mb-8">Manage all aspects of the 3alemny Shokran educational platform</p>
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">Welcome to Admin Dashboard</h2>
+            <p class="text-md sm:text-lg text-center text-slate-600 dark:text-slate-400 mb-8">Manage all aspects of the 3alemny Shokran educational platform</p>
         
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 main-cards-grid">
                 <!-- Platform Stats Card -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">Platform Statistics</h3>
-                    <div class="space-y-3">
-                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Total Users:</span> <span class="font-semibold">1,248</span></p>
-                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Active Courses:</span> <span class="font-semibold">5</span></p>
-                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Course Completions:</span> <span class="font-semibold">348</span></p>
-                        <p class="flex justify-between"><span class="text-slate-600 dark:text-slate-400">Assessments Taken:</span> <span class="font-semibold">1,892</span></p>
+                <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-lg">
+                    <h3 class="text-lg sm:text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">Platform Statistics</h3>
+                    <div class="space-y-2 sm:space-y-3">
+                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Total Users:</span> <span class="font-semibold">1,248</span></p>
+                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Active Courses:</span> <span class="font-semibold">5</span></p>
+                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Course Completions:</span> <span class="font-semibold">348</span></p>
+                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Assessments Taken:</span> <span class="font-semibold">1,892</span></p>
                     </div>
                 </div>
                 
                 <!-- Course Management Card -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-semibold text-green-600 dark:text-green-400 mb-4">Course Management</h3>
-                    <ul class="space-y-2">
+                <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-lg">
+                    <h3 class="text-lg sm:text-xl font-semibold text-green-600 dark:text-green-400 mb-4">Course Management</h3>
+                    <ul class="space-y-2 text-sm sm:text-base">
                         <li><a href="../courses/english/english-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇬🇧</span> English Course</a></li>
                         <li><a href="../courses/german/german-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇩🇪</span> German Course</a></li>
                         <li><a href="../courses/arabic/arabic-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇸🇦</span> Arabic Course</a></li>
                         <li><a href="../courses/math/math-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🔢</span> Math Course</a></li>
                         <li><a href="../courses/science/science-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🔬</span> Science Course</a></li>
                     </ul>
-                    <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition-colors">Add New Course</button>
+                    <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">Add New Course</button>
                 </div>
                 
                 <!-- User Management Card -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg">
-                    <h3 class="text-xl font-semibold text-purple-600 dark:text-purple-400 mb-4">User Management</h3>
+                <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-lg">
+                    <h3 class="text-lg sm:text-xl font-semibold text-purple-600 dark:text-purple-400 mb-4">User Management</h3>
                     <div class="flex flex-col space-y-2">
-                        <button class="bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg transition-colors">View All Users</button>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors">View Progress Reports</button>
-                        <button class="bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg transition-colors">Manage Permissions</button>
+                        <button class="bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">View All Users</button>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">View Progress Reports</button>
+                        <button class="bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">Manage Permissions</button>
                     </div>
                 </div>
             </div>
         </section>
         
         <section class="mb-10">
-            <h2 class="text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300">Recent User Activity</h2>
-            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300">Recent User Activity</h2>
+            <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden recent-activity-table-container">
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                     <thead class="bg-gray-50 dark:bg-slate-700">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">User</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Action</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Course</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Timestamp</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">User</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Action</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Course</th>
+                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Timestamp</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700">
+                    <tbody class="bg-white dark:bg-slate-800 divide-y divide-gray-200 dark:divide-gray-700 text-sm">
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">Ahmed S.</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Completed Chapter</td>
-                            <td class="px-6 py-4 whitespace-nowrap">English A1 Ch.2</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Today, 10:23 AM</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Ahmed S.</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Completed Chapter</td>
+                            <td class="px-4 py-4 whitespace-nowrap">English A1 Ch.2</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Today, 10:23 AM</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">Sarah K.</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Started Course</td>
-                            <td class="px-6 py-4 whitespace-nowrap">German A1</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Today, 09:47 AM</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Sarah K.</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Started Course</td>
+                            <td class="px-4 py-4 whitespace-nowrap">German A1</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Today, 09:47 AM</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">Mohammed A.</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Failed Assessment</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Math A2 Ch.1</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Yesterday, 08:12 PM</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Mohammed A.</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Failed Assessment</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Math A2 Ch.1</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Yesterday, 08:12 PM</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">Fatima R.</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Passed Assessment</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Arabic B1 Ch.3</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Yesterday, 06:30 PM</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Fatima R.</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Passed Assessment</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Arabic B1 Ch.3</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Yesterday, 06:30 PM</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">John D.</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Registered</td>
-                            <td class="px-6 py-4 whitespace-nowrap">N/A</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Yesterday, 02:15 PM</td>
+                            <td class="px-4 py-4 whitespace-nowrap">John D.</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Registered</td>
+                            <td class="px-4 py-4 whitespace-nowrap">N/A</td>
+                            <td class="px-4 py-4 whitespace-nowrap">Yesterday, 02:15 PM</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="flex justify-center mt-4">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors">View All Activity</button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors text-sm sm:text-base">View All Activity</button>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center">
+    <footer class="bg-gray-800 dark:bg-slate-950 text-white dark:text-slate-300 p-4 text-center text-sm">
         &copy; 2025 3alemny Shokran Educational Platform | Admin Access
     </footer>
 
