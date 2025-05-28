@@ -112,41 +112,150 @@
         <section class="mb-10">
             <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-center text-blue-600 dark:text-blue-400">Welcome to Admin Dashboard</h2>
             <p class="text-md sm:text-lg text-center text-slate-600 dark:text-slate-400 mb-8">Manage all aspects of the 3alemny Shokran educational platform</p>
-        
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 main-cards-grid">
-                <!-- Platform Stats Card -->
-                <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-lg">
-                    <h3 class="text-lg sm:text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">Platform Statistics</h3>
-                    <div class="space-y-2 sm:space-y-3">
-                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Total Users:</span> <span class="font-semibold">1,248</span></p>
-                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Active Courses:</span> <span class="font-semibold">5</span></p>
-                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Course Completions:</span> <span class="font-semibold">348</span></p>
-                        <p class="flex justify-between text-sm sm:text-base"><span class="text-slate-600 dark:text-slate-400">Assessments Taken:</span> <span class="font-semibold">1,892</span></p>
+        </section>
+
+        <!-- Expanded Course Management Section -->
+        <section class="mb-10">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-6 text-center text-slate-700 dark:text-slate-300">Course Management</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- English Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🇬🇧</span>
+                        <h3 class="text-lg font-semibold text-blue-600 dark:text-blue-400">English Course</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Comprehensive English lessons from A1 to B2, including grammar, vocabulary, and conversation.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-blue-500 h-2 rounded-full" style="width: 80%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/english/english-course.html" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
                     </div>
                 </div>
-                
-                <!-- Course Management Card -->
-                <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-lg">
-                    <h3 class="text-lg sm:text-xl font-semibold text-green-600 dark:text-green-400 mb-4">Course Management</h3>
-                    <ul class="space-y-2 text-sm sm:text-base">
-                        <li><a href="../courses/english/english-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇬🇧</span> English Course</a></li>
-                        <li><a href="../courses/german/german-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇩🇪</span> German Course</a></li>
-                        <li><a href="../courses/arabic/arabic-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🇸🇦</span> Arabic Course</a></li>
-                        <li><a href="../courses/math/math-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🔢</span> Math Course</a></li>
-                        <li><a href="../courses/science/science-course.html" class="text-blue-500 hover:underline flex items-center"><span class="mr-2">🔬</span> Science Course</a></li>
-                    </ul>
-                    <button class="mt-4 w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">Add New Course</button>
-                </div>
-                
-                <!-- User Management Card -->
-                <div class="bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-xl shadow-lg">
-                    <h3 class="text-lg sm:text-xl font-semibold text-purple-600 dark:text-purple-400 mb-4">User Management</h3>
-                    <div class="flex flex-col space-y-2">
-                        <button class="bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">View All Users</button>
-                        <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">View Progress Reports</button>
-                        <button class="bg-amber-500 hover:bg-amber-600 text-white py-2 rounded-lg transition-colors text-sm sm:text-base">Manage Permissions</button>
+                <!-- German Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🇩🇪</span>
+                        <h3 class="text-lg font-semibold text-yellow-600 dark:text-yellow-400">German Course</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Learn German from beginner to intermediate with interactive exercises and assessments.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-yellow-500 h-2 rounded-full" style="width: 65%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/german/german-course.html" class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
                     </div>
                 </div>
+                <!-- Arabic Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🇸🇦</span>
+                        <h3 class="text-lg font-semibold text-green-700 dark:text-green-400">Arabic Course</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Arabic language modules for all levels, focusing on reading, writing, and speaking.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-green-500 h-2 rounded-full" style="width: 50%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/arabic/arabic-course.html" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+                <!-- Math Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🔢</span>
+                        <h3 class="text-lg font-semibold text-pink-600 dark:text-pink-400">Math Course</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Covers arithmetic, algebra, geometry, and more with step-by-step explanations and practice problems.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-pink-500 h-2 rounded-full" style="width: 72%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/math/math-course.html" class="flex-1 bg-pink-500 hover:bg-pink-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+                <!-- Science Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🔬</span>
+                        <h3 class="text-lg font-semibold text-purple-600 dark:text-purple-400">Science Course</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Explore biology, chemistry, and physics with interactive lessons and quizzes designed for all levels.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-purple-500 h-2 rounded-full" style="width: 60%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/science/science-course.html" class="flex-1 bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+                <!-- Computer Science Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">💻</span>
+                        <h3 class="text-lg font-semibold text-blue-700 dark:text-blue-300">Computer Science</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">From basic programming to advanced algorithms, with coding exercises in multiple languages.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-blue-700 h-2 rounded-full" style="width: 35%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/cs/cs-course.html" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+                <!-- Art & Design Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🎨</span>
+                        <h3 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Art & Design</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Creative skills from drawing fundamentals to digital design with practical projects and tutorials.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-indigo-500 h-2 rounded-full" style="width: 25%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/art/art-course.html" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+                <!-- Business Studies Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">📊</span>
+                        <h3 class="text-lg font-semibold text-emerald-600 dark:text-emerald-400">Business Studies</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Introduction to business principles, marketing, finance, and entrepreneurship skills for all levels.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-emerald-500 h-2 rounded-full" style="width: 20%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/business/business-course.html" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+                <!-- Music Course Card -->
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-lg flex flex-col">
+                    <div class="flex items-center mb-2">
+                        <span class="text-2xl mr-2">🎵</span>
+                        <h3 class="text-lg font-semibold text-red-600 dark:text-red-400">Music</h3>
+                    </div>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm mb-3">Learn music theory, instrument basics, and composition with interactive audio lessons and exercises.</p>
+                    <div class="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2 mb-3">
+                        <div class="bg-red-500 h-2 rounded-full" style="width: 15%"></div>
+                    </div>
+                    <div class="flex gap-2 mt-auto">
+                        <a href="../courses/music/music-course.html" class="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg text-center text-sm">Manage</a>
+                        <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg text-sm">Add Lesson</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-6">
+                <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors text-base font-semibold">Add New Course</button>
             </div>
         </section>
         
