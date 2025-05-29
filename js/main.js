@@ -527,6 +527,229 @@ function setProgress(progressId, percentage) {
     updateProgress();
 }
 
+// User Authentication/Profile Functions
+
+/**
+ * Creates and inserts a user info/menu element into the header
+ */
+function initializeUserInfo() {
+    const username = localStorage.getItem('username');
+    const userInfoContainer = document.getElementById('user-info');
+    
+    if (!userInfoContainer) return;
+    
+    if (username) {
+        // Create a dropdown menu for logged-in user
+        userInfoContainer.innerHTML = `
+            <div class="relative">
+                <button id="userMenuBtn" class="flex items-center bg-blue-700 dark:bg-blue-800 text-white px-3 py-1 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors gap-2">
+                    <span class="text-sm font-medium">${username}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div id="userDropdown" class="absolute right-0 mt-2 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-lg py-2 z-50 hidden">
+                    <a href="../profile/profile-setup.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-700">
+                        Profile Settings
+                    </a>
+                    <a href="#" id="headerSignOutBtn" class="block px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-slate-700">
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+        `;
+        
+        // Toggle dropdown when clicking the button
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userDropdown = document.getElementById('userDropdown');
+        
+        if (userMenuBtn && userDropdown) {
+            userMenuBtn.addEventListener('click', () => {
+                userDropdown.classList.toggle('hidden');
+            });
+            
+            // Hide dropdown when clicking outside
+            document.addEventListener('click', (event) => {
+                if (!userMenuBtn.contains(event.target) && !userDropdown.contains(event.target)) {
+                    userDropdown.classList.add('hidden');
+                }
+            });
+            
+            // Handle sign out
+            const headerSignOutBtn = document.getElementById('headerSignOutBtn');
+            if (headerSignOutBtn) {                headerSignOutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.signOut(true, true);
+                });
+            }
+        }
+    } else {
+        // Show login/register links for non-logged in users
+        userInfoContainer.innerHTML = `
+            <div class="flex gap-2">
+                <a href="../auth/login.html" class="text-sm text-white bg-blue-700 dark:bg-blue-800 px-3 py-1 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors">
+                    Login
+                </a>
+                <a href="../auth/register.html" class="text-sm text-white bg-green-600 dark:bg-green-700 px-3 py-1 rounded-lg hover:bg-green-700 dark:hover:bg-green-800 transition-colors">
+                    Register
+                </a>
+            </div>
+        `;
+    }
+}
+
+/**
+ * Signs the user out by clearing localStorage and redirecting to home
+ * @param {boolean} showConfirmation - Whether to show a confirmation dialog before signing out
+ * @param {boolean} showSuccessMessage - Whether to show a success message in the URL
+ */
+window.signOut = function(showConfirmation = true, showSuccessMessage = true) {
+    // Ask for confirmation if requested
+    if (showConfirmation && !confirm('Are you sure you want to sign out?')) {
+        return;
+    }
+    
+    // Clear all user data from localStorage
+    localStorage.removeItem('username');
+    localStorage.removeItem('adminLoggedIn');
+    
+    // Any other user-specific data that should be cleared
+    const coursePrefixes = ['a1_', 'a2_', 'b1_', 'b2_', 'c1_', 'c2_', 
+                           'german_', 'arabic_', 'math_', 'science_'];
+    
+    for (const key in localStorage) {
+        // Remove any course progress data
+        for (const prefix of coursePrefixes) {
+            if (key.startsWith(prefix)) {
+                localStorage.removeItem(key);
+            }
+        }
+    }
+    
+    // Redirect to the home page with a success message if requested
+    if (showSuccessMessage) {
+        window.location.href = '../index.html?message=signout_success';
+    } else {
+        window.location.href = '../index.html';
+    }
+}
+
+// Function to initialize all user interface elements
+function initializeInterface() {
+    initializeTheme(currentTheme);
+    initializeLanguageSelector();
+    initializeUserInfo();
+    checkUrlParameters();
+}
+
+/**
+ * Checks URL parameters for message codes and displays appropriate notifications
+ */
+function checkUrlParameters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    
+    if (message === 'signout_success') {
+        showNotification('You have been successfully signed out.', 'success');
+    } else if (message === 'username_updated') {
+        showNotification('Your username has been successfully updated.', 'success');
+    }
+    
+    // Clean up the URL after displaying the message
+    if (message) {
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, newUrl);
+    }
+}
+
+/**
+ * Shows a notification message to the user
+ * @param {string} message - The message to display
+ * @param {string} type - The type of message (success, error, warning, info)
+ * @param {number} duration - How long to show the message in milliseconds
+ */
+function showNotification(message, type = 'info', duration = 5000) {
+    // Check if notification container exists, create it if not
+    let notificationContainer = document.getElementById('notification-container');
+    
+    if (!notificationContainer) {
+        notificationContainer = document.createElement('div');
+        notificationContainer.id = 'notification-container';
+        notificationContainer.className = 'fixed bottom-4 right-4 z-50 flex flex-col gap-3';
+        document.body.appendChild(notificationContainer);
+    }
+    
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification px-4 py-3 rounded-lg shadow-lg transition-all duration-300 flex items-center ${
+        type === 'success' ? 'bg-green-100 text-green-800 dark:bg-green-900/60 dark:text-green-200' :
+        type === 'error' ? 'bg-red-100 text-red-800 dark:bg-red-900/60 dark:text-red-200' :
+        type === 'warning' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/60 dark:text-yellow-200' :
+        'bg-blue-100 text-blue-800 dark:bg-blue-900/60 dark:text-blue-200'
+    }`;
+    
+    // Add appropriate icon
+    let icon = '';
+    switch (type) {
+        case 'success':
+            icon = '<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>';
+            break;
+        case 'error':
+            icon = '<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>';
+            break;
+        case 'warning':
+            icon = '<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>';
+            break;
+        default:
+            icon = '<svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>';
+    }
+    
+    notification.innerHTML = `
+        ${icon}
+        <div class="flex-grow">${message}</div>
+        <button class="ml-3 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    `;
+    
+    // Add to container
+    notificationContainer.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Close button functionality
+    const closeButton = notification.querySelector('button');
+    closeButton.addEventListener('click', () => {
+        closeNotification(notification);
+    });
+    
+    // Auto-close after duration
+    if (duration > 0) {
+        setTimeout(() => {
+            closeNotification(notification);
+        }, duration);
+    }
+}
+
+/**
+ * Closes and removes a notification element
+ * @param {HTMLElement} notification - The notification element to close
+ */
+function closeNotification(notification) {
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(10px)';
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 300);
+}
+
 // Call initializations when DOM is loaded
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize theme first

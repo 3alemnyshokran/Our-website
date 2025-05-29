@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../../../../css/mobile-optimized.css">
     <link rel="stylesheet" href="./mobile-styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Progress tracking script -->
+    <script src="../../../../js/progress-tracker.js" defer></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -484,340 +486,86 @@
         </div>
     </div>    <script src="../../../js/main.js"></script>
     <script>
-        // Add theme toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Theme toggle functionality
             const themeToggleBtn = document.getElementById('theme-toggle');
-            themeToggleBtn.addEventListener('click', function() {
-                document.documentElement.classList.toggle('dark');
-                
-                if (document.documentElement.classList.contains('dark')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
             
-            // Set theme based on saved preference
-            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            // Ensure theme persistence
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
             } else {
                 document.documentElement.classList.remove('dark');
             }
             
-            // Check for saved username and display it
-            const savedUsername = localStorage.getItem('username');
-            const usernameDisplay = document.getElementById('username-display');
-            
-            if (savedUsername) {
-                usernameDisplay.textContent = `Logged in as: ${savedUsername}`;
-            } else {
-                // Redirect to login if no username found
-                window.location.href = '../../../../auth/username-login.html';
-            }
-        });
-    </script>
-    <script>
-        // Ensure theme persistence if using localStorage for theme preference
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        // Check for admin login and show indicator if admin is logged in
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if admin is logged in
-            const adminLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-            
-            if (adminLoggedIn) {
-                // Add admin indicator to the header
-                const header = document.querySelector('header');
-                if (header) {
-                    const adminBadge = document.createElement('div');
-                    adminBadge.id = 'adminBadge';
-                    adminBadge.textContent = 'Admin Mode';
-                    adminBadge.className = 'bg-red-600 text-white px-3 py-1 rounded-lg text-sm font-semibold';
+            // Initialize progress tracking
+            if (localStorage.getItem('username')) {
+                // Initialize time tracking for this chapter
+                const timeTracker = initTimeTracker('english', 'a1-chapter1');
+                timeTracker.start();
+                
+                // Record that user started this chapter
+                trackProgress('english', 'a1-chapter1', 'in-progress');
+                
+                // Add progress display to the page
+                const progressContainer = document.createElement('div');
+                progressContainer.id = 'chapter-progress-container';
+                progressContainer.className = 'fixed bottom-4 right-4 bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                progressContainer.innerHTML = `
+                    <div class="text-sm font-semibold">Progress Tracking Active</div>
+                    <div class="text-xs">Your progress is being saved</div>
+                `;
+                document.body.appendChild(progressContainer);
+                
+                // Add completion button at the end of the chapter content
+                const completeButton = document.createElement('button');
+                completeButton.className = 'mt-8 w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors';
+                completeButton.textContent = 'Mark Chapter as Complete';
+                completeButton.onclick = function() {
+                    completeChapter('english', 'a1-chapter1');
+                    this.disabled = true;
+                    this.textContent = 'Chapter Completed!';
+                    this.className = 'mt-8 w-full bg-gray-500 text-white py-3 px-6 rounded-lg font-semibold';
                     
-                    // Add the badge to the header if it doesn't already exist
-                    if (!document.getElementById('adminBadge')) {
-                        const buttonsDiv = header.querySelector('.flex.items-center.gap-4');
-                        if (buttonsDiv) {
-                            header.insertBefore(adminBadge, buttonsDiv);
-                        } else {
-                            header.appendChild(adminBadge);
-                        }
-                    }                }
+                    // Update the progress display
+                    const progressContainer = document.getElementById('chapter-progress-container');
+                    if (progressContainer) {
+                        progressContainer.className = 'fixed bottom-4 right-4 bg-green-600 dark:bg-green-700 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                        progressContainer.innerHTML = `
+                            <div class="text-sm font-semibold">Chapter Completed!</div>
+                            <div class="text-xs">Great job!</div>
+                        `;
+                        
+                        // Make it disappear after 3 seconds
+                        setTimeout(() => {
+                            progressContainer.style.opacity = '0';
+                            progressContainer.style.transition = 'opacity 0.5s ease-out';
+                            setTimeout(() => progressContainer.remove(), 500);
+                        }, 3000);
+                    }
+                };
                 
-                // Only unlock all content if it's truly an admin session
-                // Check for admin status in localStorage
-                if (localStorage.getItem('isAdmin') === 'true') {
-                    // Unlock all content by setting progress to 100%
-                    localStorage.setItem('a1_chapter1_progress', 100);
-                    localStorage.setItem('a1_chapter2_progress', 100);
-                    localStorage.setItem('a1_chapter3_progress', 100);
-                    localStorage.setItem('a1_chapter4_progress', 100);
-                    localStorage.setItem('a2_chapter1_progress', 100);
-                    localStorage.setItem('a2_chapter2_progress', 100);
-                    localStorage.setItem('b1_chapter1_progress', 100);
-                    localStorage.setItem('b1_chapter2_progress', 100);
-                    
-                    console.log('Admin privileges activated: All course levels unlocked');
+                // Add the completion button to the end of the content
+                const contentSections = document.querySelectorAll('.content-section');
+                if (contentSections.length > 0) {
+                    const lastSection = contentSections[contentSections.length - 1];
+                    lastSection.appendChild(completeButton);
+                } else {
+                    // Fallback if no content sections found
+                    const chapterContainer = document.querySelector('.chapter-container');
+                    if (chapterContainer) {
+                        chapterContainer.appendChild(completeButton);
+                    }
                 }
-                
-                // If there are specific UI elements showing progress, update them
-                const progressBar = document.getElementById('progressBar');
-                const masteryPercentage = document.getElementById('masteryPercentage');
-                const overallProgress = document.getElementById('overallProgress');
-                
-                if (progressBar) progressBar.style.width = '100%';
-                if (masteryPercentage) masteryPercentage.textContent = '100%';
-                if (overallProgress) overallProgress.textContent = '100%';
-            }
-            
-            // Initialize theme toggle button
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', toggleTheme);
             }
         });
-
-        let streak = 0;
-        let questionsAnswered = 0;
-        const totalQuestions = 7;
-        const encouragingMessages = [
-            "Great job! Keep it up! 🌟",
-            "You're on fire! 🔥",
-            "Excellent work! 👏",
-            "Amazing progress! 💫",
-            "You're doing great! 🎯"
-        ];
-
-        function checkAnswerWithFeedback(questionId, correctAnswer) {
-            const input = document.getElementById(`${questionId}-input`);
-            const container = document.getElementById(questionId);
-            const resultDiv = container.querySelector('.answer-result');
-            const hintsDiv = container.querySelector('.hints-container');
-            const userAnswer = input.value.trim();
-            
-            const isCorrect = userAnswer.toLowerCase() === correctAnswer.toLowerCase();
-            
-            // Update UI
-            container.className = `question-container ${isCorrect ? 'correct' : 'incorrect'}`;
-            resultDiv.className = `answer-result ${isCorrect ? 'correct' : 'incorrect'} show`;
-            
-            if (isCorrect) {
-                streak++;
-                questionsAnswered++;
-                resultDiv.textContent = `✓ Correct! "${correctAnswer}" is the right answer.`;
-                updateProgress(questionId);
-                showEncouragement();
-                input.disabled = true;
-            } else {
-                streak = 0;
-                resultDiv.textContent = `✗ Try again! Think about which pronoun fits here.`;
-                hintsDiv.className = 'hints-container show';
-            }
-            
-            updateStreakCounter();
-            updateMasteryProgress();
-        }
-
-        function showEncouragement() {
-            const message = encouragingMessages[Math.floor(Math.random() * encouragingMessages.length)];
-            const feedbackDiv = document.getElementById('feedbackMessage');
-            feedbackDiv.textContent = message;
-            feedbackDiv.style.color = '#4caf50';
-        }
-
-        function updateStreakCounter() {
-            document.getElementById('currentStreak').textContent = streak;
-        }        function updateMasteryProgress() {
-            const progress = (questionsAnswered / totalQuestions) * 100;
-            document.getElementById('progressBar').style.width = `${progress}%`;
-            document.getElementById('masteryPercentage').textContent = `${Math.round(progress)}%`;
-            document.getElementById('overallProgress').textContent = `${Math.round(progress)}%`;
-            
-            // Save progress to localStorage with proper namespacing
-            localStorage.setItem('english_a1_chapter1_progress', progress);
-            
-            // For backward compatibility, also update the old key
-            localStorage.setItem('a1_chapter1_progress', progress);
-        }
-
-        // Handle "Enter" key press
-        document.querySelectorAll('.answer-input').forEach(input => {
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const questionId = this.id.split('-')[0];
-                    const correctAnswer = {
-                        'q1': 'I',
-                        'q2': 'She',
-                        'q3': 'They',
-                        'q4': 'is',
-                        'q5': 'are',
-                        'q6': 'grandfather',
-                        'q7': 'aunt'
-                    }[questionId];
-                    checkAnswerWithFeedback(questionId, correctAnswer);
-                }
-            });
-        });
-        
-        // Cookie utility functions
-        function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
-            }
-            return null;
-        }        // Display the username
-        function displayUsername() {
-            const usernameElement = document.getElementById('usernameDisplay');
-            // Try to get username from localStorage first, then from cookies
-            const username = localStorage.getItem('special_username') || getCookie('username') || 'Learner';
-            usernameElement.textContent = username;
-            
-            // Load saved progress if available - use namespaced key first, fall back to old key
-            let savedProgress = localStorage.getItem('english_a1_chapter1_progress');
-            if (savedProgress === null) {
-                // Try the old key format for backward compatibility
-                savedProgress = localStorage.getItem('a1_chapter1_progress');
-                
-                // If found with old key, migrate it to the new key
-                if (savedProgress !== null) {
-                    localStorage.setItem('english_a1_chapter1_progress', savedProgress);
-                    console.log('Migrated progress from old key to namespaced key');
-                }
-            }
-            
-            if (savedProgress) {
-                document.getElementById('progressBar').style.width = `${savedProgress}%`;
-                document.getElementById('masteryPercentage').textContent = `${Math.round(savedProgress)}%`;
-                document.getElementById('overallProgress').textContent = `${Math.round(savedProgress)}%`;
-            }
-        }
-        
-        // Call displayUsername when the page loads
-        document.addEventListener('DOMContentLoaded', displayUsername);
     </script>
-    <script>
-      // Skill question sets
-      const skills = {
-        pronouns: [
-          { q: '_____ am a student.', a: 'i' },
-          { q: '_____ is my teacher.', a: 'she' },
-          { q: '_____ are my friends.', a: 'they' }
-        ],
-        tobe: [
-          { q: 'He _____ from Spain.', a: 'is' },
-          { q: 'We _____ in the classroom.', a: 'are' }
-        ],
-        family: [
-          { q: 'My mother\'s father is my _____.', a: 'grandfather' },
-          { q: 'My father\'s sister is my _____.', a: 'aunt' }
-        ],
-        adjectives: [
-          { q: 'What is the opposite of "big"?', a: 'small' },
-          { q: 'What is the opposite of "happy"?', a: 'sad' }
-        ],
-        numbers: [
-          { q: 'What number comes after 7?', a: '8' },
-          { q: 'What is 5 + 3?', a: '8' }
-        ],
-        questions: [
-          { q: 'What is the question word for asking about time?', a: 'When' },
-          { q: 'What is the question word for asking about a person?', a: 'Who' }
-        ],
-        articles: [
-          { q: 'Fill in the blank: "I saw _____ apple on the table."', a: 'an' },
-          { q: 'Fill in the blank: "She bought _____ car."', a: 'a' }
-        ],
-        prepositions: [
-          { q: 'Fill in the blank: "The book is _____ the table."', a: 'on' },
-          { q: 'Fill in the blank: "He is sitting _____ the chair."', a: 'on' }
-        ]
-      };
-      let currentSkill = null, currentIndex = 0;
-      const modal = document.getElementById('questionModal');
-      const titleEl = document.getElementById('modalSkillTitle');
-      const questEl = document.getElementById('modalQuestion');
-      const ansEl = document.getElementById('modalAnswer');
-      const prevBtn = document.getElementById('prevQuestion');
-      const nextBtn = document.getElementById('nextQuestion');
-      const checkBtn = document.getElementById('checkAnswer');
-      const feedbackEl = document.getElementById('modalFeedback');
-      document.querySelectorAll('.skill-btn').forEach(btn => btn.addEventListener('click', ()=>{
-        currentSkill = btn.dataset.skill;
-        currentIndex = 0;
-        titleEl.textContent = btn.textContent;
-        loadQuestion();
-        modal.classList.remove('hidden');
-      }));
-      document.getElementById('closeModal').addEventListener('click', ()=> modal.classList.add('hidden'));
-      prevBtn.addEventListener('click', ()=>{
-        if(currentIndex>0) currentIndex--, loadQuestion();
-      });
-      nextBtn.addEventListener('click', ()=>{
-        const total = skills[currentSkill].length;
-        if(currentIndex<total-1) currentIndex++ , loadQuestion();
-        else modal.classList.add('hidden');
-      });
-      function loadQuestion(){
-        const item = skills[currentSkill][currentIndex];
-        questEl.textContent = item.q;
-        ansEl.value = '';
-        feedbackEl.textContent = '';
-        prevBtn.disabled = currentIndex===0;
-        nextBtn.disabled = true;
-      }
-      checkBtn.addEventListener('click', ()=>{
-        const correct = skills[currentSkill][currentIndex].a.toLowerCase();
-        if(ansEl.value.trim().toLowerCase()===correct){
-          feedbackEl.textContent = '✓ Correct!'; feedbackEl.className='mt-4 text-green-600 font-semibold';
-          nextBtn.disabled = false;
-          // Update progress in localStorage per skill
-          const progressKey = `a1_${currentSkill}_prog`;
-          let prog = JSON.parse(localStorage.getItem(progressKey)||'[]');
-          prog[currentIndex] = true;
-          localStorage.setItem(progressKey, JSON.stringify(prog));
-        } else {
-          feedbackEl.textContent = '✗ Try again!'; feedbackEl.className='mt-4 text-red-600 font-semibold';
-        }
-      });
-    </script>
-    <script>
-            document.getElementById('startTraining').addEventListener('click', function() {
-                document.getElementById('lessonSection').classList.add('hidden');
-                document.getElementById('trainingSection').classList.remove('hidden');
-            });            document.getElementById('backToLesson').addEventListener('click', function() {
-                document.getElementById('trainingSection').classList.add('hidden');
-                document.getElementById('lessonSection').classList.remove('hidden');
-            });
-    </script>
-    <script src="../../../../js/admin.js"></script>
-
-    <!-- Mobile Navigation Bar -->
-    <div class="mobile-nav">
-        <a href="../../../../index.html" class="mobile-nav-item">
-            <div class="mobile-nav-icon">🏠</div>
-            <div class="mobile-nav-text">Home</div>
-        </a>
-        <a href="../../../english/english-course.html" class="mobile-nav-item">
-            <div class="mobile-nav-icon">📚</div>
-            <div class="mobile-nav-text">Courses</div>
-        </a>
-        <a href="#" class="mobile-nav-item active">
-            <div class="mobile-nav-icon">📝</div>
-            <div class="mobile-nav-text">A1-Ch1</div>
-        </a>
-        <a href="./a1-chapter1-questions1.html" class="mobile-nav-item">
-            <div class="mobile-nav-icon">✓</div>
-            <div class="mobile-nav-text">Practice</div>
-        </a>
-    </div>
 </body>
 </html>

@@ -22,9 +22,9 @@
       <h2 class="text-2xl font-bold mb-6 text-center text-blue-600 dark:text-blue-400">Create an Account</h2>
       <form id="registerForm" class="space-y-5">
         <div id="formMessage" class="hidden text-center text-sm rounded-lg px-3 py-2 mb-2"></div>
-        <div>
-          <label for="username" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
+        <div>          <label for="username" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Username</label>
           <input type="text" id="username" name="username" required class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Your username">
+          <p id="usernameAvailability" class="text-xs mt-1 hidden">Username availability status</p>
         </div>
         <div>
           <label for="password" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Password</label>
@@ -49,6 +49,77 @@
   </footer>
   <script>
     document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Function to check username availability
+    async function checkUsernameAvailability(username) {
+      try {
+        const response = await fetch(`http://localhost:3001/api/check-username/${encodeURIComponent(username)}`);
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Error checking username availability:', error);
+        return { available: false, error: error.message };
+      }
+    }
+
+    // Debounce function to limit API calls
+    function debounce(func, wait) {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    // Username input element
+    const usernameInput = document.getElementById('username');
+    const usernameAvailability = document.getElementById('usernameAvailability');
+
+    // Check username availability when typing
+    if (usernameInput && usernameAvailability) {      const checkUsername = debounce(async (value) => {
+        // If the field is empty, hide the availability text
+        if (!value.trim()) {
+          usernameAvailability.classList.add('hidden');
+          return;
+        }
+        
+        // Basic validation for username
+        if (value.length < 3) {
+          usernameAvailability.classList.remove('hidden');
+          usernameAvailability.textContent = 'Username must be at least 3 characters long';
+          usernameAvailability.className = 'text-xs mt-1 text-red-600 dark:text-red-400';
+          return;
+        }
+        
+        if (!/^[a-zA-Z0-9_-]+$/.test(value)) {
+          usernameAvailability.classList.remove('hidden');
+          usernameAvailability.textContent = 'Username can only contain letters, numbers, underscores, and hyphens';
+          usernameAvailability.className = 'text-xs mt-1 text-red-600 dark:text-red-400';
+          return;
+        }
+        
+        // Show loading state
+        usernameAvailability.classList.remove('hidden');
+        usernameAvailability.textContent = 'Checking availability...';
+        usernameAvailability.className = 'text-xs mt-1 text-slate-600 dark:text-slate-400';
+        
+        const result = await checkUsernameAvailability(value);
+        
+        if (result.available) {
+          usernameAvailability.textContent = 'Username is available!';
+          usernameAvailability.className = 'text-xs mt-1 text-green-600 dark:text-green-400';
+        } else if (result.error) {
+          usernameAvailability.textContent = result.error;
+          usernameAvailability.className = 'text-xs mt-1 text-red-600 dark:text-red-400';
+        } else {
+          usernameAvailability.textContent = 'Username is already taken';
+          usernameAvailability.className = 'text-xs mt-1 text-red-600 dark:text-red-400';
+        }
+      }, 500);
+      
+      usernameInput.addEventListener('input', (e) => checkUsername(e.target.value));
+    }
+
     const form = document.getElementById('registerForm');
     const formMessage = document.getElementById('formMessage');
     function showMessage(msg, type = 'error') {
@@ -59,52 +130,152 @@
       formMessage.textContent = '';
       formMessage.className = 'hidden';
     }
-    form.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      clearMessage();
-      const username = form.username.value.trim();
-      const password = form.password.value;
-      const confirmPassword = form.confirmPassword.value;
-      const rememberMe = form.rememberMe.checked;
-      if (!username || !password || !confirmPassword) {
-        showMessage('Please fill all fields.');
-        return;
+    
+    // Browser detection
+    function getBrowserInfo() {
+      const userAgent = navigator.userAgent;
+      let browserName = "Unknown";
+      
+      if (userAgent.indexOf("Firefox") > -1) {
+        browserName = "Firefox";
+      } else if (userAgent.indexOf("SamsungBrowser") > -1) {
+        browserName = "Samsung Browser";
+      } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+        browserName = "Opera";
+      } else if (userAgent.indexOf("Edge") > -1 || userAgent.indexOf("Edg") > -1) {
+        browserName = "Edge";
+      } else if (userAgent.indexOf("Chrome") > -1) {
+        browserName = "Chrome";
+      } else if (userAgent.indexOf("Safari") > -1) {
+        browserName = "Safari";
       }
-      if (password !== confirmPassword) {
-        showMessage('Passwords do not match.');
-        return;
+      
+      return browserName;
+    }
+    
+    // OS detection
+    function getOSInfo() {
+      const userAgent = navigator.userAgent;
+      let osName = "Unknown";
+      
+      if (userAgent.indexOf("Windows NT 10.0") > -1) {
+        osName = "Windows 10";
+      } else if (userAgent.indexOf("Windows NT 6.3") > -1) {
+        osName = "Windows 8.1";
+      } else if (userAgent.indexOf("Windows NT 6.2") > -1) {
+        osName = "Windows 8";
+      } else if (userAgent.indexOf("Windows NT 6.1") > -1) {
+        osName = "Windows 7";
+      } else if (userAgent.indexOf("Windows NT 6.0") > -1) {
+        osName = "Windows Vista";
+      } else if (userAgent.indexOf("Windows NT 5.1") > -1) {
+        osName = "Windows XP";
+      } else if (userAgent.indexOf("Windows NT 5.0") > -1) {
+        osName = "Windows 2000";
+      } else if (userAgent.indexOf("Mac") > -1) {
+        osName = "macOS";
+      } else if (userAgent.indexOf("Android") > -1) {
+        osName = "Android";
+      } else if (userAgent.indexOf("iOS") > -1 || (userAgent.indexOf("iPhone") > -1 || userAgent.indexOf("iPad") > -1)) {
+        osName = "iOS";
+      } else if (userAgent.indexOf("Linux") > -1) {
+        osName = "Linux";
       }
-      try {
-        const res = await fetch('http://localhost:3001/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
-        const data = await res.json();
-        if (data.success) {
-          if (rememberMe) localStorage.setItem('rememberedUser', JSON.stringify({ username, password }));
-          // Auto-login after registration
-          const loginRes = await fetch('http://localhost:3001/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
-          });
-          const loginData = await loginRes.json();
-          if (loginData.success) {
-            localStorage.setItem('loggedInUser', loginData.username);
-            showMessage('Registration successful! Redirecting...', 'success');
-            setTimeout(() => { window.location.href = '/index.html'; }, 1000);
-          } else {
-            showMessage('Registered, please login.', 'success');
-            setTimeout(() => { window.location.href = '/auth/login.html'; }, 1000);
-          }
-        } else {
-          showMessage(data.error || 'Registration failed.');
+      
+      return osName;
+    }
+    
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        clearMessage();
+          const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Basic validation
+        if (!username) {
+          showMessage('Please enter a username');
+          return;
         }
-      } catch (err) {
-        showMessage('Network error. Please try again.');
-      }
-    });
+        
+        if (username.length < 3) {
+          showMessage('Username must be at least 3 characters long');
+          return;
+        }
+        
+        if (!/^[a-zA-Z0-9_-]+$/.test(username)) {
+          showMessage('Username can only contain letters, numbers, underscores, and hyphens');
+          return;
+        }
+        
+        if (!password) {
+          showMessage('Please enter a password');
+          return;
+        }
+        
+        if (password.length < 6) {
+          showMessage('Password must be at least 6 characters long');
+          return;
+        }
+        
+        // Validate password matching
+        if (password !== confirmPassword) {
+          showMessage('Passwords do not match');
+          return;
+        }
+        
+        // Check username availability
+        const usernameCheck = await checkUsernameAvailability(username);
+        if (!usernameCheck.available) {
+          showMessage('This username is already taken. Please choose another.');
+          return;
+        }
+        
+        // Get device information
+        const deviceInfo = {
+          ip: 'client',
+          device: navigator.userAgent,
+          browser: getBrowserInfo(),
+          os: getOSInfo()
+        };
+        
+        try {
+          const response = await fetch('http://localhost:3001/api/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username,
+              password,
+              ...deviceInfo
+            }),
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            showMessage('Registration successful! Redirecting to login...', 'success');
+            
+            // Check if "remember me" is checked
+            const rememberMe = document.getElementById('rememberMe').checked;
+            if (rememberMe) {
+              localStorage.setItem('rememberedUsername', username);
+            }
+            
+            setTimeout(() => {
+              window.location.href = '/auth/login.html';
+            }, 2000);
+          } else {
+            showMessage(data.error || 'Registration failed');
+          }
+        } catch (error) {
+          console.error('Registration error:', error);
+          showMessage('Server error. Please try again later.');
+        }
+      });
+    }
   </script>
 </body>
 </html>

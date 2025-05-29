@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="dark"> <!-- Added dark class -->
-<head>
-  <meta charset="UTF-8">
+<head>  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile Setup - 3alemny Shokran</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS CDN -->  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../css/user-account.css">
+  <link rel="stylesheet" href="../css/notification.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body {
@@ -26,11 +26,13 @@
     }
   </script>
 </head>
-<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">
-  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
       <div class="flex items-center gap-3 sm:gap-4">
+        <div id="user-info" class="flex items-center mr-2">
+          <!-- User info will be inserted here by JS -->
+        </div>
         <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
           <span class="light-icon">☀️</span>
           <span class="dark-icon">🌙</span>
@@ -87,6 +89,91 @@
           </div>
         </div>
         
+        <!-- Course Progress Section (New) -->
+        <div class="mb-8">
+            <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Your Learning Progress</h3>
+            <div id="user-progress-overview" class="bg-slate-50 dark:bg-slate-700 p-4 rounded-lg mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="text-sm font-medium text-slate-600 dark:text-slate-400">Overall Progress</div>
+                    <div class="text-sm font-medium text-slate-600 dark:text-slate-400" id="overall-progress-percent">0%</div>
+                </div>
+                <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2 mb-4">
+                    <div id="overall-progress-bar" class="bg-blue-500 h-2 rounded-full" style="width: 0%"></div>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-lg text-center">
+                        <div class="text-xs text-slate-600 dark:text-slate-400">Courses Started</div>
+                        <div class="text-lg font-bold text-blue-600 dark:text-blue-400" id="courses-started-count">0</div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded-lg text-center">
+                        <div class="text-xs text-slate-600 dark:text-slate-400">Chapters Completed</div>
+                        <div class="text-lg font-bold text-green-600 dark:text-green-400" id="chapters-completed-count">0</div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/30 p-3 rounded-lg text-center">
+                        <div class="text-xs text-slate-600 dark:text-slate-400">Total Time Spent</div>
+                        <div class="text-lg font-bold text-purple-600 dark:text-purple-400" id="total-time-spent">0h</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="course-progress-cards" class="space-y-4">
+                <!-- Course progress cards will be added here dynamically -->
+                <div class="text-center text-slate-500 dark:text-slate-400 py-4">
+                    Loading your progress data...
+                </div>
+            </div>
+        </div>
+
+        <!-- User Settings -->
+        <div class="mb-8">
+            <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Account Settings</h3>
+            
+            <!-- Username Change Section -->
+            <div class="bg-white dark:bg-slate-700 p-4 rounded-lg mb-4">
+                <div class="mb-4">
+                    <label for="currentUsername" class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">Current Username</label>
+                    <input type="text" id="currentUsername" class="w-full px-3 py-2 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-slate-200" readonly>
+                </div>
+                
+                <div id="changeUsernameForm" class="space-y-3">
+                    <div>
+                        <label for="newUsername" class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">New Username</label>
+                        <input type="text" id="newUsername" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Enter new username">
+                        <p id="usernameAvailability" class="text-xs mt-1 invisible">Username availability status</p>
+                    </div>
+                    
+                    <div>
+                        <label for="passwordConfirmation" class="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">Confirm with Password</label>
+                        <input type="password" id="passwordConfirmation" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-slate-200" placeholder="Enter your password">
+                    </div>
+                    
+                    <div class="flex justify-end pt-2">
+                        <button id="updateUsernameBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-sm transition-colors text-sm font-medium">
+                            Update Username
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="usernameChangeResult" class="mt-3 hidden">
+                    <!-- Result messages will be displayed here -->
+                </div>
+            </div>
+            
+            <!-- Sign Out Button -->
+            <div class="bg-white dark:bg-slate-700 p-4 rounded-lg">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h4 class="text-md font-medium text-slate-700 dark:text-slate-300">Session Management</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Sign out from all devices</p>
+                    </div>
+                    <button id="signOutBtn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg shadow-sm transition-colors text-sm font-medium">
+                        Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Notifications -->
         <div class="mb-8">
             <h3 class="text-xl font-medium text-slate-700 dark:text-slate-300 mb-3">Notification Settings</h3>
@@ -113,10 +200,11 @@
 
   <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
     <p>&copy; <span id="currentYear">2025</span> 3alemny Shokran. All rights reserved.</p>
-    <p class="text-sm">Designed with Tailwind CSS</p>
-  </footer>
+    <p class="text-sm">Designed with Tailwind CSS</p>  </footer>
 
   <script src="../../js/main.js"></script>
+  <script src="../js/profile-progress.js"></script>
+  <script src="../js/account-settings.js"></script>
   <script>
     // Update current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();

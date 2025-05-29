@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="../../css/global-mobile.css">
+    <!-- Progress tracking script -->
+    <script src="../../js/progress-tracker.js" defer></script>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
     /* Basic styles for theme toggle icons if needed, Tailwind handles dark mode via 'dark' class on html */
@@ -47,6 +49,9 @@
         <section class="text-center mb-6 sm:mb-10">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 text-blue-600 dark:text-blue-400">English Course</h2>
             <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-2">All levels from A1 to C2</p>
+            
+            <!-- Course progress indicator -->
+            <div id="course-progress" class="mt-4"></div>
         </section>
           <section class="mb-8">
             <h3 class="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center text-slate-700 dark:text-slate-300 tracking-tight">What You Will Learn</h3>
@@ -435,49 +440,4 @@
         adminIndicator.className = 'bg-red-600 text-white px-2 py-1 rounded-lg text-xs font-semibold';
         
         const userInfoDiv = document.getElementById('user-info');
-        if (userInfoDiv) {
-          userInfoDiv.appendChild(adminIndicator);
-        }
-      }
-    }
-  </script>
-  
-  <script src="../../js/mobile-utils.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Apply mobile optimizations
-      if (typeof applyMobileOptimizations === 'function') {
-        applyMobileOptimizations();
-      }
-    });
-  </script>
-  
-  <!-- Mobile Navigation Bar -->
-  <div class="mobile-nav hidden">
-    <a href="../../index.html" class="mobile-nav-item">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-      <span>Home</span>
-    </a>
-    <a href="#" class="mobile-nav-item">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-      </svg>
-      <span>A1</span>
-    </a>
-    <a href="#" class="mobile-nav-item">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-      </svg>
-      <span>B1</span>
-    </a>
-    <a href="#" class="mobile-nav-item">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-      </svg>
-      <span>C1</span>
-    </a>
-  </div>
-</body>
-</html>
+        if

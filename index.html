@@ -4,10 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#1e40af">
   <title>3alemny Shokran - Educational Platform</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS CDN -->  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/global-mobile.css">
+  <link rel="stylesheet" href="css/notification.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body {
@@ -89,15 +89,14 @@
           </button>
         </div>
       </div>
-      
-      <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row sm:items-center sm:ml-auto mt-4 sm:mt-0 gap-3">
+        <div id="nav-links" class="hidden sm:flex flex-col sm:flex-row sm:items-center sm:ml-auto mt-4 sm:mt-0 gap-3">
         <div class="sm:ml-auto flex flex-col sm:flex-row items-start sm:items-center gap-3">
           <button id="adminBtn" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 text-sm rounded-lg shadow transition-colors">Admin</button>
           
-          <!-- Login button - visible when not logged in -->
-          <button id="login-btn" class="bg-white dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-3 py-1.5 text-sm rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-            Login
-          </button>
+          <!-- User info will be populated by main.js -->
+          <div id="user-info" class="flex items-center">
+            <!-- User info will be inserted here by JS -->
+          </div>
           
           <!-- Profile button - visible when logged in -->
           <div id="profile-btn" class="relative hidden">
