@@ -83,20 +83,29 @@
   </script>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+      <!-- Logo/Website Name -->
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
       
-      <div class="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-0">
-        <!-- Admin Button - Now positioned separately -->
-        <a href="../admin/dashboard.html" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 text-sm rounded-lg shadow transition-colors">Admin</a>
+      <div class="flex items-center gap-2">
+        <!-- Translation Button (styled as shown in the image) -->
+        <button id="translation-button" class="bg-gray-400 hover:bg-gray-500 text-black px-4 py-2 rounded-md">
+          translation button
+        </button>
         
-        <!-- User Account Section -->
-        <div class="user-dropdown relative">
-          <button id="userDropdownBtn" class="flex items-center bg-blue-700 dark:bg-blue-800 text-white px-3 py-1 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors gap-2">
-            <span id="headerUsername" class="text-sm font-medium">Username</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
+        <!-- Language Selector (dropdown style) -->
+        <select id="languageSelect" class="bg-gray-400 text-black border-none rounded-md px-3 py-2 mr-2">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
+        </select>
+        
+        <!-- Username Button (styled as shown in image) -->
+        <div class="relative user-dropdown">
+          <button id="userDropdownBtn" class="bg-gray-400 hover:bg-gray-500 text-black px-6 py-2 rounded-md uppercase font-medium">
+            USERNAME
           </button>
           <div id="userDropdownMenu" class="user-dropdown-menu hidden">
             <a href="../profile/profile-setup.html" class="user-dropdown-item">
@@ -109,22 +118,16 @@
           </div>
         </div>
         
+        <!-- Admin Button (Red style as in image) -->
+        <a href="../admin/dashboard.html" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md">
+          Admin
+        </a>
+        
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
+        <button id="theme-toggle" class="theme-btn flex items-center justify-center bg-yellow-400 dark:bg-yellow-500 rounded-full w-8 h-8 ml-2" aria-label="Toggle Theme">
           <span class="light-icon">☀️</span>
           <span class="dark-icon">🌙</span>
         </button>
-      </div>
-      
-      <!-- Language Selection - Moved to a better place below header content -->
-      <div class="w-full flex justify-end mt-2">
-        <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
-          <option value="en">English</option>
-          <option value="ar">العربية</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-          <option value="de">Deutsch</option>
-        </select>
       </div>
     </div>
   </header>
@@ -286,8 +289,7 @@
     <p class="text-sm">Designed with Tailwind CSS</p>  </footer>
   <script src="../js/main.js"></script>
   <script src="../js/profile-progress.js"></script>
-  <script src="../js/account-settings.js"></script>
-  <script>
+  <script src="../js/account-settings.js"></script>  <script>
     // Update current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
@@ -311,20 +313,18 @@
     document.addEventListener('DOMContentLoaded', function() {
       // Initialize username in the header
       const username = localStorage.getItem('username');
-      const headerUsername = document.getElementById('headerUsername');
+      const userDropdownBtn = document.getElementById('userDropdownBtn');
       const currentUsername = document.getElementById('currentUsername');
+      const userDropdownMenu = document.getElementById('userDropdownMenu');
       
       if (username) {
-        if (headerUsername) headerUsername.textContent = username;
+        // Display username in uppercase as shown in the screenshot
+        if (userDropdownBtn) userDropdownBtn.textContent = username.toUpperCase();
         if (currentUsername) currentUsername.value = username;
       } else {
         // Redirect to login if not logged in
         window.location.href = '../auth/login.html';
       }
-      
-      // Toggle dropdown menu
-      const userDropdownBtn = document.getElementById('userDropdownBtn');
-      const userDropdownMenu = document.getElementById('userDropdownMenu');
       
       if (userDropdownBtn && userDropdownMenu) {
         userDropdownBtn.addEventListener('click', function() {
