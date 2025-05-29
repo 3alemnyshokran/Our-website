@@ -5,8 +5,7 @@
   <title>Profile Setup - 3alemny Shokran</title>
   <!-- Tailwind CSS CDN -->  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="../css/user-account.css">
-  <link rel="stylesheet" href="../css/notification.css">
-  <style>
+  <link rel="stylesheet" href="../css/notification.css">  <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     body {
       font-family: 'Inter', sans-serif;
@@ -16,6 +15,63 @@
     .theme-btn .dark-icon { display: inline; } /* Shown by default, hidden in dark mode if JS requires */
     html.dark .theme-btn .light-icon { display: inline; }
     html.dark .theme-btn .dark-icon { display: none; }
+    
+    /* User dropdown menu styles */
+    .user-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 200px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 50;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    
+    html.dark .user-dropdown-menu {
+      background-color: #1e293b;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .user-dropdown-item {
+      display: block;
+      padding: 10px 16px;
+      color: #334155;
+      font-size: 14px;
+      transition: background-color 0.2s;
+    }
+    
+    html.dark .user-dropdown-item {
+      color: #e2e8f0;
+    }
+    
+    .user-dropdown-item:hover {
+      background-color: #f1f5f9;
+    }
+    
+    html.dark .user-dropdown-item:hover {
+      background-color: #334155;
+    }
+    
+    .user-dropdown-item.danger {
+      color: #ef4444;
+    }
+    
+    html.dark .user-dropdown-item.danger {
+      color: #f87171;
+    }
+    
+    .user-dropdown-divider {
+      height: 1px;
+      background-color: #e2e8f0;
+      margin: 6px 0;
+    }
+    
+    html.dark .user-dropdown-divider {
+      background-color: #334155;
+    }
   </style>
   <script>
     // Tailwind dark mode setup
@@ -27,20 +83,47 @@
   </script>
 </head>
 <body class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex flex-col transition-colors duration-300">  <header class="bg-blue-600 dark:bg-blue-700 text-white shadow-md">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap justify-between items-center">
       <h1 class="text-2xl sm:text-3xl font-bold">3alemny Shokran</h1>
-      <div class="flex items-center gap-3 sm:gap-4">
-        <div id="user-info" class="flex items-center mr-2">
-          <!-- User info will be inserted here by JS -->
+      
+      <div class="flex items-center gap-3 sm:gap-4 mt-2 sm:mt-0">
+        <!-- Admin Button - Now positioned separately -->
+        <a href="../admin/dashboard.html" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 text-sm rounded-lg shadow transition-colors">Admin</a>
+        
+        <!-- User Account Section -->
+        <div class="user-dropdown relative">
+          <button id="userDropdownBtn" class="flex items-center bg-blue-700 dark:bg-blue-800 text-white px-3 py-1 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-900 transition-colors gap-2">
+            <span id="headerUsername" class="text-sm font-medium">Username</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div id="userDropdownMenu" class="user-dropdown-menu hidden">
+            <a href="../profile/profile-setup.html" class="user-dropdown-item">
+              Profile Settings
+            </a>
+            <div class="user-dropdown-divider"></div>
+            <a href="#" id="headerSignOutBtn" class="user-dropdown-item danger">
+              Sign Out
+            </a>
+          </div>
         </div>
+        
+        <!-- Theme Toggle Button -->
         <button id="theme-toggle" class="theme-btn bg-white dark:bg-slate-800 text-blue-600 dark:text-yellow-400 px-3 py-2 rounded-lg shadow hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Theme">
           <span class="light-icon">☀️</span>
           <span class="dark-icon">🌙</span>
         </button>
+      </div>
+      
+      <!-- Language Selection - Moved to a better place below header content -->
+      <div class="w-full flex justify-end mt-2">
         <select id="languageSelect" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-600 text-slate-800 dark:text-slate-200 px-3 py-2 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Select Language">
           <option value="en">English</option>
           <option value="ar">العربية</option>
-          <!-- Add other languages as needed -->
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="de">Deutsch</option>
         </select>
       </div>
     </div>
@@ -201,8 +284,7 @@
   <footer class="bg-slate-800 dark:bg-slate-950 text-slate-300 dark:text-slate-400 p-6 text-center mt-auto">
     <p>&copy; <span id="currentYear">2025</span> 3alemny Shokran. All rights reserved.</p>
     <p class="text-sm">Designed with Tailwind CSS</p>  </footer>
-
-  <script src="../../js/main.js"></script>
+  <script src="../js/main.js"></script>
   <script src="../js/profile-progress.js"></script>
   <script src="../js/account-settings.js"></script>
   <script>
@@ -224,6 +306,55 @@
         }
       });
     }
+    
+    // Set up user dropdown menu
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize username in the header
+      const username = localStorage.getItem('username');
+      const headerUsername = document.getElementById('headerUsername');
+      const currentUsername = document.getElementById('currentUsername');
+      
+      if (username) {
+        if (headerUsername) headerUsername.textContent = username;
+        if (currentUsername) currentUsername.value = username;
+      } else {
+        // Redirect to login if not logged in
+        window.location.href = '../auth/login.html';
+      }
+      
+      // Toggle dropdown menu
+      const userDropdownBtn = document.getElementById('userDropdownBtn');
+      const userDropdownMenu = document.getElementById('userDropdownMenu');
+      
+      if (userDropdownBtn && userDropdownMenu) {
+        userDropdownBtn.addEventListener('click', function() {
+          userDropdownMenu.classList.toggle('hidden');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!userDropdownBtn.contains(event.target) && !userDropdownMenu.contains(event.target)) {
+            userDropdownMenu.classList.add('hidden');
+          }
+        });
+      }
+      
+      // Header sign out button
+      const headerSignOutBtn = document.getElementById('headerSignOutBtn');
+      if (headerSignOutBtn) {
+        headerSignOutBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (typeof window.signOut === 'function') {
+            window.signOut(true, true);
+          } else {
+            // Fallback if global function not available
+            localStorage.removeItem('username');
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = '../index.html';
+          }
+        });
+      }
+    });
 
     // Handle form submission (basic example)
     const profileSetupForm = document.getElementById('profileSetupForm');
