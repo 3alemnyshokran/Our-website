@@ -100,8 +100,7 @@ const QuizUI = {
         
         const styleEl = document.createElement('style');
         styleEl.id = 'quizStyles';
-        
-        styleEl.innerHTML = `
+          styleEl.innerHTML = `
             .quiz-wrapper {
                 background: var(--card-bg, #ffffff);
                 border-radius: 12px;
@@ -131,6 +130,40 @@ const QuizUI = {
                 background: rgba(var(--primary-color-rgb, 76, 175, 80), 0.1);
                 padding: 3px 10px;
                 border-radius: 15px;
+            }
+            
+            .personalization-hint, .adaptive-strategy {
+                margin: 10px 0;
+                padding: 8px 12px;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .personalization-hint {
+                background: rgba(var(--primary-color-rgb, 76, 175, 80), 0.05);
+                border-left: 3px solid var(--primary-color, #4CAF50);
+            }
+            
+            .adaptive-strategy {
+                background: rgba(255, 193, 7, 0.05);
+                border-left: 3px solid #FFC107;
+            }
+            
+            .hint-icon, .strategy-icon {
+                font-size: 1.1rem;
+                min-width: 24px;
+                text-align: center;
+            }
+            
+            .question-context {
+                margin-top: 10px;
+                font-size: 0.9rem;
+                color: rgba(var(--text-color-rgb, 0, 0, 0), 0.7);
+                padding-left: 10px;
+                border-left: 2px solid rgba(var(--text-color-rgb, 0, 0, 0), 0.2);
             }
             
             .quiz-start-screen {
@@ -245,6 +278,13 @@ const QuizUI = {
                 border: 1px solid #F44336;
             }
             
+            .quiz-timer {
+                font-size: 0.9rem;
+                text-align: right;
+                margin-bottom: 10px;
+                color: var(--text-color, #333);
+            }
+            
             @media (max-width: 768px) {
                 .quiz-wrapper {
                     padding: 15px;
@@ -269,6 +309,9 @@ const QuizUI = {
         this.currentQuestion = 0;
         this.score = 0;
         this.quizActive = true;
+        this.startTime = new Date();
+        this.questionData = []; // Store data about each question attempt
+        this.isChallenge = this.questions.some(q => q.adaptiveStrategy === 'challenge');
         
         // Update total questions display
         document.getElementById('totalQuestions').textContent = this.questions.length;
@@ -278,8 +321,37 @@ const QuizUI = {
         document.getElementById('quizContent').style.display = 'block';
         document.getElementById('quizResults').style.display = 'none';
         
+        // Start the timer
+        this.startTimer();
+        
         // Display first question
         this.displayQuestion(this.currentQuestion);
+    },
+    
+    // Start quiz timer
+    startTimer: function() {
+        this.questionStartTime = new Date();
+        
+        // Create timer element if it doesn't exist
+        if (!document.getElementById('quizTimer')) {
+            const progressContainer = document.querySelector('.quiz-progress');
+            const timerElement = document.createElement('div');
+            timerElement.id = 'quizTimer';
+            timerElement.className = 'quiz-timer';
+            timerElement.innerHTML = '00:00';
+            progressContainer.appendChild(timerElement);
+        }
+        
+        // Update timer every second
+        clearInterval(this.timerInterval); // Clear any existing timer
+        this.timerInterval = setInterval(() => {
+            const now = new Date();
+            const elapsedSeconds = Math.floor((now - this.startTime) / 1000);
+            const minutes = Math.floor(elapsedSeconds / 60).toString().padStart(2, '0');
+            const seconds = (elapsedSeconds % 60).toString().padStart(2, '0');
+            
+            document.getElementById('quizTimer').textContent = `${minutes}:${seconds}`;
+        }, 1000);
     },
     
     // Display a specific question
@@ -299,14 +371,54 @@ const QuizUI = {
         const progressPercentage = ((index) / this.questions.length) * 100;
         document.getElementById('quizProgressBar').style.width = `${progressPercentage}%`;
         
-        // Create question HTML
+        // Prepare personalization hint if available
+        let personalizationHint = '';
+        if (question.personalizationReason && question.personalizationReason.length > 0) {
+            personalizationHint = `
+                <div class="personalization-hint">
+                    <i class="hint-icon">💡</i> 
+                    <span>${question.personalizationReason[0]}</span>
+                </div>
+            `;
+        }
+        
+        // Check for adaptive strategy messaging
+        let adaptiveHint = '';
+        if (question.adaptiveStrategy) {
+            let strategyMessage = '';
+            switch (question.adaptiveStrategy) {
+                case 'challenge':
+                    strategyMessage = 'Challenge mode: Testing your advanced skills';
+                    break;
+                case 'reinforce':
+                    strategyMessage = 'Reinforcement mode: Building your foundations';
+                    break;
+                default:
+                    // Don't show a hint for balanced strategy
+                    break;
+            }
+            
+            if (strategyMessage) {
+                adaptiveHint = `
+                    <div class="adaptive-strategy">
+                        <i class="strategy-icon">🎯</i>
+                        <span>${strategyMessage}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        // Create question HTML with personalization
         questionContainer.innerHTML = `
             <div class="question-text">${question.question}</div>
+            ${personalizationHint}
+            ${adaptiveHint}
             <ul class="options-list" id="optionsList">
                 ${question.options.map((option, i) => `
                     <li class="option-item" data-index="${i}">${option}</li>
                 `).join('')}
             </ul>
+            ${question.context ? `<div class="question-context"><i>Context: ${question.context}</i></div>` : ''}
             <div class="feedback" id="questionFeedback" style="display: none;"></div>
         `;
         
@@ -342,8 +454,34 @@ const QuizUI = {
         const question = this.questions[this.currentQuestion];
         const isCorrect = selectedIndex === question.correctAnswer;
         
-        // Record this attempt
-        QuizManager.recordQuestionAttempt(this.language, question.id, isCorrect);
+        // Calculate time spent on this question
+        const questionEndTime = new Date();
+        const questionDuration = (questionEndTime - this.questionStartTime) / 1000; // in seconds
+        
+        // Store question attempt data
+        this.questionData.push({
+            questionId: question.id,
+            isCorrect: isCorrect,
+            timeTaken: questionDuration,
+            userAnswer: selectedIndex,
+            difficulty: question.difficulty,
+            topics: question.topics || []
+        });
+          // Record this attempt
+        if (QuizManager.recordQuestionAttempt) {
+            QuizManager.recordQuestionAttempt(this.language, question.id, isCorrect);
+        }
+        
+        // Record this attempt in tracking system for personalization
+        if (UserTracking && UserTracking.updateQuestionHistory) {
+            UserTracking.updateQuestionHistory(
+                this.language, 
+                this.level, 
+                question.id, 
+                isCorrect, 
+                Math.round(questionDuration)
+            );
+        }
         
         // Update score if correct
         if (isCorrect) {
@@ -394,6 +532,11 @@ const QuizUI = {
     // Show quiz results
     showResults: function() {
         this.quizActive = false;
+        clearInterval(this.timerInterval); // Stop the timer
+        
+        // Calculate total quiz duration
+        const endTime = new Date();
+        const totalDuration = Math.floor((endTime - this.startTime) / 1000); // in seconds
         
         // Hide quiz content and show results
         document.getElementById('quizContent').style.display = 'none';
@@ -426,10 +569,78 @@ const QuizUI = {
         resultFeedback.className = `result-feedback ${feedbackClass}`;
         resultFeedback.textContent = feedbackText;
         
-        // Record quiz completion in UserTracking if available
-        if (typeof UserTracking !== 'undefined') {
-            // You could add code here to update user tracking with quiz results
+        // Add time taken to the results
+        const minutes = Math.floor(totalDuration / 60);
+        const seconds = totalDuration % 60;
+        const timeText = document.createElement('div');
+        timeText.className = 'time-taken';
+        timeText.textContent = `Time taken: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+        resultFeedback.after(timeText);
+        
+        // Record quiz completion in UserTracking
+        if (typeof UserTracking !== 'undefined' && UserTracking.saveQuizResult) {
+            // Create a comprehensive quiz result object
+            const quizResult = {
+                language: this.language,
+                level: this.level,
+                score: this.score,
+                totalQuestions: this.questions.length,
+                duration: totalDuration,
+                date: new Date().toISOString(),
+                wasChallenge: this.isChallenge,
+                questions: this.questionData
+            };
+            
+            // Save quiz results to user tracking
+            UserTracking.saveQuizResult(this.language, this.level, this.score, this.questions.length, 
+                this.questionData, totalDuration, this.isChallenge);
+            
+            // Check for new achievements
+            const newAchievements = UserTracking.checkQuizAchievements();
+            
+            // Display new achievements if any
+            if (newAchievements && newAchievements.length > 0) {
+                this.displayAchievements(newAchievements);
+            }
         }
+    },
+    
+    // Display achievements earned
+    displayAchievements: function(achievements) {
+        if (!achievements || achievements.length === 0) return;
+        
+        // Create achievements container if it doesn't exist
+        let achievementsContainer = document.getElementById('quizAchievements');
+        if (!achievementsContainer) {
+            achievementsContainer = document.createElement('div');
+            achievementsContainer.id = 'quizAchievements';
+            achievementsContainer.className = 'quiz-achievements';
+            
+            const resultsContainer = document.getElementById('quizResults');
+            resultsContainer.appendChild(achievementsContainer);
+        }
+        
+        // Clear previous achievements
+        achievementsContainer.innerHTML = '<h3>🎉 Achievements Unlocked!</h3>';
+        
+        // Add each achievement
+        const achievementsList = document.createElement('div');
+        achievementsList.className = 'achievements-list';
+        
+        achievements.forEach(achievement => {
+            const achievementItem = document.createElement('div');
+            achievementItem.className = 'achievement-item';
+            achievementItem.innerHTML = `
+                <div class="achievement-icon">${achievement.icon}</div>
+                <div class="achievement-info">
+                    <div class="achievement-name">${achievement.name}</div>
+                    <div class="achievement-description">${achievement.description}</div>
+                </div>
+            `;
+            achievementsList.appendChild(achievementItem);
+        });
+        
+        achievementsContainer.appendChild(achievementsList);
     },
     
     // Reset quiz to start over

@@ -1,27 +1,35 @@
 // Questions Database for all languages and levels
 const QuestionsData = {
-    english: {
-        a1: [
+    english: {        a1: [
             {
                 id: "eng-a1-q1",
                 question: "What is the correct greeting for morning?",
                 options: ["Good morning", "Good afternoon", "Good evening", "Good night"],
                 correctAnswer: 0,
-                difficulty: 1
+                difficulty: 1,
+                topics: ["greetings", "basics", "social"],
+                type: "vocabulary",
+                context: "daily communication"
             },
             {
                 id: "eng-a1-q2",
                 question: "Which word is a noun?",
                 options: ["Run", "Book", "Happy", "Quickly"],
                 correctAnswer: 1,
-                difficulty: 1
+                difficulty: 1,
+                topics: ["grammar", "parts of speech", "basics"],
+                type: "grammar",
+                context: "language structure"
             },
             {
                 id: "eng-a1-q3",
                 question: "Which is the correct plural form of 'child'?",
                 options: ["Childs", "Children", "Childrens", "Child's"],
                 correctAnswer: 1,
-                difficulty: 2
+                difficulty: 2,
+                topics: ["grammar", "plurals", "irregular forms"],
+                type: "grammar",
+                context: "language structure"
             },
             {
                 id: "eng-a1-q4",
@@ -268,29 +276,37 @@ const QuestionsData = {
                 difficulty: 4
             }
         ]
-    },
-    german: {
+    },    german: {
         a1: [
             {
                 id: "ger-a1-q1",
                 question: "What is the correct greeting in German for 'Good morning'?",
                 options: ["Guten Tag", "Guten Morgen", "Gute Nacht", "Guten Abend"],
                 correctAnswer: 1,
-                difficulty: 1
+                difficulty: 1,
+                topics: ["greetings", "basics", "social"],
+                type: "vocabulary",
+                context: "daily communication"
             },
             {
                 id: "ger-a1-q2",
                 question: "What is the German word for 'thank you'?",
                 options: ["Bitte", "Entschuldigung", "Danke", "Willkommen"],
                 correctAnswer: 2,
-                difficulty: 1
+                difficulty: 1,
+                topics: ["politeness", "basics", "social"],
+                type: "vocabulary",
+                context: "daily communication"
             },
             {
                 id: "ger-a1-q3",
                 question: "Which article is used for the word 'Buch' (book)?",
                 options: ["der", "die", "das", "den"],
                 correctAnswer: 2,
-                difficulty: 2
+                difficulty: 2,
+                topics: ["grammar", "articles", "gender"],
+                type: "grammar",
+                context: "language structure"
             },
             {
                 id: "ger-a1-q4",
@@ -503,6 +519,152 @@ const QuestionsData = {
                 options: ["6", "10", "14", "18"],
                 correctAnswer: 0,
                 difficulty: 3
+            }
+        ]    },
+    german: {
+        a1: [
+            {
+                id: "ger-a1-q1",
+                question: "What is 'Good morning' in German?",
+                options: ["Guten Tag", "Guten Abend", "Guten Morgen", "Gute Nacht"],
+                correctAnswer: 2,
+                difficulty: 1,
+                topics: ["greetings", "basics", "social"],
+                type: "vocabulary",
+                context: "daily communication"
+            },
+            {
+                id: "ger-a1-q2",
+                question: "What is 'Thank you' in German?",
+                options: ["Bitte", "Entschuldigung", "Danke", "Tschüss"],
+                correctAnswer: 2,
+                difficulty: 1,
+                topics: ["basics", "social"],
+                type: "vocabulary",
+                context: "daily communication"
+            },
+            {
+                id: "ger-a1-q3",
+                question: "Which article is used for 'woman' (Frau) in German?",
+                options: ["der", "die", "das", "den"],
+                correctAnswer: 1,
+                difficulty: 1,
+                topics: ["grammar", "articles"],
+                type: "grammar"
+            },
+            {
+                id: "ger-a1-q4",
+                question: "How do you say 'My name is...' in German?",
+                options: ["Ich heiße...", "Du heißt...", "Mein Name...", "Wie heißt du?"],
+                correctAnswer: 0,
+                difficulty: 1,
+                topics: ["introduction", "basics"]
+            },
+            {
+                id: "ger-a1-q5",
+                question: "What is the correct way to count from 1 to 3 in German?",
+                options: ["ein, zwei, drei", "eins, zwei, drei", "ein, zwo, drei", "erste, zweite, dritte"],
+                correctAnswer: 1,
+                difficulty: 1,
+                topics: ["numbers", "basics"]
+            }
+        ],
+        a2: [
+            {
+                id: "ger-a2-q1",
+                question: "Which tense is used in 'Ich habe Deutsch gelernt'?",
+                options: ["Present tense", "Simple past", "Perfect tense", "Future tense"],
+                correctAnswer: 2,
+                difficulty: 2,
+                topics: ["grammar", "tenses"]
+            },
+            {
+                id: "ger-a2-q2",
+                question: "What is the correct form of 'to be' for 'we' in German?",
+                options: ["bin", "bist", "ist", "sind"],
+                correctAnswer: 3,
+                difficulty: 2,
+                topics: ["grammar", "verbs"]
+            },
+            {
+                id: "ger-a2-q3",
+                question: "What is the correct plural form of 'das Buch' (the book)?",
+                options: ["die Büche", "die Buchen", "die Bücher", "das Bücher"],
+                correctAnswer: 2,
+                difficulty: 2,
+                topics: ["grammar", "plurals"]
+            }
+        ]
+    },
+    arabic: {
+        a1: [
+            {
+                id: "ar-a1-q1",
+                question: "How many letters are in the Arabic alphabet?",
+                options: ["26", "28", "29", "32"],
+                correctAnswer: 1,
+                difficulty: 1,
+                topics: ["alphabet", "basics"],
+                type: "knowledge"
+            },
+            {
+                id: "ar-a1-q2",
+                question: "What is 'Hello' in Arabic?",
+                options: ["شكراً", "مرحباً", "مع السلامة", "صباح الخير"],
+                correctAnswer: 1,
+                difficulty: 1,
+                topics: ["greetings", "basics"],
+                type: "vocabulary"
+            },
+            {
+                id: "ar-a1-q3",
+                question: "Which letter comes first in the Arabic alphabet?",
+                options: ["ب", "أ", "ت", "ث"],
+                correctAnswer: 1,
+                difficulty: 1,
+                topics: ["alphabet", "basics"]
+            },
+            {
+                id: "ar-a1-q4",
+                question: "What direction is Arabic written in?",
+                options: ["Left to right", "Right to left", "Top to bottom", "Bottom to top"],
+                correctAnswer: 1,
+                difficulty: 1,
+                topics: ["writing", "basics"]
+            },
+            {
+                id: "ar-a1-q5",
+                question: "What is the Arabic word for 'book'?",
+                options: ["كتاب", "قلم", "مدرسة", "بيت"],
+                correctAnswer: 0,
+                difficulty: 1,
+                topics: ["vocabulary", "objects"]
+            }
+        ],
+        a2: [
+            {
+                id: "ar-a2-q1",
+                question: "What is the dual form of 'كتاب' (book)?",
+                options: ["كتب", "كتابان", "كتابين", "كتاب"],
+                correctAnswer: 1,
+                difficulty: 2,
+                topics: ["grammar", "plurals"]
+            },
+            {
+                id: "ar-a2-q2",
+                question: "Which of these is a feminine noun in Arabic?",
+                options: ["كتاب (book)", "قلم (pen)", "طاولة (table)", "كرسي (chair)"],
+                correctAnswer: 2,
+                difficulty: 2,
+                topics: ["grammar", "gender"]
+            },
+            {
+                id: "ar-a2-q3",
+                question: "What is the past tense form of the verb 'to write' for 'I'?",
+                options: ["أكتب", "كتبت", "يكتب", "تكتب"],
+                correctAnswer: 1,
+                difficulty: 2,
+                topics: ["grammar", "verbs"]
             }
         ]
     },
