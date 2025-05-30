@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Language Course</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .level {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background: var(--card-bg);
+        }
+        
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .cefr-badge {
+            padding: 5px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .chapter {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(var(--primary-color-rgb), 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .chapter:hover {
+            transform: translateX(10px);
+        }
+
+        .chapter a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+        }
+
+        .progress-indicator {
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+            margin-top: 10px;
+        }
+
+        .controls-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .language-selector select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid var(--text-color);
+        }
+        
+        /* Additional styles for tracking and achievements */
+        .login-reminder {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            max-width: 350px;
+            display: none;
+        }
+
+        .reminder-content {
+            text-align: center;
+        }
+
+        .reminder-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+
+        .chapter.completed {
+            background-color: rgba(var(--primary-color-rgb), 0.2);
+        }
+
+        .chapter.completed::before {
+            content: '✓';
+            display: inline-block;
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .progress-summary {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar-container {
+            height: 8px;
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.5s ease;
+        }
+        
+        /* Complete button styles */
+        .complete-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s ease;
+        }
+        
+        .complete-btn:hover {
+            background: var(--primary-color-dark, #3d8b40);
+        }
+        
+        .complete-btn:disabled {
+            background: var(--secondary-color);
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls-container">
+        <button class="theme-btn" aria-label="Toggle theme">
+            <span class="light-icon">🌞</span>
+            <span class="dark-icon">🌙</span>
+        </button>
+        <div class="language-selector">
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="course">
+        <h1 data-i18n="englishCourse">English Language Course</h1>
+
+        <div id="a1-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelA1">A1 - Breakthrough</div>
+                <h2 data-i18n="elementaryLevel">Elementary Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/english/a1-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1BasicGrammar">Chapter 1: Basic Grammar</h3>
+                    <p data-i18n="basicGrammarDesc">Learn basic English grammar including nouns, verbs, and simple sentences.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+
+        <div id="a2-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelA2">A2 - Waystage</div>
+                <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/english/a2-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1DailyConversations">Chapter 1: Daily Conversations</h3>
+                    <p data-i18n="dailyConversationsDesc">Learn how to engage in everyday conversations and express basic needs.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+
+        <div id="b1-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelB1">B1 - Threshold</div>
+                <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/english/b1-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1ComplexGrammar">Chapter 1: Complex Grammar</h3>
+                    <p data-i18n="complexGrammarDesc">Master more complex grammar structures and tenses.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+
+        <div id="b2-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelB2">B2 - Vantage</div>
+                <h2 data-i18n="upperIntermediateLevel">Upper Intermediate Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/english/b2-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1AdvancedCommunication">Chapter 1: Advanced Communication</h3>
+                    <p data-i18n="advancedCommunicationDesc">Develop advanced communication skills and express complex ideas.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+
+        <div id="c1-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelC1">C1 - Advanced</div>
+                <h2 data-i18n="advancedLevel">Advanced Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/english/c1-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1AcademicWriting">Chapter 1: Academic Writing</h3>
+                    <p data-i18n="academicWritingDesc">Learn academic writing skills and formal language usage.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+
+        <div id="c2-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelC2">C2 - Mastery</div>
+                <h2 data-i18n="masteryLevel">Mastery Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/english/c2-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1ProfessionalProficiency">Chapter 1: Professional Proficiency</h3>
+                    <p data-i18n="professionalProficiencyDesc">Achieve native-like proficiency in professional contexts.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login reminder for non-logged-in users -->
+    <div id="loginReminder" class="login-reminder">
+        <div class="reminder-content">
+            <h3 data-i18n="loginToTrack">Login to Track Your Progress</h3>
+            <p data-i18n="loginToTrackDesc">Sign in to track your progress, earn achievements, and sync your learning across devices.</p>
+            <div class="reminder-buttons">
+                <a href="../../auth/login.html" class="btn" data-i18n="login">Login</a>
+                <a href="../../auth/register.html" class="btn" data-i18n="register">Register</a>
+                <button id="closeReminder" class="btn-text" data-i18n="remindLater">Remind me later</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter completion modal -->
+    <div id="completionModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); overflow: auto;">
+        <div style="background-color: var(--card-bg); margin: 15% auto; padding: 20px; border-radius: 12px; width: 80%; max-width: 500px;">
+            <h2>Chapter Completed! 🎉</h2>
+            <p>You've completed this chapter successfully.</p>
+            
+            <div id="achievementsEarned" style="margin: 20px 0; display: none;">
+                <h3>Achievement Unlocked!</h3>
+                <div id="achievementsList"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button onclick="hideCompletionModal()" style="background: var(--secondary-color); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Close</button>
+                <button id="nextChapterBtn" style="background: var(--primary-color); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Next Chapter</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../../assets/js/main.js"></script>
+    <script src="../../../assets/js/tracking.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const username = localStorage.getItem('tutor_username');
+            const loginReminderShown = sessionStorage.getItem('login_reminder_shown');
+            
+            // Show login reminder if user is not logged in and reminder hasn't been shown yet
+            if (!username && !loginReminderShown) {
+                // Wait a bit before showing the reminder to not interrupt immediate page interaction
+                setTimeout(() => {
+                    document.getElementById('loginReminder').style.display = 'flex';
+                    sessionStorage.setItem('login_reminder_shown', 'true');
+                }, 5000);
+            }
+            
+            // Close reminder button
+            document.getElementById('closeReminder')?.addEventListener('click', function() {
+                document.getElementById('loginReminder').style.display = 'none';
+            });
+            
+            // If user is logged in, load and display their progress
+            if (username) {
+                loadUserProgress();
+                addCompletionButtons();
+            }
+        });
+        
+        // Function to mark a chapter as complete
+        function completeChapter(language, level, chapterId, nextChapterUrl) {
+            // Check if user is logged in
+            const username = localStorage.getItem('tutor_username');
+            if (!username) {
+                alert('Please login to track your progress');
+                return;
+            }
+            
+            // Mark chapter as complete
+            const progress = UserTracking.completeChapter(language, level, chapterId);
+            
+            // Check for new achievements
+            const newAchievements = UserTracking.checkForAchievements();
+            
+            // Show completion modal
+            showCompletionModal(newAchievements, nextChapterUrl);
+            
+            // Update progress indicators
+            updateProgressIndicators(language);
+        }
+        
+        // Function to show completion modal
+        function showCompletionModal(achievements, nextChapterUrl) {
+            const modal = document.getElementById('completionModal');
+            const achievementsEarned = document.getElementById('achievementsEarned');
+            const achievementsList = document.getElementById('achievementsList');
+            const nextChapterBtn = document.getElementById('nextChapterBtn');
+            
+            // Add achievements if any were earned
+            if (achievements && achievements.length > 0) {
+                achievementsEarned.style.display = 'block';
+                achievementsList.innerHTML = '';
+                
+                achievements.forEach(achievement => {
+                    const achievementItem = document.createElement('div');
+                    achievementItem.style.display = 'flex';
+                    achievementItem.style.alignItems = 'center';
+                    achievementItem.style.marginBottom = '10px';
+                    achievementItem.innerHTML = `
+                        <div style="font-size: 2rem; margin-right: 10px;">${achievement.icon}</div>
+                        <div>
+                            <div style="font-weight: bold;">${achievement.name}</div>
+                            <div style="font-size: 0.9rem;">${achievement.description}</div>
+                        </div>
+                    `;
+                    achievementsList.appendChild(achievementItem);
+                });
+            } else {
+                achievementsEarned.style.display = 'none';
+            }
+            
+            // Set next chapter link
+            if (nextChapterUrl) {
+                nextChapterBtn.style.display = 'block';
+                nextChapterBtn.onclick = function() {
+                    window.location.href = nextChapterUrl;
+                };
+            } else {
+                nextChapterBtn.style.display = 'none';
+            }
+            
+            // Show modal
+            modal.style.display = 'block';
+        }
+        
+        // Function to hide completion modal
+        function hideCompletionModal() {
+            const modal = document.getElementById('completionModal');
+            modal.style.display = 'none';
+        }
+        
+        // Load and display user progress for English course
+        function loadUserProgress() {
+            // Get English language progress
+            const englishProgress = UserTracking.getLanguageProgress('english');
+            if (!englishProgress) return;
+            
+            // Update progress indicators for each level
+            for (const levelId in englishProgress.levels) {
+                const levelData = englishProgress.levels[levelId];
+                
+                // Find level element
+                const levelElement = document.getElementById(levelId + '-level');
+                if (!levelElement) continue;
+                
+                // Find all chapter elements within this level
+                const chapterElements = levelElement.querySelectorAll('.chapter');
+                
+                // Update each chapter's progress indicator
+                for (const chapterId in levelData.chapters) {
+                    // Find chapter element by matching href
+                    for (const chapterEl of chapterElements) {
+                        const chapterLink = chapterEl.querySelector('a');
+                        if (!chapterLink) continue;
+                        
+                        if (chapterLink.href.includes(chapterId)) {
+                            const chapterData = levelData.chapters[chapterId];
+                            const progressIndicator = chapterEl.querySelector('.progress-indicator');
+                            
+                            if (progressIndicator) {
+                                // If chapter is completed, show 100% progress
+                                if (chapterData.completed) {
+                                    progressIndicator.style.width = '100%';
+                                    chapterEl.classList.add('completed');
+                                } 
+                                // Otherwise, base progress on visits and time spent
+                                else if (chapterData.visits > 0) {
+                                    // Calculate basic progress based on visits (up to 80% for multiple visits)
+                                    let visitProgress = Math.min(chapterData.visits * 20, 80);
+                                    
+                                    // Add more progress based on time spent (remaining 20%)
+                                    let timeProgress = Math.min(chapterData.timeSpent / 300 * 20, 20); // Max 20% for 5+ minutes
+                                    
+                                    let totalProgress = visitProgress + timeProgress;
+                                    progressIndicator.style.width = totalProgress + '%';
+                                }
+                            }
+                            
+                            // Update completion button if exists
+                            const completeBtn = chapterEl.querySelector('.complete-btn');
+                            if (completeBtn && chapterData.completed) {
+                                completeBtn.textContent = 'Completed';
+                                completeBtn.disabled = true;
+                            }
+                        }
+                    }
+                }
+                
+                // Add a progress summary to the level header
+                const levelHeader = levelElement.querySelector('.level-header');
+                if (levelHeader) {
+                    // Check if progress summary already exists
+                    let progressSummary = levelElement.querySelector('.progress-summary');
+                    if (!progressSummary) {
+                        progressSummary = document.createElement('div');
+                        progressSummary.className = 'progress-summary';
+                        levelHeader.appendChild(progressSummary);
+                    }
+                    
+                    // Update progress summary
+                    progressSummary.innerHTML = `
+                        <div class="progress-bar-container" style="width: 150px;">
+                            <div class="progress-bar" style="width: ${levelData.progress}%;"></div>
+                        </div>
+                        <span>${levelData.progress}% completed</span>
+                    `;
+                }
+            }
+        }
+        
+        // Add complete buttons to chapters
+        function addCompletionButtons() {
+            // Get all chapters
+            const chapters = document.querySelectorAll('.chapter');
+            
+            chapters.forEach(chapter => {
+                const chapterLink = chapter.querySelector('a');
+                if (chapterLink) {
+                    // Create complete button
+                    const completeBtn = document.createElement('button');
+                    completeBtn.textContent = 'Mark Complete';
+                    completeBtn.className = 'complete-btn';
+                    
+                    // Extract chapter info
+                    const href = chapterLink.getAttribute('href');
+                    const chapterId = href.split('/').pop();
+                    
+                    // Extract level ID from the chapter's parent element
+                    const levelElement = chapter.closest('.level');
+                    const levelId = levelElement ? levelElement.id.replace('-level', '') : null;
+                    
+                    if (!levelId) return;
+                    
+                    // Find next chapter for navigation after completion
+                    const nextChapter = chapter.nextElementSibling;
+                    let nextChapterUrl = null;
+                    if (nextChapter && nextChapter.classList.contains('chapter')) {
+                        const nextChapterLink = nextChapter.querySelector('a');
+                        if (nextChapterLink) {
+                            nextChapterUrl = nextChapterLink.getAttribute('href');
+                        }
+                    }
+                    
+                    // Add click handler to complete button
+                    completeBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        completeChapter('english', levelId, chapterId, nextChapterUrl);
+                        
+                        // Update this button
+                        this.textContent = 'Completed';
+                        this.disabled = true;
+                    });
+                    
+                    // Add button to chapter
+                    chapter.appendChild(completeBtn);
+                    
+                    // Check if chapter is already completed
+                    const username = localStorage.getItem('tutor_username');
+                    if (username) {
+                        const userData = UserTracking.getLanguageProgress('english');
+                        if (userData && userData.levels && userData.levels[levelId] && 
+                            userData.levels[levelId].chapters && 
+                            userData.levels[levelId].chapters[chapterId] &&
+                            userData.levels[levelId].chapters[chapterId].completed) {
+                            
+                            completeBtn.textContent = 'Completed';
+                            completeBtn.disabled = true;
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "eduproject",
+  "version": "1.0.0",
+  "description": "Educational Platform Project",
+  "main": "index.html",
+  "scripts": {
+    "start": "node backend/server.js",
+    "build": "echo 'No build step needed for static files'"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3alemnyshokran/Our-website.git"
+  },
+  "keywords": [
+    "education",
+    "courses",
+    "languages",
+    "math",
+    "science"
+  ],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://github.com/3alemnyshokran/Our-website#readme"
+}

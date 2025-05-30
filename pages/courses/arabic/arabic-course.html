@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Language Course</title>
+    <link rel="stylesheet" href="../../../assets/css/styles.css">
+    <style>
+        .level {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 12px;
+            background: var(--card-bg);
+        }
+        .level-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .cefr-badge {
+            padding: 5px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        .chapter {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(var(--primary-color-rgb), 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .chapter:hover {
+            transform: translateX(10px);
+        }
+        .chapter a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+        }
+        .progress-indicator {
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+            margin-top: 10px;
+        }
+        .controls-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .chapter.completed {
+            background-color: rgba(var(--primary-color-rgb), 0.2);
+        }
+        
+        .chapter.completed::before {
+            content: '✓';
+            display: inline-block;
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .progress-summary {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .progress-bar-container {
+            height: 8px;
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.5s ease;
+        }
+        
+        /* Complete button styles */
+        .complete-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s ease;
+        }
+        
+        .complete-btn:hover {
+            background: var(--primary-color-dark, #3d8b40);
+        }
+        
+        .complete-btn:disabled {
+            background: var(--secondary-color);
+            cursor: not-allowed;
+        }
+        
+        /* Login reminder */
+        .login-reminder {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            max-width: 350px;
+            display: none;
+        }
+        
+        .reminder-content {
+            text-align: center;
+        }
+        
+        .reminder-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-text {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls-container">
+        <button class="theme-btn" aria-label="Toggle theme">
+            <span class="light-icon">🌞</span>
+            <span class="dark-icon">🌙</span>
+        </button>
+        <div class="language-selector">
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="de">Deutsch</option>
+                <option value="ar">العربية</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+        </div>
+    </div>
+    <div class="course">
+        <h1 data-i18n="arabicCourse">Arabic Language Course</h1>
+        <div id="a1-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelA1">A1 - Beginner</div>
+                <h2 data-i18n="elementaryLevel">Elementary Level</h2>
+            </div>
+            <div class="chapter">
+                <a href="chapters/arabic/a1-chapter1.html" target="_blank">
+                    <h3 data-i18n="chapter1Alphabet">Chapter 1: Arabic Alphabet</h3>
+                    <p data-i18n="alphabetDesc">Learn the Arabic alphabet and basic pronunciation.</p>
+                    <div class="progress-indicator" style="width: 0%"></div>
+                </a>
+            </div>
+        </div>
+        <div id="a2-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelA2">A2 - Elementary</div>
+                <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
+            </div>
+            <div class="chapter">
+                <h3 data-i18n="comingSoon">Coming Soon</h3>
+                <p data-i18n="moreContent">More content will be added soon.</p>
+                <div class="progress-indicator" style="width: 0%"></div>
+            </div>
+        </div>
+        <div id="b1-level" class="level">
+            <div class="level-header">
+                <div class="cefr-badge" data-i18n="levelB1">B1 - Intermediate</div>
+                <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
+            </div>
+            <div class="chapter">
+                <h3 data-i18n="comingSoon">Coming Soon</h3>
+                <p data-i18n="moreContent">More content will be added soon.</p>
+                <div class="progress-indicator" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login reminder for non-logged-in users -->
+    <div id="loginReminder" class="login-reminder">
+        <div class="reminder-content">
+            <h3>تسجيل الدخول لتتبع تقدمك</h3>
+            <p>قم بتسجيل الدخول لتتبع تقدمك، وكسب الإنجازات، ومزامنة تعلمك عبر الأجهزة.</p>
+            <div class="reminder-buttons">
+                <a href="../../auth/login.html" class="btn">تسجيل الدخول</a>
+                <a href="../../auth/register.html" class="btn">التسجيل</a>
+                <button id="closeReminder" class="btn-text">ذكرني لاحقا</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter completion modal -->
+    <div id="completionModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); overflow: auto;">
+        <div style="background-color: var(--card-bg); margin: 15% auto; padding: 20px; border-radius: 12px; width: 80%; max-width: 500px;">
+            <h2>تم الانتهاء من الفصل! 🎉</h2>
+            <p>لقد أكملت هذا الفصل بنجاح.</p>
+            
+            <div id="achievementsEarned" style="margin: 20px 0; display: none;">
+                <h3>تم فتح الإنجاز!</h3>
+                <div id="achievementsList"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+                <button onclick="hideCompletionModal()" style="background: var(--secondary-color); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">إغلاق</button>
+                <button id="nextChapterBtn" style="background: var(--primary-color); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">الفصل التالي</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="../../../assets/js/tracking.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const username = localStorage.getItem('tutor_username');
+            
+            if (!username) {
+                // Show login reminder after 10 seconds for non-logged-in users
+                setTimeout(() => {
+                    document.getElementById('loginReminder').style.display = 'block';
+                }, 10000);
+                
+                // Close reminder event
+                document.getElementById('closeReminder').addEventListener('click', function() {
+                    document.getElementById('loginReminder').style.display = 'none';
+                });
+            } else {
+                // Add complete buttons for logged-in users
+                const chapters = document.querySelectorAll('.chapter');
+                chapters.forEach(chapter => {
+                    const chapterLink = chapter.querySelector('a');
+                    if (chapterLink) {
+                        // Create complete button
+                        const completeBtn = document.createElement('button');
+                        completeBtn.className = 'complete-btn';
+                        completeBtn.innerText = 'وضع علامة مكتملة';
+                        completeBtn.setAttribute('data-chapter', chapterLink.href.split('/').pop());
+                        
+                        // Get level ID from parent
+                        const levelElement = chapter.closest('.level');
+                        if (levelElement) {
+                            completeBtn.setAttribute('data-level', levelElement.id.replace('-level', ''));
+                        }
+                        
+                        // Add click event
+                        completeBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            
+                            const chapterId = this.getAttribute('data-chapter');
+                            const levelId = this.getAttribute('data-level');
+                            
+                            // Mark as complete in tracking system
+                            const progress = UserTracking.completeChapter('arabic', levelId, chapterId);
+                            
+                            // Update visual indicator
+                            chapter.classList.add('completed');
+                            const progressIndicator = chapter.querySelector('.progress-indicator');
+                            if (progressIndicator) {
+                                progressIndicator.style.width = '100%';
+                            }
+                            
+                            // Disable the button
+                            this.disabled = true;
+                            this.innerText = 'مكتمل';
+                            
+                            // Check for achievements
+                            const newAchievements = UserTracking.checkForAchievements();
+                            
+                            // Show completion modal
+                            showCompletionModal(chapterId, levelId, newAchievements);
+                        });
+                        
+                        // Append to chapter
+                        chapter.appendChild(completeBtn);
+                    }
+                });
+            }
+        });
+        
+        // Show completion modal
+        function showCompletionModal(chapterId, levelId, achievements) {
+            const modal = document.getElementById('completionModal');
+            const achievementsEarned = document.getElementById('achievementsEarned');
+            const achievementsList = document.getElementById('achievementsList');
+            
+            // Clear previous achievements
+            achievementsList.innerHTML = '';
+            
+            // If achievements earned, show them
+            if (achievements && achievements.length > 0) {
+                achievementsEarned.style.display = 'block';
+                
+                achievements.forEach(achievement => {
+                    const achievementEl = document.createElement('div');
+                    achievementEl.style.display = 'flex';
+                    achievementEl.style.alignItems = 'center';
+                    achievementEl.style.marginBottom = '10px';
+                    achievementEl.style.padding = '10px';
+                    achievementEl.style.backgroundColor = 'rgba(var(--primary-color-rgb), 0.1)';
+                    achievementEl.style.borderRadius = '8px';
+                    
+                    achievementEl.innerHTML = `
+                        <div style="font-size: 2rem; margin-right: 15px;">${achievement.icon}</div>
+                        <div>
+                            <div style="font-weight: bold;">${achievement.name}</div>
+                            <div style="font-size: 0.9rem;">${achievement.description}</div>
+                        </div>
+                    `;
+                    
+                    achievementsList.appendChild(achievementEl);
+                });
+            } else {
+                achievementsEarned.style.display = 'none';
+            }
+            
+            // Set up next chapter button
+            const nextChapterBtn = document.getElementById('nextChapterBtn');
+            // Logic for finding next chapter would go here
+            // For now, just hide the button as we don't have that functionality
+            nextChapterBtn.style.display = 'none';
+            
+            // Show modal
+            modal.style.display = 'block';
+        }
+        
+        // Hide completion modal
+        function hideCompletionModal() {
+            document.getElementById('completionModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
