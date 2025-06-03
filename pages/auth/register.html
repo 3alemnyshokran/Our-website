@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Educational Platform</title>
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add Google Font - Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="logo-container">
+                    <div class="logo-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                </div>
+                <h1>Create Account</h1>
+                <p class="login-subtitle">Join our platform and start learning</p>
+            </div>
+            
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="username" name="username" required autocomplete="username" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" required autocomplete="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" required autocomplete="new-password" placeholder="Password">
+                        <i class="fas fa-eye-slash toggle-password" id="togglePassword"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required autocomplete="new-password" placeholder="Confirm Password">
+                        <i class="fas fa-eye-slash toggle-password" id="toggleConfirmPassword"></i>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <span class="custom-checkbox"></span>
+                        I agree to the <a href="#" class="terms-link">Terms & Conditions</a>
+                    </label>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <span>Create Account</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            
+            <div class="social-login">
+                <p>Or register with</p>
+                <div class="social-buttons">
+                    <button class="social-btn google">
+                        <i class="fab fa-google"></i>
+                    </button>
+                    <button class="social-btn facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </button>
+                    <button class="social-btn apple">
+                        <i class="fab fa-apple"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="register-link">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // Toggle password visibility
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+    
+    document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPasswordInput.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+    
+    // Add animation classes on input focus
+    document.querySelectorAll('.form-group input').forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('input-focused');
+        });
+        input.addEventListener('blur', function() {
+            if (!this.value) {
+                this.parentElement.classList.remove('input-focused');
+            }
+        });
+    });
+    
+    function handleRegister(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        const registerBtn = document.querySelector('.login-btn');
+        registerBtn.innerHTML = '<span>Creating account...</span><div class="spinner"></div>';
+        registerBtn.disabled = true;
+        
+        // Get form values
+        const username = document.getElementById('username').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        // Simple validation
+        if (password !== confirmPassword) {
+            showMessage('Passwords do not match', 'error');
+            registerBtn.innerHTML = '<span>Create Account</span><i class="fas fa-arrow-right"></i>';
+            registerBtn.disabled = false;
+            return false;
+        }
+        
+        // Simulate a network delay for better UX
+        setTimeout(() => {
+            // Store user data (in a real app, this would be sent to a server)
+            localStorage.setItem('tutor_username', username);
+            localStorage.setItem('tutor_email', email);
+            localStorage.setItem('tutor_password', btoa(password)); // Base64 encoding (not secure, just for demo)
+            localStorage.setItem('tutor_trusted', 'true');
+            
+            // Success state
+            registerBtn.innerHTML = '<span>Success!</span><i class="fas fa-check"></i>';
+            
+            // Redirect to login page after delay
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1000);
+        }, 1500);
+        
+        return false;
+    }
+    
+    function showMessage(message, type) {
+        // Create message element
+        const messageEl = document.createElement('div');
+        messageEl.className = `message ${type}`;
+        messageEl.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation'}"></i>
+            <span>${message}</span>
+        `;
+        
+        // Add to page
+        document.querySelector('.login-box').appendChild(messageEl);
+        
+        // Remove after 5 seconds
+        setTimeout(() => {
+            messageEl.classList.add('fade-out');
+            setTimeout(() => {
+                messageEl.remove();
+            }, 300);
+        }, 4700);
+    }
+    
+    // Terms & Conditions link
+    document.querySelector('.terms-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        showMessage('Terms & Conditions are not available in this demo', 'warning');
+    });
+    
+    // Disable social login buttons for demo
+    document.querySelectorAll('.social-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showMessage('Social registration is not available in this demo', 'warning');
+        });
+    });
+    </script>
+</body>
+</html>
