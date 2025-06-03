@@ -24,7 +24,7 @@
                 <p class="login-subtitle">Join our platform and start learning</p>
             </div>
             
-            <form id="registerForm" onsubmit="return handleRegister(event)">
+            <form id="registerForm" onsubmit="return handleRegisterSubmit(event)">
                 <div class="form-group">
                     <div class="input-icon-wrapper">
                         <i class="fas fa-user input-icon"></i>
@@ -87,6 +87,8 @@
         </div>
     </div>
     
+    <!-- Load Auth JS -->
+    <script src="../../assets/js/auth.js"></script>
     <script>
     // Toggle password visibility
     document.getElementById('togglePassword').addEventListener('click', function() {
@@ -117,7 +119,7 @@
         });
     });
     
-    function handleRegister(e) {
+    function handleRegisterSubmit(e) {
         e.preventDefault();
         
         // Show loading state
@@ -141,19 +143,33 @@
         
         // Simulate a network delay for better UX
         setTimeout(() => {
-            // Store user data (in a real app, this would be sent to a server)
-            localStorage.setItem('tutor_username', username);
-            localStorage.setItem('tutor_email', email);
-            localStorage.setItem('tutor_password', btoa(password)); // Base64 encoding (not secure, just for demo)
-            localStorage.setItem('tutor_trusted', 'true');
+            // Use handleRegistration from auth.js
+            const result = handleRegistration(username, email, password);
             
-            // Success state
-            registerBtn.innerHTML = '<span>Success!</span><i class="fas fa-check"></i>';
-            
-            // Redirect to login page after delay
-            setTimeout(() => {
-                window.location.href = 'login.html';
-            }, 1000);
+            if (result.success) {
+                // Success state
+                registerBtn.innerHTML = '<span>Success!</span><i class="fas fa-check"></i>';
+                
+                // Show privacy policy if not already accepted
+                if (!isPrivacyAccepted()) {
+                    showPrivacyModal().then(() => {
+                        // Redirect to home page after registration and privacy acceptance
+                        window.location.href = '/index.html';
+                    });
+                } else {
+                    // Redirect to home page after delay
+                    setTimeout(() => {
+                        window.location.href = '/index.html';
+                    }, 1000);
+                }
+            } else {
+                // Failed registration
+                registerBtn.innerHTML = '<span>Create Account</span><i class="fas fa-arrow-right"></i>';
+                registerBtn.disabled = false;
+                
+                // Show error message
+                showMessage(result.message || 'Registration failed', 'error');
+            }
         }, 1500);
         
         return false;

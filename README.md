@@ -1,5 +1,21 @@
 # Educational Platform Project
 
+## Authentication System
+
+The platform now includes a comprehensive authentication system that:
+
+1. Ensures every HTML page starts with a login screen for unauthenticated users
+2. Displays a privacy policy prompt that users must accept
+3. Collects and stores user data including username
+4. Redirects users to the home screen after successful authentication
+
+## How Authentication Works
+
+- **auth.js**: Core authentication module with functions for login, registration, and session management
+- **auth-protection.js**: Protection script that can be included in any page to enforce authentication
+- **Privacy Policy**: Shown after login if not previously accepted
+- **Remember Me**: Option to stay logged in on trusted devices
+
 ## Project Structure
 
 The project follows a well-organized structure:
@@ -14,6 +30,8 @@ eduproject/
 │   │   └── [language]/           # Language-specific styles
 │   ├── js/                       # JavaScript files
 │   │   ├── main.js               # Main JavaScript
+│   │   ├── auth.js               # Authentication system
+│   │   ├── auth-protection.js    # Page protection script
 │   │   └── test-functions.js     # Test page functions
 │   └── images/                   # Image assets
 ├── pages/                        # HTML pages
@@ -49,48 +67,44 @@ eduproject/
 └── locales/                      # Translations
     ├── ar.json                   # Arabic translations
     ├── de.json                   # German translations
-    ├── en.json                   # English translations
-    ├── es.json                   # Spanish translations
-    └── fr.json                   # French translations
-```
-
-## About the Project
-
-This educational platform offers courses in multiple languages (German, English, Arabic) and subjects (Math, Science). The platform includes:
-
-- Interactive learning experiences across multiple subjects
-- User authentication system
-- User profiles with progress tracking
-- Multilingual support with full RTL capability for Arabic
-- Placement tests to determine user skill level
-- Admin dashboard for content management
-
-## Development
-
-To run the project locally:
-
-1. Clone the repository
-2. Navigate to the backend directory: `cd backend`
-3. Install dependencies: `npm install`
-4. Start the server: `node server.js`
-5. Open `index.html` in your browser
+    └── en.json                   # English translations
 
 ## Deployment
 
-### Vercel Deployment
+### Deploy to Vercel
 
-The project is configured for deployment on Vercel:
+To deploy the project to Vercel, run one of the following commands:
 
-1. Push your code to GitHub
-2. Connect your GitHub repository to Vercel
-3. Vercel will automatically deploy your site
-4. Access your live site at the Vercel-generated URL
+#### Linux/macOS:
+```bash
+./deploy.sh
+```
 
-The deployment configuration is handled by `vercel.json` in the root directory.
+#### Windows:
+```powershell
+.\deploy.ps1
+```
 
-## Technology Stack
+## Adding Authentication to New Pages
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js
-- Database: MongoDB (configured in server.js)
-- Deployment: Vercel
+To add authentication protection to a new page:
+
+1. Include the auth.js script in the head section:
+```html
+<script src="/assets/js/auth.js"></script>
+```
+
+2. Add the auth-protection.js script at the end of the body:
+```html
+<script src="/assets/js/auth-protection.js"></script>
+```
+
+## Security Note
+
+This implementation uses browser localStorage for demonstration purposes. In a production environment, consider:
+
+- Using secure HTTP-only cookies for authentication tokens
+- Implementing proper server-side authentication with JWT or sessions
+- Adding CSRF protection
+- Using HTTPS for all connections
+```

@@ -2,6 +2,46 @@
 let currentTheme = localStorage.getItem('theme') || 'light';
 document.body.setAttribute('data-theme', currentTheme);
 
+// Authentication Check
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if this is a page that requires authentication
+    if (!window.location.pathname.includes('/pages/auth/')) {
+        // If not authenticated, redirect to login
+        if (!isAuthenticated()) {
+            // Store the current page URL to redirect back after login
+            localStorage.setItem('redirect_after_login', window.location.href);
+            window.location.href = '/pages/auth/login.html';
+            return;
+        }
+        
+        // If authenticated but privacy policy not accepted, show privacy prompt
+        if (!isPrivacyAccepted()) {
+            showPrivacyModal().then(() => {
+                // Continue with page initialization after privacy policy is accepted
+                initializeUI();
+            });
+        } else {
+            // Already authenticated and privacy policy accepted
+            initializeUI();
+        }
+    }
+});
+
+// Initialize UI components after authentication
+function initializeUI() {
+    // Set username if element exists
+    const usernameElement = document.getElementById('welcomeUser');
+    if (usernameElement) {
+        usernameElement.textContent = getCurrentUsername() || 'Guest';
+    }
+    
+    // Initialize theme
+    initializeTheme();
+    
+    // Initialize language
+    initializeLanguage();
+}
+
 // Sync theme across tabs
 window.addEventListener('storage', (event) => {
     if (event.key === 'theme') {

@@ -24,7 +24,7 @@
                 <p class="login-subtitle">Please sign in to continue your learning journey</p>
             </div>
             
-            <form id="loginForm" onsubmit="return handleLogin(event)">
+            <form id="loginForm" onsubmit="return handleLoginSubmit(event)">
                 <div class="form-group">
                     <div class="input-icon-wrapper">
                         <i class="fas fa-user input-icon"></i>
@@ -72,10 +72,20 @@
             </div>
         </div>
     </div>
+    
+    <!-- Load Auth JS -->
+    <script src="../../assets/js/auth.js"></script>
     <script>
     // Redirect to register if not registered
     if (!localStorage.getItem('tutor_username') || !localStorage.getItem('tutor_password')) {
         window.location.href = 'register.html';
+    }
+    
+    // Check if already authenticated
+    if (isAuthenticated() && isPrivacyAccepted()) {
+        const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
+        localStorage.removeItem('redirect_after_login');
+        window.location.href = redirectUrl;
     }
     
     // Toggle password visibility
@@ -99,6 +109,110 @@
         });
         // Check if input has value on page load
         if (input.value) {
+            this.parentElement.classList.add('input-focused');
+        }
+    });
+    
+    // Handle login form submission
+    function handleLoginSubmit(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        const loginBtn = document.querySelector('.login-btn');
+        loginBtn.innerHTML = '<span>Logging in...</span><div class="spinner"></div>';
+        loginBtn.disabled = true;
+        
+        // Get form values
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('remember').checked;
+        
+        // Authentication check
+        const result = handleLogin(username, password, rememberMe);
+        
+        if (result.success) {
+            // Show success state
+            loginBtn.innerHTML = '<span>Success!</span><i class="fas fa-check"></i>';
+            
+            // Show privacy policy if not already accepted
+            if (!isPrivacyAccepted()) {
+                showPrivacyModal().then(() => {
+                    // Redirect after privacy policy is accepted
+                    window.location.href = result.redirectUrl;
+                });
+            } else {
+                // Redirect immediately if privacy policy already accepted
+                setTimeout(() => {
+                    window.location.href = result.redirectUrl;
+                }, 700);
+            }
+        } else {
+            // Failed login
+            loginBtn.innerHTML = '<span>Login</span><i class="fas fa-arrow-right"></i>';
+            loginBtn.disabled = false;
+            
+            // Show error message
+            showMessage(result.message || 'Login failed', 'error');
+        }
+        
+        return false;
+    }
+    
+    function forgotPassword(e) {
+        e.preventDefault();
+        // If device is trusted, allow login without password
+        const trusted = localStorage.getItem('tutor_trusted') === 'true';
+        if (trusted) {
+            localStorage.setItem('tutor_authenticated', 'true');
+            
+            // Show privacy policy if not already accepted
+            if (!isPrivacyAccepted()) {
+                showPrivacyModal().then(() => {
+                    const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
+                    localStorage.removeItem('redirect_after_login');
+                    window.location.href = redirectUrl;
+                });
+            } else {
+                const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
+                localStorage.removeItem('redirect_after_login');
+                window.location.href = redirectUrl;
+            }
+        } else {
+            showMessage('Password recovery is only available on the device you registered with.', 'warning');
+        }
+    }
+    
+    function showMessage(message, type) {
+        // Create message element
+        const messageEl = document.createElement('div');
+        messageEl.className = `message ${type}`;
+        messageEl.innerHTML = `
+            <i class="fas ${type === 'error' ? 'fa-circle-exclamation' : 'fa-triangle-exclamation'}"></i>
+            <span>${message}</span>
+        `;
+        
+        // Add to page
+        document.querySelector('.login-box').appendChild(messageEl);
+        
+        // Remove after 5 seconds
+        setTimeout(() => {
+            messageEl.classList.add('fade-out');
+            setTimeout(() => {
+                messageEl.remove();
+            }, 300);
+        }, 4700);
+    }
+    
+    // Disable social login buttons for demo
+    document.querySelectorAll('.social-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showMessage('Social login is not available in this demo', 'warning');
+        });
+    });
+    </script>
+</body>
+</html>
             input.parentElement.classList.add('input-focused');
         }
     });

@@ -1,50 +1,77 @@
 :root {
     /* Light theme variables */
-    --bg-color: #f8f9fa; /* Lighter gray for a softer background */
-    --text-color: #212529; /* Darker text for better contrast */
-    --primary-color: #007bff; /* A more vibrant blue */
-    --primary-color-rgb: 0, 123, 255;
-    --secondary-color: #6c757d; /* A neutral gray for secondary elements */
-    --card-bg: #ffffff; /* Pure white for cards */
-    --hover-shadow: rgba(0, 0, 0, 0.1); /* Softer shadow */
+    --bg-color: #ffffff; /* Clean white background */
+    --text-color: #333333; /* Dark gray for text */
+    --primary-color: #6a11cb; /* Vibrant purple */
+    --primary-color-rgb: 106, 17, 203;
+    --secondary-color: #2575fc; /* Bright blue */
+    --accent-color: #ff6f91; /* Playful pink for accents */
+    --card-bg: #f4f6f8; /* Light gray for cards */
+    --hover-shadow: rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
     --input-bg: #ffffff;
-    --border-color: #dee2e6; /* Lighter border color */
-    --success-color: #28a745;
-    --error-color: #dc3545;
-    --success-bg: rgba(40, 167, 69, 0.1);
-    --error-bg: rgba(220, 53, 69, 0.1);
-    --font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --border-color: #e0e0e0; /* Softer border color */
+    --success-color: #4caf50; /* Material green */
+    --error-color: #f44336; /* Material red */
+    --success-bg: rgba(76, 175, 80, 0.1);
+    --error-bg: rgba(244, 67, 54, 0.1);
+    --font-family-sans-serif: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    --font-family-monospace: "Fira Code", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --border-radius: 12px; /* Consistent border radius */
+    --transition-speed: 0.3s; /* Standard transition speed */
+
+    /* Glassmorphism effect */
+    --glass-bg: rgba(255, 255, 255, 0.3);
+    --glass-blur: 10px;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 [data-theme="dark"] {
     /* Dark theme variables */
-    --bg-color: #121212; /* Darker background for better contrast */
-    --text-color: #e0e0e0;
-    --primary-color: #0d6efd; /* Slightly adjusted blue for dark mode */
-    --primary-color-rgb: 13, 110, 253;
-    --secondary-color: #adb5bd; /* Lighter gray for dark mode */
-    --card-bg: #1e1e1e; /* Darker card background */
-    --hover-shadow: rgba(255, 255, 255, 0.08);
-    --input-bg: #2c2c2c;
-    --border-color: #343a40;
-    --success-color: #32cd32; /* Brighter green for dark mode */
-    --error-color: #ff6b6b;  /* Brighter red for dark mode */
-    --success-bg: rgba(50, 205, 50, 0.15);
-    --error-bg: rgba(255, 107, 107, 0.15);
+    --bg-color: #1a1a2e; /* Deep indigo background */
+    --text-color: #f0f0f0; /* Light gray for text */
+    --primary-color: #8e44ad; /* Lighter purple for dark mode */
+    --primary-color-rgb: 142, 68, 173;
+    --secondary-color: #3498db; /* Lighter blue for dark mode */
+    --accent-color: #ff8fab; /* Lighter pink for accents */
+    --card-bg: #2c2c54; /* Darker indigo for cards */
+    --hover-shadow: rgba(255, 255, 255, 0.1);
+    --input-bg: #3b3b6d;
+    --border-color: #4a4a70;
+    --success-color: #66bb6a; /* Material green (dark) */
+    --error-color: #ef5350; /* Material red (dark) */
+    --success-bg: rgba(102, 187, 106, 0.15);
+    --error-bg: rgba(239, 83, 80, 0.15);
+
+    /* Glassmorphism effect (dark) */
+    --glass-bg: rgba(44, 44, 84, 0.3); /* Darker glass */
+    --glass-blur: 10px;
+    --glass-border: 1px solid rgba(60, 60, 100, 0.5);
 }
 
-/* Apply dark mode to common elements */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
 body {
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
     margin: 0;
-    padding: 1rem; /* Added some global padding */
+    padding: 0; /* Remove global padding, handle per component */
     min-height: 100vh;
-    font-family: var(--font-family-sans-serif); /* Updated font family */
-    line-height: 1.6; /* Improved line height */
-    font-size: 16px; /* Base font size */
+    font-family: var(--font-family-sans-serif);
+    line-height: 1.7; /* Slightly increased line height */
+    font-size: 1rem; /* Base font size (16px) */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content by default */
+}
+
+/* Global container for centering content */
+.main-container {
+    width: 100%;
+    max-width: 1200px; /* Max width for content */
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 /* RTL Support */
@@ -513,79 +540,70 @@ body.modal-open {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.05) 0%, rgba(var(--primary-color-rgb), 0.1) 100%);
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .login-box {
-    width: 100%;
-    max-width: 450px;
-    background: var(--card-bg);
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: var(--glass-border);
     padding: 40px;
-    position: relative;
-    overflow: hidden;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    width: 100%;
+    max-width: 450px; /* Increased max-width */
+    text-align: center;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.login-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.45);
 }
 
 .login-header {
-    text-align: center;
     margin-bottom: 30px;
 }
 
-.logo-container {
-    display: flex;
-    justify-content: center;
+.login-header .logo-container {
     margin-bottom: 20px;
 }
 
-.logo-icon {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login-header .logo-icon {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     color: white;
-    font-size: 28px;
-    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
+    width: 70px; /* Increased size */
+    height: 70px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem; /* Increased icon size */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.login-box h1 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 8px;
+.login-header h1 {
+    font-size: 2.2rem; /* Increased font size */
+    font-weight: 600;
     color: var(--text-color);
+    margin-bottom: 8px;
 }
 
 .login-subtitle {
-    color: var(--secondary-color);
-    font-size: 15px;
-    margin-bottom: 25px;
+    font-size: 1rem;
+    color: var(--secondary-color); /* Use secondary color for subtitle */
 }
 
+/* Form elements - Modernized */
 .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 25px; /* Increased margin */
+    position: relative;
 }
 
 .input-icon-wrapper {
     position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-    background: var(--input-bg);
-    border: 1px solid var(--border-color);
-}
-
-.input-icon-wrapper:focus-within {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
-}
-
-.input-icon-wrapper.input-focused {
-    border-color: var(--primary-color);
 }
 
 .input-icon {
@@ -594,20 +612,28 @@ body.modal-open {
     top: 50%;
     transform: translateY(-50%);
     color: var(--secondary-color);
-    font-size: 16px;
+    font-size: 1.1rem;
 }
 
-.input-icon-wrapper input {
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"] {
     width: 100%;
-    padding: 16px 16px 16px 45px;
-    border: none;
-    background: transparent;
-    font-size: 15px;
+    padding: 15px 15px 15px 50px; /* Adjusted padding for icon */
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--input-bg);
     color: var(--text-color);
-    font-family: var(--font-family-sans-serif);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    box-sizing: border-box;
 }
 
-.input-icon-wrapper input:focus {
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="email"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
     outline: none;
 }
 
@@ -618,13 +644,6 @@ body.modal-open {
     transform: translateY(-50%);
     cursor: pointer;
     color: var(--secondary-color);
-    font-size: 16px;
-    opacity: 0.7;
-    transition: opacity 0.3s;
-}
-
-.toggle-password:hover {
-    opacity: 1;
 }
 
 .form-options {
@@ -632,214 +651,134 @@ body.modal-open {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
 
 .remember-me {
     display: flex;
     align-items: center;
-    position: relative;
-    cursor: pointer;
-    user-select: none;
     color: var(--text-color);
 }
 
 .remember-me input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+    display: none; /* Hide default checkbox */
 }
 
 .custom-checkbox {
-    position: relative;
-    height: 18px;
     width: 18px;
-    background-color: var(--input-bg);
-    border: 1px solid var(--border-color);
+    height: 18px;
+    border: 2px solid var(--primary-color);
     border-radius: 4px;
     margin-right: 8px;
     display: inline-block;
-    transition: all 0.3s;
+    position: relative;
+    cursor: pointer;
 }
 
-.remember-me input:checked ~ .custom-checkbox {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.custom-checkbox:after {
-    content: "";
+.remember-me input[type="checkbox"]:checked + .custom-checkbox::after {
+    content: '\\f00c'; /* FontAwesome check icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
     position: absolute;
-    display: none;
-    left: 6px;
-    top: 2px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-.remember-me input:checked ~ .custom-checkbox:after {
-    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color);
+    font-size: 12px;
 }
 
 .forgot-password {
     color: var(--primary-color);
     text-decoration: none;
-    font-weight: 500;
-    transition: opacity 0.3s;
+    transition: color var(--transition-speed) ease;
 }
 
 .forgot-password:hover {
+    color: var(--accent-color);
     text-decoration: underline;
-    opacity: 0.85;
 }
 
 .login-btn {
     width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 15px;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
     color: white;
     border: none;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background var(--transition-speed) ease;
     display: flex;
-    align-items: center;
     justify-content: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.login-btn span {
-    margin-right: 10px;
-    z-index: 1;
-}
-
-.login-btn i {
-    font-size: 14px;
-    z-index: 1;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(var(--primary-color-rgb), 0.4);
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color)); /* Gradient shift on hover */
 }
 
-.login-btn:active {
-    transform: translateY(1px);
-}
-
-.login-btn:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: all 0.6s;
-}
-
-.login-btn:hover:before {
-    left: 100%;
-}
-
-.spinner {
+.login-btn .spinner {
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
     border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 0.8s ease-in-out infinite;
-    margin-left: 10px;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
+/* Social Login - Modernized */
 .social-login {
     margin-top: 30px;
-    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-color);
 }
 
 .social-login p {
-    font-size: 14px;
-    color: var(--secondary-color);
     margin-bottom: 15px;
-    position: relative;
-}
-
-.social-login p:before,
-.social-login p:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 30%;
-    height: 1px;
-    background: var(--border-color);
-}
-
-.social-login p:before {
-    left: 0;
-}
-
-.social-login p:after {
-    right: 0;
 }
 
 .social-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 25px;
 }
 
 .social-btn {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    cursor: pointer;
-    transition: all 0.3s;
+    background-color: var(--input-bg);
     color: var(--text-color);
+    font-size: 1.5rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
 .social-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.social-btn.google:hover {
-    color: #DB4437;
-    border-color: #DB4437;
-}
+.social-btn.google:hover { background-color: #db4437; color: white; border-color: #db4437;}
+.social-btn.facebook:hover { background-color: #3b5998; color: white; border-color: #3b5998;}
+.social-btn.apple:hover { background-color: #000000; color: white; border-color: #000000;}
 
-.social-btn.facebook:hover {
-    color: #4267B2;
-    border-color: #4267B2;
-}
-
-.social-btn.apple:hover {
-    color: #000;
-    border-color: #000;
-}
 
 .register-link {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
+    margin-top: 30px;
+    font-size: 0.9rem;
     color: var(--text-color);
 }
 
@@ -847,74 +786,384 @@ body.modal-open {
     color: var(--primary-color);
     font-weight: 600;
     text-decoration: none;
+    transition: color var(--transition-speed) ease;
 }
 
 .register-link a:hover {
+    color: var(--accent-color);
     text-decoration: underline;
 }
 
+/* Message styles - Modernized */
 .message {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    animation: slideUp 0.3s forwards;
-    z-index: 100;
+    gap: 10px;
+    animation: fadeIn var(--transition-speed) ease;
 }
 
 .message.error {
     background-color: var(--error-bg);
     color: var(--error-color);
-    border-left: 4px solid var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+.message.success {
+    background-color: var(--success-bg);
+    color: var(--success-color);
+    border: 1px solid var(--success-color);
 }
 
 .message.warning {
-    background-color: rgba(255, 193, 7, 0.15);
-    color: #856404;
-    border-left: 4px solid #ffc107;
-}
-
-.message i {
-    margin-right: 10px;
-    font-size: 16px;
+    background-color: rgba(255, 193, 7, 0.1); /* Bootstrap warning yellow */
+    color: #ffc107;
+    border: 1px solid #ffc107;
 }
 
 .message.fade-out {
-    animation: slideDown 0.3s forwards;
+    animation: fadeOut var(--transition-speed) ease forwards;
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-        opacity: 0;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Privacy Modal - Modernized */
+.privacy-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: fadeInModal 0.5s var(--transition-speed) forwards;
+}
+
+@keyframes fadeInModal {
+    to { opacity: 1; }
+}
+
+.privacy-modal-content {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-align: left; /* Align text to left for readability */
+    transform: scale(0.9);
+    animation: scaleUpModal 0.5s var(--transition-speed) forwards;
+}
+
+@keyframes scaleUpModal {
+    to { transform: scale(1); }
+}
+
+.privacy-modal-content h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.privacy-modal-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.privacy-accept-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    margin-top: 20px;
+}
+
+.privacy-accept-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.3);
+}
+
+body.modal-open {
+    overflow: hidden; /* Prevent scrolling when modal is open */
+}
+
+/* General Button Styles */
+.btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: white;
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Header Controls - Modernized */
+.header-controls {
+    position: fixed; /* Keep controls visible */
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background: var(--glass-bg);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 900;
+}
+
+.theme-btn, .logout-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem; /* Larger icons */
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: color var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+.theme-btn:hover, .logout-btn:hover {
+    color: var(--primary-color);
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+}
+
+.logout-btn {
+    font-size: 0.9rem; /* Text button */
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+}
+
+
+#languageSelect {
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-family: var(--font-family-sans-serif);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Welcome Message on Index Page */
+#welcomeUser {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+/* Course Buttons on Index Page */
+.btn-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.btn-container .btn { /* Re-style course buttons */
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    border-radius: var(--border-radius);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 200px; /* Ensure buttons have a decent width */
+    text-align: center;
+}
+
+.btn-container .btn:hover {
+    transform: translateY(-3px) scale(1.03); /* Add slight scale effect */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* General Card Style */
+.card {
+    background: var(--card-bg);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--hover-shadow);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--hover-shadow);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 1rem;
     }
-    to {
-        transform: translateY(0);
-        opacity: 1;
+
+    .login-box {
+        padding: 25px;
+    }
+
+    .login-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-container {
+        flex-direction: column; /* Stack buttons on mobile */
+        align-items: center;
+    }
+
+    .btn-container .btn {
+        width: 100%;
+        max-width: 300px; /* Limit width on mobile */
+    }
+    
+    .header-controls {
+        top: 10px;
+        right: 10px;
+        padding: 8px 10px;
     }
 }
 
-@keyframes slideDown {
-    from {
-        transform: translateY(0);
-        opacity: 1;
+@media (max-width: 480px) {
+    body {
+        font-size: 0.95rem; /* Slightly smaller base font for small screens */
     }
-    to {
-        transform: translateY(100%);
-        opacity: 0;
+    .login-box {
+        margin: 10px; /* Add margin for very small screens */
+        padding: 20px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="email"] {
+        padding: 12px 12px 12px 45px;
+    }
+    .login-btn, .privacy-accept-btn {
+        padding: 12px;
+        font-size: 1rem;
     }
 }
 
-/* Dark theme adjustments */
-[data-theme="dark"] .login-box {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+/* Ensure FontAwesome icons are styled correctly */
+.fas, .fab {
+    transition: color var(--transition-speed) ease;
 }
 
-[data-theme="dark"] .input-icon-wrapper {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* Add a subtle animation to page load */
+body {
+    animation: pageLoadFadeIn 0.5s ease-out;
 }
+
+@keyframes pageLoadFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Styling for the main h1 on index.html */
+.main-container > h1[data-i18n="welcome"] {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+[data-theme="dark"] .main-container > h1[data-i18n="welcome"] {
+    color: var(--text-color); /* Ensure it uses the dark theme text color */
+}
+
+
+.main-container > p[data-i18n="helloUser"],
+.main-container > p[data-i18n="coursesInfo"] {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+[data-theme="dark"] .main-container > p[data-i18n="helloUser"],
+[data-theme="dark"] .main-container > p[data-i18n="coursesInfo"] {
+     color: var(--text-color);
+}
+
+/* Ensure the main content area is distinct from the gradient background */
+.main-content-area {
+    background-color: var(--bg-color); /* Use the theme's bg-color */
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 1100px; /* Slightly smaller than main-container for effect */
+    margin-top: 2rem; /* Space from top */
+}
+
+[data-theme="dark"] .main-content-area {
+    background-color: var(--bg-color); /* Use the theme's bg-color */
+}
+
+/* Apply this class to the direct parent of h1, p, and btn-container on index.html */
+/* For example, wrap them in a <div class="main-content-area"> */
