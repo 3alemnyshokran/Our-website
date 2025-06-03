@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English Language Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/styles.css">
-    <!-- Add auth.js -->
-    <script src="../../../assets/js/auth.js"></script>
+    <script src="../../../assets/js/auth-protection.js" defer></script> <!-- auth protection already here -->
     <style>
         .level {
             margin-bottom: 30px;
@@ -56,11 +57,13 @@
             margin-top: 10px;
         }
 
-        .controls-container {
+        .header-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .theme-btn {
@@ -75,7 +78,7 @@
             border-radius: 5px;
             border: 1px solid var(--text-color);
         }
-        
+
         /* Additional styles for tracking and achievements */
         .login-reminder {
             position: fixed;
@@ -266,10 +269,10 @@
     </style>
 </head>
 <body>
-    <div class="controls-container">
+    <div class="header-controls"> <!-- Changed from controls-container -->
         <button class="theme-btn" aria-label="Toggle theme">
-            <span class="light-icon">🌞</span>
-            <span class="dark-icon">🌙</span>
+            <i class="fas fa-sun light-icon"></i> <!-- FontAwesome icon -->
+            <i class="fas fa-moon dark-icon"></i> <!-- FontAwesome icon -->
         </button>
         <div class="language-selector">
             <select id="languageSelect">
@@ -280,102 +283,107 @@
                 <option value="es">Español</option>
             </select>
         </div>
+        <button id="logout-btn" class="btn btn-secondary" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button> <!-- Added logout button -->
     </div>
 
-    <div class="course">
-        <h1 data-i18n="englishCourse">English Language Course</h1>
+    <div class="main-container"> <!-- Added main-container -->
+        <div class="main-content-area"> <!-- Added main-content-area -->
+            <div class="course">
+                <h1 data-i18n="englishCourse">English Language Course</h1>
 
-        <!-- Quiz section -->
-        <div id="englishQuiz" class="quiz-section">
-            <h2>Test Your Knowledge</h2>
-            <p>Take this personalized quiz to check your understanding of English language concepts.</p>
-            <div id="quizContainer"></div>
-        </div>
+                <!-- Quiz section -->
+                <div id="englishQuiz" class="quiz-section">
+                    <h2>Test Your Knowledge</h2>
+                    <p>Take this personalized quiz to check your understanding of English language concepts.</p>
+                    <div id="quizContainer"></div>
+                </div>
 
-        <div id="a1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelA1">A1 - Breakthrough</div>
-                <h2 data-i18n="elementaryLevel">Elementary Level</h2>
-            </div>
-            <div class="chapter">
-                <a href="chapters/english/a1-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1BasicGrammar">Chapter 1: Basic Grammar</h3>
-                    <p data-i18n="basicGrammarDesc">Learn basic English grammar including nouns, verbs, and simple sentences.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
+                <div id="a1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelA1">A1 - Breakthrough</div>
+                        <h2 data-i18n="elementaryLevel">Elementary Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/english/a1-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1BasicGrammar">Chapter 1: Basic Grammar</h3>
+                            <p data-i18n="basicGrammarDesc">Learn basic English grammar including nouns, verbs, and simple sentences.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
 
-        <div id="a2-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelA2">A2 - Waystage</div>
-                <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <a href="chapters/english/a2-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1DailyConversations">Chapter 1: Daily Conversations</h3>
-                    <p data-i18n="dailyConversationsDesc">Learn how to engage in everyday conversations and express basic needs.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
+                <div id="a2-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelA2">A2 - Waystage</div>
+                        <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/english/a2-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1DailyConversations">Chapter 1: Daily Conversations</h3>
+                            <p data-i18n="dailyConversationsDesc">Learn how to engage in everyday conversations and express basic needs.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
 
-        <div id="b1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelB1">B1 - Threshold</div>
-                <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <a href="chapters/english/b1-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1ComplexGrammar">Chapter 1: Complex Grammar</h3>
-                    <p data-i18n="complexGrammarDesc">Master more complex grammar structures and tenses.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
+                <div id="b1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelB1">B1 - Threshold</div>
+                        <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/english/b1-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1ComplexGrammar">Chapter 1: Complex Grammar</h3>
+                            <p data-i18n="complexGrammarDesc">Master more complex grammar structures and tenses.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
 
-        <div id="b2-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelB2">B2 - Vantage</div>
-                <h2 data-i18n="upperIntermediateLevel">Upper Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <a href="chapters/english/b2-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1AdvancedCommunication">Chapter 1: Advanced Communication</h3>
-                    <p data-i18n="advancedCommunicationDesc">Develop advanced communication skills and express complex ideas.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
+                <div id="b2-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelB2">B2 - Vantage</div>
+                        <h2 data-i18n="upperIntermediateLevel">Upper Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/english/b2-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1AdvancedCommunication">Chapter 1: Advanced Communication</h3>
+                            <p data-i18n="advancedCommunicationDesc">Develop advanced communication skills and express complex ideas.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
 
-        <div id="c1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelC1">C1 - Advanced</div>
-                <h2 data-i18n="advancedLevel">Advanced Level</h2>
-            </div>
-            <div class="chapter">
-                <a href="chapters/english/c1-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1AcademicWriting">Chapter 1: Academic Writing</h3>
-                    <p data-i18n="academicWritingDesc">Learn academic writing skills and formal language usage.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
+                <div id="c1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelC1">C1 - Advanced</div>
+                        <h2 data-i18n="advancedLevel">Advanced Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/english/c1-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1AcademicWriting">Chapter 1: Academic Writing</h3>
+                            <p data-i18n="academicWritingDesc">Learn academic writing skills and formal language usage.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
 
-        <div id="c2-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelC2">C2 - Mastery</div>
-                <h2 data-i18n="masteryLevel">Mastery Level</h2>
+                <div id="c2-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelC2">C2 - Mastery</div>
+                        <h2 data-i18n="masteryLevel">Mastery Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/english/c2-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1ProfessionalProficiency">Chapter 1: Professional Proficiency</h3>
+                            <p data-i18n="professionalProficiencyDesc">Achieve native-like proficiency in professional contexts.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="chapter">
-                <a href="chapters/english/c2-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1ProfessionalProficiency">Chapter 1: Professional Proficiency</h3>
-                    <p data-i18n="professionalProficiencyDesc">Achieve native-like proficiency in professional contexts.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
-    </div>
+        </div> <!-- Close main-content-area -->
+    </div> <!-- Close main-container -->
 
     <!-- Login reminder for non-logged-in users -->
     <div id="loginReminder" class="login-reminder">
@@ -409,56 +417,97 @@
     </div>
 
     <script src="../../../assets/js/main.js"></script>
-    <script src="../../../assets/js/tracking.js"></script>
-    <script src="../../../assets/js/questions-data.js"></script>
-    <script src="../../../assets/js/quiz-manager.js"></script>
-    <script src="../../../assets/js/quiz-ui.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is logged in
-            const username = localStorage.getItem('tutor_username');
-            const loginReminderShown = sessionStorage.getItem('login_reminder_shown');
-            
-            // Show login reminder if user is not logged in and reminder hasn't been shown yet
-            if (!username && !loginReminderShown) {
-                // Wait a bit before showing the reminder to not interrupt immediate page interaction
-                setTimeout(() => {
-                    document.getElementById('loginReminder').style.display = 'flex';
-                    sessionStorage.setItem('login_reminder_shown', 'true');
-                }, 5000);
-            }
-            
-            // Close reminder button
-            document.getElementById('closeReminder')?.addEventListener('click', function() {
-                document.getElementById('loginReminder').style.display = 'none';
-            });
-            
-            // If user is logged in, load and display their progress
-            if (username) {
-                loadUserProgress();
-                addCompletionButtons();
+        // Initialize theme and language, and user status
+        function initializePage() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+
+            const currentLang = localStorage.getItem('language') || 'en';
+            setLanguage(currentLang);
+            document.getElementById('languageSelect').value = currentLang;
+
+            if (isAuthenticated()) {
+                const logoutBtn = document.getElementById('logout-btn');
+                if(logoutBtn) logoutBtn.style.display = 'inline-block';
+                loadUserProgress(); // Existing call
+                addCompletionButtons(); // Existing call
                 
-                // Initialize quiz if user is logged in
                 const quizSection = document.getElementById('englishQuiz');
                 if (quizSection) {
                     quizSection.style.display = 'block';
-                }
-                
-                // Initialize the quiz UI
-                const quizUI = QuizUI.init('quizContainer', 'english', 'a1');
-                if (quizUI) {
-                    // Start with latest quiz
-                    QuizUI.startQuiz();
+                    const quizUI = QuizUI.init('quizContainer', 'english', 'a1');
+                    if (quizUI) {
+                        QuizUI.startQuiz();
+                    }
                 }
             } else {
-                // Hide quiz section if user is not logged in
+                const loginReminderShown = sessionStorage.getItem('login_reminder_shown');
+                if (!loginReminderShown) {
+                    setTimeout(() => {
+                        const loginReminder = document.getElementById('loginReminder');
+                        if(loginReminder) loginReminder.style.display = 'flex';
+                        sessionStorage.setItem('login_reminder_shown', 'true');
+                    }, 5000);
+                }
                 const quizSection = document.getElementById('englishQuiz');
                 if (quizSection) {
                     quizSection.style.display = 'none';
                 }
             }
-        });
+            const closeReminderBtn = document.getElementById('closeReminder');
+            if(closeReminderBtn) {
+                 closeReminderBtn.addEventListener('click', function() {
+                    const loginReminder = document.getElementById('loginReminder');
+                    if(loginReminder) loginReminder.style.display = 'none';
+                });
+            }
+        }
         
+        // Theme toggle
+        const themeBtn = document.querySelector('.theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', toggleTheme);
+        }
+
+        function toggleTheme() {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const lightIcon = document.querySelector('.theme-btn .light-icon');
+            const darkIcon = document.querySelector('.theme-btn .dark-icon');
+            if (lightIcon && darkIcon) {
+                if (theme === 'dark') {
+                    lightIcon.style.display = 'none';
+                    darkIcon.style.display = 'inline';
+                } else {
+                    lightIcon.style.display = 'inline';
+                    darkIcon.style.display = 'none';
+                }
+            }
+        }
+
+        // Language change
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (event) => {
+                setLanguage(event.target.value);
+            });
+        }
+        
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', logout);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePage);
         // Function to mark a chapter as complete
         function completeChapter(language, level, chapterId, nextChapterUrl) {
             // Check if user is logged in
@@ -673,7 +722,5 @@
             });
         }
     </script>
-    <!-- Add auth-protection.js at the end of body -->
-    <script src="../../../assets/js/auth-protection.js"></script>
 </body>
 </html>

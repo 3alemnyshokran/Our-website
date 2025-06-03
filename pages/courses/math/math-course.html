@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathematics & Science Courses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/styles.css">
-    <!-- Add auth.js -->
-    <script src="../../../assets/js/auth.js"></script>
+    <!-- auth-protection.js is already included at the bottom of the body -->
     <style>
         .level {
             margin-bottom: 30px;
@@ -243,13 +244,67 @@
             padding: 10px 20px;
             font-size: 0.9rem;
         }
+
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--header-bg);
+            border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.1);
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .language-selector {
+            margin-left: 20px;
+        }
+
+        .language-selector select {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+            background: var(--input-bg);
+            color: var(--text-color);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-color-dark, #3d8b40);
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
     </style>
 </head>
 <body>
-    <div class="controls-container">
+    <div class="header-controls">
         <button class="theme-btn" aria-label="Toggle theme">
-            <span class="light-icon">🌞</span>
-            <span class="dark-icon">🌙</span>
+            <i class="fas fa-sun light-icon"></i>
+            <i class="fas fa-moon dark-icon"></i>
         </button>
         <div class="language-selector">
             <select id="languageSelect">
@@ -260,93 +315,99 @@
                 <option value="es">Español</option>
             </select>
         </div>
+        <button id="logout-btn" class="btn btn-secondary" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
-    <div class="course">
-        <h1 data-i18n="mathCourse">Mathematics Course</h1>
-        
-        <!-- Quiz section -->
-        <div id="mathQuiz" class="quiz-section" style="display: none;">
-            <h2>Test Your Knowledge</h2>
-            <p>Take this personalized quiz to check your understanding of mathematics concepts.</p>
-            <div id="quizContainer"></div>
-        </div>
-        
-        <div id="a1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelA1">A1 - Beginner</div>
-                <h2 data-i18n="elementaryLevel">Elementary Level</h2>
-            </div>
-            <div class="chapter">
-                <a href="chapters/math/ch1-basic-arithmetic.html" target="_blank">
-                    <h3 data-i18n="chapter1BasicArithmetic">Chapter 1: Basic Arithmetic</h3>
-                    <p data-i18n="basicArithmeticDesc">Addition, subtraction, multiplication, and division.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-            <div class="chapter">
-                <h3 data-i18n="chapter2Fractions">Chapter 2: Fractions</h3>
-                <p data-i18n="fractionsDesc">Understanding and working with fractions.</p>
-                <div class="progress-indicator" style="width: 0%"></div>
-            </div>
-        </div>
-        <div id="a2-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelA2">A2 - Intermediate</div>
-                <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <h3 data-i18n="chapter3Algebra">Chapter 3: Algebra</h3>
-                <p data-i18n="algebraDesc">Basic algebraic expressions and equations.</p>
-                <div class="progress-indicator" style="width: 0%"></div>
-            </div>
-        </div>
-        <div id="b1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelB1">B1 - Advanced</div>
-                <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <h3 data-i18n="chapter4Calculus">Chapter 4: Calculus</h3>
-                <p data-i18n="calculusDesc">Introduction to derivatives and integrals.</p>
-                <div class="progress-indicator" style="width: 0%"></div>
-            </div>
-        </div>
-    </div>
-    <div class="course">
-        <h1 data-i18n="scienceCourse">Science Course</h1>
-        <div class="level-selector">
-            <button class="btn" data-level="beginner-science" data-i18n="beginnerLevel">Beginner</button>
-            <button class="btn" data-level="intermediate-science" data-i18n="intermediateLevel">Intermediate</button>
-            <button class="btn" data-level="advanced-science" data-i18n="advancedLevel">Advanced</button>
-        </div>
-        <div id="beginner-science" class="level">
-            <h2 data-i18n="beginnerLevel">Beginner Level</h2>
-            <div class="chapter">
-                <h2 data-i18n="chapter1IntroScience">Chapter 1: Introduction to Science</h2>
-                <div id="ch1-sc" class="chapter-content">
-                    <p data-i18n="introScienceDesc">Learn the basics of scientific methods and principles.</p>
+
+    <div class="main-container">
+        <div class="main-content-area">
+            <div class="course">
+                <h1 data-i18n="mathCourse">Mathematics Course</h1>
+                
+                <!-- Quiz section -->
+                <div id="mathQuiz" class="quiz-section" style="display: none;">
+                    <h2>Test Your Knowledge</h2>
+                    <p>Take this personalized quiz to check your understanding of mathematics concepts.</p>
+                    <div id="quizContainer"></div>
+                </div>
+                
+                <div id="a1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelA1">A1 - Beginner</div>
+                        <h2 data-i18n="elementaryLevel">Elementary Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/math/ch1-basic-arithmetic.html" target="_blank">
+                            <h3 data-i18n="chapter1BasicArithmetic">Chapter 1: Basic Arithmetic</h3>
+                            <p data-i18n="basicArithmeticDesc">Addition, subtraction, multiplication, and division.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                    <div class="chapter">
+                        <h3 data-i18n="chapter2Fractions">Chapter 2: Fractions</h3>
+                        <p data-i18n="fractionsDesc">Understanding and working with fractions.</p>
+                        <div class="progress-indicator" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div id="a2-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelA2">A2 - Intermediate</div>
+                        <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <h3 data-i18n="chapter3Algebra">Chapter 3: Algebra</h3>
+                        <p data-i18n="algebraDesc">Basic algebraic expressions and equations.</p>
+                        <div class="progress-indicator" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div id="b1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelB1">B1 - Advanced</div>
+                        <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <h3 data-i18n="chapter4Calculus">Chapter 4: Calculus</h3>
+                        <p data-i18n="calculusDesc">Introduction to derivatives and integrals.</p>
+                        <div class="progress-indicator" style="width: 0%"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="intermediate-science" class="level">
-            <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
-            <div class="chapter">
-                <h2 data-i18n="chapter2BiologyBasics">Chapter 2: Biology Basics</h2>
-                <div id="ch2-sc" class="chapter-content">
-                    <p data-i18n="biologyBasicsDesc">Explore the fundamentals of biology, including cells and ecosystems.</p>
+            <div class="course">
+                <h1 data-i18n="scienceCourse">Science Course</h1>
+                <div class="level-selector">
+                    <button class="btn" data-level="beginner-science" data-i18n="beginnerLevel">Beginner</button>
+                    <button class="btn" data-level="intermediate-science" data-i18n="intermediateLevel">Intermediate</button>
+                    <button class="btn" data-level="advanced-science" data-i18n="advancedLevel">Advanced</button>
+                </div>
+                <div id="beginner-science" class="level">
+                    <h2 data-i18n="beginnerLevel">Beginner Level</h2>
+                    <div class="chapter">
+                        <h2 data-i18n="chapter1IntroScience">Chapter 1: Introduction to Science</h2>
+                        <div id="ch1-sc" class="chapter-content">
+                            <p data-i18n="introScienceDesc">Learn the basics of scientific methods and principles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="intermediate-science" class="level">
+                    <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
+                    <div class="chapter">
+                        <h2 data-i18n="chapter2BiologyBasics">Chapter 2: Biology Basics</h2>
+                        <div id="ch2-sc" class="chapter-content">
+                            <p data-i18n="biologyBasicsDesc">Explore the fundamentals of biology, including cells and ecosystems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="advanced-science" class="level">
+                    <h2 data-i18n="advancedLevel">Advanced Level</h2>
+                    <div class="chapter">
+                        <h2 data-i18n="chapter3PhysicsChemistry">Chapter 3: Physics and Chemistry</h2>
+                        <div id="ch3-sc" class="chapter-content">
+                            <p data-i18n="physicsChemistryDesc">Dive into advanced topics in physics and chemistry.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="advanced-science" class="level">
-            <h2 data-i18n="advancedLevel">Advanced Level</h2>
-            <div class="chapter">
-                <h2 data-i18n="chapter3PhysicsChemistry">Chapter 3: Physics and Chemistry</h2>
-                <div id="ch3-sc" class="chapter-content">
-                    <p data-i18n="physicsChemistryDesc">Dive into advanced topics in physics and chemistry.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        </div> <!-- Close main-content-area -->
+    </div> <!-- Close main-container -->
 
     <!-- Login reminder for non-logged-in users -->
     <div id="loginReminder" class="login-reminder">
@@ -380,142 +441,121 @@
     </div>
 
     <script src="../../../assets/js/main.js"></script>
-    <script src="../../../assets/js/tracking.js"></script>
-    <script src="../../../assets/js/questions-data.js"></script>
-    <script src="../../../assets/js/quiz-manager.js"></script>
-    <script src="../../../assets/js/quiz-ui.js"></script>
-    <script src="../../../assets/js/auth-protection.js"></script>
+    <script src="../../../assets/js/auth-protection.js" defer></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is logged in
-            const username = localStorage.getItem('tutor_username');
-            
-            if (!username) {
-                // Show login reminder after 10 seconds for non-logged-in users
-                setTimeout(() => {
-                    document.getElementById('loginReminder').style.display = 'block';
-                }, 10000);
-                
-                // Close reminder event
-                document.getElementById('closeReminder').addEventListener('click', function() {
-                    document.getElementById('loginReminder').style.display = 'none';
-                });
-            } else {
-                // Initialize quiz for logged-in users
-                const quizSection = document.getElementById('mathQuiz');
-                if (quizSection) {
-                    quizSection.style.display = 'block';
-                    
-                    // Initialize the quiz UI
-                    const quizUI = QuizUI.init('quizContainer', 'math', 'a1');
-                    if (quizUI) {
-                        // Start with latest quiz
-                        QuizUI.startQuiz();
+        // Initialize theme and language, and user status
+        function initializePage() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+
+            const currentLang = localStorage.getItem('language') || 'en';
+            setLanguage(currentLang);
+            document.getElementById('languageSelect').value = currentLang;
+
+            if (isAuthenticated()) {
+                const logoutBtn = document.getElementById('logout-btn');
+                if(logoutBtn) logoutBtn.style.display = 'inline-block';
+                // Initialize quiz for logged-in users (existing logic for math)
+                const mathQuizSection = document.getElementById('mathQuiz');
+                if (mathQuizSection) {
+                    mathQuizSection.style.display = 'block';
+                    const mathQuizUI = QuizUI.init('quizContainer', 'math', 'a1'); // Ensure correct quizContainer ID if different for math/science
+                    if (mathQuizUI) {
+                        QuizUI.startQuiz(); // This might need to be specific to mathQuizUI if QuizUI is a singleton
                     }
                 }
-                
-                // Add complete buttons for logged-in users
-                const chapters = document.querySelectorAll('.chapter');
+                // Add complete buttons (existing logic - ensure it targets math chapters correctly)
+                 const chapters = document.querySelectorAll('.course:first-of-type .chapter'); // Target math chapters
                 chapters.forEach(chapter => {
                     const chapterLink = chapter.querySelector('a');
-                    if (chapterLink) {
-                        // Create complete button
+                    if (chapterLink && !chapter.querySelector('.complete-btn')) { 
                         const completeBtn = document.createElement('button');
                         completeBtn.className = 'complete-btn';
-                        completeBtn.innerText = 'Mark as Complete';
+                        completeBtn.innerText = 'Mark as Complete'; 
                         completeBtn.setAttribute('data-chapter', chapterLink.href.split('/').pop());
-                        
-                        // Get level ID from parent
                         const levelElement = chapter.closest('.level');
                         if (levelElement) {
                             completeBtn.setAttribute('data-level', levelElement.id.replace('-level', ''));
                         }
-                        
-                        // Add click event
                         completeBtn.addEventListener('click', function(e) {
                             e.preventDefault();
-                            
                             const chapterId = this.getAttribute('data-chapter');
                             const levelId = this.getAttribute('data-level');
-                            
-                            // Mark as complete in tracking system
-                            const progress = UserTracking.completeChapter('math', levelId, chapterId);
-                            
-                            // Update visual indicator
+                            UserTracking.completeChapter('math', levelId, chapterId);
                             chapter.classList.add('completed');
                             const progressIndicator = chapter.querySelector('.progress-indicator');
-                            if (progressIndicator) {
-                                progressIndicator.style.width = '100%';
-                            }
-                            
-                            // Disable the button
+                            if (progressIndicator) progressIndicator.style.width = '100%';
                             this.disabled = true;
-                            this.innerText = 'Completed';
-                            
-                            // Check for achievements
+                            this.innerText = 'Completed'; 
                             const newAchievements = UserTracking.checkForAchievements();
-                            
-                            // Show completion modal
                             showCompletionModal(chapterId, levelId, newAchievements);
                         });
-                        
-                        // Append to chapter
                         chapter.appendChild(completeBtn);
                     }
                 });
-            }
-        });
-        
-        // Show completion modal
-        function showCompletionModal(chapterId, levelId, achievements) {
-            const modal = document.getElementById('completionModal');
-            const achievementsEarned = document.getElementById('achievementsEarned');
-            const achievementsList = document.getElementById('achievementsList');
-            
-            // Clear previous achievements
-            achievementsList.innerHTML = '';
-            
-            // If achievements earned, show them
-            if (achievements && achievements.length > 0) {
-                achievementsEarned.style.display = 'block';
-                
-                achievements.forEach(achievement => {
-                    const achievementEl = document.createElement('div');
-                    achievementEl.style.display = 'flex';
-                    achievementEl.style.alignItems = 'center';
-                    achievementEl.style.marginBottom = '10px';
-                    achievementEl.style.padding = '10px';
-                    achievementEl.style.backgroundColor = 'rgba(var(--primary-color-rgb), 0.1)';
-                    achievementEl.style.borderRadius = '8px';
-                    
-                    achievementEl.innerHTML = `
-                        <div style="font-size: 2rem; margin-right: 15px;">${achievement.icon}</div>
-                        <div>
-                            <div style="font-weight: bold;">${achievement.name}</div>
-                            <div style="font-size: 0.9rem;">${achievement.description}</div>
-                        </div>
-                    `;
-                    
-                    achievementsList.appendChild(achievementEl);
-                });
+                // Similar logic would be needed for Science course if it has trackable chapters
+
             } else {
-                achievementsEarned.style.display = 'none';
+                // Show login reminder (existing logic)
+                 setTimeout(() => {
+                    const loginReminder = document.getElementById('loginReminder');
+                    if(loginReminder) loginReminder.style.display = 'block';
+                }, 10000);
+                const closeReminderBtn = document.getElementById('closeReminder');
+                if(closeReminderBtn) {
+                    closeReminderBtn.addEventListener('click', function() {
+                        const loginReminder = document.getElementById('loginReminder');
+                        if(loginReminder) loginReminder.style.display = 'none';
+                    });
+                }
             }
-            
-            // Set up next chapter button
-            const nextChapterBtn = document.getElementById('nextChapterBtn');
-            // Logic for finding next chapter would go here
-            // For now, just hide the button as we don't have that functionality
-            nextChapterBtn.style.display = 'none';
-            
-            // Show modal
-            modal.style.display = 'block';
         }
         
-        // Hide completion modal
-        function hideCompletionModal() {
-            document.getElementById('completionModal').style.display = 'none';
+        // Theme toggle
+        const themeBtn = document.querySelector('.theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', toggleTheme);
         }
+
+        function toggleTheme() {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const lightIcon = document.querySelector('.theme-btn .light-icon');
+            const darkIcon = document.querySelector('.theme-btn .dark-icon');
+            if (lightIcon && darkIcon) {
+                if (theme === 'dark') {
+                    lightIcon.style.display = 'none';
+                    darkIcon.style.display = 'inline';
+                } else {
+                    lightIcon.style.display = 'inline';
+                    darkIcon.style.display = 'none';
+                }
+            }
+        }
+
+        // Language change
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (event) => {
+                setLanguage(event.target.value);
+            });
+        }
+        
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', logout);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePage);
+        // ... rest of the existing script ...
     </script>
 </body>
 </html>

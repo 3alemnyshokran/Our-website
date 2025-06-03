@@ -58,18 +58,16 @@ function showPrivacyModal() {
 }
 
 // Handle login logic
-function handleLogin(username, password, rememberMe) {
+function handleLogin(username, rememberMe) { // Password parameter removed
     const savedUsername = localStorage.getItem('tutor_username');
-    const savedPassword = localStorage.getItem('tutor_password');
-    const trusted = localStorage.getItem('tutor_trusted') === 'true';
     
-    if (username === savedUsername && (btoa(password) === savedPassword || trusted)) {
+    if (username === savedUsername) { // Only check username
         // Set authentication state
         localStorage.setItem('tutor_authenticated', 'true');
         
         // Update trusted device if remember me is checked
         if (rememberMe) {
-            localStorage.setItem('tutor_trusted', 'true');
+            localStorage.setItem('tutor_trusted', 'true'); // Still use remember me for username
         }
         
         // Get redirect URL if any
@@ -83,20 +81,31 @@ function handleLogin(username, password, rememberMe) {
     } else {
         return {
             success: false,
-            message: 'Incorrect username or password'
+            message: 'Incorrect username' // Updated message
         };
     }
 }
 
 // Handle registration logic
-function handleRegistration(username, email, password) {
-    // Store user data
+async function handleRegistration(username) { // email and password parameters removed
+    // Check if username already exists
+    if (localStorage.getItem('tutor_username') === username) {
+        alert('Username already exists. Please choose a different one.');
+        return {
+            success: false,
+            message: 'Username already exists'
+        };
+    }
+
+    // Store user data (only username)
     localStorage.setItem('tutor_username', username);
-    localStorage.setItem('tutor_email', email);
-    localStorage.setItem('tutor_password', btoa(password)); // Base64 encoding (not secure, just for demo)
+    // No email or password stored
     localStorage.setItem('tutor_authenticated', 'true');
-    localStorage.setItem('tutor_trusted', 'false');
+    localStorage.setItem('tutor_trusted', 'false'); // New users are not trusted by default
     
+    alert('Registration successful! You are now logged in.');
+    window.location.href = '/index.html'; // Redirect to homepage after registration
+
     return {
         success: true
     };

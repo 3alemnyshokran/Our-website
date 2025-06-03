@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arabic Language Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../../assets/css/styles.css">
+    <script src="../../../assets/js/auth-protection.js" defer></script> <!-- Added auth protection -->
     <style>
         .level {
             margin-bottom: 30px;
@@ -241,13 +244,62 @@
             padding: 10px 20px;
             font-size: 0.9rem;
         }
+
+        /* Header controls */
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--header-bg);
+            border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.1);
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .language-selector {
+            margin-left: 20px;
+        }
+
+        .btn-secondary {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Main container */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-content-area {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
     </style>
 </head>
 <body>
-    <div class="controls-container">
+    <div class="header-controls"> <!-- Changed from controls-container -->
         <button class="theme-btn" aria-label="Toggle theme">
-            <span class="light-icon">🌞</span>
-            <span class="dark-icon">🌙</span>
+            <i class="fas fa-sun light-icon"></i> <!-- FontAwesome icon -->
+            <i class="fas fa-moon dark-icon"></i> <!-- FontAwesome icon -->
         </button>
         <div class="language-selector">
             <select id="languageSelect">
@@ -258,53 +310,59 @@
                 <option value="es">Español</option>
             </select>
         </div>
+        <button id="logout-btn" class="btn btn-secondary" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button> <!-- Added logout button -->
     </div>
-    <div class="course">
-        <h1 data-i18n="arabicCourse">Arabic Language Course</h1>
-        
-        <!-- Quiz section -->
-        <div id="arabicQuiz" class="quiz-section" style="display: none;">
-            <h2>Test Your Knowledge</h2>
-            <p>Take this personalized quiz to check your understanding of Arabic language concepts.</p>
-            <div id="quizContainer"></div>
-        </div>
-        
-        <div id="a1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelA1">A1 - Beginner</div>
-                <h2 data-i18n="elementaryLevel">Elementary Level</h2>
+
+    <div class="main-container"> <!-- Added main-container -->
+        <div class="main-content-area"> <!-- Added main-content-area -->
+            <div class="course">
+                <h1 data-i18n="arabicCourse">Arabic Language Course</h1>
+                
+                <!-- Quiz section -->
+                <div id="arabicQuiz" class="quiz-section" style="display: none;">
+                    <h2>Test Your Knowledge</h2>
+                    <p>Take this personalized quiz to check your understanding of Arabic language concepts.</p>
+                    <div id="quizContainer"></div>
+                </div>
+                
+                <div id="a1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelA1">A1 - Beginner</div>
+                        <h2 data-i18n="elementaryLevel">Elementary Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <a href="chapters/arabic/a1-chapter1.html" target="_blank">
+                            <h3 data-i18n="chapter1Alphabet">Chapter 1: Arabic Alphabet</h3>
+                            <p data-i18n="alphabetDesc">Learn the Arabic alphabet and basic pronunciation.</p>
+                            <div class="progress-indicator" style="width: 0%"></div>
+                        </a>
+                    </div>
+                </div>
+                <div id="a2-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelA2">A2 - Elementary</div>
+                        <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <h3 data-i18n="comingSoon">Coming Soon</h3>
+                        <p data-i18n="moreContent">More content will be added soon.</p>
+                        <div class="progress-indicator" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div id="b1-level" class="level">
+                    <div class="level-header">
+                        <div class="cefr-badge" data-i18n="levelB1">B1 - Intermediate</div>
+                        <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
+                    </div>
+                    <div class="chapter">
+                        <h3 data-i18n="comingSoon">Coming Soon</h3>
+                        <p data-i18n="moreContent">More content will be added soon.</p>
+                        <div class="progress-indicator" style="width: 0%"></div>
+                    </div>
+                </div>
             </div>
-            <div class="chapter">
-                <a href="chapters/arabic/a1-chapter1.html" target="_blank">
-                    <h3 data-i18n="chapter1Alphabet">Chapter 1: Arabic Alphabet</h3>
-                    <p data-i18n="alphabetDesc">Learn the Arabic alphabet and basic pronunciation.</p>
-                    <div class="progress-indicator" style="width: 0%"></div>
-                </a>
-            </div>
-        </div>
-        <div id="a2-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelA2">A2 - Elementary</div>
-                <h2 data-i18n="preIntermediateLevel">Pre-Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <h3 data-i18n="comingSoon">Coming Soon</h3>
-                <p data-i18n="moreContent">More content will be added soon.</p>
-                <div class="progress-indicator" style="width: 0%"></div>
-            </div>
-        </div>
-        <div id="b1-level" class="level">
-            <div class="level-header">
-                <div class="cefr-badge" data-i18n="levelB1">B1 - Intermediate</div>
-                <h2 data-i18n="intermediateLevel">Intermediate Level</h2>
-            </div>
-            <div class="chapter">
-                <h3 data-i18n="comingSoon">Coming Soon</h3>
-                <p data-i18n="moreContent">More content will be added soon.</p>
-                <div class="progress-indicator" style="width: 0%"></div>
-            </div>
-        </div>
-    </div>
+        </div> <!-- Close main-content-area -->
+    </div> <!-- Close main-container -->
 
     <!-- Login reminder for non-logged-in users -->
     <div id="loginReminder" class="login-reminder">
@@ -375,48 +433,28 @@
                 const chapters = document.querySelectorAll('.chapter');
                 chapters.forEach(chapter => {
                     const chapterLink = chapter.querySelector('a');
-                    if (chapterLink) {
-                        // Create complete button
+                    if (chapterLink && !chapter.querySelector('.complete-btn')) { // Check if button already exists
                         const completeBtn = document.createElement('button');
                         completeBtn.className = 'complete-btn';
                         completeBtn.innerText = 'وضع علامة مكتملة';
                         completeBtn.setAttribute('data-chapter', chapterLink.href.split('/').pop());
-                        
-                        // Get level ID from parent
                         const levelElement = chapter.closest('.level');
                         if (levelElement) {
                             completeBtn.setAttribute('data-level', levelElement.id.replace('-level', ''));
                         }
-                        
-                        // Add click event
                         completeBtn.addEventListener('click', function(e) {
                             e.preventDefault();
-                            
                             const chapterId = this.getAttribute('data-chapter');
                             const levelId = this.getAttribute('data-level');
-                            
-                            // Mark as complete in tracking system
-                            const progress = UserTracking.completeChapter('arabic', levelId, chapterId);
-                            
-                            // Update visual indicator
+                            UserTracking.completeChapter('arabic', levelId, chapterId);
                             chapter.classList.add('completed');
                             const progressIndicator = chapter.querySelector('.progress-indicator');
-                            if (progressIndicator) {
-                                progressIndicator.style.width = '100%';
-                            }
-                            
-                            // Disable the button
+                            if (progressIndicator) progressIndicator.style.width = '100%';
                             this.disabled = true;
                             this.innerText = 'مكتمل';
-                            
-                            // Check for achievements
                             const newAchievements = UserTracking.checkForAchievements();
-                            
-                            // Show completion modal
                             showCompletionModal(chapterId, levelId, newAchievements);
                         });
-                        
-                        // Append to chapter
                         chapter.appendChild(completeBtn);
                     }
                 });
@@ -473,6 +511,119 @@
         function hideCompletionModal() {
             document.getElementById('completionModal').style.display = 'none';
         }
+
+        // Initialize theme and language, and user status
+        function initializePage() {
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            updateThemeIcon(currentTheme);
+
+            const currentLang = localStorage.getItem('language') || 'en';
+            setLanguage(currentLang);
+            document.getElementById('languageSelect').value = currentLang;
+
+            if (isAuthenticated()) {
+                const logoutBtn = document.getElementById('logout-btn');
+                if(logoutBtn) logoutBtn.style.display = 'inline-block';
+                // Initialize quiz for logged-in users (existing logic)
+                const quizSection = document.getElementById('arabicQuiz');
+                if (quizSection) {
+                    quizSection.style.display = 'block';
+                    const quizUI = QuizUI.init('quizContainer', 'arabic', 'a1');
+                    if (quizUI) {
+                        QuizUI.startQuiz();
+                    }
+                }
+                // Add complete buttons (existing logic)
+                 const chapters = document.querySelectorAll('.chapter');
+                chapters.forEach(chapter => {
+                    const chapterLink = chapter.querySelector('a');
+                    if (chapterLink && !chapter.querySelector('.complete-btn')) { // Check if button already exists
+                        const completeBtn = document.createElement('button');
+                        completeBtn.className = 'complete-btn';
+                        completeBtn.innerText = 'Mark as Complete'; // Or use i18n
+                        completeBtn.setAttribute('data-chapter', chapterLink.href.split('/').pop());
+                        const levelElement = chapter.closest('.level');
+                        if (levelElement) {
+                            completeBtn.setAttribute('data-level', levelElement.id.replace('-level', ''));
+                        }
+                        completeBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const chapterId = this.getAttribute('data-chapter');
+                            const levelId = this.getAttribute('data-level');
+                            UserTracking.completeChapter('arabic', levelId, chapterId);
+                            chapter.classList.add('completed');
+                            const progressIndicator = chapter.querySelector('.progress-indicator');
+                            if (progressIndicator) progressIndicator.style.width = '100%';
+                            this.disabled = true;
+                            this.innerText = 'Completed'; // Or use i18n
+                            const newAchievements = UserTracking.checkForAchievements();
+                            showCompletionModal(chapterId, levelId, newAchievements);
+                        });
+                        chapter.appendChild(completeBtn);
+                    }
+                });
+
+            } else {
+                // Show login reminder (existing logic)
+                 setTimeout(() => {
+                    const loginReminder = document.getElementById('loginReminder');
+                    if(loginReminder) loginReminder.style.display = 'block';
+                }, 10000);
+                const closeReminderBtn = document.getElementById('closeReminder');
+                if(closeReminderBtn) {
+                    closeReminderBtn.addEventListener('click', function() {
+                        const loginReminder = document.getElementById('loginReminder');
+                        if(loginReminder) loginReminder.style.display = 'none';
+                    });
+                }
+            }
+        }
+        
+        // Theme toggle
+        const themeBtn = document.querySelector('.theme-btn');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', toggleTheme);
+        }
+
+        function toggleTheme() {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const lightIcon = document.querySelector('.theme-btn .light-icon');
+            const darkIcon = document.querySelector('.theme-btn .dark-icon');
+            if (lightIcon && darkIcon) {
+                if (theme === 'dark') {
+                    lightIcon.style.display = 'none';
+                    darkIcon.style.display = 'inline';
+                } else {
+                    lightIcon.style.display = 'inline';
+                    darkIcon.style.display = 'none';
+                }
+            }
+        }
+
+        // Language change
+        const languageSelect = document.getElementById('languageSelect');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (event) => {
+                setLanguage(event.target.value);
+            });
+        }
+        
+        // Logout functionality
+        const logoutBtn = document.getElementById('logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', logout);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePage);
+        // ... rest of the existing script ...
     </script>
 </body>
 </html>
