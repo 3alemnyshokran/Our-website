@@ -1,35 +1,37 @@
 :root {
     /* Light theme variables */
-    --bg-color: #ffffff;
-    --text-color: #1e293b;
-    --primary-color: #4f46e5;
-    --primary-color-rgb: 79, 70, 229;
-    --secondary-color: #3b82f6;
-    --card-bg: #f0f9ff;
-    --hover-shadow: rgba(0, 0, 0, 0.15);
+    --bg-color: #f8f9fa; /* Lighter gray for a softer background */
+    --text-color: #212529; /* Darker text for better contrast */
+    --primary-color: #007bff; /* A more vibrant blue */
+    --primary-color-rgb: 0, 123, 255;
+    --secondary-color: #6c757d; /* A neutral gray for secondary elements */
+    --card-bg: #ffffff; /* Pure white for cards */
+    --hover-shadow: rgba(0, 0, 0, 0.1); /* Softer shadow */
     --input-bg: #ffffff;
-    --border-color: #e2e8f0;
-    --success-color: #4caf50;
-    --error-color: #f44336;
-    --success-bg: rgba(76, 175, 80, 0.15);
-    --error-bg: rgba(244, 67, 54, 0.15);
+    --border-color: #dee2e6; /* Lighter border color */
+    --success-color: #28a745;
+    --error-color: #dc3545;
+    --success-bg: rgba(40, 167, 69, 0.1);
+    --error-bg: rgba(220, 53, 69, 0.1);
+    --font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 [data-theme="dark"] {
     /* Dark theme variables */
-    --bg-color: #1a1a1a;
+    --bg-color: #121212; /* Darker background for better contrast */
     --text-color: #e0e0e0;
-    --primary-color: #6366f1;
-    --primary-color-rgb: 99, 102, 241;
-    --secondary-color: #60a5fa;
-    --card-bg: #2d2d2d;
-    --hover-shadow: rgba(255, 255, 255, 0.1);
-    --input-bg: #3d3d3d;
-    --border-color: #404040;
-    --success-color: #66bb6a;
-    --error-color: #ef5350;
-    --success-bg: rgba(102, 187, 106, 0.15);
-    --error-bg: rgba(239, 83, 80, 0.15);
+    --primary-color: #0d6efd; /* Slightly adjusted blue for dark mode */
+    --primary-color-rgb: 13, 110, 253;
+    --secondary-color: #adb5bd; /* Lighter gray for dark mode */
+    --card-bg: #1e1e1e; /* Darker card background */
+    --hover-shadow: rgba(255, 255, 255, 0.08);
+    --input-bg: #2c2c2c;
+    --border-color: #343a40;
+    --success-color: #32cd32; /* Brighter green for dark mode */
+    --error-color: #ff6b6b;  /* Brighter red for dark mode */
+    --success-bg: rgba(50, 205, 50, 0.15);
+    --error-bg: rgba(255, 107, 107, 0.15);
 }
 
 /* Apply dark mode to common elements */
@@ -38,9 +40,11 @@ body {
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
     margin: 0;
-    padding: 0;
+    padding: 1rem; /* Added some global padding */
     min-height: 100vh;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: var(--font-family-sans-serif); /* Updated font family */
+    line-height: 1.6; /* Improved line height */
+    font-size: 16px; /* Base font size */
 }
 
 /* RTL Support */
@@ -76,11 +80,16 @@ body {
 /* Question Container Styles */
 .question-container {
     background: var(--card-bg);
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px var(--hover-shadow);
-    transition: transform 0.3s ease, border-left-color 0.3s ease;
+    padding: 25px; /* Increased padding */
+    margin: 25px 0; /* Increased margin */
+    border-radius: 12px; /* Softer border radius */
+    box-shadow: 0 4px 12px var(--hover-shadow); /* Enhanced shadow */
+    transition: transform 0.3s ease, border-left-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.question-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--hover-shadow); /* Enhanced hover shadow */
 }
 
 .question-container.correct {
@@ -104,34 +113,38 @@ body {
 /* Input and Button Styles */
 .answer-input {
     width: 100%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
+    padding: 15px; /* Increased padding */
+    margin: 12px 0; /* Increased margin */
+    border: 1px solid var(--border-color); /* Thinner border */
+    border-radius: 8px; /* Consistent border radius */
     background: var(--input-bg);
     color: var(--text-color);
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
 }
 
 .answer-input:focus {
     border-color: var(--primary-color);
     outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb), 0.25); /* Focus ring */
 }
 
 .check-answer-btn {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 14px 28px; /* Increased padding */
+    border-radius: 8px; /* Consistent border radius */
     cursor: pointer;
     font-size: 1rem;
-    transition: transform 0.2s ease, background 0.3s ease;
+    font-weight: 500; /* Added font weight */
+    transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
 }
 
 .check-answer-btn:hover {
     transform: translateY(-2px);
+    background-color: darken(var(--primary-color), 5%); /* Darken on hover - will need JS or preprocessor for var() */
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.2);
 }
 
 /* Progress Indicator */
@@ -168,21 +181,23 @@ body {
 .theme-btn {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 20px;
+    padding: 10px 15px; /* Adjusted padding */
+    border-radius: 25px; /* More rounded */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
     position: fixed;
-    top: 20px;
-    right: 80px;
+    top: 25px; /* Adjusted position */
+    right: 90px; /* Adjusted position */
     z-index: 1000;
+    box-shadow: 0 2px 5px var(--hover-shadow);
 }
 
 .theme-btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.05) translateY(-1px); /* Enhanced hover effect */
+    box-shadow: 0 4px 10px var(--hover-shadow);
 }
 
 [data-theme="dark"] .light-icon,
@@ -239,29 +254,32 @@ body {
 
 /* Language Selector */
 .language-selector select {
-    padding: 8px 25px 8px 10px;
-    border-radius: 20px;
+    padding: 10px 30px 10px 15px; /* Adjusted padding */
+    border-radius: 25px; /* More rounded */
     border: 1px solid var(--border-color);
     background: var(--card-bg);
     color: var(--text-color);
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B7280' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E"); /* Updated icon */
     background-repeat: no-repeat;
-    background-position: right 8px center;
+    background-position: right 10px center; /* Adjusted icon position */
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+.language-selector select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-color-rgb), 0.25); /* Focus ring */
+}
+
 
 .language-selector {
     position: fixed;
-    top: 20px;
-    right: 140px;
+    top: 25px; /* Adjusted position */
+    right: 160px; /* Adjusted position */
     z-index: 1000;
-}
-
-[dir="rtl"] .language-selector select {
-    padding: 8px 10px 8px 25px;
-    background-position: left 8px center;
 }
 
 /* Accessibility Improvements */
@@ -305,18 +323,20 @@ body {
 }
 
 .profile-preview {
-    width: 40px;
-    height: 40px;
+    width: 44px; /* Slightly larger */
+    height: 44px; /* Slightly larger */
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid var(--primary-color);
     background: var(--card-bg);
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 1px 3px var(--hover-shadow);
 }
 
 .profile-preview:hover {
-    transform: scale(1.1);
+    transform: scale(1.08); /* Enhanced hover effect */
+    box-shadow: 0 3px 8px var(--hover-shadow);
 }
 
 .profile-preview.empty {
@@ -330,16 +350,16 @@ body {
 .course-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    padding-top: 80px; /* Make room for profile picture */
+    padding: 25px; /* Adjusted padding */
+    padding-top: 90px; /* Make room for fixed header elements */
 }
 
 .level-section {
-    margin-bottom: 40px;
+    margin-bottom: 50px; /* Increased margin */
     background: var(--card-bg);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px var(--hover-shadow);
+    padding: 30px; /* Increased padding */
+    border-radius: 16px; /* Softer border radius */
+    box-shadow: 0 5px 15px var(--hover-shadow); /* Enhanced shadow */
 }
 
 .chapters {
@@ -350,16 +370,18 @@ body {
 }
 
 .course-card {
-    background: var(--bg-color);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--hover-shadow);
+    background: var(--bg-color); /* Use --bg-color to blend with page, or --card-bg for distinct cards */
+    padding: 25px; /* Increased padding */
+    border-radius: 12px; /* Softer border radius */
+    box-shadow: 0 3px 10px var(--hover-shadow); /* Enhanced shadow */
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid var(--border-color); /* Added a subtle border */
 }
 
 .course-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px); /* More pronounced hover effect */
+    box-shadow: 0 8px 20px var(--hover-shadow); /* Enhanced hover shadow */
 }
 
 /* Progress bar in course cards */
@@ -447,29 +469,39 @@ body {
 .privacy-modal-content {
     background: var(--card-bg);
     color: var(--text-color);
-    padding: 32px 24px;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px var(--hover-shadow);
+    padding: 35px 30px; /* Increased padding */
+    border-radius: 16px; /* Softer border radius */
+    box-shadow: 0 6px 25px var(--hover-shadow); /* Enhanced shadow */
     max-width: 90vw;
-    width: 350px;
+    width: 400px; /* Slightly wider */
     text-align: center;
 }
 .privacy-modal-content h2 {
     margin-top: 0;
+    margin-bottom: 1rem; /* Added margin */
+    font-size: 1.75rem; /* Larger heading */
+}
+.privacy-modal-content p {
+    font-size: 1rem; /* Ensure consistent paragraph font size */
+    line-height: 1.7; /* Improved line height for modal text */
+    margin-bottom: 1.5rem;
 }
 .privacy-accept-btn {
-    margin-top: 18px;
+    margin-top: 20px; /* Adjusted margin */
     background: var(--primary-color);
     color: #fff;
     border: none;
-    padding: 10px 28px;
-    border-radius: 8px;
-    font-size: 1rem;
+    padding: 12px 32px; /* Adjusted padding */
+    border-radius: 8px; /* Consistent border radius */
+    font-size: 1.05rem; /* Slightly larger font */
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.3s ease;
 }
 .privacy-accept-btn:hover {
-    background: var(--secondary-color);
+    background-color: darken(var(--primary-color), 5%); /* Needs JS or preprocessor */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.2);
 }
 body.modal-open {
     overflow: hidden;
