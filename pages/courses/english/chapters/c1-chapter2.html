@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English C1 - Chapter 2: Academic Discussion and Critical Analysis</title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
         .chapter-container {
             max-width: 800px;
@@ -629,7 +628,7 @@
                 if (question.type === 'transformation') {
                     // Check if the key parts of the answer are included
                     const keyParts = correctAnswer.split(' ');
-                    const essentialWords = keyParts.filter(word => word.length > 3);
+                    const essentialWords = keyParts.filter word => word.length > 3);
                     const matchCount = essentialWords.filter(word => 
                         userAnswer.includes(word.toLowerCase())
                     ).length;

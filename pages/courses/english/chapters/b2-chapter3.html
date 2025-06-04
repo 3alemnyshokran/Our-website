@@ -426,3 +426,184 @@
                 id: 22,
                 type: 'multipleChoice',
                 question: "Which sentence shows the correct passive form of 'They are going to announce the results tomorrow'?",
+                options: [
+                    "The results are going to be announced tomorrow.",
+                    "Tomorrow, the results will be announced.",
+                    "The results will have been announced by tomorrow.",
+                    "Both A and B are correct."
+                ],
+                correctAnswer: 3,
+                explanation: "Both A and B correctly use the passive form for the given sentence."
+            },
+            {
+                id: 23,
+                type: 'trueFalse',
+                question: "The sentence 'The book is being read by many people' is an example of the present continuous passive.",
+                correctAnswer: true,
+                explanation: "This is correct. It uses the present continuous passive structure."
+            },
+            {
+                id: 24,
+                type: 'fillInBlank',
+                question: "Complete with the correct causative form: 'He _____ his car _____ (sell) last month.'",
+                correctAnswer: "had his car sold",
+                explanation: "This requires the causative in past simple: had + object + past participle."
+            },
+            {
+                id: 25,
+                type: 'multipleChoice',
+                question: "Which sentence is an example of a passive sentence with a preposition?",
+                options: [
+                    "The book was on the table.",
+                    "The song was sung by the choir.",
+                    "The letter was written to her by John.",
+                    "The cake was delicious."
+                ],
+                correctAnswer: 2,
+                explanation: "The third option is correct. It includes the preposition 'to' in the passive structure."
+            }
+        ];
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let streak = 0;
+        const totalQuestions = questions.length;
+        
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            const currentQuestion = document.getElementById('currentQuestion');
+            const totalQuestionsElem = document.getElementById('totalQuestions');
+            
+            const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+            progressFill.style.width = `${progressPercentage}%`;
+            currentQuestion.innerText = currentQuestionIndex + 1;
+            totalQuestionsElem.innerText = totalQuestions;
+        }
+        
+        function showQuestion(index) {
+            const questionContainer = document.getElementById('questionsContainer');
+            questionContainer.innerHTML = '';
+            const questionData = questions[index];
+            
+            let questionHTML = `<div class="question-container active" id="question-${questionData.id}">
+                <div class="question-text">${questionData.question}</div>`;
+            
+            switch(questionData.type) {
+                case 'transformation':
+                case 'fillInBlank':
+                    questionHTML += `
+                    <input type="text" class="answer-input" id="answer-${questionData.id}" placeholder="Type your answer here...">
+                    <div class="answer-result" id="result-${questionData.id}"></div>`;
+                    break;
+                case 'multipleChoice':
+                    questionHTML += `<div class="answer-options">`;
+                    questionData.options.forEach((option, i) => {
+                        questionHTML += `<div class="answer-option" data-index="${i}" onclick="selectAnswer(${questionData.id}, ${i})">${option}</div>`;
+                    });
+                    questionHTML += `</div>
+                    <div class="answer-result" id="result-${questionData.id}"></div>`;
+                    break;
+                case 'trueFalse':
+                    questionHTML += `
+                    <div class="answer-options">
+                        <div class="answer-option" data-index="true" onclick="selectTrueFalseAnswer(${questionData.id}, true)">True</div>
+                        <div class="answer-option" data-index="false" onclick="selectTrueFalseAnswer(${questionData.id}, false)">False</div>
+                    </div>
+                    <div class="answer-result" id="result-${questionData.id}"></div>`;
+                    break;
+            }
+            
+            questionHTML += `</div>`;
+            questionContainer.innerHTML = questionHTML;
+            updateProgress();
+        }
+        
+        function selectAnswer(questionId, selectedIndex) {
+            const questionData = questions.find(q => q.id === questionId);
+            const resultDiv = document.getElementById(`result-${questionId}`);
+            let correct = false;
+            
+            if(questionData.correctAnswer === selectedIndex) {
+                resultDiv.innerText = "Correct! " + questionData.explanation;
+                resultDiv.className = "answer-result correct";
+                score++;
+                streak++;
+            } else {
+                resultDiv.innerText = "Incorrect. " + questionData.explanation;
+                resultDiv.className = "answer-result incorrect";
+                streak = 0;
+            }
+            
+            updateStreak();
+            disableOptions(questionId);
+            checkCompletion();
+        }
+        
+        function selectTrueFalseAnswer(questionId, userAnswer) {
+            const questionData = questions.find(q => q.id === questionId);
+            const resultDiv = document.getElementById(`result-${questionId}`);
+            let correct = false;
+            
+            if(questionData.correctAnswer === userAnswer) {
+                resultDiv.innerText = "Correct! " + questionData.explanation;
+                resultDiv.className = "answer-result correct";
+                score++;
+                streak++;
+            } else {
+                resultDiv.innerText = "Incorrect. " + questionData.explanation;
+                resultDiv.className = "answer-result incorrect";
+                streak = 0;
+            }
+            
+            updateStreak();
+            disableOptions(questionId);
+            checkCompletion();
+        }
+        
+        function disableOptions(questionId) {
+            const questionData = questions.find(q => q.id === questionId);
+            const options = document.querySelectorAll(`#question-${questionId} .answer-option`);
+            
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                option.style.opacity = '0.6';
+            });
+        }
+        
+        function checkCompletion() {
+            if(currentQuestionIndex === totalQuestions - 1) {
+                document.getElementById('nextButton').disabled = false;
+                document.getElementById('nextButton').innerText = 'Finish';
+            } else {
+                document.getElementById('nextButton').disabled = true;
+            }
+        }
+        
+        function updateStreak() {
+            const currentStreak = document.getElementById('currentStreak');
+            currentStreak.innerText = streak;
+        }
+        
+        document.getElementById('nextButton').addEventListener('click', () => {
+            if(currentQuestionIndex < totalQuestions - 1) {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+            } else {
+                // Finish the quiz and show results
+                alert(`Quiz finished! Your score: ${score} out of ${totalQuestions}`);
+                // Here you can implement further actions, like sending the score to a server or showing detailed results.
+            }
+        });
+        
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if(currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+            }
+        });
+        
+        // Initialize the quiz by showing the first question
+        showQuestion(currentQuestionIndex);
+    </script>
+</body>
+</html>
