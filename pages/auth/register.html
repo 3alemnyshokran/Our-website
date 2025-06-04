@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="../../assets/js/auth.js" defer></script>
     <script src="../../assets/js/main.js" defer></script>
+    <!-- Load DB Connectivity Checker -->
+    <script src="../../assets/js/db-connectivity.js" defer></script>
 </head>
 <body>
     <div class="header-controls">
@@ -38,25 +40,76 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Minor script adjustments for new structure if any, or it might be handled by main.js
-        // Ensure initializePage is called if it's responsible for theme/language setup from main.js
+    </div>    <script>
+        // Initialize theme and language
         document.addEventListener('DOMContentLoaded', () => {
-            initializePage(); // From main.js for theme and language
+            // Initialize theme and language
+            initializePage(); // From main.js
 
             const registerForm = document.getElementById('register-form');
             if (registerForm) {
                 registerForm.addEventListener('submit', async (event) => {
                     event.preventDefault();
-                    const username = document.getElementById('username').value;
-                    // Call handleRegistration from auth.js, which will be updated
-                    // to not expect a password.
-                    await handleRegistration(username);
+                    const username = document.getElementById('username').value.trim();
+                    
+                    if (!username) {
+                        showMessage('Username is required', 'error');
+                        return;
+                    }
+                    
+                    // Disable submit button
+                    const submitBtn = registerForm.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Registering...';
+                    submitBtn.disabled = true;
+                    
+                    try {
+                        // Call handleRegistration from auth.js
+                        const result = await handleRegistration(username);
+                        
+                        if (result.success) {
+                            showMessage('Registration successful!', 'success');
+                            
+                            // Show privacy policy
+                            await showPrivacyModal();
+                            
+                            // Redirect to home page
+                            window.location.href = '/index.html';
+                        } else {
+                            showMessage(result.message || 'Registration failed', 'error');
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }
+                    } catch (error) {
+                        console.error('Registration error:', error);
+                        showMessage('An error occurred. Please try again.', 'error');
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
                 });
             }
         });
+        
+        function showMessage(message, type) {
+            // Create message element
+            const messageEl = document.createElement('div');
+            messageEl.className = `message ${type}`;
+            messageEl.innerHTML = `
+                <i class="fas ${type === 'error' ? 'fa-circle-exclamation' : (type === 'success' ? 'fa-check-circle' : 'fa-triangle-exclamation')}"></i>
+                <span>${message}</span>
+            `;
+            
+            // Add to page
+            document.querySelector('.auth-box').appendChild(messageEl);
+            
+            // Remove after 5 seconds
+            setTimeout(() => {
+                messageEl.classList.add('fade-out');
+                setTimeout(() => {
+                    messageEl.remove();
+                }, 300);
+            }, 4700);
+        }
     </script>
 </body>
 </html>

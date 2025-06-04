@@ -363,32 +363,33 @@
         </div>
     </footer>
 
-    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/auth.js"></script>
     <script src="../../assets/js/tracking.js"></script>
+    <script src="../../assets/js/db-connectivity.js" defer></script>
     <script>
+        // API URL
+        const API_BASE_URL = 'http://localhost:3001/api';
+        
         // Check if user is logged in
         document.addEventListener('DOMContentLoaded', function() {
-            const username = localStorage.getItem('tutor_username');
+            if (!isAuthenticated()) {
+                // Redirect to login
+                window.location.href = '../auth/login.html';
+                return;
+            }
+            
+            const username = getCurrentUsername();
             const loginPrompt = document.getElementById('loginPrompt');
             const dashboardContent = document.getElementById('dashboardContent');
-            const loginBtn = document.getElementById('loginBtn');
             
             if (username) {
-                loginPrompt.style.display = 'none';
+                if (loginPrompt) loginPrompt.style.display = 'none';
                 dashboardContent.style.display = 'block';
-                loginBtn.textContent = 'Logout';
-                loginBtn.href = '#';
-                loginBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.removeItem('tutor_username');
-                    localStorage.removeItem('tutor_password');
-                    window.location.reload();
-                });
                 
                 // Load user progress
                 loadUserProgress();
             } else {
-                loginPrompt.style.display = 'block';
+                if (loginPrompt) loginPrompt.style.display = 'block';
                 dashboardContent.style.display = 'none';
             }
             
@@ -398,7 +399,7 @@
             });
         });
         
-        function loadUserProgress() {
+        async function loadUserProgress() {
             const progressOverview = document.getElementById('progressOverview');
             const noProgressData = document.getElementById('noProgressData');
             const activityList = document.getElementById('activityList');
@@ -406,413 +407,316 @@
             const recommendationsList = document.getElementById('recommendationsList');
             const noRecommendationsData = document.getElementById('noRecommendationsData');
             
-            // Get all progress data
-            const allProgress = UserTracking.getAllProgress();
-            
-            // Check if there's any progress data
-            if (Object.keys(allProgress).length === 0) {
-                noProgressData.style.display = 'block';
-                noActivityData.style.display = 'block';
-                noRecommendationsData.style.display = 'block';
-                return;
-            }
-            
-            // We have data, hide the "no data" messages
-            noProgressData.style.display = 'none';
-            
-            // Clear existing content
-            progressOverview.innerHTML = '';
-            
-            // Array to store activities for sorting
-            const allActivities = [];
-            
-            // Process each language
-            for (const language in allProgress) {
-                const langData = allProgress[language];
+            try {
+                // Show loading state
+                progressOverview.innerHTML = '<div class="loading">Loading your progress data...</div>';
                 
-                // Calculate overall progress for the language
-                const langProgress = UserTracking.calculateLanguageProgress(language);
+                // Get user ID
+                const userId = getCurrentUserId();
                 
-                // Create language card
-                const languageCard = document.createElement('div');
-                languageCard.className = 'language-card';
+                // Fetch progress data for all courses
+                const courses = ['english', 'math', 'science', 'german', 'arabic'];
+                const progressData = {};
+                const activities = [];
                 
-                // Capitalize first letter of language
-                const displayLanguage = language.charAt(0).toUpperCase() + language.slice(1);
-                
-                // Format language label and add flag icon based on language
-                let languageIcon = '';
-                switch (language) {
-                    case 'english':
-                        languageIcon = '🇬🇧';
-                        break;
-                    case 'german':
-                        languageIcon = '🇩🇪';
-                        break;
-                    case 'arabic':
-                        languageIcon = '🇦🇪';
-                        break;
-                    case 'math':
-                        languageIcon = '🔢';
-                        break;
-                    case 'science':
-                        languageIcon = '🔬';
-                        break;
-                    default:
-                        languageIcon = '📚';
-                }
-                  // Get language-specific achievements
-                const earnedAchievements = UserTracking.getEarnedAchievements()
-                    .filter(achievement => achievement.id.startsWith(language.toLowerCase() + '_'))
-                    .slice(0, 3); // Limit to 3 achievements per language
-                
-                // Add language content
-                languageCard.innerHTML = `
-                    <div class="language-header">
-                        <h3 class="language-title">${languageIcon} ${displayLanguage}</h3>
-                        <span class="progress-percent">${langProgress}%</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: ${langProgress}%"></div>
-                    </div>
-                    <div class="language-stats">
-                        <span>${Object.keys(langData.levels).length} levels</span>
-                        <span>Last active: ${formatDate(langData.lastAccessed)}</span>
-                    </div>
-                    ${earnedAchievements.length > 0 ? `
-                    <div class="achievements-preview">
-                        <h4>Recent Achievements</h4>
-                        <div class="achievement-icons">
-                            ${earnedAchievements.map(a => `
-                                <div class="mini-achievement" title="${a.name}">
-                                    <span>${a.icon}</span>
-                                </div>
-                            `).join('')}
-                            ${earnedAchievements.length > 0 ? `
-                                <a href="achievements.html" class="view-all">View All</a>
-                            ` : ''}
-                        </div>
-                    </div>
-                    ` : ''}
-                    <div class="level-list">
-                `;
-                
-                // Add level details
-                for (const level in langData.levels) {
-                    const levelData = langData.levels[level];
-                    const levelProgress = levelData.progress || 0;
-                    const levelName = formatLevelName(level);
-                    
-                    languageCard.innerHTML += `
-                        <div class="level-item">
-                            <span class="level-name">${levelName}</span>
-                            <div>
-                                <span class="level-progress">${levelProgress}%</span>
-                                <a href="../../pages/courses/${language}/${language}-course.html#${level}" class="btn btn-small">Continue</a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add activities
-                    for (const chapterId in levelData.chapters) {
-                        const chapterData = levelData.chapters[chapterId];
-                        
-                        // Add to activity list
-                        allActivities.push({
-                            type: chapterData.completed ? 'complete' : 'visit',
-                            language: language,
-                            level: level,
-                            chapterId: chapterId,
-                            date: new Date(chapterData.lastVisit),
-                            formattedDate: formatDate(chapterData.lastVisit)
-                        });
+                // Fetch each course's progress
+                for (const course of courses) {
+                    try {
+                        const response = await fetch(`${API_BASE_URL}/progress/course/${userId}/${course}`);
+                        if (response.ok) {
+                            const data = await response.json();
+                            if (data.success && data.progress && data.progress.overall > 0) {
+                                progressData[course] = data.progress;
+                                
+                                // Add to activities if recently accessed
+                                if (data.progress.lastAccessed) {
+                                    activities.push({
+                                        course,
+                                        action: 'Worked on course',
+                                        timestamp: new Date(data.progress.lastAccessed),
+                                        progress: data.progress.overall
+                                    });
+                                }
+                            }
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching ${course} progress:`, error);
                     }
                 }
                 
-                languageCard.innerHTML += `</div>`;
-                progressOverview.appendChild(languageCard);
-            }
-            
-            // Sort activities to show the most recent first
-            allActivities.sort((a, b) => b.date - a.date);
-            
-            // Update activity list
-            updateActivityList(allActivities);
-            
-            // Generate recommendations
-            generateRecommendations(allProgress, allActivities);
-            
-            // Update streak
-            updateStreak(allActivities);
-        }
-        
-        // Format level name for display
-        function formatLevelName(level) {
-            if (level.startsWith('a') || level.startsWith('b') || level.startsWith('c')) {
-                // Format CEFR levels like A1, B2, etc.
-                return level.charAt(0).toUpperCase() + level.slice(1);
-            } else if (level === 'beginner') {
-                return 'Beginner';
-            } else if (level === 'intermediate') {
-                return 'Intermediate';
-            } else if (level === 'advanced') {
-                return 'Advanced';
-            } else {
-                // If it's just a simple level number or other format
-                return level.charAt(0).toUpperCase() + level.slice(1);
-            }
-        }
-        
-        // Format date for display
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffTime = Math.abs(now - date);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-            
-            if (diffDays === 0) {
-                return 'Today';
-            } else if (diffDays === 1) {
-                return 'Yesterday';
-            } else if (diffDays < 7) {
-                return `${diffDays} days ago`;
-            } else {
-                return date.toLocaleDateString();
-            }
-        }
-        
-        // Update activity list
-        function updateActivityList(activities) {
-            const activityList = document.getElementById('activityList');
-            const noActivityData = document.getElementById('noActivityData');
-            
-            if (activities.length === 0) {
-                noActivityData.style.display = 'block';
-                return;
-            }
-            
-            // We have activities, hide the "no activities" message
-            noActivityData.style.display = 'none';
-            
-            // Clear existing list
-            activityList.innerHTML = '';
-            
-            // Show only the most recent 10 activities
-            const recentActivities = activities.slice(0, 10);
-            
-            for (const activity of recentActivities) {
-                const li = document.createElement('li');
-                li.className = 'activity-item';
+                // Also fetch quiz results
+                try {
+                    const response = await fetch(`${API_BASE_URL}/quiz/${userId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.success && data.results) {
+                            // Add quiz completions to activities
+                            for (const course in data.results) {
+                                for (const chapter in data.results[course]) {
+                                    for (const quiz of data.results[course][chapter]) {
+                                        activities.push({
+                                            course,
+                                            chapter,
+                                            action: 'Completed quiz',
+                                            score: quiz.score,
+                                            timestamp: new Date(quiz.completedAt)
+                                        });
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error fetching quiz results:', error);
+                }
                 
-                const displayLanguage = activity.language.charAt(0).toUpperCase() + activity.language.slice(1);
-                const levelName = formatLevelName(activity.level);
-                const chapterName = formatChapterName(activity.chapterId);
+                // Check if there's any progress data
+                if (Object.keys(progressData).length === 0) {
+                    noProgressData.style.display = 'block';
+                    noActivityData.style.display = 'block';
+                    noRecommendationsData.style.display = 'block';
+                    progressOverview.innerHTML = '';
+                    return;
+                }
                 
-                const icon = activity.type === 'complete' ? '✅' : '👁️';
-                const actionText = activity.type === 'complete' ? 'Completed' : 'Viewed';
+                // We have data, hide the "no data" messages
+                noProgressData.style.display = 'none';
                 
-                li.innerHTML = `
-                    <div class="activity-icon">
-                        <span>${icon}</span>
-                    </div>
-                    <div class="activity-content">
-                        <div>${actionText} <strong>${chapterName}</strong> in ${displayLanguage} (${levelName})</div>
-                        <div class="activity-date">${activity.formattedDate}</div>
-                    </div>
-                `;
+                // Clear existing content
+                progressOverview.innerHTML = '';
                 
-                activityList.appendChild(li);
+                // Sort activities by timestamp (newest first)
+                activities.sort((a, b) => b.timestamp - a.timestamp);
+                
+                // Process each course
+                for (const course in progressData) {
+                    const courseData = progressData[course];
+                    
+                    // Calculate overall progress for the course
+                    const courseProgress = Math.round(courseData.overall * 100);
+                    
+                    // Create course card
+                    const courseCard = document.createElement('div');
+                    courseCard.className = 'language-card';
+                    
+                    // Capitalize first letter of course
+                    const displayCourse = course.charAt(0).toUpperCase() + course.slice(1);
+                    
+                    // Format course label and add icon based on course
+                    let courseIcon = '';
+                    switch (course) {
+                        case 'english':
+                            courseIcon = '🇬🇧';
+                            break;
+                        case 'german':
+                            courseIcon = '🇩🇪';
+                            break;
+                        case 'arabic':
+                            courseIcon = '🇦🇪';
+                            break;
+                        case 'math':
+                            courseIcon = '🔢';
+                            break;
+                        case 'science':
+                            courseIcon = '🔬';
+                            break;
+                        default:
+                            courseIcon = '📚';
+                    }
+                    
+                    // Add course content
+                    courseCard.innerHTML = `
+                        <div class="language-header">
+                            <h3 class="language-title">${courseIcon} ${displayCourse}</h3>
+                            <span class="progress-percent">${courseProgress}%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: ${courseProgress}%"></div>
+                        </div>
+                        <div class="language-stats">
+                            <span>${courseData.completedChapters} chapters completed</span>
+                            <span>Last active: ${formatDate(courseData.lastAccessed)}</span>
+                        </div>
+                        <div class="level-list">
+                            <h4>Chapter Progress</h4>
+                            ${Object.keys(courseData.chapters).length > 0 
+                                ? Object.keys(courseData.chapters).slice(0, 3).map(chapterId => {
+                                    const chapter = courseData.chapters[chapterId];
+                                    const chapterProgress = Math.round(chapter.progress * 100);
+                                    return `
+                                        <div class="level-item">
+                                            <span class="level-name">${formatChapterId(chapterId)}</span>
+                                            <span class="level-progress">${chapterProgress}% ${chapter.completed ? '✓' : ''}</span>
+                                        </div>
+                                    `;
+                                }).join('')
+                                : '<p>No chapters started yet</p>'
+                            }
+                            <a href="../courses/${course}/${course}-course.html" class="btn btn-small">Go to Course</a>
+                        </div>
+                    `;
+                    
+                    // Add to progress overview
+                    progressOverview.appendChild(courseCard);
+                }
+                
+                // Update activity list
+                if (activities.length > 0) {
+                    noActivityData.style.display = 'none';
+                    activityList.innerHTML = '';
+                    
+                    // Display the 10 most recent activities
+                    activities.slice(0, 10).forEach(activity => {
+                        const activityItem = document.createElement('li');
+                        activityItem.className = 'activity-item';
+                        
+                        const courseDisplay = activity.course.charAt(0).toUpperCase() + activity.course.slice(1);
+                        let activityText = '';
+                        
+                        if (activity.action === 'Completed quiz') {
+                            activityText = `${activity.action} in ${courseDisplay} with score ${Math.round(activity.score * 100)}%`;
+                        } else {
+                            activityText = `${activity.action} ${courseDisplay}`;
+                            if (activity.progress) {
+                                activityText += ` (${Math.round(activity.progress * 100)}% complete)`;
+                            }
+                        }
+                        
+                        activityItem.innerHTML = `
+                            <div class="activity-content">
+                                <div class="activity-details">
+                                    <span class="activity-text">${activityText}</span>
+                                    <span class="activity-time">${formatDate(activity.timestamp)}</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        activityList.appendChild(activityItem);
+                    });
+                } else {
+                    noActivityData.style.display = 'block';
+                }
+                
+                // Generate recommendations based on progress
+                generateRecommendations(progressData);
+                
+            } catch (error) {
+                console.error('Error loading progress:', error);
+                progressOverview.innerHTML = `<div class="error">Error loading progress data. Please try again.</div>`;
             }
         }
         
-        // Format chapter name for display
-        function formatChapterName(chapterId) {
-            // Remove file extension
-            const nameWithoutExt = chapterId.replace('.html', '');
-            
-            // Replace hyphens with spaces
-            const nameWithSpaces = nameWithoutExt.replace(/-/g, ' ');
-            
-            // Capitalize each word
-            return nameWithSpaces
-                .split(' ')
-                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-                .join(' ');
-        }
-        
-        // Generate personalized recommendations
-        function generateRecommendations(progress, activities) {
+        function generateRecommendations(progressData) {
             const recommendationsList = document.getElementById('recommendationsList');
             const noRecommendationsData = document.getElementById('noRecommendationsData');
             
-            if (activities.length === 0) {
-                noRecommendationsData.style.display = 'block';
-                return;
-            }
+            // Find courses with lowest progress to recommend
+            const recommendations = [];
             
-            // We have data for recommendations
-            noRecommendationsData.style.display = 'none';
-            
-            // Clear existing recommendations
-            recommendationsList.innerHTML = '';
-            
-            // Find incomplete levels
-            const incompleteLanguages = [];
-            
-            for (const language in progress) {
-                const langData = progress[language];
+            // Find incomplete chapters
+            for (const course in progressData) {
+                const courseData = progressData[course];
                 
-                for (const level in langData.levels) {
-                    const levelData = langData.levels[level];
-                    
-                    // If level progress is less than 100%, it's incomplete
-                    if ((levelData.progress || 0) < 100) {
-                        incompleteLanguages.push({
-                            language,
-                            level,
-                            progress: levelData.progress || 0,
-                            lastAccessed: new Date(levelData.lastAccessed)
+                // Find incomplete chapters
+                for (const chapterId in courseData.chapters) {
+                    const chapter = courseData.chapters[chapterId];
+                    if (!chapter.completed && chapter.progress > 0) {
+                        recommendations.push({
+                            type: 'continue',
+                            course,
+                            chapterId,
+                            progress: chapter.progress,
+                            priority: 1 // Highest priority
                         });
                     }
                 }
+                
+                // Recommend courses with low overall progress
+                if (courseData.overall < 0.3) {
+                    recommendations.push({
+                        type: 'course',
+                        course,
+                        progress: courseData.overall,
+                        priority: 2
+                    });
+                }
             }
             
-            // Sort by last accessed (most recent first)
-            incompleteLanguages.sort((a, b) => b.lastAccessed - a.lastAccessed);
+            // Sort recommendations by priority and progress
+            recommendations.sort((a, b) => {
+                if (a.priority !== b.priority) return a.priority - b.priority;
+                return a.progress - b.progress;
+            });
             
-            // Generate recommendations HTML
-            let recommendationsHTML = '';
-            
-            // First recommendation: continue where you left off (most recent)
-            if (incompleteLanguages.length > 0) {
-                const mostRecent = incompleteLanguages[0];
-                const displayLanguage = mostRecent.language.charAt(0).toUpperCase() + mostRecent.language.slice(1);
-                const levelName = formatLevelName(mostRecent.level);
+            // Display recommendations
+            if (recommendations.length > 0) {
+                noRecommendationsData.style.display = 'none';
+                recommendationsList.innerHTML = '';
                 
-                recommendationsHTML += `
-                    <div class="recommendation-item">
-                        <h3>Continue where you left off</h3>
-                        <p>You're at ${mostRecent.progress}% in ${displayLanguage} ${levelName}.</p>
-                        <a href="../../pages/courses/${mostRecent.language}/${mostRecent.language}-course.html#${mostRecent.level}" class="btn">Continue Learning</a>
-                    </div>
-                `;
-            }
-            
-            // Second recommendation: try a new language if they're only studying one
-            const uniqueLanguages = [...new Set(Object.keys(progress))];
-            if (uniqueLanguages.length < 3) {
-                // Suggest languages they're not learning
-                const allLanguages = ['english', 'german', 'arabic', 'math', 'science'];
-                const notLearning = allLanguages.filter(lang => !uniqueLanguages.includes(lang));
-                
-                if (notLearning.length > 0) {
-                    // Pick a random language to suggest
-                    const suggestedLang = notLearning[Math.floor(Math.random() * notLearning.length)];
-                    const displayLanguage = suggestedLang.charAt(0).toUpperCase() + suggestedLang.slice(1);
+                // Display up to 3 recommendations
+                recommendations.slice(0, 3).forEach(recommendation => {
+                    const recItem = document.createElement('div');
+                    recItem.className = 'recommendation-item';
                     
-                    recommendationsHTML += `
-                        <div class="recommendation-item">
-                            <h3>Try something new</h3>
-                            <p>Expand your knowledge by starting ${displayLanguage} courses!</p>
-                            <a href="../../pages/courses/${suggestedLang}/${suggestedLang}-course.html" class="btn">Explore ${displayLanguage}</a>
-                        </div>
-                    `;
-                }
+                    const courseDisplay = recommendation.course.charAt(0).toUpperCase() + recommendation.course.slice(1);
+                    
+                    if (recommendation.type === 'continue') {
+                        // Continue chapter recommendation
+                        recItem.innerHTML = `
+                            <div class="recommendation-icon">▶️</div>
+                            <div class="recommendation-content">
+                                <h4>Continue ${courseDisplay} Chapter</h4>
+                                <p>You're ${Math.round(recommendation.progress * 100)}% through ${formatChapterId(recommendation.chapterId)}. Keep going!</p>
+                                <a href="../courses/${recommendation.course}/chapters/${recommendation.chapterId.split('-')[0]}/${recommendation.chapterId}.html" class="btn btn-small">Continue</a>
+                            </div>
+                        `;
+                    } else {
+                        // Course recommendation
+                        recItem.innerHTML = `
+                            <div class="recommendation-icon">🆕</div>
+                            <div class="recommendation-content">
+                                <h4>Focus on ${courseDisplay}</h4>
+                                <p>This course needs more attention. You're only ${Math.round(recommendation.progress * 100)}% complete.</p>
+                                <a href="../courses/${recommendation.course}/${recommendation.course}-course.html" class="btn btn-small">Go to Course</a>
+                            </div>
+                        `;
+                    }
+                    
+                    recommendationsList.appendChild(recItem);
+                });
+            } else {
+                noRecommendationsData.style.display = 'block';
             }
-            
-            // Third recommendation: Take a placement test
-            recommendationsHTML += `
-                <div class="recommendation-item">
-                    <h3>Test your knowledge</h3>
-                    <p>Find out your current level with our placement tests.</p>
-                    <a href="../../pages/tests/placement-test.html" class="btn">Take Placement Test</a>
-                </div>
-            `;
-            
-            recommendationsList.innerHTML = recommendationsHTML;
         }
         
-        // Update learning streak
-        function updateStreak(activities) {
-            const streakCount = document.getElementById('streakCount');
-            const streakDays = document.getElementById('streakDays');
+        // Helper functions
+        function formatDate(dateString) {
+            if (!dateString) return 'Never';
             
-            // No activities, no streak
-            if (activities.length === 0) {
-                streakCount.textContent = '0';
-                updateStreakDays(0);
-                return;
-            }
+            const date = new Date(dateString);
+            const now = new Date();
+            const diff = Math.floor((now - date) / 1000); // Seconds
             
-            // Group activities by day
-            const activityDays = new Map();
+            if (diff < 60) return 'Just now';
+            if (diff < 3600) return `${Math.floor(diff / 60)} min ago`;
+            if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+            if (diff < 604800) return `${Math.floor(diff / 86400)} days ago`;
             
-            for (const activity of activities) {
-                const date = new Date(activity.date);
-                const dateKey = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-                
-                if (!activityDays.has(dateKey)) {
-                    activityDays.set(dateKey, true);
-                }
-            }
-            
-            // Calculate streak
-            let currentStreak = 0;
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            // Check if there was activity today
-            const todayKey = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
-            let checkDate = new Date(today);
-            
-            // If no activity today, start checking from yesterday
-            if (!activityDays.has(todayKey)) {
-                checkDate.setDate(checkDate.getDate() - 1);
-            }
-            
-            // Count consecutive days with activity
-            let consecutiveDays = true;
-            while (consecutiveDays) {
-                const dateKey = `${checkDate.getFullYear()}-${checkDate.getMonth()+1}-${checkDate.getDate()}`;
-                
-                if (activityDays.has(dateKey)) {
-                    currentStreak++;
-                    checkDate.setDate(checkDate.getDate() - 1);
-                } else {
-                    consecutiveDays = false;
-                }
-            }
-            
-            streakCount.textContent = currentStreak.toString();
-            updateStreakDays(currentStreak);
+            return date.toLocaleDateString();
         }
         
-        // Update streak day boxes
-        function updateStreakDays(streakCount) {
-            const streakDays = document.getElementById('streakDays');
-            streakDays.innerHTML = '';
+        function formatChapterId(chapterId) {
+            if (!chapterId) return 'Unknown Chapter';
             
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            // Create 7 day boxes (for the last week)
-            for (let i = 6; i >= 0; i--) {
-                const day = new Date(today);
-                day.setDate(day.getDate() - i);
-                
-                const dayBox = document.createElement('div');
-                dayBox.className = 'day-box';
-                
-                if (i < streakCount) {
-                    dayBox.classList.add('day-active');
-                }
-                
-                // Show day initial (M, T, W, etc.)
-                const dayInitial = day.toLocaleDateString('en-US', { weekday: 'short' })[0];
-                dayBox.textContent = dayInitial;
-                
-                streakDays.appendChild(dayBox);
+            // Split by hyphen and format
+            const parts = chapterId.split('-');
+            if (parts.length >= 2) {
+                const level = parts[0].toUpperCase();
+                const chapterNum = parts[1].replace('ch', 'Chapter ');
+                return `${level} ${chapterNum}`;
             }
+            
+            return chapterId.charAt(0).toUpperCase() + chapterId.slice(1);
         }
     </script>
 </body>

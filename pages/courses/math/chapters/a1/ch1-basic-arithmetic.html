@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic Arithmetic | Chapter 1</title>
     <link rel="stylesheet" href="../../css/styles.css">
+    <!-- Load DB Connectivity Checker -->
+    <script src="../../../../../assets/js/db-connectivity.js" defer></script>
     <style>
         .step-by-step {
             display: none;
@@ -67,9 +69,54 @@
             font-style: italic;
             color: var(--secondary-color);
         }
+
+        /* Progress tracking styles */
+        .progress-container {
+            margin-top: 30px;
+            padding: 15px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .progress-bar-outer {
+            height: 10px;
+            background: rgba(var(--primary-color-rgb), 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-bar-inner {
+            height: 100%;
+            background: var(--primary-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .complete-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+        
+        .complete-button:hover {
+            background: rgba(var(--primary-color-rgb), 0.8);
+            transform: translateY(-2px);
+        }
+        
+        .complete-button.completed {
+            background: var(--success-color, #2ecc71);
+        }
     </style>
 </head>
-<body>
+<body data-course-id="math" data-chapter-id="a1-ch1" data-page-type="chapter">
     <div class="chapter-container">
         <div class="level-badge">Basic Level</div>
         <h1>Chapter 1: Basic Arithmetic</h1>
@@ -150,9 +197,22 @@
             <button class="nav-button" onclick="previousChapter()">Previous Chapter</button>
             <button class="nav-button" onclick="nextChapter()">Next Chapter</button>
         </div>
+
+        <!-- Progress Tracking Container -->
+        <div class="progress-container">
+            <h3>Chapter Progress</h3>
+            <div class="progress-bar-outer">
+                <div id="chapter-progress-bar" class="progress-bar-inner" style="width: 0%"></div>
+            </div>
+            <p>Your progress is being tracked as you work through this chapter.</p>
+            <input type="hidden" class="chapter-completed" value="false" />
+            <button id="complete-chapter-btn" class="complete-button">Mark Chapter as Completed</button>
+        </div>
+
     </div>
 
-    <script src="../../js/main.js"></script>
+    <script src="../../../../../assets/js/auth.js"></script>
+    <script src="../../../../../assets/js/tracking.js"></script>
     <script>
         let streak = 0;
         let questionsAnswered = 0;
@@ -210,6 +270,11 @@
             const progress = (questionsAnswered / totalQuestions) * 100;
             document.getElementById('progressBar').style.width = `${progress}%`;
             document.getElementById('masteryPercentage').textContent = `${Math.round(progress)}%`;
+            
+            // Also update the chapter progress
+            if (typeof isAuthenticated === 'function' && isAuthenticated()) {
+                saveCurrentProgress();
+            }
         }
 
         function toggleHint(questionId) {
@@ -246,7 +311,119 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateMasteryProgress();
             updateStreakCounter();
+            
+            // Initialize progress tracking
+            initializeProgressTracking();
         });
+        
+        // Progress tracking functions
+        function initializeProgressTracking() {
+            // Get initial progress from the server
+            const courseId = document.body.getAttribute('data-course-id');
+            const chapterId = document.body.getAttribute('data-chapter-id');
+            
+            if (!courseId || !chapterId) return;
+            
+            // Get initial progress if user is authenticated
+            if (typeof isAuthenticated === 'function' && isAuthenticated()) {
+                getCourseProgress(courseId).then(progress => {
+                    if (progress && progress.chapters && progress.chapters[chapterId]) {
+                        const chapterProgress = progress.chapters[chapterId];
+                        
+                        // Update UI based on saved progress
+                        updateChapterProgressUI(chapterProgress.progress);
+                        
+                        // Mark as completed if it was completed before
+                        if (chapterProgress.completed) {
+                            markChapterAsCompleted();
+                        }
+                    }
+                });
+            }
+            
+            // Set up the complete chapter button
+            const completeBtn = document.getElementById('complete-chapter-btn');
+            if (completeBtn) {
+                completeBtn.addEventListener('click', function() {
+                    completeChapter();
+                });
+            }
+            
+            // Auto-save progress periodically (every 30 seconds)
+            setInterval(function() {
+                saveCurrentProgress();
+            }, 30000);
+        }
+        
+        function updateChapterProgressUI(progress) {
+            const progressBar = document.getElementById('chapter-progress-bar');
+            if (progressBar) {
+                progressBar.style.width = `${progress * 100}%`;
+            }
+        }
+        
+        function saveCurrentProgress() {
+            if (typeof isAuthenticated !== 'function' || !isAuthenticated()) return;
+            
+            const courseId = document.body.getAttribute('data-course-id');
+            const chapterId = document.body.getAttribute('data-chapter-id');
+            const completedFlag = document.querySelector('.chapter-completed');
+            
+            if (!courseId || !chapterId) return;
+            
+            // Calculate progress based on exercises completed
+            const progress = Math.min(questionsAnswered / totalQuestions, 1);
+            const completed = completedFlag ? completedFlag.value === 'true' : false;
+            
+            // Save progress using tracking.js
+            if (typeof trackCourseProgress === 'function') {
+                trackCourseProgress(courseId, chapterId, progress, completed);
+            }
+            
+            // Update the progress bar
+            updateChapterProgressUI(progress);
+        }
+        
+        function completeChapter() {
+            const completeBtn = document.getElementById('complete-chapter-btn');
+            const completedFlag = document.querySelector('.chapter-completed');
+            
+            if (completeBtn) {
+                completeBtn.classList.add('completed');
+                completeBtn.textContent = 'Chapter Completed!';
+            }
+            
+            if (completedFlag) {
+                completedFlag.value = 'true';
+            }
+            
+            // Save progress with completed flag
+            saveCurrentProgress();
+            
+            // Show a congratulation message
+            const message = 'Congratulations! You have completed this chapter. Your progress has been saved.';
+            const feedbackDiv = document.getElementById('feedbackMessage');
+            if (feedbackDiv) {
+                feedbackDiv.textContent = message;
+                feedbackDiv.style.color = 'var(--primary-color)';
+            } else {
+                alert(message);
+            }
+        }
+        
+        function markChapterAsCompleted() {
+            const completeBtn = document.getElementById('complete-chapter-btn');
+            const completedFlag = document.querySelector('.chapter-completed');
+            
+            if (completeBtn) {
+                completeBtn.classList.add('completed');
+                completeBtn.textContent = 'Chapter Completed!';
+            }
+            
+            if (completedFlag) {
+                completedFlag.value = 'true';
+            }
+        }
     </script>
 </body>
 </html>
