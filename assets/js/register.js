@@ -32,8 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('privacyAccepted', 'true');
                     const deviceToken = generateDeviceToken();
                     localStorage.setItem('tutor_device_token', deviceToken);
+                    // Redirect to intended page if available, else home
+                    const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
+                    localStorage.removeItem('redirect_after_login');
                     setTimeout(() => {
-                        window.location.href = '/index.html';
+                        window.location.href = redirectUrl;
                     }, 1000);
                 } else {
                     showMessage(result.message || 'Registration failed', 'error');
