@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Grammar - A1 Level | Chapter 1</title>
+    <title>Describing Places - A2 Level | Chapter 3</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
         .chapter-container {
@@ -100,12 +100,12 @@
             background: #007bff;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 8px;
-            cursor: pointer;
             font-size: 1rem;
+            cursor: pointer;
             margin-top: 15px;
-            transition: background 0.3s ease;
+            transition: background 0.2s ease;
         }
 
         .check-answer-btn:hover {
@@ -116,97 +116,114 @@
             margin-top: 15px;
             padding: 12px;
             border-radius: 8px;
-            font-weight: 500;
             display: none;
         }
 
         .answer-result.correct {
             display: block;
-            background: rgba(76, 175, 80, 0.15);
+            background: #e8f5e9;
             color: #2e7d32;
+            border-left: 4px solid #4caf50;
         }
 
         .answer-result.incorrect {
             display: block;
-            background: rgba(244, 67, 54, 0.15);
-            color: #d32f2f;
-        }
-
-        .streak-counter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .streak-icon {
-            font-size: 1.5rem;
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
         }
 
         .progress-container {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            gap: 10px;
         }
 
         .progress-bar {
             flex-grow: 1;
-            height: 8px;
+            height: 10px;
             background: #e0e0e0;
-            border-radius: 4px;
-            margin: 0 10px;
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: #007bff;
+            background: #4caf50;
             width: 0%;
-            transition: width 0.5s ease;
+            transition: width 0.3s ease;
         }
 
-        .progress-text {
-            font-size: 0.9rem;
-            color: #666;
-            min-width: 80px;
-            text-align: right;
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        .streak-icon {
+            font-size: 1.5rem;
         }
 
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .nav-button {
             padding: 10px 20px;
-            background: #007bff;
-            color: white;
+            background: #f0f0f0;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #e0e0e0;
         }
 
         .nav-button:disabled {
-            background: #cccccc;
+            opacity: 0.5;
             cursor: not-allowed;
         }
     </style>
 </head>
-<body data-course-id="english-a1">
+<body data-course-id="english-a2">
     <header>
-        <h1>English A1 - Chapter 1: Basic Grammar</h1>
+        <h1>English A2 - Chapter 3: Describing Places</h1>
     </header>
 
     <main class="chapter-container">
-        <div class="level-badge">A1 - Beginner</div>
+        <div class="level-badge">A2 - Waystage</div>
 
         <div class="content-section">
-            <h2>Basic Grammar and Subject Pronouns</h2>
-            <p>In this chapter, we'll learn about the fundamentals of English grammar, starting with subject pronouns and basic sentence structures. These are essential building blocks for forming simple sentences in English.</p>
+            <h2>Describing Places</h2>
+            <p>At the A2 level, you can understand sentences and frequently used expressions related to areas of most immediate relevance, including local geography and your immediate environment.</p>
+            
+            <h3>Home and Accommodation</h3>
+            <p>Vocabulary and phrases to describe where you live:</p>
+            <ul>
+                <li><strong>Types of homes</strong>: house, apartment/flat, cottage, bungalow, villa</li>
+                <li><strong>Rooms</strong>: bedroom, bathroom, kitchen, living room, dining room, study, garage</li>
+                <li><strong>Furniture</strong>: bed, table, chair, sofa, armchair, wardrobe, desk, bookshelf</li>
+                <li><strong>Location phrases</strong>: "I live in a house/apartment.", "I live in the city center/suburbs.", "My apartment is on the second floor."</li>
+            </ul>
+            
+            <h3>Describing Cities and Places</h3>
+            <p>Useful adjectives and phrases to describe places:</p>
+            <ul>
+                <li><strong>Size</strong>: big, small, huge, tiny</li>
+                <li><strong>Age</strong>: new, old, modern, ancient, historical</li>
+                <li><strong>Appearance</strong>: beautiful, ugly, clean, dirty, crowded, empty</li>
+                <li><strong>Atmosphere</strong>: quiet, noisy, busy, peaceful, lively</li>
+                <li><strong>Places in town</strong>: park, museum, restaurant, café, cinema, theater, shopping center, library, hospital, police station</li>
+                <li><strong>Location phrases</strong>: "The bank is next to the post office.", "The park is opposite the school.", "The supermarket is between the pharmacy and the bakery."</li>
+            </ul>
         </div>
 
         <div class="progress-container">
@@ -239,232 +256,250 @@
         const questions = [
             {
                 id: 1,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am a student.' (Use the correct subject pronoun)",
-                correctAnswer: "I",
-                explanation: "We use 'I' as the subject pronoun when referring to ourselves (first person singular)."
+                type: 'multipleChoice',
+                question: "Which of these is NOT a type of home?",
+                options: [
+                    "Apartment",
+                    "Villa",
+                    "Museum",
+                    "Cottage"
+                ],
+                correctAnswer: 2,
+                explanation: "A museum is a public building where objects of historical, scientific, or artistic interest are stored and exhibited, not a type of home."
             },
             {
                 id: 2,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is my teacher.' (Use the correct subject pronoun for a female teacher)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person (third person singular)."
+                question: "Complete the sentence: 'I live in a _____ in the city center.'",
+                correctAnswer: "flat",
+                explanation: "In this context, 'flat' (or 'apartment') would be appropriate. Both terms are accepted."
             },
             {
                 id: 3,
                 type: 'multipleChoice',
-                question: "Which is the correct subject pronoun to complete this sentence: '_____ are my friends.'",
+                question: "Which room would you most likely find a shower?",
                 options: [
-                    "He",
-                    "She",
-                    "They",
-                    "It"
+                    "Kitchen",
+                    "Bathroom",
+                    "Bedroom",
+                    "Dining room"
                 ],
-                correctAnswer: 2,
-                explanation: "'They' is the correct subject pronoun for multiple people (third person plural)."
+                correctAnswer: 1,
+                explanation: "A shower is typically found in a bathroom."
             },
             {
                 id: 4,
-                type: 'multipleChoice',
-                question: "Which subject pronoun should we use for an animal when we don't know if it's male or female?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "We use 'It' for animals (unless we know the gender or are referring to a pet) and objects."
+                type: 'trueFalse',
+                question: "A 'bungalow' is a house with two or more floors.",
+                correctAnswer: false,
+                explanation: "A bungalow is typically a one-story house, not a multi-story building."
             },
             {
                 id: 5,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ are going to the park.' (Use the correct subject pronoun for a group that includes yourself)",
-                correctAnswer: "We",
-                explanation: "'We' is the correct subject pronoun when referring to a group that includes yourself (first person plural)."
+                type: 'multipleChoice',
+                question: "Where would you most likely find a wardrobe?",
+                options: [
+                    "Kitchen",
+                    "Bathroom",
+                    "Bedroom",
+                    "Living room"
+                ],
+                correctAnswer: 2,
+                explanation: "A wardrobe is typically found in a bedroom for storing clothes."
             },
             {
                 id: 6,
-                type: 'trueFalse',
-                question: "The subject pronoun 'You' can be used for both singular and plural.",
-                correctAnswer: true,
-                explanation: "'You' can refer to one person or multiple people in English, unlike in some other languages."
+                type: 'transformation',
+                question: "Transform this sentence by replacing 'tiny' with its opposite: 'My apartment is tiny.'",
+                correctAnswer: "My apartment is huge.",
+                explanation: "The opposite of 'tiny' is 'huge' or 'large'."
             },
             {
                 id: 7,
                 type: 'multipleChoice',
-                question: "Which sentence uses the subject pronoun correctly?",
+                question: "Which adjective describes a place with many people?",
                 options: [
-                    "Him is my brother.",
-                    "Her is my sister.",
-                    "They are my parents.",
-                    "Me am a student."
+                    "Empty",
+                    "Quiet",
+                    "Crowded",
+                    "Peaceful"
                 ],
                 correctAnswer: 2,
-                explanation: "'They are my parents' uses the subject pronoun 'They' correctly. 'Him', 'Her', and 'Me' are object pronouns, not subject pronouns."
+                explanation: "'Crowded' describes a place with many people."
             },
             {
                 id: 8,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is a beautiful day today.' (Use the correct subject pronoun)",
-                correctAnswer: "It",
-                explanation: "We use 'It' when talking about weather, time, dates, or general situations."
+                question: "Complete the sentence: 'The library is _____ the bank and the post office.'",
+                correctAnswer: "between",
+                explanation: "The preposition 'between' is used when something is in the middle of two other things."
             },
             {
                 id: 9,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'John and Mary are at school.'",
-                correctAnswer: "They are at school.",
-                explanation: "When replacing multiple people's names, we use the subject pronoun 'They'."
+                type: 'multipleChoice',
+                question: "Which of these would you NOT find in a kitchen?",
+                options: [
+                    "Refrigerator",
+                    "Oven",
+                    "Bed",
+                    "Sink"
+                ],
+                correctAnswer: 2,
+                explanation: "A bed is typically found in a bedroom, not in a kitchen."
             },
             {
                 id: 10,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about yourself and a friend?",
-                options: [
-                    "I",
-                    "You",
-                    "We",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "When referring to yourself and others, use 'We' (first person plural)."
+                type: 'trueFalse',
+                question: "A 'lively' neighborhood is usually quiet and has few activities.",
+                correctAnswer: false,
+                explanation: "A 'lively' neighborhood is usually busy and has many activities, not quiet with few activities."
             },
             {
                 id: 11,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is reading a book.' (Use the correct subject pronoun for a male person)",
-                correctAnswer: "He",
-                explanation: "'He' is the correct subject pronoun for a male person (third person singular)."
+                question: "Complete the sentence: 'My house is _____ the park.' (Use a preposition that means 'across from')",
+                correctAnswer: "opposite",
+                explanation: "The preposition 'opposite' means 'across from' or 'facing'."
             },
             {
                 id: 12,
-                type: 'trueFalse',
-                question: "In English, we use different subject pronouns based on gender in the third person singular.",
-                correctAnswer: true,
-                explanation: "In English, we use 'He' for males, 'She' for females, and 'It' for objects and some animals."
+                type: 'multipleChoice',
+                question: "Which place would you visit to see a movie?",
+                options: [
+                    "Library",
+                    "Museum",
+                    "Cinema",
+                    "Restaurant"
+                ],
+                correctAnswer: 2,
+                explanation: "A cinema (also called a movie theater) is where you go to see movies."
             },
             {
                 id: 13,
-                type: 'multipleChoice',
-                question: "Which sentence is grammatically correct?",
-                options: [
-                    "Us are friends.",
-                    "We are friends.",
-                    "Our are friends.",
-                    "Ours are friends."
-                ],
-                correctAnswer: 1,
-                explanation: "'We are friends' is correct. 'We' is the subject pronoun, while 'Us', 'Our', and 'Ours' are different forms of pronouns that cannot be used as the subject."
+                type: 'transformation',
+                question: "Transform this sentence by replacing 'noisy' with its opposite: 'The street is very noisy.'",
+                correctAnswer: "The street is very quiet.",
+                explanation: "The opposite of 'noisy' is 'quiet'."
             },
             {
                 id: 14,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'The dog is sleeping.'",
-                correctAnswer: "It is sleeping.",
-                explanation: "For animals, unless they are pets with a known gender, we typically use the subject pronoun 'It'."
+                type: 'multipleChoice',
+                question: "Which word describes a place that has existed for a very long time?",
+                options: [
+                    "Modern",
+                    "Ancient",
+                    "New",
+                    "Recent"
+                ],
+                correctAnswer: 1,
+                explanation: "'Ancient' describes something that has existed for a very long time or belongs to the distant past."
             },
             {
                 id: 15,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ speaks English fluently.' (Use the correct subject pronoun for a female)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person."
+                question: "Complete the sentence: 'The supermarket is _____ to the pharmacy.' (Use a preposition that means 'beside')",
+                correctAnswer: "next",
+                explanation: "The phrase 'next to' means 'beside' or 'adjacent to'."
             },
             {
                 id: 16,
                 type: 'multipleChoice',
-                question: "Which of these is NOT a subject pronoun in English?",
+                question: "Which of these is a piece of furniture you can sit on?",
                 options: [
-                    "I",
-                    "We",
-                    "Him",
-                    "They"
+                    "Wardrobe",
+                    "Bookshelf",
+                    "Desk",
+                    "Armchair"
                 ],
-                correctAnswer: 2,
-                explanation: "'Him' is an object pronoun, not a subject pronoun. The subject pronoun would be 'He'."
+                correctAnswer: 3,
+                explanation: "An armchair is a comfortable chair with supports for your arms, designed for sitting."
             },
             {
                 id: 17,
                 type: 'trueFalse',
-                question: "'It' can be used as a subject pronoun for a baby when the gender is unknown.",
-                correctAnswer: true,
-                explanation: "In English, 'It' can be used for a baby when the gender is unknown, though many people prefer to use 'They' instead."
+                question: "A 'historical' building is always more than 100 years old.",
+                correctAnswer: false,
+                explanation: "A 'historical' building has historical significance, but it doesn't necessarily have to be more than 100 years old."
             },
             {
                 id: 18,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'Sarah and I went to the movies.'",
-                correctAnswer: "We went to the movies.",
-                explanation: "When replacing a name and 'I', use the subject pronoun 'We'."
+                type: 'multipleChoice',
+                question: "Where would you go to borrow books?",
+                options: [
+                    "Cinema",
+                    "Library",
+                    "Restaurant",
+                    "Hospital"
+                ],
+                correctAnswer: 1,
+                explanation: "A library is where you can borrow books."
             },
             {
                 id: 19,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use to replace 'The book' in the sentence 'The book is on the table'?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "'It' is the correct subject pronoun for objects like books."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'I live in the _____, away from the city center.' (Area outside city center, often residential)",
+                correctAnswer: "suburbs",
+                explanation: "The 'suburbs' are residential areas located on the outskirts of a city."
             },
             {
                 id: 20,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ likes to play soccer.' (Use the correct subject pronoun for multiple people)",
-                correctAnswer: "They",
-                explanation: "'They' is the correct subject pronoun for multiple people."
+                type: 'multipleChoice',
+                question: "Which of these places is typically used for shopping?",
+                options: [
+                    "Hospital",
+                    "Police station",
+                    "Shopping center",
+                    "Theater"
+                ],
+                correctAnswer: 2,
+                explanation: "A shopping center (or mall) is a place with many shops where people go to buy things."
             },
             {
                 id: 21,
-                type: 'multipleChoice',
-                question: "Which sentence uses subject pronouns correctly?",
-                options: [
-                    "Him and her are students.",
-                    "He and she are students.",
-                    "His and her are students.",
-                    "Him and she are students."
-                ],
-                correctAnswer: 1,
-                explanation: "'He and she are students' correctly uses the subject pronouns 'He' and 'She'."
+                type: 'transformation',
+                question: "Transform this sentence by replacing 'beautiful' with its opposite: 'The park is beautiful.'",
+                correctAnswer: "The park is ugly.",
+                explanation: "The opposite of 'beautiful' is 'ugly'."
             },
             {
                 id: 22,
-                type: 'trueFalse',
-                question: "The subject pronoun 'We' includes the speaker.",
-                correctAnswer: true,
-                explanation: "'We' always includes the speaker plus one or more other people."
+                type: 'multipleChoice',
+                question: "Which of these sentences uses prepositions correctly?",
+                options: [
+                    "The bank is between the library.",
+                    "The cafe is next the restaurant.",
+                    "The cinema is opposite to the park.",
+                    "The museum is next to the library."
+                ],
+                correctAnswer: 3,
+                explanation: "'Next to' is the correct preposition to indicate that one place is beside another."
             },
             {
                 id: 23,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'Tom is my brother.'",
-                correctAnswer: "He is my brother.",
-                explanation: "For a male person like 'Tom', we use the subject pronoun 'He'."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'My apartment is on the _____ floor of the building.' (The floor above the ground floor in American English)",
+                correctAnswer: "second",
+                explanation: "In American English, the floor above the ground floor is called the 'second floor'."
             },
             {
                 id: 24,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about your computer?",
+                question: "Which room is primarily used for cooking?",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "Bathroom",
+                    "Bedroom",
+                    "Kitchen",
+                    "Living room"
                 ],
                 correctAnswer: 2,
-                explanation: "In English, we typically use 'It' for objects like computers, though some people may personify their devices."
+                explanation: "The kitchen is the room primarily used for cooking meals."
             },
             {
                 id: 25,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am learning English.' (Use the correct subject pronoun for yourself)",
-                correctAnswer: "I",
-                explanation: "When referring to yourself, use the subject pronoun 'I' (first person singular)."
+                type: 'trueFalse',
+                question: "A 'clean' city is one that has a lot of pollution and garbage.",
+                correctAnswer: false,
+                explanation: "A 'clean' city is one that is free from dirt, pollution, and garbage, not one that has a lot of these things."
             }
         ];
 
@@ -606,8 +641,14 @@
                     
                     isCorrect = matchCount >= Math.ceil(essentialWords.length * 0.7);
                 } else {
-                    // For fill in the blank, need exact match
-                    isCorrect = userAnswer === correctAnswer;
+                    // For fill in the blank, allow for some common variations
+                    if (correctAnswer === "flat") {
+                        isCorrect = userAnswer === "flat" || userAnswer === "apartment";
+                    } else if (correctAnswer === "next") {
+                        isCorrect = userAnswer === "next" || userAnswer === "next to";
+                    } else {
+                        isCorrect = userAnswer === correctAnswer;
+                    }
                 }
             }
             
@@ -658,7 +699,6 @@
         });
 
         // Initialize the page
-        createQuestionElements();
-    </script>
+        createQuestionElements();    </script>
 </body>
 </html>

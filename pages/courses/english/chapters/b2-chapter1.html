@@ -1,0 +1,692 @@
+<!-- English B2 Chapter 1 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English B2 - Chapter 1: Advanced Grammar and Vocabulary</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .chapter-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+
+        .question-container {
+            background: var(--card-bg);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: none;
+        }
+
+        .question-container.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-container.correct {
+            border-left: 4px solid #4caf50;
+        }
+
+        .question-container.incorrect {
+            border-left: 4px solid #f44336;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .answer-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .answer-option {
+            padding: 12px;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .answer-option:hover {
+            background: #e9e9e9;
+        }
+
+        .answer-option.selected {
+            background: #cce5ff;
+            border-color: #007bff;
+        }
+
+        .check-answer-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s ease;
+        }
+
+        .check-answer-btn:hover {
+            background: #0069d9;
+        }
+
+        .answer-result {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .answer-result.correct {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+
+        .answer-result.incorrect {
+            display: block;
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4caf50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        .streak-icon {
+            font-size: 1.5rem;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #e0e0e0;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body data-course-id="english-b2">
+    <header>
+        <h1>English B2 - Chapter 1: Advanced Grammar and Vocabulary</h1>
+    </header>
+
+    <main class="chapter-container">
+        <div class="level-badge">B2 - Upper Intermediate</div>
+
+        <div class="content-section">
+            <h2>Advanced Grammar and Vocabulary</h2>
+            <p>At the B2 level, you can understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in your field of specialization. You can interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party.</p>
+            
+            <h3>Key Skills at B2 Level</h3>
+            <ul>
+                <li><strong>Relative clauses</strong> (defining, non-defining, and reduced)</li>
+                <li><strong>Participle clauses</strong> for more sophisticated sentence structures</li>
+                <li><strong>Formal vocabulary</strong> for academic and professional contexts</li>
+                <li><strong>Complex grammatical structures</strong> for expressing nuanced ideas</li>
+                <li><strong>Advanced linking expressions</strong> for coherent discourse</li>
+            </ul>
+        </div>
+
+        <div class="progress-container">
+            <span>Progress:</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="currentQuestion">1</span>/<span id="totalQuestions">25</span>
+            </div>
+        </div>
+
+        <div class="streak-counter">
+            <span class="streak-icon">🔥</span>
+            Streak: <span id="currentStreak">0</span>
+        </div>
+
+        <div id="questionsContainer">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-button" id="prevButton" disabled>Previous</button>
+            <button class="nav-button" id="nextButton" disabled>Next</button>
+        </div>
+    </main>
+
+    <script>
+        // Question data
+        const questions = [
+            {
+                id: 1,
+                type: 'multipleChoice',
+                question: 'Choose the sentence with the correct use of a non-defining relative clause:',
+                options: [
+                    'London which is the capital of England has many historical sites.',
+                    'London, which is the capital of England, has many historical sites.',
+                    'London that is the capital of England has many historical sites.',
+                    'London, that is the capital of England, has many historical sites.'
+                ],
+                correctAnswer: 1,
+                explanation: 'Non-defining relative clauses provide extra information and are separated by commas. "Which" is used for non-defining clauses about things.'
+            },
+            {
+                id: 2,
+                type: 'transformation',
+                question: 'Combine these sentences using a reduced relative clause: "The students waited at the bus stop. They were hoping to catch the early bus."',
+                correctAnswer: 'The students hoping to catch the early bus waited at the bus stop.',
+                explanation: 'We can reduce the relative clause by using the present participle "hoping" instead of "who were hoping".'
+            },
+            {
+                id: 3,
+                type: 'fillInBlank',
+                question: 'Complete the sentence with the appropriate participle clause: "_____ the experiment, the scientists documented their findings." (after they had completed)',
+                correctAnswer: 'Having completed',
+                explanation: 'We use "having + past participle" to show that one action was completed before another.'
+            },
+            {
+                id: 4,
+                type: 'multipleChoice',
+                question: 'Select the most formal alternative for: "They looked into the matter."',
+                options: [
+                    'They checked the matter.',
+                    'They investigated the matter.',
+                    'They saw about the matter.',
+                    'They went through the matter.'
+                ],
+                correctAnswer: 1,
+                explanation: '"Investigate" is the most formal and precise verb in this context, suitable for academic or professional writing.'
+            },
+            {
+                id: 5,
+                type: 'transformation',
+                question: 'Transform this informal sentence into formal language: "The company needs to do more research and come up with better solutions."',
+                correctAnswer: 'The company needs to conduct further research and develop more effective solutions.',
+                explanation: 'Formal language uses more precise verbs (conduct instead of do) and more sophisticated vocabulary (develop instead of come up with).'
+            },
+            {
+                id: 6,
+                type: 'multipleChoice',
+                question: 'Which of these expressions is most appropriate in academic writing?',
+                options: [
+                    'The results were really good.',
+                    'The results were kind of surprising.',
+                    'The results were significantly better than anticipated.',
+                    'The results were pretty awesome.'
+                ],
+                correctAnswer: 2,
+                explanation: 'Academic writing requires formal language. "Significantly better than anticipated" is precise and avoids informal expressions like "really good" or "kind of surprising".'
+            },
+            {
+                id: 7,
+                type: 'fillInBlank',
+                question: 'Complete with the correct relative pronoun: "The book _____ I borrowed from the library is very informative." (Use a defining relative clause)',
+                correctAnswer: 'that',
+                explanation: 'In defining relative clauses referring to things, both "that" and "which" can be used. However, "that" is more common in this context.'
+            },
+            {
+                id: 8,
+                type: 'transformation',
+                question: 'Combine these sentences using a participle clause: "The CEO announced a new policy. She was hoping to improve staff morale."',
+                correctAnswer: 'The CEO announced a new policy, hoping to improve staff morale.',
+                explanation: 'Present participle clauses (hoping) can express purpose or a simultaneous action.'
+            },
+            {
+                id: 9,
+                type: 'multipleChoice',
+                question: 'Which sentence contains a correctly formed reduced relative clause?',
+                options: [
+                    'The man who is wearing a blue suit is my boss.',
+                    'The man wearing a blue suit is my boss.',
+                    'The man is wearing a blue suit is my boss.',
+                    'The man, wearing a blue suit, is my boss.'
+                ],
+                correctAnswer: 1,
+                explanation: 'In a reduced relative clause, "who is" can be removed and replaced with just the -ing form of the verb. Option B correctly shows this reduction.'
+            },
+            {
+                id: 10,
+                type: 'trueFalse',
+                question: 'In formal writing, contractions (don\'t, can\'t, won\'t) should be avoided.',
+                correctAnswer: true,
+                explanation: 'Formal writing, especially academic and professional writing, typically avoids contractions. Full forms (do not, cannot, will not) are preferred for a more formal tone.'
+            },
+            {
+                id: 11,
+                type: 'fillInBlank',
+                question: 'Complete the sentence with the appropriate linking word expressing contrast: "The new policy seemed promising; _____, it failed to address the core issues."',
+                correctAnswer: 'however',
+                explanation: 'Linking words like "however" express contrast between ideas. Other possibilities include "nevertheless" or "nonetheless".'
+            },
+            {
+                id: 12,
+                type: 'multipleChoice',
+                question: 'Identify the sentence with correct use of a participle clause:',
+                options: [
+                    'Walking down the street, the bus passed me.',
+                    'Walking down the street, I saw my old friend.',
+                    'Walking down the street, my shoe was untied.',
+                    'Walking down the street, the shop caught my attention.'
+                ],
+                correctAnswer: 1,
+                explanation: 'The subject of the main clause (I) must be the same as the implied subject of the participle clause (Walking down the street). Only option B correctly follows this rule.'
+            },
+            {
+                id: 13,
+                type: 'transformation',
+                question: 'Rewrite using a reduced relative clause: "The documents that were submitted yesterday need to be reviewed."',
+                correctAnswer: 'The documents submitted yesterday need to be reviewed.',
+                explanation: 'For passive voice in relative clauses, we can remove "that were" and keep just the past participle "submitted".'
+            },
+            {
+                id: 14,
+                type: 'fillInBlank',
+                question: 'Complete the sentence with an appropriate formal expression of cause: "_____ the economic downturn, many businesses were forced to close."',
+                correctAnswer: 'Due to',
+                explanation: 'Formal expressions of cause include "Due to", "As a result of", or "Owing to". These are more formal than "Because of".'
+            },
+            {
+                id: 15,
+                type: 'multipleChoice',
+                question: 'Which sentence demonstrates the correct use of a non-restrictive (non-defining) relative clause?',
+                options: [
+                    'The professor who teaches linguistics is giving a lecture today.',
+                    'The professor, that teaches linguistics, is giving a lecture today.',
+                    'The professor, who teaches linguistics, is giving a lecture today.',
+                    'The professor which teaches linguistics is giving a lecture today.'
+                ],
+                correctAnswer: 2,
+                explanation: 'Non-restrictive relative clauses add extra information and use commas. For people, "who" is the correct relative pronoun, not "that" or "which".'
+            },
+            {
+                id: 16,
+                type: 'trueFalse',
+                question: 'In academic writing, first-person pronouns (I, we, my, our) should be used frequently.',
+                correctAnswer: false,
+                explanation: 'Academic writing typically minimizes the use of first-person pronouns, favoring a more objective, impersonal style. While not completely prohibited, they are used sparingly.'
+            },
+            {
+                id: 17,
+                type: 'transformation',
+                question: 'Combine using an appropriate construction: "The researcher published a new paper. The paper contains groundbreaking findings."',
+                correctAnswer: 'The researcher published a new paper, which contains groundbreaking findings.',
+                explanation: 'This combines the sentences using a non-defining relative clause with "which". Alternative correct answers could use "that contains" without the comma.'
+            },
+            {
+                id: 18,
+                type: 'multipleChoice',
+                question: 'Select the most appropriate academic synonym for "a lot of":',
+                options: [
+                    'loads of',
+                    'a significant number of',
+                    'tons of',
+                    'a bunch of'
+                ],
+                correctAnswer: 1,
+                explanation: '"A significant number of" is the most formal and appropriate for academic or professional contexts. The other options are too informal or colloquial.'
+            },
+            {
+                id: 19,
+                type: 'fillInBlank',
+                question: 'Complete with an appropriate formal linking word showing addition: "The study revealed numerous benefits; _____, it highlighted several potential risks."',
+                correctAnswer: 'furthermore',
+                explanation: 'Formal linking words showing addition include "furthermore", "moreover", "additionally", and "in addition".'
+            },
+            {
+                id: 20,
+                type: 'transformation',
+                question: 'Transform this compound sentence into one using a participle clause: "The team completed the project and then celebrated their success."',
+                correctAnswer: 'Having completed the project, the team celebrated their success.',
+                explanation: 'The perfect participle "Having completed" shows that the action happened before the team celebrated.'
+            },
+            {
+                id: 21,
+                type: 'multipleChoice',
+                question: 'Which sentence contains a correctly used defining relative clause?',
+                options: [
+                    'Paris, which is the capital of France, is known for its cuisine.',
+                    'The movie that won the Oscar was directed by a first-time director.',
+                    'My brother, that lives in London, is visiting next week.',
+                    'The car, which I bought last year, has been very reliable.'
+                ],
+                correctAnswer: 1,
+                explanation: 'Defining relative clauses identify which specific person or thing is being referred to and don\'t use commas. Option B correctly uses "that" without commas.'
+            },
+            {
+                id: 22,
+                type: 'fillInBlank',
+                question: 'Complete with the formal equivalent of "find out": "The researchers aim to _____ whether the treatment has any long-term effects."',
+                correctAnswer: 'determine',
+                explanation: 'Formal alternatives for "find out" include "determine", "ascertain", "establish", or "investigate".'
+            },
+            {
+                id: 23,
+                type: 'trueFalse',
+                question: 'When forming participle clauses, it\'s acceptable if the subject of the participle clause differs from the subject of the main clause.',
+                correctAnswer: false,
+                explanation: 'This would create a "dangling participle" - a grammatical error. The subject of the main clause should be the same as the implied subject of the participle clause.'
+            },
+            {
+                id: 24,
+                type: 'multipleChoice',
+                question: 'Which of these sentences uses the most appropriate academic language?',
+                options: [
+                    'The experiment was a total failure because of bad planning.',
+                    'The experiment was unsuccessful due to inadequate planning.',
+                    'The experiment failed because they didn\'t plan it well.',
+                    'The experiment didn\'t work out because the planning wasn\'t great.'
+                ],
+                correctAnswer: 1,
+                explanation: 'Academic language is precise, formal, and objective. Option B uses appropriate formal vocabulary ("unsuccessful", "inadequate") and the formal linking phrase "due to".'
+            },
+            {
+                id: 25,
+                type: 'transformation',
+                question: 'Rewrite more formally: "They got a lot of feedback from users and then made changes to the app."',
+                correctAnswer: 'Having received substantial feedback from users, they implemented modifications to the application.',
+                explanation: 'Formal writing uses precise vocabulary ("received" instead of "got", "substantial" instead of "a lot", "implemented modifications" instead of "made changes") and more complex grammatical structures like participle clauses.'
+            }
+        ];
+
+        // Initialize variables
+        let currentQuestionIndex = 0;
+        let streak = 0;
+        let answeredQuestions = new Array(questions.length).fill(false);
+
+        // DOM elements
+        const questionsContainer = document.getElementById('questionsContainer');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const currentQuestionElement = document.getElementById('currentQuestion');
+        const totalQuestionsElement = document.getElementById('totalQuestions');
+        const currentStreakElement = document.getElementById('currentStreak');
+        const progressFill = document.getElementById('progressFill');
+
+        // Set total questions
+        totalQuestionsElement.textContent = questions.length;
+
+        // Create question elements
+        function createQuestionElements() {
+            questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question-container');
+                questionElement.id = `question-${index}`;
+                
+                let questionHTML = `<h3>Question ${index + 1}</h3><p>${question.question}</p>`;
+                
+                if (question.type === 'multipleChoice') {
+                    questionHTML += `<div class="answer-options">`;
+                    question.options.forEach((option, optIndex) => {
+                        questionHTML += `
+                            <div class="answer-option" data-index="${optIndex}">
+                                ${option}
+                            </div>
+                        `;
+                    });
+                    questionHTML += `</div>`;
+                } else if (question.type === 'fillInBlank') {
+                    questionHTML += `<input type="text" class="answer-input" placeholder="Type your answer">`;
+                } else if (question.type === 'trueFalse') {
+                    questionHTML += `
+                        <div class="answer-options">
+                            <div class="answer-option" data-index="true">True</div>
+                            <div class="answer-option" data-index="false">False</div>
+                        </div>
+                    `;
+                } else if (question.type === 'transformation') {
+                    questionHTML += `<textarea class="answer-input" rows="3" placeholder="Type your answer"></textarea>`;
+                }
+                
+                questionHTML += `
+                    <button class="check-answer-btn">Check Answer</button>
+                    <div class="answer-result"></div>
+                `;
+                
+                questionElement.innerHTML = questionHTML;
+                questionsContainer.appendChild(questionElement);
+                
+                // Add event listeners
+                if (question.type === 'multipleChoice' || question.type === 'trueFalse') {
+                    const options = questionElement.querySelectorAll('.answer-option');
+                    options.forEach(option => {
+                        option.addEventListener('click', () => {
+                            options.forEach(opt => opt.classList.remove('selected'));
+                            option.classList.add('selected');
+                        });
+                    });
+                }
+                
+                const checkButton = questionElement.querySelector('.check-answer-btn');
+                checkButton.addEventListener('click', () => checkAnswer(index));
+            });
+            
+            // Show first question
+            showQuestion(0);
+        }
+
+        // Show a specific question
+        function showQuestion(index) {
+            // Hide all questions
+            document.querySelectorAll('.question-container').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show current question
+            const currentQuestion = document.getElementById(`question-${index}`);
+            currentQuestion.classList.add('active');
+            
+            // Update current question number
+            currentQuestionIndex = index;
+            currentQuestionElement.textContent = index + 1;
+            
+            // Update navigation buttons
+            prevButton.disabled = index === 0;
+            nextButton.disabled = index === questions.length - 1 || !answeredQuestions[index];
+            
+            // Update progress bar
+            updateProgress();
+        }
+
+        // Check answer
+        function checkAnswer(index) {
+            const question = questions[index];
+            const questionElement = document.getElementById(`question-${index}`);
+            const resultElement = questionElement.querySelector('.answer-result');
+            
+            let userAnswer;
+            let isCorrect = false;
+            
+            if (question.type === 'multipleChoice' || question.type === 'trueFalse') {
+                const selectedOption = questionElement.querySelector('.answer-option.selected');
+                if (!selectedOption) {
+                    resultElement.textContent = "Please select an answer.";
+                    resultElement.className = "answer-result incorrect";
+                    resultElement.style.display = "block";
+                    return;
+                }
+                
+                userAnswer = selectedOption.getAttribute('data-index');
+                if (question.type === 'trueFalse') {
+                    isCorrect = (userAnswer === "true") === question.correctAnswer;
+                } else {
+                    isCorrect = parseInt(userAnswer) === question.correctAnswer;
+                }
+            } else {
+                const inputElement = questionElement.querySelector('.answer-input');
+                userAnswer = inputElement.value.trim().toLowerCase();
+                const correctAnswer = question.correctAnswer.toLowerCase();
+                
+                // For transformation questions, we'll be more lenient
+                if (question.type === 'transformation') {
+                    // Check if the key parts of the answer are included
+                    const keyParts = correctAnswer.split(' ');
+                    const essentialWords = keyParts.filter(word => word.length > 3);
+                    const matchCount = essentialWords.filter(word => 
+                        userAnswer.includes(word.toLowerCase())
+                    ).length;
+                    
+                    isCorrect = matchCount >= Math.ceil(essentialWords.length * 0.7);
+                } else if (question.type === 'fillInBlank') {
+                    // For fill in the blank, allow for some common variations
+                    if (correctAnswer === "that") {
+                        isCorrect = userAnswer === "that" || userAnswer === "which";
+                    } else if (correctAnswer === "having completed") {
+                        isCorrect = userAnswer === "having completed" || userAnswer === "after completing" || userAnswer === "upon completing";
+                    } else if (correctAnswer === "however") {
+                        isCorrect = userAnswer === "however" || userAnswer === "nevertheless" || userAnswer === "nonetheless";
+                    } else if (correctAnswer === "due to") {
+                        isCorrect = userAnswer === "due to" || userAnswer === "owing to" || userAnswer === "as a result of" || userAnswer === "because of";
+                    } else if (correctAnswer === "furthermore") {
+                        isCorrect = userAnswer === "furthermore" || userAnswer === "moreover" || userAnswer === "additionally" || userAnswer === "in addition";
+                    } else if (correctAnswer === "determine") {
+                        isCorrect = userAnswer === "determine" || userAnswer === "ascertain" || userAnswer === "establish" || userAnswer === "investigate";
+                    } else {
+                        isCorrect = userAnswer === correctAnswer;
+                    }
+                } else {
+                    isCorrect = userAnswer === correctAnswer;
+                }
+            }
+            
+            // Update UI based on result
+            questionElement.classList.remove('correct', 'incorrect');
+            questionElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+            
+            resultElement.textContent = isCorrect ? 
+                `Correct! ${question.explanation}` : 
+                `Incorrect. The correct answer is: ${question.correctAnswer}. ${question.explanation}`;
+            resultElement.className = `answer-result ${isCorrect ? 'correct' : 'incorrect'}`;
+            resultElement.style.display = "block";
+            
+            // Update streak
+            if (isCorrect) {
+                streak++;
+                if (!answeredQuestions[index]) {
+                    answeredQuestions[index] = true;
+                }
+            } else {
+                streak = 0;
+            }
+            currentStreakElement.textContent = streak;
+            
+            // Enable next button if answer is correct
+            nextButton.disabled = index === questions.length - 1 || !answeredQuestions[index];
+            
+            // Update progress
+            updateProgress();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = (answeredQuestions.filter(Boolean).length / questions.length) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+
+        // Navigation event listeners
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1 && answeredQuestions[currentQuestionIndex]) {
+                showQuestion(currentQuestionIndex + 1);
+            }
+        });
+
+        // Initialize the page
+        createQuestionElements();
+    </script>
+    
+    <script src="/assets/js/auth-protection.js"></script>
+    <script src="/assets/js/tracking.js"></script>
+</body>
+</html>

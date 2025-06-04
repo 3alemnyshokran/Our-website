@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Grammar - A1 Level | Chapter 1</title>
+    <title>Everyday Activities - A2 Level | Chapter 1</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
         .chapter-container {
@@ -196,17 +196,28 @@
         }
     </style>
 </head>
-<body data-course-id="english-a1">
+<body data-course-id="english-a2">
     <header>
-        <h1>English A1 - Chapter 1: Basic Grammar</h1>
+        <h1>English A2 - Chapter 1: Everyday Activities</h1>
     </header>
 
     <main class="chapter-container">
-        <div class="level-badge">A1 - Beginner</div>
+        <div class="level-badge">A2 - Elementary</div>
 
         <div class="content-section">
-            <h2>Basic Grammar and Subject Pronouns</h2>
-            <p>In this chapter, we'll learn about the fundamentals of English grammar, starting with subject pronouns and basic sentence structures. These are essential building blocks for forming simple sentences in English.</p>
+            <h2>Everyday Activities and Daily Routines</h2>
+            <p>At the A2 level, you can understand and talk about daily routines and everyday activities using the present simple tense and frequency adverbs.</p>
+            
+            <h3>Frequency Adverbs</h3>
+            <p>We use these words to say how often we do activities:</p>
+            <ul>
+                <li><strong>Always</strong> (100% of the time)</li>
+                <li><strong>Usually</strong> (80% of the time)</li>
+                <li><strong>Often</strong> (70% of the time)</li>
+                <li><strong>Sometimes</strong> (50% of the time)</li>
+                <li><strong>Rarely/Seldom</strong> (20% of the time)</li>
+                <li><strong>Never</strong> (0% of the time)</li>
+            </ul>
         </div>
 
         <div class="progress-container">
@@ -239,232 +250,238 @@
         const questions = [
             {
                 id: 1,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am a student.' (Use the correct subject pronoun)",
-                correctAnswer: "I",
-                explanation: "We use 'I' as the subject pronoun when referring to ourselves (first person singular)."
+                type: 'multipleChoice',
+                question: "What time does Sarah usually wake up?",
+                options: [
+                    "She wake up at 7 o'clock.",
+                    "She wakes up at 7 o'clock.",
+                    "She is wake up at 7 o'clock.",
+                    "She waking up at 7 o'clock."
+                ],
+                correctAnswer: 1,
+                explanation: "We use the present simple (wakes up) for routines and habits. For third person singular (he/she/it), we add -s to the verb."
             },
             {
                 id: 2,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is my teacher.' (Use the correct subject pronoun for a female teacher)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person (third person singular)."
+                question: "Complete the sentence with the correct frequency adverb: 'I _____ have breakfast at 8 AM.' (100% of the time)",
+                correctAnswer: "always",
+                explanation: "'Always' indicates something happens 100% of the time."
             },
             {
                 id: 3,
                 type: 'multipleChoice',
-                question: "Which is the correct subject pronoun to complete this sentence: '_____ are my friends.'",
+                question: "Which sentence uses the frequency adverb correctly?",
                 options: [
-                    "He",
-                    "She",
-                    "They",
-                    "It"
+                    "I never sometimes go to the gym.",
+                    "Often I go to the cinema on weekends.",
+                    "I usually am tired in the evening.",
+                    "She goes always to bed at 10 PM."
                 ],
-                correctAnswer: 2,
-                explanation: "'They' is the correct subject pronoun for multiple people (third person plural)."
+                correctAnswer: 1,
+                explanation: "Frequency adverbs can go at the beginning of a sentence (Often I go...) or after the subject and before the main verb (I often go...)."
             },
             {
                 id: 4,
-                type: 'multipleChoice',
-                question: "Which subject pronoun should we use for an animal when we don't know if it's male or female?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "We use 'It' for animals (unless we know the gender or are referring to a pet) and objects."
+                type: 'trueFalse',
+                question: "The sentence 'They go usually to school by bus.' is grammatically correct.",
+                correctAnswer: false,
+                explanation: "This is incorrect. Frequency adverbs usually come before the main verb: 'They usually go to school by bus.'"
             },
             {
                 id: 5,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ are going to the park.' (Use the correct subject pronoun for a group that includes yourself)",
-                correctAnswer: "We",
-                explanation: "'We' is the correct subject pronoun when referring to a group that includes yourself (first person plural)."
+                question: "Complete the sentence: 'John _____ (take) a shower every morning.'",
+                correctAnswer: "takes",
+                explanation: "For third person singular (John), we add -s to the verb in present simple: 'takes'."
             },
             {
                 id: 6,
-                type: 'trueFalse',
-                question: "The subject pronoun 'You' can be used for both singular and plural.",
-                correctAnswer: true,
-                explanation: "'You' can refer to one person or multiple people in English, unlike in some other languages."
+                type: 'multipleChoice',
+                question: "Which frequency adverb means 'almost never'?",
+                options: [
+                    "Sometimes",
+                    "Often",
+                    "Usually",
+                    "Rarely"
+                ],
+                correctAnswer: 3,
+                explanation: "'Rarely' means something happens very infrequently or almost never (about 20% of the time)."
             },
             {
                 id: 7,
-                type: 'multipleChoice',
-                question: "Which sentence uses the subject pronoun correctly?",
-                options: [
-                    "Him is my brother.",
-                    "Her is my sister.",
-                    "They are my parents.",
-                    "Me am a student."
-                ],
-                correctAnswer: 2,
-                explanation: "'They are my parents' uses the subject pronoun 'They' correctly. 'Him', 'Her', and 'Me' are object pronouns, not subject pronouns."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'I _____ (go) to bed at 11 PM every night.'",
+                correctAnswer: "go",
+                explanation: "For first person singular (I), we use the base form of the verb in present simple: 'go'."
             },
             {
                 id: 8,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is a beautiful day today.' (Use the correct subject pronoun)",
-                correctAnswer: "It",
-                explanation: "We use 'It' when talking about weather, time, dates, or general situations."
+                type: 'multipleChoice',
+                question: "Where do we usually place frequency adverbs in a sentence?",
+                options: [
+                    "At the end of the sentence",
+                    "Before the main verb",
+                    "After the object",
+                    "After the verb"
+                ],
+                correctAnswer: 1,
+                explanation: "Frequency adverbs usually come before the main verb: 'I always eat breakfast.'"
             },
             {
                 id: 9,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'John and Mary are at school.'",
-                correctAnswer: "They are at school.",
-                explanation: "When replacing multiple people's names, we use the subject pronoun 'They'."
+                type: 'trueFalse',
+                question: "The sentence 'We never go to the cinema.' means we go to the cinema 0% of the time.",
+                correctAnswer: true,
+                explanation: "This is correct. 'Never' means 0% of the time or not at any time."
             },
             {
                 id: 10,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about yourself and a friend?",
-                options: [
-                    "I",
-                    "You",
-                    "We",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "When referring to yourself and others, use 'We' (first person plural)."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'She _____ (brush) her teeth twice a day.'",
+                correctAnswer: "brushes",
+                explanation: "For third person singular (she), we add -es to verbs ending in -sh in present simple: 'brushes'."
             },
             {
                 id: 11,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is reading a book.' (Use the correct subject pronoun for a male person)",
-                correctAnswer: "He",
-                explanation: "'He' is the correct subject pronoun for a male person (third person singular)."
+                type: 'multipleChoice',
+                question: "What time does Tom usually have lunch?",
+                options: [
+                    "He have lunch at 1 PM.",
+                    "He having lunch at 1 PM.",
+                    "He has lunch at 1 PM.",
+                    "He is have lunch at 1 PM."
+                ],
+                correctAnswer: 2,
+                explanation: "We use the present simple (has lunch) for routines. For third person singular (he), we use 'has' instead of 'have'."
             },
             {
                 id: 12,
-                type: 'trueFalse',
-                question: "In English, we use different subject pronouns based on gender in the third person singular.",
-                correctAnswer: true,
-                explanation: "In English, we use 'He' for males, 'She' for females, and 'It' for objects and some animals."
+                type: 'fillInBlank',
+                question: "Complete the sentence with the correct frequency adverb: 'They _____ visit their grandparents on weekends.' (70% of the time)",
+                correctAnswer: "often",
+                explanation: "'Often' indicates something happens frequently, around 70% of the time."
             },
             {
                 id: 13,
-                type: 'multipleChoice',
-                question: "Which sentence is grammatically correct?",
-                options: [
-                    "Us are friends.",
-                    "We are friends.",
-                    "Our are friends.",
-                    "Ours are friends."
-                ],
-                correctAnswer: 1,
-                explanation: "'We are friends' is correct. 'We' is the subject pronoun, while 'Us', 'Our', and 'Ours' are different forms of pronouns that cannot be used as the subject."
+                type: 'trueFalse',
+                question: "The sentence 'I go usually to the gym after work.' is grammatically correct.",
+                correctAnswer: false,
+                explanation: "This is incorrect. Frequency adverbs should come before the main verb: 'I usually go to the gym after work.'"
             },
             {
                 id: 14,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'The dog is sleeping.'",
-                correctAnswer: "It is sleeping.",
-                explanation: "For animals, unless they are pets with a known gender, we typically use the subject pronoun 'It'."
+                type: 'multipleChoice',
+                question: "How often does Maria study English?",
+                options: [
+                    "She study English every day.",
+                    "She studys English every day.",
+                    "She studies English every day.",
+                    "She studying English every day."
+                ],
+                correctAnswer: 2,
+                explanation: "We use the present simple (studies) for routines. For third person singular with a verb ending in -y, we change y to i and add -es."
             },
             {
                 id: 15,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ speaks English fluently.' (Use the correct subject pronoun for a female)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person."
+                question: "Complete the sentence: 'We _____ (watch) TV in the evening.'",
+                correctAnswer: "watch",
+                explanation: "For first person plural (we), we use the base form of the verb in present simple: 'watch'."
             },
             {
                 id: 16,
                 type: 'multipleChoice',
-                question: "Which of these is NOT a subject pronoun in English?",
+                question: "Which sentence uses the frequency adverb correctly?",
                 options: [
-                    "I",
-                    "We",
-                    "Him",
-                    "They"
+                    "He seldom is late for work.",
+                    "She goes never to the beach.",
+                    "They sometimes are tired after exercise.",
+                    "I eat always breakfast."
                 ],
-                correctAnswer: 2,
-                explanation: "'Him' is an object pronoun, not a subject pronoun. The subject pronoun would be 'He'."
+                correctAnswer: 0,
+                explanation: "With the verb 'to be', frequency adverbs come after the verb: 'He seldom is late' or 'He is seldom late'."
             },
             {
                 id: 17,
                 type: 'trueFalse',
-                question: "'It' can be used as a subject pronoun for a baby when the gender is unknown.",
+                question: "The sentence 'They usually are at home on Sundays.' is grammatically correct.",
                 correctAnswer: true,
-                explanation: "In English, 'It' can be used for a baby when the gender is unknown, though many people prefer to use 'They' instead."
+                explanation: "This is correct. With the verb 'to be', frequency adverbs can come after the verb: 'They usually are' or 'They are usually'."
             },
             {
                 id: 18,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'Sarah and I went to the movies.'",
-                correctAnswer: "We went to the movies.",
-                explanation: "When replacing a name and 'I', use the subject pronoun 'We'."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'He _____ (do) his homework after dinner.'",
+                correctAnswer: "does",
+                explanation: "For third person singular (he), we use 'does' instead of 'do' in present simple."
             },
             {
                 id: 19,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use to replace 'The book' in the sentence 'The book is on the table'?",
+                question: "What time do you usually finish work?",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "I finish work at 5 PM.",
+                    "I finishes work at 5 PM.",
+                    "I am finish work at 5 PM.",
+                    "I does finish work at 5 PM."
                 ],
-                correctAnswer: 2,
-                explanation: "'It' is the correct subject pronoun for objects like books."
+                correctAnswer: 0,
+                explanation: "We use the present simple (finish) for routines. For first person singular (I), we use the base form of the verb."
             },
             {
                 id: 20,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ likes to play soccer.' (Use the correct subject pronoun for multiple people)",
-                correctAnswer: "They",
-                explanation: "'They' is the correct subject pronoun for multiple people."
+                question: "Complete the sentence with the correct frequency adverb: 'I _____ drink coffee in the morning.' (80% of the time)",
+                correctAnswer: "usually",
+                explanation: "'Usually' indicates something happens about 80% of the time."
             },
             {
                 id: 21,
-                type: 'multipleChoice',
-                question: "Which sentence uses subject pronouns correctly?",
-                options: [
-                    "Him and her are students.",
-                    "He and she are students.",
-                    "His and her are students.",
-                    "Him and she are students."
-                ],
-                correctAnswer: 1,
-                explanation: "'He and she are students' correctly uses the subject pronouns 'He' and 'She'."
+                type: 'trueFalse',
+                question: "The sentence 'She never goes to bed before midnight.' means she always goes to bed after midnight.",
+                correctAnswer: true,
+                explanation: "This is correct. 'Never goes to bed before midnight' means she always goes to bed at midnight or later."
             },
             {
                 id: 22,
-                type: 'trueFalse',
-                question: "The subject pronoun 'We' includes the speaker.",
-                correctAnswer: true,
-                explanation: "'We' always includes the speaker plus one or more other people."
+                type: 'multipleChoice',
+                question: "What does David usually do on weekends?",
+                options: [
+                    "He plays usually football with friends.",
+                    "He usually plays football with friends.",
+                    "He is usually play football with friends.",
+                    "He usually playing football with friends."
+                ],
+                correctAnswer: 1,
+                explanation: "We use the present simple (plays) for routines and frequency adverbs come before the main verb: 'He usually plays'."
             },
             {
                 id: 23,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'Tom is my brother.'",
-                correctAnswer: "He is my brother.",
-                explanation: "For a male person like 'Tom', we use the subject pronoun 'He'."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'They _____ (eat) dinner at 7 PM.'",
+                correctAnswer: "eat",
+                explanation: "For third person plural (they), we use the base form of the verb in present simple: 'eat'."
             },
             {
                 id: 24,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about your computer?",
+                question: "Which frequency adverb means 'about half the time'?",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "Always",
+                    "Usually",
+                    "Sometimes",
+                    "Never"
                 ],
                 correctAnswer: 2,
-                explanation: "In English, we typically use 'It' for objects like computers, though some people may personify their devices."
+                explanation: "'Sometimes' indicates something happens about 50% of the time or occasionally."
             },
             {
                 id: 25,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am learning English.' (Use the correct subject pronoun for yourself)",
-                correctAnswer: "I",
-                explanation: "When referring to yourself, use the subject pronoun 'I' (first person singular)."
+                type: 'transformation',
+                question: "Transform this sentence to use the frequency adverb 'usually': 'I am tired in the evening.'",
+                correctAnswer: "I am usually tired in the evening.",
+                explanation: "With the verb 'to be', frequency adverbs come after the verb: 'I am usually tired'."
             }
         ];
 

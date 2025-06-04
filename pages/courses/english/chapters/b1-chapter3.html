@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Grammar - A1 Level | Chapter 1</title>
+    <title>Expressing Opinions - B1 Level | Chapter 3</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
         .chapter-container {
@@ -100,12 +100,12 @@
             background: #007bff;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 8px;
-            cursor: pointer;
             font-size: 1rem;
+            cursor: pointer;
             margin-top: 15px;
-            transition: background 0.3s ease;
+            transition: background 0.2s ease;
         }
 
         .check-answer-btn:hover {
@@ -116,97 +116,120 @@
             margin-top: 15px;
             padding: 12px;
             border-radius: 8px;
-            font-weight: 500;
             display: none;
         }
 
         .answer-result.correct {
             display: block;
-            background: rgba(76, 175, 80, 0.15);
+            background: #e8f5e9;
             color: #2e7d32;
+            border-left: 4px solid #4caf50;
         }
 
         .answer-result.incorrect {
             display: block;
-            background: rgba(244, 67, 54, 0.15);
-            color: #d32f2f;
-        }
-
-        .streak-counter {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 20px 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .streak-icon {
-            font-size: 1.5rem;
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
         }
 
         .progress-container {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            gap: 10px;
         }
 
         .progress-bar {
             flex-grow: 1;
-            height: 8px;
+            height: 10px;
             background: #e0e0e0;
-            border-radius: 4px;
-            margin: 0 10px;
+            border-radius: 5px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: #007bff;
+            background: #4caf50;
             width: 0%;
-            transition: width 0.5s ease;
+            transition: width 0.3s ease;
         }
 
-        .progress-text {
-            font-size: 0.9rem;
-            color: #666;
-            min-width: 80px;
-            text-align: right;
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        .streak-icon {
+            font-size: 1.5rem;
         }
 
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .nav-button {
             padding: 10px 20px;
-            background: #007bff;
-            color: white;
+            background: #f0f0f0;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #e0e0e0;
         }
 
         .nav-button:disabled {
-            background: #cccccc;
+            opacity: 0.5;
             cursor: not-allowed;
         }
     </style>
 </head>
-<body data-course-id="english-a1">
+<body data-course-id="english-b1">
     <header>
-        <h1>English A1 - Chapter 1: Basic Grammar</h1>
+        <h1>English B1 - Chapter 3: Expressing Opinions</h1>
     </header>
 
     <main class="chapter-container">
-        <div class="level-badge">A1 - Beginner</div>
+        <div class="level-badge">B1 - Threshold</div>
 
         <div class="content-section">
-            <h2>Basic Grammar and Subject Pronouns</h2>
-            <p>In this chapter, we'll learn about the fundamentals of English grammar, starting with subject pronouns and basic sentence structures. These are essential building blocks for forming simple sentences in English.</p>
+            <h2>Expressing Opinions</h2>
+            <p>At the B1 level, you can express your thoughts, feelings, and opinions on a range of topics with some confidence. You can engage in discussions and give reasons for your views.</p>
+            
+            <h3>Common Expressions for Stating Opinions</h3>
+            <ul>
+                <li><strong>I think/believe that...</strong> - "I think that social media has both positive and negative effects."</li>
+                <li><strong>In my opinion...</strong> - "In my opinion, the government should invest more in education."</li>
+                <li><strong>From my point of view...</strong> - "From my point of view, environmental protection is essential."</li>
+                <li><strong>It seems to me that...</strong> - "It seems to me that the solution is more complex than it appears."</li>
+                <li><strong>As far as I'm concerned...</strong> - "As far as I'm concerned, everyone should have access to healthcare."</li>
+                <li><strong>I feel that...</strong> - "I feel that more research is needed on this topic."</li>
+                <li><strong>I'd say that...</strong> - "I'd say that the book is worth reading despite its flaws."</li>
+                <li><strong>To my mind...</strong> - "To my mind, the advantages outweigh the disadvantages."</li>
+            </ul>
+            
+            <h3>Expressing Agreement and Disagreement</h3>
+            <ul>
+                <li><strong>Agreeing:</strong> "I completely agree.", "That's exactly what I think.", "You're absolutely right.", "I couldn't agree more."</li>
+                <li><strong>Partly agreeing:</strong> "I agree to some extent, but...", "I see your point, however...", "That's true, although..."</li>
+                <li><strong>Disagreeing politely:</strong> "I'm afraid I don't agree.", "I see it differently.", "I respect your opinion, but I think...", "I'm not sure I agree with that."</li>
+            </ul>
+            
+            <h3>Giving Reasons for Opinions</h3>
+            <ul>
+                <li><strong>Supporting with facts:</strong> "According to recent studies...", "The statistics show that...", "Research indicates that..."</li>
+                <li><strong>Giving examples:</strong> "For instance...", "For example...", "To illustrate this point..."</li>
+                <li><strong>Using personal experience:</strong> "In my experience...", "From what I've seen...", "Based on my own observations..."</li>
+            </ul>
         </div>
 
         <div class="progress-container">
@@ -239,232 +262,250 @@
         const questions = [
             {
                 id: 1,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am a student.' (Use the correct subject pronoun)",
-                correctAnswer: "I",
-                explanation: "We use 'I' as the subject pronoun when referring to ourselves (first person singular)."
+                type: 'multipleChoice',
+                question: "Which of these phrases is NOT typically used to express an opinion?",
+                options: [
+                    "I think that...",
+                    "In my opinion...",
+                    "I demand that...",
+                    "From my point of view..."
+                ],
+                correctAnswer: 2,
+                explanation: "'I demand that...' is used to make a strong request or command, not to express an opinion."
             },
             {
                 id: 2,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is my teacher.' (Use the correct subject pronoun for a female teacher)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person (third person singular)."
+                question: "Complete the sentence: 'As _____ as I'm concerned, everyone should have the right to education.'",
+                correctAnswer: "far",
+                explanation: "'As far as I'm concerned' is a common phrase used to introduce a personal opinion."
             },
             {
                 id: 3,
                 type: 'multipleChoice',
-                question: "Which is the correct subject pronoun to complete this sentence: '_____ are my friends.'",
+                question: "Which phrase would you use to politely disagree with someone?",
                 options: [
-                    "He",
-                    "She",
-                    "They",
-                    "It"
+                    "That's completely wrong!",
+                    "I respect your opinion, but I think differently.",
+                    "You should think again.",
+                    "I don't care what you think."
                 ],
-                correctAnswer: 2,
-                explanation: "'They' is the correct subject pronoun for multiple people (third person plural)."
+                correctAnswer: 1,
+                explanation: "'I respect your opinion, but I think differently' acknowledges the other person's view while expressing disagreement politely."
             },
             {
                 id: 4,
-                type: 'multipleChoice',
-                question: "Which subject pronoun should we use for an animal when we don't know if it's male or female?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "We use 'It' for animals (unless we know the gender or are referring to a pet) and objects."
+                type: 'trueFalse',
+                question: "The phrase 'I couldn't agree more' indicates partial agreement.",
+                correctAnswer: false,
+                explanation: "'I couldn't agree more' indicates complete agreement, not partial agreement."
             },
             {
                 id: 5,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ are going to the park.' (Use the correct subject pronoun for a group that includes yourself)",
-                correctAnswer: "We",
-                explanation: "'We' is the correct subject pronoun when referring to a group that includes yourself (first person plural)."
+                type: 'multipleChoice',
+                question: "Which phrase can be used to introduce a personal opinion based on your own observations?",
+                options: [
+                    "According to statistics...",
+                    "From what I've seen...",
+                    "Experts say that...",
+                    "The evidence suggests that..."
+                ],
+                correctAnswer: 1,
+                explanation: "'From what I've seen...' introduces an opinion based on personal observations rather than external sources."
             },
             {
                 id: 6,
-                type: 'trueFalse',
-                question: "The subject pronoun 'You' can be used for both singular and plural.",
-                correctAnswer: true,
-                explanation: "'You' can refer to one person or multiple people in English, unlike in some other languages."
+                type: 'transformation',
+                question: "Transform this statement into an opinion using 'I believe': 'Remote work improves productivity.'",
+                correctAnswer: "I believe that remote work improves productivity.",
+                explanation: "By adding 'I believe that' at the beginning, you transform a statement into a personal opinion."
             },
             {
                 id: 7,
                 type: 'multipleChoice',
-                question: "Which sentence uses the subject pronoun correctly?",
+                question: "Which of these expressions shows partial agreement?",
                 options: [
-                    "Him is my brother.",
-                    "Her is my sister.",
-                    "They are my parents.",
-                    "Me am a student."
+                    "I completely disagree.",
+                    "You're absolutely right.",
+                    "I agree to some extent, but...",
+                    "I couldn't agree more."
                 ],
                 correctAnswer: 2,
-                explanation: "'They are my parents' uses the subject pronoun 'They' correctly. 'Him', 'Her', and 'Me' are object pronouns, not subject pronouns."
+                explanation: "'I agree to some extent, but...' indicates that you agree with part of what was said, but not everything."
             },
             {
                 id: 8,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is a beautiful day today.' (Use the correct subject pronoun)",
-                correctAnswer: "It",
-                explanation: "We use 'It' when talking about weather, time, dates, or general situations."
+                question: "Complete the sentence: 'To my _____, the benefits of exercise are undeniable.'",
+                correctAnswer: "mind",
+                explanation: "'To my mind' is an expression used to introduce a personal opinion."
             },
             {
                 id: 9,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'John and Mary are at school.'",
-                correctAnswer: "They are at school.",
-                explanation: "When replacing multiple people's names, we use the subject pronoun 'They'."
+                type: 'multipleChoice',
+                question: "Which phrase would you use to support your opinion with research?",
+                options: [
+                    "I just know it's true.",
+                    "Trust me on this.",
+                    "According to recent studies...",
+                    "Everyone says so."
+                ],
+                correctAnswer: 2,
+                explanation: "'According to recent studies...' introduces evidence from research to support your opinion."
             },
             {
                 id: 10,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about yourself and a friend?",
-                options: [
-                    "I",
-                    "You",
-                    "We",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "When referring to yourself and others, use 'We' (first person plural)."
+                type: 'trueFalse',
+                question: "The phrase 'It seems to me that...' expresses absolute certainty about an opinion.",
+                correctAnswer: false,
+                explanation: "'It seems to me that...' expresses a tentative opinion rather than absolute certainty."
             },
             {
                 id: 11,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is reading a book.' (Use the correct subject pronoun for a male person)",
-                correctAnswer: "He",
-                explanation: "'He' is the correct subject pronoun for a male person (third person singular)."
+                question: "Complete the sentence: 'I _____ that the movie was overrated.'",
+                correctAnswer: "feel",
+                explanation: "'I feel that...' is a common way to express a personal opinion, especially about something subjective."
             },
             {
                 id: 12,
-                type: 'trueFalse',
-                question: "In English, we use different subject pronouns based on gender in the third person singular.",
-                correctAnswer: true,
-                explanation: "In English, we use 'He' for males, 'She' for females, and 'It' for objects and some animals."
+                type: 'multipleChoice',
+                question: "Which expression is best for introducing an example to support your opinion?",
+                options: [
+                    "In conclusion...",
+                    "For instance...",
+                    "As a result...",
+                    "On the contrary..."
+                ],
+                correctAnswer: 1,
+                explanation: "'For instance...' is used to introduce a specific example that supports your opinion."
             },
             {
                 id: 13,
-                type: 'multipleChoice',
-                question: "Which sentence is grammatically correct?",
-                options: [
-                    "Us are friends.",
-                    "We are friends.",
-                    "Our are friends.",
-                    "Ours are friends."
-                ],
-                correctAnswer: 1,
-                explanation: "'We are friends' is correct. 'We' is the subject pronoun, while 'Us', 'Our', and 'Ours' are different forms of pronouns that cannot be used as the subject."
+                type: 'transformation',
+                question: "Transform this statement into an opinion using 'In my opinion': 'The government should invest more in renewable energy.'",
+                correctAnswer: "In my opinion, the government should invest more in renewable energy.",
+                explanation: "Adding 'In my opinion,' at the beginning clearly indicates that this is your personal view."
             },
             {
                 id: 14,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'The dog is sleeping.'",
-                correctAnswer: "It is sleeping.",
-                explanation: "For animals, unless they are pets with a known gender, we typically use the subject pronoun 'It'."
+                type: 'multipleChoice',
+                question: "Which phrase shows strong agreement?",
+                options: [
+                    "I see your point, however...",
+                    "That's an interesting view.",
+                    "I'm not sure about that.",
+                    "I couldn't agree more."
+                ],
+                correctAnswer: 3,
+                explanation: "'I couldn't agree more' expresses strong, complete agreement with what someone has said."
             },
             {
                 id: 15,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ speaks English fluently.' (Use the correct subject pronoun for a female)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person."
+                question: "Complete the sentence: 'I'd _____ that the solution lies in better communication.'",
+                correctAnswer: "say",
+                explanation: "'I'd say that...' (I would say that) is a common phrase for expressing an opinion."
             },
             {
                 id: 16,
                 type: 'multipleChoice',
-                question: "Which of these is NOT a subject pronoun in English?",
+                question: "Which phrase is most appropriate for expressing an opinion in a formal setting?",
                 options: [
-                    "I",
-                    "We",
-                    "Him",
-                    "They"
+                    "I reckon that...",
+                    "In my view...",
+                    "I guess that...",
+                    "I feel like..."
                 ],
-                correctAnswer: 2,
-                explanation: "'Him' is an object pronoun, not a subject pronoun. The subject pronoun would be 'He'."
+                correctAnswer: 1,
+                explanation: "'In my view...' is more formal than the other options and suitable for professional or academic contexts."
             },
             {
                 id: 17,
                 type: 'trueFalse',
-                question: "'It' can be used as a subject pronoun for a baby when the gender is unknown.",
-                correctAnswer: true,
-                explanation: "In English, 'It' can be used for a baby when the gender is unknown, though many people prefer to use 'They' instead."
+                question: "The phrase 'I respect your opinion, but...' is usually followed by a statement that agrees with the other person.",
+                correctAnswer: false,
+                explanation: "The phrase 'I respect your opinion, but...' is typically followed by a statement that disagrees with or contradicts the other person's view."
             },
             {
                 id: 18,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'Sarah and I went to the movies.'",
-                correctAnswer: "We went to the movies.",
-                explanation: "When replacing a name and 'I', use the subject pronoun 'We'."
+                type: 'multipleChoice',
+                question: "Which of these is a good way to begin expressing disagreement politely?",
+                options: [
+                    "You're wrong because...",
+                    "I'm afraid I don't share your view on this.",
+                    "That's a ridiculous idea.",
+                    "You should think more carefully about this."
+                ],
+                correctAnswer: 1,
+                explanation: "'I'm afraid I don't share your view on this' politely indicates disagreement without being confrontational."
             },
             {
                 id: 19,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use to replace 'The book' in the sentence 'The book is on the table'?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "'It' is the correct subject pronoun for objects like books."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'From my _____ of view, technology has improved our quality of life.'",
+                correctAnswer: "point",
+                explanation: "'From my point of view' is a common expression used to introduce a personal perspective."
             },
             {
                 id: 20,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ likes to play soccer.' (Use the correct subject pronoun for multiple people)",
-                correctAnswer: "They",
-                explanation: "'They' is the correct subject pronoun for multiple people."
+                type: 'multipleChoice',
+                question: "Which expression introduces an opinion based on statistics?",
+                options: [
+                    "In my experience...",
+                    "I believe that...",
+                    "The statistics show that...",
+                    "It seems to me that..."
+                ],
+                correctAnswer: 2,
+                explanation: "'The statistics show that...' introduces factual data rather than personal opinion, which can strengthen your argument."
             },
             {
                 id: 21,
-                type: 'multipleChoice',
-                question: "Which sentence uses subject pronouns correctly?",
-                options: [
-                    "Him and her are students.",
-                    "He and she are students.",
-                    "His and her are students.",
-                    "Him and she are students."
-                ],
-                correctAnswer: 1,
-                explanation: "'He and she are students' correctly uses the subject pronouns 'He' and 'She'."
+                type: 'transformation',
+                question: "Transform this disagreement to make it more polite: 'You're wrong about climate change.'",
+                correctAnswer: "I see your point, but I have a different view on climate change.",
+                explanation: "The transformation acknowledges the other person's view before expressing disagreement, making it more polite."
             },
             {
                 id: 22,
-                type: 'trueFalse',
-                question: "The subject pronoun 'We' includes the speaker.",
-                correctAnswer: true,
-                explanation: "'We' always includes the speaker plus one or more other people."
+                type: 'multipleChoice',
+                question: "Which phrase indicates that you are partly agreeing with someone?",
+                options: [
+                    "That's true, although...",
+                    "You're absolutely right.",
+                    "I completely disagree.",
+                    "I couldn't agree more."
+                ],
+                correctAnswer: 0,
+                explanation: "'That's true, although...' acknowledges the validity of part of what was said while suggesting there are other aspects to consider."
             },
             {
                 id: 23,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'Tom is my brother.'",
-                correctAnswer: "He is my brother.",
-                explanation: "For a male person like 'Tom', we use the subject pronoun 'He'."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'Based on my own _____, online learning can be very effective.'",
+                correctAnswer: "experience",
+                explanation: "'Based on my own experience' introduces an opinion that comes from personal experience rather than external sources."
             },
             {
                 id: 24,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about your computer?",
+                question: "Which of these expressions is NOT appropriate for a formal academic essay?",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "Research indicates that...",
+                    "I feel like...",
+                    "It could be argued that...",
+                    "Evidence suggests that..."
                 ],
-                correctAnswer: 2,
-                explanation: "In English, we typically use 'It' for objects like computers, though some people may personify their devices."
+                correctAnswer: 1,
+                explanation: "'I feel like...' is too casual and subjective for formal academic writing. The other options are more appropriate for academic contexts."
             },
             {
                 id: 25,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am learning English.' (Use the correct subject pronoun for yourself)",
-                correctAnswer: "I",
-                explanation: "When referring to yourself, use the subject pronoun 'I' (first person singular)."
+                type: 'trueFalse',
+                question: "When expressing an opinion, it's always better to present it as an absolute fact rather than a personal view.",
+                correctAnswer: false,
+                explanation: "Presenting opinions as personal views rather than absolute facts is generally more respectful and encourages open discussion. It acknowledges that others may have different valid perspectives."
             }
         ];
 
@@ -606,8 +647,22 @@
                     
                     isCorrect = matchCount >= Math.ceil(essentialWords.length * 0.7);
                 } else {
-                    // For fill in the blank, need exact match
-                    isCorrect = userAnswer === correctAnswer;
+                    // For fill in the blank, allow for some common variations
+                    if (correctAnswer === "far") {
+                        isCorrect = userAnswer === "far";
+                    } else if (correctAnswer === "mind") {
+                        isCorrect = userAnswer === "mind";
+                    } else if (correctAnswer === "feel") {
+                        isCorrect = userAnswer === "feel" || userAnswer === "think" || userAnswer === "believe";
+                    } else if (correctAnswer === "say") {
+                        isCorrect = userAnswer === "say";
+                    } else if (correctAnswer === "point") {
+                        isCorrect = userAnswer === "point";
+                    } else if (correctAnswer === "experience") {
+                        isCorrect = userAnswer === "experience" || userAnswer === "observations";
+                    } else {
+                        isCorrect = userAnswer === correctAnswer;
+                    }
                 }
             }
             

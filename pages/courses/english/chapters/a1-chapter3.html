@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Grammar - A1 Level | Chapter 1</title>
+    <title>Articles (a/an/the) - A1 Level | Chapter 3</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
         .chapter-container {
@@ -198,15 +198,20 @@
 </head>
 <body data-course-id="english-a1">
     <header>
-        <h1>English A1 - Chapter 1: Basic Grammar</h1>
+        <h1>English A1 - Chapter 3: Articles (a/an/the)</h1>
     </header>
 
     <main class="chapter-container">
         <div class="level-badge">A1 - Beginner</div>
 
         <div class="content-section">
-            <h2>Basic Grammar and Subject Pronouns</h2>
-            <p>In this chapter, we'll learn about the fundamentals of English grammar, starting with subject pronouns and basic sentence structures. These are essential building blocks for forming simple sentences in English.</p>
+            <h2>Articles (a/an/the)</h2>
+            <p>Articles are small but important words that appear before nouns. In English, there are two types of articles:</p>
+            <ul>
+                <li><strong>Indefinite Articles</strong>: "a" and "an" (for non-specific nouns)</li>
+                <li><strong>Definite Article</strong>: "the" (for specific nouns)</li>
+            </ul>
+            <p>Learning when and how to use these articles correctly is essential for clear communication in English.</p>
         </div>
 
         <div class="progress-container">
@@ -239,232 +244,265 @@
         const questions = [
             {
                 id: 1,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am a student.' (Use the correct subject pronoun)",
-                correctAnswer: "I",
-                explanation: "We use 'I' as the subject pronoun when referring to ourselves (first person singular)."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'I have _____ apple.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 1,
+                explanation: "We use 'an' before words that begin with a vowel sound. 'Apple' begins with the vowel sound 'a'."
             },
             {
                 id: 2,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is my teacher.' (Use the correct subject pronoun for a female teacher)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person (third person singular)."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'She has _____ dog.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 0,
+                explanation: "We use 'a' before words that begin with a consonant sound. 'Dog' begins with the consonant sound 'd'."
             },
             {
                 id: 3,
                 type: 'multipleChoice',
-                question: "Which is the correct subject pronoun to complete this sentence: '_____ are my friends.'",
+                question: "Choose the correct article: 'He is _____ university student.'",
                 options: [
-                    "He",
-                    "She",
-                    "They",
-                    "It"
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
                 ],
-                correctAnswer: 2,
-                explanation: "'They' is the correct subject pronoun for multiple people (third person plural)."
+                correctAnswer: 0,
+                explanation: "We use 'a' before 'university' because although it starts with a vowel letter, it begins with a consonant sound /j/."
             },
             {
                 id: 4,
                 type: 'multipleChoice',
-                question: "Which subject pronoun should we use for an animal when we don't know if it's male or female?",
+                question: "Choose the correct article: 'This is _____ hour of my life.'",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
                 ],
-                correctAnswer: 2,
-                explanation: "We use 'It' for animals (unless we know the gender or are referring to a pet) and objects."
+                correctAnswer: 1,
+                explanation: "We use 'an' before 'hour' because the 'h' is silent, so it begins with a vowel sound."
             },
             {
                 id: 5,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ are going to the park.' (Use the correct subject pronoun for a group that includes yourself)",
-                correctAnswer: "We",
-                explanation: "'We' is the correct subject pronoun when referring to a group that includes yourself (first person plural)."
+                question: "Complete the sentence: 'I saw _____ cat. _____ cat was black.' (Use appropriate articles)",
+                correctAnswer: "a, The",
+                explanation: "We use 'a' when we mention something for the first time (non-specific), and 'the' when we refer to it again (now specific)."
             },
             {
                 id: 6,
-                type: 'trueFalse',
-                question: "The subject pronoun 'You' can be used for both singular and plural.",
-                correctAnswer: true,
-                explanation: "'You' can refer to one person or multiple people in English, unlike in some other languages."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'Can you pass me _____ salt, please?'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 2,
+                explanation: "We use 'the' with 'salt' in this context because it's specific - the salt that is on the table."
             },
             {
                 id: 7,
-                type: 'multipleChoice',
-                question: "Which sentence uses the subject pronoun correctly?",
-                options: [
-                    "Him is my brother.",
-                    "Her is my sister.",
-                    "They are my parents.",
-                    "Me am a student."
-                ],
-                correctAnswer: 2,
-                explanation: "'They are my parents' uses the subject pronoun 'They' correctly. 'Him', 'Her', and 'Me' are object pronouns, not subject pronouns."
+                type: 'trueFalse',
+                question: "The sentence 'I want an banana.' is grammatically correct.",
+                correctAnswer: false,
+                explanation: "This is incorrect. 'Banana' begins with a consonant sound /b/, so we should use 'a' instead of 'an'.",
+                userAnswer: null
             },
             {
                 id: 8,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is a beautiful day today.' (Use the correct subject pronoun)",
-                correctAnswer: "It",
-                explanation: "We use 'It' when talking about weather, time, dates, or general situations."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'She is _____ honest person.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 1,
+                explanation: "We use 'an' before 'honest' because the 'h' is silent, so it begins with a vowel sound."
             },
             {
                 id: 9,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'John and Mary are at school.'",
-                correctAnswer: "They are at school.",
-                explanation: "When replacing multiple people's names, we use the subject pronoun 'They'."
+                type: 'fillInBlank',
+                question: "Complete the sentence: '_____ sun rises in the east.' (Use appropriate article)",
+                correctAnswer: "The",
+                explanation: "We use 'the' with 'sun' because it's a unique object - there is only one sun in our solar system."
             },
             {
                 id: 10,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about yourself and a friend?",
+                question: "Choose the correct article: 'I need to buy _____ new shoes.'",
                 options: [
-                    "I",
-                    "You",
-                    "We",
-                    "They"
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
                 ],
-                correctAnswer: 2,
-                explanation: "When referring to yourself and others, use 'We' (first person plural)."
+                correctAnswer: 3,
+                explanation: "We don't use an article before plural nouns like 'shoes' when talking about them in a general sense."
             },
             {
                 id: 11,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is reading a book.' (Use the correct subject pronoun for a male person)",
-                correctAnswer: "He",
-                explanation: "'He' is the correct subject pronoun for a male person (third person singular)."
+                type: 'trueFalse',
+                question: "The sentence 'She's an university student.' is grammatically correct.",
+                correctAnswer: false,
+                explanation: "This is incorrect. 'University' begins with a consonant sound /j/, so we should use 'a' instead of 'an'.",
+                userAnswer: null
             },
             {
                 id: 12,
-                type: 'trueFalse',
-                question: "In English, we use different subject pronouns based on gender in the third person singular.",
-                correctAnswer: true,
-                explanation: "In English, we use 'He' for males, 'She' for females, and 'It' for objects and some animals."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'I have _____ headache.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 0,
+                explanation: "We use 'a' before 'headache' because it begins with a consonant sound /h/."
             },
             {
                 id: 13,
-                type: 'multipleChoice',
-                question: "Which sentence is grammatically correct?",
-                options: [
-                    "Us are friends.",
-                    "We are friends.",
-                    "Our are friends.",
-                    "Ours are friends."
-                ],
-                correctAnswer: 1,
-                explanation: "'We are friends' is correct. 'We' is the subject pronoun, while 'Us', 'Our', and 'Ours' are different forms of pronouns that cannot be used as the subject."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'She plays _____ piano very well.' (Use appropriate article)",
+                correctAnswer: "the",
+                explanation: "We typically use 'the' with musical instruments: 'the piano', 'the guitar', etc."
             },
             {
                 id: 14,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'The dog is sleeping.'",
-                correctAnswer: "It is sleeping.",
-                explanation: "For animals, unless they are pets with a known gender, we typically use the subject pronoun 'It'."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'My father is _____ engineer.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 1,
+                explanation: "We use 'an' before 'engineer' because it begins with a vowel sound /e/."
             },
             {
                 id: 15,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ speaks English fluently.' (Use the correct subject pronoun for a female)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person."
+                type: 'trueFalse',
+                question: "The sentence 'I saw the movie last night.' is grammatically correct.",
+                correctAnswer: true,
+                explanation: "This is correct. We use 'the' because we're referring to a specific movie that both the speaker and listener know about."
             },
             {
                 id: 16,
                 type: 'multipleChoice',
-                question: "Which of these is NOT a subject pronoun in English?",
+                question: "Choose the correct article: 'She gave me _____ useful advice.'",
                 options: [
-                    "I",
-                    "We",
-                    "Him",
-                    "They"
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
                 ],
-                correctAnswer: 2,
-                explanation: "'Him' is an object pronoun, not a subject pronoun. The subject pronoun would be 'He'."
+                correctAnswer: 0,
+                explanation: "We use 'a' before 'useful' because it begins with a consonant sound /j/, even though 'u' is a vowel letter."
             },
             {
                 id: 17,
-                type: 'trueFalse',
-                question: "'It' can be used as a subject pronoun for a baby when the gender is unknown.",
-                correctAnswer: true,
-                explanation: "In English, 'It' can be used for a baby when the gender is unknown, though many people prefer to use 'They' instead."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'I live in _____ small house near _____ beach.' (Use appropriate articles)",
+                correctAnswer: "a, the",
+                explanation: "We use 'a' for 'small house' (non-specific) and 'the' for 'beach' (a specific place known to both speaker and listener)."
             },
             {
                 id: 18,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'Sarah and I went to the movies.'",
-                correctAnswer: "We went to the movies.",
-                explanation: "When replacing a name and 'I', use the subject pronoun 'We'."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'Do you have _____ pen I can borrow?'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 0,
+                explanation: "We use 'a' because the speaker is asking for any pen, not a specific one. 'Pen' begins with a consonant sound."
             },
             {
                 id: 19,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use to replace 'The book' in the sentence 'The book is on the table'?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "'It' is the correct subject pronoun for objects like books."
+                type: 'trueFalse',
+                question: "The sentence 'She's the best student in class.' is grammatically correct.",
+                correctAnswer: true,
+                explanation: "This is correct. We use 'the' with superlatives like 'best', 'most', etc."
             },
             {
                 id: 20,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ likes to play soccer.' (Use the correct subject pronoun for multiple people)",
-                correctAnswer: "They",
-                explanation: "'They' is the correct subject pronoun for multiple people."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'We had _____ dinner at a restaurant.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 3,
+                explanation: "We typically don't use an article with meals: 'breakfast', 'lunch', 'dinner'."
             },
             {
                 id: 21,
-                type: 'multipleChoice',
-                question: "Which sentence uses subject pronouns correctly?",
-                options: [
-                    "Him and her are students.",
-                    "He and she are students.",
-                    "His and her are students.",
-                    "Him and she are students."
-                ],
-                correctAnswer: 1,
-                explanation: "'He and she are students' correctly uses the subject pronouns 'He' and 'She'."
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'He's _____ one-eyed man.' (Use appropriate article)",
+                correctAnswer: "a",
+                explanation: "We use 'a' before 'one-eyed' because it begins with the consonant sound /w/, even though 'o' is a vowel letter."
             },
             {
                 id: 22,
-                type: 'trueFalse',
-                question: "The subject pronoun 'We' includes the speaker.",
-                correctAnswer: true,
-                explanation: "'We' always includes the speaker plus one or more other people."
+                type: 'multipleChoice',
+                question: "Choose the correct article: 'She's studying _____ history.'",
+                options: [
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
+                ],
+                correctAnswer: 3,
+                explanation: "We typically don't use an article with academic subjects: 'history', 'mathematics', 'science'."
             },
             {
                 id: 23,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'Tom is my brother.'",
-                correctAnswer: "He is my brother.",
-                explanation: "For a male person like 'Tom', we use the subject pronoun 'He'."
+                type: 'trueFalse',
+                question: "The sentence 'Can you pass me a sugar?' is grammatically correct.",
+                correctAnswer: false,
+                explanation: "This is incorrect. 'Sugar' is an uncountable noun, so we either use 'the' or no article. We'd say 'Can you pass me the sugar?' or 'Can you pass me some sugar?'",
+                userAnswer: null
             },
             {
                 id: 24,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about your computer?",
+                question: "Choose the correct article: 'We're going to _____ zoo this weekend.'",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "a",
+                    "an",
+                    "the",
+                    "no article needed"
                 ],
                 correctAnswer: 2,
-                explanation: "In English, we typically use 'It' for objects like computers, though some people may personify their devices."
+                explanation: "We use 'the' with 'zoo' because it's a specific place that both the speaker and listener know about."
             },
             {
                 id: 25,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am learning English.' (Use the correct subject pronoun for yourself)",
-                correctAnswer: "I",
-                explanation: "When referring to yourself, use the subject pronoun 'I' (first person singular)."
+                question: "Complete the sentence: 'I have _____ umbrella in my bag.' (Use appropriate article)",
+                correctAnswer: "an",
+                explanation: "We use 'an' before 'umbrella' because it begins with a vowel sound."
             }
         ];
 
@@ -595,20 +633,10 @@
                 userAnswer = inputElement.value.trim().toLowerCase();
                 const correctAnswer = question.correctAnswer.toLowerCase();
                 
-                // For transformation questions, we'll be more lenient
-                if (question.type === 'transformation') {
-                    // Check if the key parts of the answer are included
-                    const keyParts = correctAnswer.split(' ');
-                    const essentialWords = keyParts.filter(word => word.length > 3);
-                    const matchCount = essentialWords.filter(word => 
-                        userAnswer.includes(word.toLowerCase())
-                    ).length;
-                    
-                    isCorrect = matchCount >= Math.ceil(essentialWords.length * 0.7);
-                } else {
-                    // For fill in the blank, need exact match
-                    isCorrect = userAnswer === correctAnswer;
-                }
+                // For fill in the blank, check for exact match or close match
+                isCorrect = userAnswer === correctAnswer || 
+                            userAnswer.replace(/[.,;:!?]/g, '').replace(/\s+/g, ' ') === 
+                            correctAnswer.replace(/[.,;:!?]/g, '').replace(/\s+/g, ' ');
             }
             
             // Update UI based on result

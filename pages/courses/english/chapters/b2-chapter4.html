@@ -1,10 +1,10 @@
+<!-- English B2 Chapter 4 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Grammar - A1 Level | Chapter 1</title>
-    <link rel="stylesheet" href="../../css/styles.css">
+    <title>English B2 - Chapter 4</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
     <style>
         .chapter-container {
             max-width: 800px;
@@ -196,275 +196,271 @@
         }
     </style>
 </head>
-<body data-course-id="english-a1">
+<body data-course-id="english-b2">
     <header>
-        <h1>English A1 - Chapter 1: Basic Grammar</h1>
+        <h1>English B2 - Chapter 4: Advanced Conditional Structures</h1>
+        <div class="header-controls"></div>
     </header>
-
-    <main class="chapter-container">
-        <div class="level-badge">A1 - Beginner</div>
-
-        <div class="content-section">
-            <h2>Basic Grammar and Subject Pronouns</h2>
-            <p>In this chapter, we'll learn about the fundamentals of English grammar, starting with subject pronouns and basic sentence structures. These are essential building blocks for forming simple sentences in English.</p>
-        </div>
-
-        <div class="progress-container">
-            <span>Progress:</span>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+    <main>
+        <div class="chapter-container">
+            <div class="level-badge">B2 - Upper Intermediate</div>
+            
+            <div class="streak-counter">
+                <span class="streak-icon">🔥</span>
+                <span>Streak: <span id="currentStreak">0</span></span>
             </div>
-            <div class="progress-text">
-                <span id="currentQuestion">1</span>/<span id="totalQuestions">25</span>
+            
+            <div class="progress-container">
+                <span>Progress:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-text"><span id="currentQuestion">1</span>/<span id="totalQuestions">25</span></span>
             </div>
-        </div>
-
-        <div class="streak-counter">
-            <span class="streak-icon">🔥</span>
-            Streak: <span id="currentStreak">0</span>
-        </div>
-
-        <div id="questionsContainer">
-            <!-- Questions will be dynamically inserted here -->
-        </div>
-
-        <div class="navigation-buttons">
-            <button class="nav-button" id="prevButton" disabled>Previous</button>
-            <button class="nav-button" id="nextButton" disabled>Next</button>
+            
+            <!-- Question containers will be added here dynamically -->
+            <div id="questionsContainer"></div>
+            
+            <div class="navigation-buttons">
+                <button class="nav-button" id="prevButton" disabled>Previous</button>
+                <button class="nav-button" id="nextButton" disabled>Next</button>
+            </div>
         </div>
     </main>
-
+    
+    <script src="/assets/js/auth-protection.js"></script>
+    <script src="/assets/js/tracking.js"></script>
     <script>
         // Question data
         const questions = [
             {
                 id: 1,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am a student.' (Use the correct subject pronoun)",
-                correctAnswer: "I",
-                explanation: "We use 'I' as the subject pronoun when referring to ourselves (first person singular)."
+                question: "Complete the mixed conditional: If I _____ (study) harder in school, I _____ (have) a better job now.",
+                correctAnswer: "had studied, would have",
+                explanation: "This is a mixed conditional with a past condition affecting a present result."
             },
             {
                 id: 2,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is my teacher.' (Use the correct subject pronoun for a female teacher)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person (third person singular)."
+                type: 'multipleChoice',
+                question: "Which sentence is a correct mixed conditional?",
+                options: [
+                    "If I will study tonight, I will pass the exam tomorrow.",
+                    "If I had more time now, I would have visited my grandmother yesterday.",
+                    "If I studied every day, I would pass the exam.",
+                    "If it rains tomorrow, we will cancel the picnic."
+                ],
+                correctAnswer: 1,
+                explanation: "The second option is a mixed conditional combining a present condition with a past result."
             },
             {
                 id: 3,
-                type: 'multipleChoice',
-                question: "Which is the correct subject pronoun to complete this sentence: '_____ are my friends.'",
-                options: [
-                    "He",
-                    "She",
-                    "They",
-                    "It"
-                ],
-                correctAnswer: 2,
-                explanation: "'They' is the correct subject pronoun for multiple people (third person plural)."
+                type: 'fillInBlank',
+                question: "Complete with the correct form: If he _____ (not be) so careless, he _____ (not lose) his job last month.",
+                correctAnswer: "weren't, wouldn't have lost",
+                explanation: "This mixed conditional shows how a present characteristic affected a past event."
             },
             {
                 id: 4,
                 type: 'multipleChoice',
-                question: "Which subject pronoun should we use for an animal when we don't know if it's male or female?",
+                question: "Which sentence expresses regret about the past affecting the present?",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "If I had saved more money, I would travel around the world.",
+                    "If I didn't have to work, I would have gone to the party last night.",
+                    "If I were rich, I would buy a yacht.",
+                    "If she speaks English well, she will get the job."
                 ],
-                correctAnswer: 2,
-                explanation: "We use 'It' for animals (unless we know the gender or are referring to a pet) and objects."
+                correctAnswer: 0,
+                explanation: "The first option shows how a past action (not saving money) affects a present possibility (not being able to travel)."
             },
             {
                 id: 5,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ are going to the park.' (Use the correct subject pronoun for a group that includes yourself)",
-                correctAnswer: "We",
-                explanation: "'We' is the correct subject pronoun when referring to a group that includes yourself (first person plural)."
+                type: 'trueFalse',
+                question: "In the sentence 'If I had known about the meeting, I would be there now,' the if-clause refers to the past and the main clause refers to the present.",
+                correctAnswer: true,
+                explanation: "This is correct. The if-clause uses past perfect (past) and the main clause uses would + infinitive (present)."
             },
             {
                 id: 6,
-                type: 'trueFalse',
-                question: "The subject pronoun 'You' can be used for both singular and plural.",
-                correctAnswer: true,
-                explanation: "'You' can refer to one person or multiple people in English, unlike in some other languages."
+                type: 'fillInBlank',
+                question: "Complete the sentence: If I _____ (speak) Chinese, I _____ (accept) that job in Beijing last year.",
+                correctAnswer: "spoke, would have accepted",
+                explanation: "This mixed conditional shows how a present ability would have affected a past decision."
             },
             {
                 id: 7,
                 type: 'multipleChoice',
-                question: "Which sentence uses the subject pronoun correctly?",
+                question: "Which sentence is NOT a mixed conditional?",
                 options: [
-                    "Him is my brother.",
-                    "Her is my sister.",
-                    "They are my parents.",
-                    "Me am a student."
+                    "If I had studied medicine, I would be a doctor now.",
+                    "If she were more confident, she would have applied for the promotion.",
+                    "If we had left earlier, we would be there by now.",
+                    "If I worked harder, I would get better results."
                 ],
-                correctAnswer: 2,
-                explanation: "'They are my parents' uses the subject pronoun 'They' correctly. 'Him', 'Her', and 'Me' are object pronouns, not subject pronouns."
+                correctAnswer: 3,
+                explanation: "The fourth option is a second conditional (present/future), not a mixed conditional."
             },
             {
                 id: 8,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is a beautiful day today.' (Use the correct subject pronoun)",
-                correctAnswer: "It",
-                explanation: "We use 'It' when talking about weather, time, dates, or general situations."
+                type: 'transformation',
+                question: "Transform into a mixed conditional: 'I didn't buy travel insurance. Now I have to pay for all the damages myself.'",
+                correctAnswer: "If I had bought travel insurance, I wouldn't have to pay for all the damages myself.",
+                explanation: "This transformation creates a mixed conditional where a past action affects a present situation."
             },
             {
                 id: 9,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'John and Mary are at school.'",
-                correctAnswer: "They are at school.",
-                explanation: "When replacing multiple people's names, we use the subject pronoun 'They'."
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: If she _____ (not be) so stubborn, she _____ (listen) to our advice yesterday.",
+                correctAnswer: "weren't, would have listened",
+                explanation: "This mixed conditional shows how a present characteristic affected a past action."
             },
             {
                 id: 10,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about yourself and a friend?",
+                question: "Which type of conditional is used in: 'If I hadn't missed the bus, I wouldn't be late for the meeting now'?",
                 options: [
-                    "I",
-                    "You",
-                    "We",
-                    "They"
+                    "First conditional",
+                    "Second conditional",
+                    "Third conditional",
+                    "Mixed conditional"
                 ],
-                correctAnswer: 2,
-                explanation: "When referring to yourself and others, use 'We' (first person plural)."
+                correctAnswer: 3,
+                explanation: "This is a mixed conditional because it combines a past condition with a present result."
             },
             {
                 id: 11,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ is reading a book.' (Use the correct subject pronoun for a male person)",
-                correctAnswer: "He",
-                explanation: "'He' is the correct subject pronoun for a male person (third person singular)."
+                type: 'trueFalse',
+                question: "The sentence 'If I weren't afraid of heights, I would have gone skydiving last summer' is a mixed conditional.",
+                correctAnswer: true,
+                explanation: "This is correct. It combines a present condition (being afraid of heights) with a past result (not going skydiving)."
             },
             {
                 id: 12,
-                type: 'trueFalse',
-                question: "In English, we use different subject pronouns based on gender in the third person singular.",
-                correctAnswer: true,
-                explanation: "In English, we use 'He' for males, 'She' for females, and 'It' for objects and some animals."
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: If I _____ (know) how to fix computers, I _____ (help) you yesterday.",
+                correctAnswer: "knew, would have helped",
+                explanation: "This mixed conditional shows how a present skill would have affected a past action."
             },
             {
                 id: 13,
                 type: 'multipleChoice',
-                question: "Which sentence is grammatically correct?",
+                question: "In which situation would you use a mixed conditional?",
                 options: [
-                    "Us are friends.",
-                    "We are friends.",
-                    "Our are friends.",
-                    "Ours are friends."
+                    "Talking about a possible future event and its result",
+                    "Describing how a past event affects the present",
+                    "Talking about a general truth",
+                    "Giving advice about the future"
                 ],
                 correctAnswer: 1,
-                explanation: "'We are friends' is correct. 'We' is the subject pronoun, while 'Us', 'Our', and 'Ours' are different forms of pronouns that cannot be used as the subject."
+                explanation: "Mixed conditionals are often used to describe how past events affect present situations."
             },
             {
                 id: 14,
                 type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'The dog is sleeping.'",
-                correctAnswer: "It is sleeping.",
-                explanation: "For animals, unless they are pets with a known gender, we typically use the subject pronoun 'It'."
+                question: "Transform into a mixed conditional: 'I don't speak Spanish. I couldn't understand the presentation yesterday.'",
+                correctAnswer: "If I spoke Spanish, I would have understood the presentation yesterday.",
+                explanation: "This transformation creates a mixed conditional where a present ability would have affected a past comprehension."
             },
             {
                 id: 15,
                 type: 'fillInBlank',
-                question: "Complete the sentence: '_____ speaks English fluently.' (Use the correct subject pronoun for a female)",
-                correctAnswer: "She",
-                explanation: "'She' is the correct subject pronoun for a female person."
+                question: "Complete the mixed conditional: If you _____ (take) my advice last week, you _____ (not have) this problem now.",
+                correctAnswer: "had taken, wouldn't have",
+                explanation: "This mixed conditional shows how a past decision affects a present situation."
             },
             {
                 id: 16,
                 type: 'multipleChoice',
-                question: "Which of these is NOT a subject pronoun in English?",
+                question: "What's the correct mixed conditional for expressing: 'I regret not learning to swim when I was young, so I can't join the swimming competition now'?",
                 options: [
-                    "I",
-                    "We",
-                    "Him",
-                    "They"
+                    "If I learn to swim when I was young, I would join the swimming competition now.",
+                    "If I had learned to swim when I was young, I would join the swimming competition now.",
+                    "If I learned to swim when I was young, I would have joined the swimming competition now.",
+                    "If I would learn to swim when I was young, I could join the swimming competition now."
                 ],
-                correctAnswer: 2,
-                explanation: "'Him' is an object pronoun, not a subject pronoun. The subject pronoun would be 'He'."
+                correctAnswer: 1,
+                explanation: "The second option correctly expresses how a past action would affect a present ability."
             },
             {
                 id: 17,
                 type: 'trueFalse',
-                question: "'It' can be used as a subject pronoun for a baby when the gender is unknown.",
-                correctAnswer: true,
-                explanation: "In English, 'It' can be used for a baby when the gender is unknown, though many people prefer to use 'They' instead."
+                question: "In mixed conditionals, we always use past perfect in the 'if' clause.",
+                correctAnswer: false,
+                explanation: "Not always. In mixed conditionals with present condition → past result, we use simple past in the 'if' clause."
             },
             {
                 id: 18,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined words with a subject pronoun: 'Sarah and I went to the movies.'",
-                correctAnswer: "We went to the movies.",
-                explanation: "When replacing a name and 'I', use the subject pronoun 'We'."
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: If he _____ (be) more experienced, he _____ (not make) that mistake during the presentation yesterday.",
+                correctAnswer: "were, wouldn't have made",
+                explanation: "This mixed conditional shows how a present quality would have affected a past action."
             },
             {
                 id: 19,
                 type: 'multipleChoice',
-                question: "Which subject pronoun would you use to replace 'The book' in the sentence 'The book is on the table'?",
+                question: "Which of these sentences has the same meaning as: 'I didn't prepare well, so I'm nervous now'?",
                 options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
+                    "If I prepare well, I wouldn't be nervous now.",
+                    "If I had prepared well, I wouldn't be nervous now.",
+                    "If I would prepare well, I wouldn't be nervous now.",
+                    "If I will prepare well, I wouldn't be nervous now."
                 ],
-                correctAnswer: 2,
-                explanation: "'It' is the correct subject pronoun for objects like books."
+                correctAnswer: 1,
+                explanation: "The second option correctly uses a mixed conditional to express how a past action affects a present feeling."
             },
             {
                 id: 20,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ likes to play soccer.' (Use the correct subject pronoun for multiple people)",
-                correctAnswer: "They",
-                explanation: "'They' is the correct subject pronoun for multiple people."
+                type: 'transformation',
+                question: "Transform into a mixed conditional: 'She doesn't know about the surprise party. She didn't come to the celebration.'",
+                correctAnswer: "If she knew about the surprise party, she would have come to the celebration.",
+                explanation: "This transformation creates a mixed conditional where a present knowledge would have affected a past action."
             },
             {
                 id: 21,
-                type: 'multipleChoice',
-                question: "Which sentence uses subject pronouns correctly?",
-                options: [
-                    "Him and her are students.",
-                    "He and she are students.",
-                    "His and her are students.",
-                    "Him and she are students."
-                ],
-                correctAnswer: 1,
-                explanation: "'He and she are students' correctly uses the subject pronouns 'He' and 'She'."
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: If I _____ (not forget) my passport, I _____ (be) on the plane to Paris right now.",
+                correctAnswer: "hadn't forgotten, would be",
+                explanation: "This mixed conditional shows how a past action affects a present situation."
             },
             {
                 id: 22,
-                type: 'trueFalse',
-                question: "The subject pronoun 'We' includes the speaker.",
-                correctAnswer: true,
-                explanation: "'We' always includes the speaker plus one or more other people."
+                type: 'multipleChoice',
+                question: "Which sentence correctly combines: 'I don't have a car. I couldn't drive you to the airport yesterday.'?",
+                options: [
+                    "If I had a car, I could have driven you to the airport yesterday.",
+                    "If I would have a car, I could drive you to the airport yesterday.",
+                    "If I have a car, I would have driven you to the airport yesterday.",
+                    "If I had had a car, I would have driven you to the airport yesterday."
+                ],
+                correctAnswer: 0,
+                explanation: "The first option correctly uses a mixed conditional to express how a present possession would have affected a past ability."
             },
             {
                 id: 23,
-                type: 'transformation',
-                question: "Transform this sentence by replacing the underlined word with a subject pronoun: 'Tom is my brother.'",
-                correctAnswer: "He is my brother.",
-                explanation: "For a male person like 'Tom', we use the subject pronoun 'He'."
+                type: 'trueFalse',
+                question: "The sentence 'If I had invested in that company, I would be rich now' is a third conditional.",
+                correctAnswer: false,
+                explanation: "This is not a third conditional; it's a mixed conditional because it combines a past condition with a present result."
             },
             {
                 id: 24,
-                type: 'multipleChoice',
-                question: "Which subject pronoun would you use when talking about your computer?",
-                options: [
-                    "He",
-                    "She",
-                    "It",
-                    "They"
-                ],
-                correctAnswer: 2,
-                explanation: "In English, we typically use 'It' for objects like computers, though some people may personify their devices."
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: If we _____ (listen) to the weather forecast, we _____ (not get) caught in the storm yesterday.",
+                correctAnswer: "had listened, wouldn't have gotten",
+                explanation: "This is actually a third conditional, not a mixed conditional, showing how a past action would have affected another past action."
             },
             {
                 id: 25,
-                type: 'fillInBlank',
-                question: "Complete the sentence: '_____ am learning English.' (Use the correct subject pronoun for yourself)",
-                correctAnswer: "I",
-                explanation: "When referring to yourself, use the subject pronoun 'I' (first person singular)."
+                type: 'multipleChoice',
+                question: "Which mixed conditional correctly expresses: 'I'm not a doctor, so I couldn't help the injured person at the accident scene yesterday'?",
+                options: [
+                    "If I am a doctor, I could have helped the injured person at the accident scene yesterday.",
+                    "If I were a doctor, I could have helped the injured person at the accident scene yesterday.",
+                    "If I had been a doctor, I could help the injured person at the accident scene yesterday.",
+                    "If I would be a doctor, I would have helped the injured person at the accident scene yesterday."
+                ],
+                correctAnswer: 1,
+                explanation: "The second option correctly uses a mixed conditional to express how a present profession would have affected a past ability."
             }
         ];
 
@@ -595,19 +591,14 @@
                 userAnswer = inputElement.value.trim().toLowerCase();
                 const correctAnswer = question.correctAnswer.toLowerCase();
                 
-                // For transformation questions, we'll be more lenient
-                if (question.type === 'transformation') {
-                    // Check if the key parts of the answer are included
-                    const keyParts = correctAnswer.split(' ');
-                    const essentialWords = keyParts.filter(word => word.length > 3);
-                    const matchCount = essentialWords.filter(word => 
-                        userAnswer.includes(word.toLowerCase())
-                    ).length;
-                    
-                    isCorrect = matchCount >= Math.ceil(essentialWords.length * 0.7);
-                } else {
-                    // For fill in the blank, need exact match
-                    isCorrect = userAnswer === correctAnswer;
+                isCorrect = userAnswer === correctAnswer;
+                
+                // For fill-in-the-blank and transformation, also check for close matches
+                if (!isCorrect && (question.type === 'fillInBlank' || question.type === 'transformation')) {
+                    // Allow for some flexibility in punctuation and spacing
+                    const normalizedUserAnswer = userAnswer.replace(/[.,;:!?]/g, '').replace(/\s+/g, ' ');
+                    const normalizedCorrectAnswer = correctAnswer.replace(/[.,;:!?]/g, '').replace(/\s+/g, ' ');
+                    isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
                 }
             }
             

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English C1 - Chapter 1: Advanced Conditionals and Hypothetical Situations</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .chapter-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+
+        .question-container {
+            background: var(--card-bg);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: none;
+        }
+
+        .question-container.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-container.correct {
+            border-left: 4px solid #4caf50;
+        }
+
+        .question-container.incorrect {
+            border-left: 4px solid #f44336;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .answer-input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .answer-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .answer-option {
+            padding: 12px;
+            background: #f5f5f5;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .answer-option:hover {
+            background: #e9e9e9;
+        }
+
+        .answer-option.selected {
+            background: #cce5ff;
+            border-color: #007bff;
+        }
+
+        .check-answer-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.2s ease;
+        }
+
+        .check-answer-btn:hover {
+            background: #0069d9;
+        }
+
+        .answer-result {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .answer-result.correct {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+
+        .answer-result.incorrect {
+            display: block;
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #4caf50;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        .streak-icon {
+            font-size: 1.5rem;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .nav-button {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .nav-button:hover:not(:disabled) {
+            background: #e0e0e0;
+        }
+
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body data-course-id="english-c1">
+    <header>
+        <h1>English C1 - Chapter 1: Advanced Conditionals and Hypothetical Situations</h1>
+    </header>
+
+    <main class="chapter-container">
+        <div class="level-badge">C1 - Advanced</div>
+
+        <div class="content-section">
+            <h2>Advanced Conditionals and Hypothetical Situations</h2>
+            <p>At the C1 level, you can understand a wide range of demanding, longer texts, and recognize implicit meaning. You can express yourself fluently and spontaneously without much obvious searching for expressions, and can use language flexibly and effectively for social, academic and professional purposes.</p>
+            
+            <h3>Advanced Conditional Structures</h3>
+            <p>Beyond the basic conditional forms, C1 speakers can use mixed conditionals, inverted conditionals, and other advanced patterns:</p>
+            <ul>
+                <li><strong>Mixed conditionals</strong>: Combining different time references, e.g., "If I had studied harder at school (past), I would have a better job now (present)."</li>
+                <li><strong>Inverted conditionals</strong>: Without 'if', e.g., "Had I known about the problem, I would have fixed it." (= If I had known...)</li>
+                <li><strong>Conditionals with modal perfects</strong>: E.g., "If you had listened to me, the problem might have been avoided."</li>
+                <li><strong>Conditionals with alternative conjunctions</strong>: Using words like 'unless', 'provided that', 'as long as', 'on condition that'</li>
+            </ul>
+        </div>
+
+        <div class="progress-container">
+            <span>Progress:</span>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="currentQuestion">1</span>/<span id="totalQuestions">25</span>
+            </div>
+        </div>
+
+        <div class="streak-counter">
+            <span class="streak-icon">🔥</span>
+            Streak: <span id="currentStreak">0</span>
+        </div>
+
+        <div id="questionsContainer">
+            <!-- Questions will be dynamically inserted here -->
+        </div>
+
+        <div class="navigation-buttons">
+            <button class="nav-button" id="prevButton" disabled>Previous</button>
+            <button class="nav-button" id="nextButton" disabled>Next</button>
+        </div>
+    </main>
+
+    <script>
+        // Question data
+        const questions = [
+            {
+                id: 1,
+                type: 'multipleChoice',
+                question: "Identify the mixed conditional in the following sentences:",
+                options: [
+                    "If it rains tomorrow, we will cancel the picnic.",
+                    "If I were you, I would tell her the truth.",
+                    "If we had left earlier, we would be there by now.",
+                    "If they study hard, they will pass the exam."
+                ],
+                correctAnswer: 2,
+                explanation: "The sentence 'If we had left earlier, we would be there by now' combines a past condition (had left) with a present result (would be there now)."
+            },
+            {
+                id: 2,
+                type: 'transformation',
+                question: "Rewrite this sentence using an inverted conditional: 'If I had known about the meeting, I would have attended it.'",
+                correctAnswer: "Had I known about the meeting, I would have attended it.",
+                explanation: "In inverted conditionals, we can remove 'if' and invert the subject and auxiliary verb (had I instead of if I had)."
+            },
+            {
+                id: 3,
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: 'If I _____ (win) the lottery last year, I _____ (be) rich now.'",
+                correctAnswer: "had won, would be",
+                explanation: "This is a mixed conditional combining a past unreal condition (If I had won...) with a present result (I would be rich now)."
+            },
+            {
+                id: 4,
+                type: 'multipleChoice',
+                question: "Which of the following is a third conditional sentence?",
+                options: [
+                    "If it rains tomorrow, we will stay at home.",
+                    "If I were you, I would accept the offer.",
+                    "If they had arrived earlier, they would have seen the whole show.",
+                    "If we leave now, we might catch the early train."
+                ],
+                correctAnswer: 2,
+                explanation: "The third conditional uses 'if + past perfect' and 'would have + past participle' to talk about an imaginary situation in the past."
+            },
+            {
+                id: 5,
+                type: 'transformation',
+                question: "Rewrite using 'unless': 'If you don't hurry up, you will miss the train.'",
+                correctAnswer: "Unless you hurry up, you will miss the train.",
+                explanation: "'Unless' means 'if not' or 'except if'. The sentence structure remains the same, but the negative is removed from the verb."
+            },
+            {
+                id: 6,
+                type: 'multipleChoice',
+                question: "Identify the type of conditional: 'Should you need any assistance, please don't hesitate to ask.'",
+                options: [
+                    "Zero conditional",
+                    "First conditional",
+                    "Second conditional",
+                    "Inverted conditional"
+                ],
+                correctAnswer: 3,
+                explanation: "This is an inverted conditional using 'should' instead of 'if you should'. It's a formal way to express a condition."
+            },
+            {
+                id: 7,
+                type: 'fillInBlank',
+                question: "Complete the inverted conditional: '_____ the opportunity arisen, I would have taken it.' (Use 'had' in your answer)",
+                correctAnswer: "Had",
+                explanation: "In inverted conditionals, 'if' is removed and the subject and auxiliary verb are inverted: 'Had the opportunity arisen' instead of 'If the opportunity had arisen'."
+            },
+            {
+                id: 8,
+                type: 'transformation',
+                question: "Transform into a mixed conditional: 'I didn't study medicine. I am not a doctor now.'",
+                correctAnswer: "If I had studied medicine, I would be a doctor now.",
+                explanation: "This mixed conditional combines a past condition (If I had studied) with a present result (I would be a doctor now)."
+            },
+            {
+                id: 9,
+                type: 'multipleChoice',
+                question: "Which conditional expresses the most unlikely or hypothetical situation?",
+                options: [
+                    "If you heat water to 100°C, it boils.",
+                    "If it rains tomorrow, we'll cancel the event.",
+                    "If I were the CEO, I would change the company policy.",
+                    "If you go to Paris, you should visit the Eiffel Tower."
+                ],
+                correctAnswer: 2,
+                explanation: "The second conditional (If I were the CEO...) expresses a hypothetical or unlikely situation in the present or future."
+            },
+            {
+                id: 10,
+                type: 'fillInBlank',
+                question: "Complete the conditional with the correct form: 'If you _____ (take) my advice yesterday, you _____ (not be) in this difficult situation now.'",
+                correctAnswer: "had taken, wouldn't be",
+                explanation: "This is a mixed conditional: 'had taken' (past perfect) for the past condition and 'wouldn't be' (conditional present) for the present result."
+            },
+            {
+                id: 11,
+                type: 'multipleChoice',
+                question: "What type of conditional is this? 'Were I to win the competition, I would donate half the money to charity.'",
+                options: [
+                    "Zero conditional",
+                    "Inverted second conditional",
+                    "Mixed conditional",
+                    "Third conditional"
+                ],
+                correctAnswer: 1,
+                explanation: "This is an inverted second conditional. The standard form would be 'If I were to win the competition, I would donate...'."
+            },
+            {
+                id: 12,
+                type: 'transformation',
+                question: "Rewrite using 'provided that': 'I'll lend you the money if you promise to pay it back next month.'",
+                correctAnswer: "I'll lend you the money provided that you promise to pay it back next month.",
+                explanation: "'Provided that' can replace 'if' when expressing a condition that must be met."
+            },
+            {
+                id: 13,
+                type: 'fillInBlank',
+                question: "Complete the sentence: 'You can borrow my car _____ you drive carefully.' (Use a conditional conjunction)",
+                correctAnswer: "as long as",
+                explanation: "'As long as' is a conditional conjunction meaning 'on the condition that'. Other possible answers include 'provided that' or 'on condition that'."
+            },
+            {
+                id: 14,
+                type: 'multipleChoice',
+                question: "Which sentence uses a modal perfect in the conditional?",
+                options: [
+                    "If you study hard, you will pass the exam.",
+                    "If you had told me earlier, I would have helped you.",
+                    "If you left now, you might arrive on time.",
+                    "If you had asked me, I could have given you some advice."
+                ],
+                correctAnswer: 3,
+                explanation: "The sentence uses 'could have given' which is a modal perfect (could + have + past participle)."
+            },
+            {
+                id: 15,
+                type: 'transformation',
+                question: "Transform into a conditional using 'otherwise': 'You should book in advance. If you don't, you won't get a table.'",
+                correctAnswer: "You should book in advance. Otherwise, you won't get a table.",
+                explanation: "'Otherwise' can be used to express the negative consequence if a condition is not met."
+            },
+            {
+                id: 16,
+                type: 'fillInBlank',
+                question: "Complete the inverted conditional: '_____ he realized the danger, he would have been more careful.' (Use 'had' in your answer)",
+                correctAnswer: "Had",
+                explanation: "This is an inverted third conditional. The standard form would be 'If he had realized the danger, he would have been more careful.'"
+            },
+            {
+                id: 17,
+                type: 'multipleChoice',
+                question: "Which sentence contains a wish about the past?",
+                options: [
+                    "I wish I were taller.",
+                    "I wish it would stop raining.",
+                    "I wish I had studied harder for the exam.",
+                    "I wish you would be more careful."
+                ],
+                correctAnswer: 2,
+                explanation: "'I wish I had studied harder' expresses a regret about the past, using the past perfect tense."
+            },
+            {
+                id: 18,
+                type: 'transformation',
+                question: "Rewrite using 'on condition that': 'I'll help you if you help me with my homework later.'",
+                correctAnswer: "I'll help you on condition that you help me with my homework later.",
+                explanation: "'On condition that' is a more formal way to express a condition that must be met."
+            },
+            {
+                id: 19,
+                type: 'fillInBlank',
+                question: "Complete the sentence with 'even if': 'I would still love you _____ you lost all your money.'",
+                correctAnswer: "even if",
+                explanation: "'Even if' introduces a condition that would not change the result, suggesting that the condition is extreme or unlikely."
+            },
+            {
+                id: 20,
+                type: 'multipleChoice',
+                question: "Which sentence expresses criticism using a conditional structure?",
+                options: [
+                    "If you had asked me, I would have helped you.",
+                    "If I were in your position, I would think twice before accepting.",
+                    "If only you had listened to me!",
+                    "If we leave now, we'll arrive on time."
+                ],
+                correctAnswer: 2,
+                explanation: "'If only you had listened to me!' expresses criticism or regret about a past action using a conditional structure."
+            },
+            {
+                id: 21,
+                type: 'transformation',
+                question: "Rewrite this sentence using 'supposing': 'If the flight is delayed, we'll miss our connection.'",
+                correctAnswer: "Supposing the flight is delayed, we'll miss our connection.",
+                explanation: "'Supposing' can replace 'if' to introduce a hypothetical condition."
+            },
+            {
+                id: 22,
+                type: 'fillInBlank',
+                question: "Complete the mixed conditional: 'If he _____ (not be) so lazy throughout his life, he _____ (have) a better job now.'",
+                correctAnswer: "hadn't been, would have",
+                explanation: "This mixed conditional refers to a general past condition (his lifelong laziness) affecting a present situation (his current job)."
+            },
+            {
+                id: 23,
+                type: 'multipleChoice',
+                question: "Identify the sentence with a hypothetical condition about the present:",
+                options: [
+                    "If I hadn't missed the bus, I wouldn't have been late.",
+                    "If I were the manager, I would change this policy.",
+                    "If they arrive early, they can help with the preparations.",
+                    "If you had told me, I would have known what to do."
+                ],
+                correctAnswer: 1,
+                explanation: "The second conditional 'If I were the manager...' expresses a hypothetical situation in the present that is contrary to fact (I am not the manager)."
+            },
+            {
+                id: 24,
+                type: 'transformation',
+                question: "Transform using 'but for': 'If it hadn't been for your help, I wouldn't have succeeded.'",
+                correctAnswer: "But for your help, I wouldn't have succeeded.",
+                explanation: "'But for' is a formal way of saying 'if it hadn't been for' or 'without'."
+            },
+            {
+                id: 25,
+                type: 'multipleChoice',
+                question: "Which sentence uses 'were to' to express a hypothetical future?",
+                options: [
+                    "If I were rich, I would travel the world.",
+                    "Were I to win the lottery, I would buy a house by the sea.",
+                    "If he had studied harder, he would have passed the exam.",
+                    "If you come to London, you should visit the British Museum."
+                ],
+                correctAnswer: 1,
+                explanation: "'Were I to win the lottery' uses 'were to' to express a hypothetical future situation. It's more formal than 'If I won the lottery'."
+            }
+        ];
+
+        // Initialize variables
+        let currentQuestionIndex = 0;
+        let streak = 0;
+        let answeredQuestions = new Array(questions.length).fill(false);
+
+        // DOM elements
+        const questionsContainer = document.getElementById('questionsContainer');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const currentQuestionElement = document.getElementById('currentQuestion');
+        const totalQuestionsElement = document.getElementById('totalQuestions');
+        const currentStreakElement = document.getElementById('currentStreak');
+        const progressFill = document.getElementById('progressFill');
+
+        // Set total questions
+        totalQuestionsElement.textContent = questions.length;
+
+        // Create question elements
+        function createQuestionElements() {
+            questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.classList.add('question-container');
+                questionElement.id = `question-${index}`;
+                
+                let questionHTML = `<h3>Question ${index + 1}</h3><p>${question.question}</p>`;
+                
+                if (question.type === 'multipleChoice') {
+                    questionHTML += `<div class="answer-options">`;
+                    question.options.forEach((option, optIndex) => {
+                        questionHTML += `
+                            <div class="answer-option" data-index="${optIndex}">
+                                ${option}
+                            </div>
+                        `;
+                    });
+                    questionHTML += `</div>`;
+                } else if (question.type === 'fillInBlank') {
+                    questionHTML += `<input type="text" class="answer-input" placeholder="Type your answer">`;
+                } else if (question.type === 'trueFalse') {
+                    questionHTML += `
+                        <div class="answer-options">
+                            <div class="answer-option" data-index="true">True</div>
+                            <div class="answer-option" data-index="false">False</div>
+                        </div>
+                    `;
+                } else if (question.type === 'transformation') {
+                    questionHTML += `<textarea class="answer-input" rows="3" placeholder="Type your answer"></textarea>`;
+                }
+                
+                questionHTML += `
+                    <button class="check-answer-btn">Check Answer</button>
+                    <div class="answer-result"></div>
+                `;
+                
+                questionElement.innerHTML = questionHTML;
+                questionsContainer.appendChild(questionElement);
+                
+                // Add event listeners
+                if (question.type === 'multipleChoice' || question.type === 'trueFalse') {
+                    const options = questionElement.querySelectorAll('.answer-option');
+                    options.forEach(option => {
+                        option.addEventListener('click', () => {
+                            options.forEach(opt => opt.classList.remove('selected'));
+                            option.classList.add('selected');
+                        });
+                    });
+                }
+                
+                const checkButton = questionElement.querySelector('.check-answer-btn');
+                checkButton.addEventListener('click', () => checkAnswer(index));
+            });
+            
+            // Show first question
+            showQuestion(0);
+        }
+
+        // Show a specific question
+        function showQuestion(index) {
+            // Hide all questions
+            document.querySelectorAll('.question-container').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show current question
+            const currentQuestion = document.getElementById(`question-${index}`);
+            currentQuestion.classList.add('active');
+            
+            // Update current question number
+            currentQuestionIndex = index;
+            currentQuestionElement.textContent = index + 1;
+            
+            // Update navigation buttons
+            prevButton.disabled = index === 0;
+            nextButton.disabled = index === questions.length - 1 || !answeredQuestions[index];
+            
+            // Update progress bar
+            updateProgress();
+        }
+
+        // Check answer
+        function checkAnswer(index) {
+            const question = questions[index];
+            const questionElement = document.getElementById(`question-${index}`);
+            const resultElement = questionElement.querySelector('.answer-result');
+            
+            let userAnswer;
+            let isCorrect = false;
+            
+            if (question.type === 'multipleChoice' || question.type === 'trueFalse') {
+                const selectedOption = questionElement.querySelector('.answer-option.selected');
+                if (!selectedOption) {
+                    resultElement.textContent = "Please select an answer.";
+                    resultElement.className = "answer-result incorrect";
+                    resultElement.style.display = "block";
+                    return;
+                }
+                
+                userAnswer = selectedOption.getAttribute('data-index');
+                if (question.type === 'trueFalse') {
+                    isCorrect = (userAnswer === "true") === question.correctAnswer;
+                } else {
+                    isCorrect = parseInt(userAnswer) === question.correctAnswer;
+                }
+            } else {
+                const inputElement = questionElement.querySelector('.answer-input');
+                userAnswer = inputElement.value.trim().toLowerCase();
+                const correctAnswer = question.correctAnswer.toLowerCase();
+                
+                // For transformation questions, we'll be more lenient
+                if (question.type === 'transformation') {
+                    // Check if the key parts of the answer are included
+                    const keyParts = correctAnswer.split(' ');
+                    const essentialWords = keyParts.filter(word => word.length > 3);
+                    const matchCount = essentialWords.filter(word => 
+                        userAnswer.includes(word.toLowerCase())
+                    ).length;
+                    
+                    isCorrect = matchCount >= Math.ceil(essentialWords.length * 0.7);
+                } else if (question.type === 'fillInBlank') {
+                    if (correctAnswer === "had won, would be") {
+                        isCorrect = userAnswer.includes("had won") && userAnswer.includes("would be");
+                    } else if (correctAnswer === "had") {
+                        isCorrect = userAnswer === "had";
+                    } else if (correctAnswer === "had taken, wouldn't be") {
+                        isCorrect = userAnswer.includes("had taken") && (userAnswer.includes("wouldn't be") || userAnswer.includes("would not be"));
+                    } else if (correctAnswer === "as long as") {
+                        isCorrect = userAnswer === "as long as" || userAnswer === "provided that" || userAnswer === "on condition that" || userAnswer === "providing that";
+                    } else if (correctAnswer === "even if") {
+                        isCorrect = userAnswer === "even if";
+                    } else if (correctAnswer === "hadn't been, would have") {
+                        isCorrect = userAnswer.includes("hadn't been") && userAnswer.includes("would have");
+                    } else {
+                        isCorrect = userAnswer === correctAnswer;
+                    }
+                } else {
+                    isCorrect = userAnswer === correctAnswer;
+                }
+            }
+            
+            // Update UI based on result
+            questionElement.classList.remove('correct', 'incorrect');
+            questionElement.classList.add(isCorrect ? 'correct' : 'incorrect');
+            
+            resultElement.textContent = isCorrect ? 
+                `Correct! ${question.explanation}` : 
+                `Incorrect. The correct answer is: ${question.correctAnswer}. ${question.explanation}`;
+            resultElement.className = `answer-result ${isCorrect ? 'correct' : 'incorrect'}`;
+            resultElement.style.display = "block";
+            
+            // Update streak
+            if (isCorrect) {
+                streak++;
+                if (!answeredQuestions[index]) {
+                    answeredQuestions[index] = true;
+                }
+            } else {
+                streak = 0;
+            }
+            currentStreakElement.textContent = streak;
+            
+            // Enable next button if answer is correct
+            nextButton.disabled = index === questions.length - 1 || !answeredQuestions[index];
+            
+            // Update progress
+            updateProgress();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = (answeredQuestions.filter(Boolean).length / questions.length) * 100;
+            progressFill.style.width = `${progress}%`;
+        }
+
+        // Navigation event listeners
+        prevButton.addEventListener('click', () => {
+            if (currentQuestionIndex > 0) {
+                showQuestion(currentQuestionIndex - 1);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1 && answeredQuestions[currentQuestionIndex]) {
+                showQuestion(currentQuestionIndex + 1);
+            }
+        });
+
+        // Initialize the page
+        createQuestionElements();
+    </script>
+    
+    <script src="/assets/js/auth-protection.js"></script>
+    <script src="/assets/js/tracking.js"></script>
+</body>
+</html>
