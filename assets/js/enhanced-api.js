@@ -120,21 +120,21 @@ const APIManager = {
         const executeFetch = async (baseUrl) => {
             const url = `${baseUrl}${endpoint}`;
             console.log(`API request to: ${url}`);
-            
             try {
                 const response = await fetch(url, options);
-                  // Try to parse JSON response
                 let data;
+                let rawText = '';
                 try {
-                    const text = await response.text();
+                    rawText = await response.text();
                     try {
-                        data = JSON.parse(text);
+                        data = JSON.parse(rawText);
                     } catch (parseError) {
-                        console.error('Failed to parse JSON response:', parseError, 'Response text:', text);
+                        console.error('Failed to parse JSON response:', parseError, 'Raw response:', rawText);
                         // If response is empty or not valid JSON, create a default response object
                         data = {
                             success: response.ok,
-                            message: response.ok ? 'Operation successful' : 'Invalid response from server'
+                            message: response.ok ? 'Operation successful' : 'Invalid response from server',
+                            raw: rawText
                         };
                     }
                 } catch (textError) {
@@ -143,21 +143,21 @@ const APIManager = {
                         success: false,
                         status: response.status,
                         data: null,
-                        error: 'Invalid response format from server'
+                        error: 'Invalid response format from server',
+                        raw: null
                     };
                 }
-                
                 // If successful, remember this working endpoint
                 if (response.ok) {
                     this.lastWorkingEndpoint = baseUrl;
                     localStorage.setItem('last_successful_api_endpoint', baseUrl);
                 }
-                
-                return { 
+                return {
                     success: response.ok,
                     status: response.status,
                     data,
-                    error: !response.ok ? (data.error || 'Unknown error occurred') : null
+                    error: !response.ok ? (data.error || data.message || 'Unknown error occurred') : null,
+                    raw: rawText
                 };
             } catch (error) {
                 console.error(`API Error (${url}):`, error);
