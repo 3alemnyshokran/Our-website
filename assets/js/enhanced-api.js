@@ -6,7 +6,7 @@
 
 // API Endpoints Configuration
 const API_ENDPOINTS = {
-    PRIMARY: 'https://our-fucking-project-5yrcg4w98-shdwflxres-projects.vercel.app/api',
+    PRIMARY: 'https://our-fucking-project-ae8ynbm03-shdwflxres-projects.vercel.app/api',
     FALLBACK1: 'https://our-website-master.vercel.app/api',
     FALLBACK2: 'https://tutor-platform.vercel.app/api',
     LOCAL: 'http://localhost:3001/api',
@@ -123,13 +123,22 @@ const APIManager = {
             
             try {
                 const response = await fetch(url, options);
-                
-                // Try to parse JSON response
+                  // Try to parse JSON response
                 let data;
                 try {
-                    data = await response.json();
-                } catch (jsonError) {
-                    console.error('Failed to parse JSON response:', jsonError);
+                    const text = await response.text();
+                    try {
+                        data = JSON.parse(text);
+                    } catch (parseError) {
+                        console.error('Failed to parse JSON response:', parseError, 'Response text:', text);
+                        // If response is empty or not valid JSON, create a default response object
+                        data = {
+                            success: response.ok,
+                            message: response.ok ? 'Operation successful' : 'Invalid response from server'
+                        };
+                    }
+                } catch (textError) {
+                    console.error('Failed to read response text:', textError);
                     return {
                         success: false,
                         status: response.status,
@@ -247,8 +256,7 @@ const APIManager = {
             };
         }
     },
-    
-    // Simplified login function
+      // Simplified login function
     async login(username, rememberMe) {
         try {
             console.log('Using enhanced login function');
@@ -270,19 +278,35 @@ const APIManager = {
                 }
             }
             
-            const result = await this.fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ username, rememberMe })
-            });
+            // Add additional retry logic for mobile devices
+            const loginRequest = async () => {
+                return await this.fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, rememberMe })
+                });
+            };
+            
+            // Use retry with backoff for mobile devices
+            let result;
+            if (typeof isMobileDevice === 'function' && isMobileDevice()) {
+                // Use NetworkRetry if available, otherwise fallback to direct request
+                if (typeof NetworkRetry !== 'undefined') {
+                    result = await NetworkRetry.retryWithBackoff(loginRequest, 3, 1000);
+                } else {
+                    result = await loginRequest();
+                }
+            } else {
+                result = await loginRequest();
+            }
             
             if (result.success) {
                 // Store auth data in localStorage
                 localStorage.setItem('tutor_authenticated', 'true');
                 localStorage.setItem('tutor_username', username);
-                localStorage.setItem('tutor_user_id', result.data.userId);
+                localStorage.setItem('tutor_user_id', result.data?.userId || 'user_' + Math.random().toString(36).substr(2, 9));
                 
                 if (rememberMe) {
                     // Generate a device token
@@ -316,6 +340,8 @@ const APIManager = {
                 errorMessage = 'You appear to be offline. Please check your internet connection and try again.';
             } else if (error.isTimeout) {
                 errorMessage = 'Connection timed out. Please try again with a better signal or WiFi.';
+            } else if (error.originalError && error.originalError.message) {
+                errorMessage = `Error: ${error.originalError.message}`;
             }
             
             return {
