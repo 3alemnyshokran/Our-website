@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="register.title">Register</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../../assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../../assets/js/auth.js" defer></script>    <script src="../../assets/js/main.js" defer></script>
+    <script src="../../assets/js/auth.js" defer></script>
+    <script src="../../assets/js/register.js" defer></script>
+    <script src="../../assets/js/main.js" defer></script>
     <!-- Load Cookie Consent -->
     <script src="../../assets/js/cookie-consent.js" defer></script>
     <!-- Load DB Connectivity Checker -->
@@ -43,22 +44,14 @@
         }
     </style>
 </head>
-<body>
-    <div class="header-controls">
-        <button id="theme-toggle" class="theme-btn"><i class="fas fa-sun"></i></button>
-        <select id="language-select" class="language-select">
-            <option value="en">English</option>
-            <option value="ar">العربية</option>
-            <option value="de">Deutsch</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-        </select>
+<body>    <div class="header-controls">
+        <!-- Removed theme and language controls -->
     </div>
 
     <div class="main-container">
         <div class="main-content-area">
             <div class="auth-container">                <div class="auth-box register-box">
-                    <h1 data-translate="register.header">Create Account</h1>
+                    <h1>Create Account</h1>
                     
                     <!-- Privacy notice box -->
                     <div class="privacy-notice-box">
@@ -69,98 +62,19 @@
                     
                     <form id="register-form">
                         <div class="input-group">
-                            <label for="username" data-translate="register.usernameLabel">Username</label>
+                            <label for="username">Username</label>
                             <input type="text" id="username" name="username" required>
                         </div>
                         <div class="privacy-checkbox">
                             <input type="checkbox" id="privacy-accept" required>
                             <label for="privacy-accept">I accept the privacy policy</label>
                         </div>
-                        <button type="submit" class="auth-btn" data-translate="register.submitButton">Register</button>
+                        <button type="submit" class="auth-btn">Register</button>
                     </form>
-                    <p data-translate="register.loginPrompt">Already have an account? <a href="login.html" data-translate="register.loginLink">Login here</a>.</p>
+                    <p>Already have an account? <a href="login.html">Login here</a>.</p>
                 </div>
             </div>
         </div>
-    </div>    <script>
-        // Initialize theme and language
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize theme and language
-            initializePage(); // From main.js
-
-            const registerForm = document.getElementById('register-form');
-            if (registerForm) {                registerForm.addEventListener('submit', async (event) => {
-                    event.preventDefault();
-                    const username = document.getElementById('username').value.trim();
-                    const privacyAccepted = document.getElementById('privacy-accept').checked;
-                    
-                    if (!username) {
-                        showMessage('Username is required', 'error');
-                        return;
-                    }
-                    
-                    if (!privacyAccepted) {
-                        showMessage('You must accept the privacy policy', 'error');
-                        return;
-                    }
-                    
-                    // Disable submit button
-                    const submitBtn = registerForm.querySelector('button[type="submit"]');
-                    const originalText = submitBtn.textContent;
-                    submitBtn.textContent = 'Registering...';
-                    submitBtn.disabled = true;
-                    
-                    try {
-                        // Call handleRegistration from auth.js
-                        const result = await handleRegistration(username);                        if (result.success) {
-                            showMessage('Registration successful!', 'success');
-                            
-                            // Set privacy accepted flag since user already accepted it in the form
-                            localStorage.setItem('privacyAccepted', 'true');
-                            
-                            // Create device token for automatic login in the future
-                            const deviceToken = generateDeviceToken();
-                            localStorage.setItem('tutor_device_token', deviceToken);
-                            
-                            // Redirect to home page with courses
-                            setTimeout(() => {
-                                window.location.href = '/index.html';
-                            }, 1000);
-                        } else {
-                            showMessage(result.message || 'Registration failed', 'error');
-                            submitBtn.textContent = originalText;
-                            submitBtn.disabled = false;
-                        }
-                    } catch (error) {
-                        console.error('Registration error:', error);
-                        showMessage('An error occurred. Please try again.', 'error');
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
-                    }
-                });
-            }
-        });
-        
-        function showMessage(message, type) {
-            // Create message element
-            const messageEl = document.createElement('div');
-            messageEl.className = `message ${type}`;
-            messageEl.innerHTML = `
-                <i class="fas ${type === 'error' ? 'fa-circle-exclamation' : (type === 'success' ? 'fa-check-circle' : 'fa-triangle-exclamation')}"></i>
-                <span>${message}</span>
-            `;
-            
-            // Add to page
-            document.querySelector('.auth-box').appendChild(messageEl);
-            
-            // Remove after 5 seconds
-            setTimeout(() => {
-                messageEl.classList.add('fade-out');
-                setTimeout(() => {
-                    messageEl.remove();
-                }, 300);
-            }, 4700);
-        }
-    </script>
+    </div>    <!-- Registration logic moved to register.js -->
 </body>
 </html>

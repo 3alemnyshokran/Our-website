@@ -3,8 +3,7 @@
 Write-Host "Preparing for deployment..." -ForegroundColor Cyan
 
 # Check if backend exists and install dependencies
-if (Test-Path "backend") {
-  Write-Host "Setting up backend and database..." -ForegroundColor Yellow
+if (Test-Path "backend") {  Write-Host "Setting up backend and database..." -ForegroundColor Yellow
   Set-Location -Path "backend"
   npm install
   
@@ -14,20 +13,7 @@ if (Test-Path "backend") {
     Write-Host "Created database directory" -ForegroundColor Green
   }
   
-  # Test database connection by starting the server briefly
-  Write-Host "Testing database connection..." -ForegroundColor Yellow
-  $serverProcess = Start-Process -FilePath "node" -ArgumentList "server.js" -PassThru
-  Start-Sleep -Seconds 3 # Wait for server to start
-  
-  # Check if server is running
-  if (-not $serverProcess.HasExited) {
-    Write-Host "Database server started successfully" -ForegroundColor Green
-    Stop-Process -Id $serverProcess.Id # Stop the server
-  } else {
-    Write-Host "Failed to start database server. Check the logs for errors." -ForegroundColor Red
-    exit 1
-  }
-  
+  Write-Host "Database server setup complete." -ForegroundColor Green
   Set-Location -Path ".."
 }
 

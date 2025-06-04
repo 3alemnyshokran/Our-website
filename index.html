@@ -24,33 +24,22 @@
 
   <!-- Header Controls -->
   <div class="header-controls">
-    <button class="theme-btn" aria-label="Toggle Theme" onclick="toggleTheme()">
-      <i class="fas fa-sun light-icon"></i>
-      <i class="fas fa-moon dark-icon"></i>
-    </button>
-    <select id="languageSelect" aria-label="Select Language">
-      <option value="en">English</option>
-      <option value="ar">العربية</option>
-      <option value="de">Deutsch</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-    </select>
     <button id="logoutBtn" class="logout-btn" onclick="logout()" style="display: none;">Logout <i class="fas fa-sign-out-alt"></i></button>
   </div>
 
   <div class="main-container">
     <div class="main-content-area">
-      <h1 data-i18n="welcome">Welcome to the Tutoring Website</h1>
-      <p data-i18n="helloUser">Hello, <span id="welcomeUser"></span>!</p>
-      <p data-i18n="coursesInfo">Courses for English and Math - Beginner, Intermediate, Advanced Levels</p>
+      <h1>Welcome to the Tutoring Website</h1>
+      <p>Hello, <span id="welcomeUser"></span>!</p>
+      <p>Courses for English and Math - Beginner, Intermediate, Advanced Levels</p>
       
       <!-- Course navigation -->
       <div class="btn-container">
-        <a href="pages/courses/english/english-course.html" class="btn" data-i18n="englishCourses"><i class="fas fa-language"></i> English Courses</a>
-        <a href="pages/courses/math/math-course.html" class="btn" data-i18n="mathCourses"><i class="fas fa-calculator"></i> Math Courses</a>
-        <a href="pages/courses/science/science-course.html" class="btn" data-i18n="scienceCourses"><i class="fas fa-flask"></i> Science Courses</a>
-        <a href="pages/courses/german/german-course.html" class="btn" data-i18n="germanCourses"><i class="fas fa-language"></i> German Courses</a>
-        <a href="pages/courses/arabic/arabic-course.html" class="btn" data-i18n="arabicCourses"><i class="fas fa-language"></i> Arabic Courses</a>
+        <a href="pages/courses/english/english-course.html" class="btn"><i class="fas fa-language"></i> English Courses</a>
+        <a href="pages/courses/math/math-course.html" class="btn"><i class="fas fa-calculator"></i> Math Courses</a>
+        <a href="pages/courses/science/science-course.html" class="btn"><i class="fas fa-flask"></i> Science Courses</a>
+        <a href="pages/courses/german/german-course.html" class="btn"><i class="fas fa-language"></i> German Courses</a>
+        <a href="pages/courses/arabic/arabic-course.html" class="btn"><i class="fas fa-language"></i> Arabic Courses</a>
       </div>
     </div>
 
@@ -94,56 +83,8 @@
         logoutBtn.style.display = 'inline-flex';
       }
 
-      // Initialize theme (from main.js or here if main.js doesn't handle it early enough)
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.body.setAttribute('data-theme', savedTheme);
-      updateThemeIcon(savedTheme);
-      
-      // Initialize language (from main.js or here)
-      const savedLanguage = localStorage.getItem('language') || 'en';
-      const langSelect = document.getElementById('languageSelect');
-      if (langSelect) langSelect.value = savedLanguage;
-      // Assuming changeLanguage function is available globally or from main.js
-      if (typeof changeLanguage === 'function') {
-        changeLanguage(savedLanguage);
-      } else {
-        console.warn('changeLanguage function not found. Language features might not work.');
-      }
-    }
-
-    function updateThemeIcon(theme) {
-        const lightIcon = document.querySelector('.theme-btn .light-icon');
-        const darkIcon = document.querySelector('.theme-btn .dark-icon');
-        if (lightIcon && darkIcon) {
-            if (theme === 'dark') {
-                lightIcon.style.display = 'none';
-                darkIcon.style.display = 'inline-block';
-            } else {
-                lightIcon.style.display = 'inline-block';
-                darkIcon.style.display = 'none';
-            }
-        }
-    }
-
-    // Theme toggle function (if not in main.js or needs specific handling here)
-    function toggleTheme() {
-      const currentTheme = document.body.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      document.body.setAttribute('data-theme', newTheme);
-      localStorage.setItem('theme', newTheme);
-      updateThemeIcon(newTheme);
-    }
-    
-    // Language change handler
-    const langSelect = document.getElementById('languageSelect');
-    if (langSelect) {
-        langSelect.addEventListener('change', function() {
-            if (typeof changeLanguage === 'function') {
-                changeLanguage(this.value);
-            } else {
-                console.warn('changeLanguage function not found during event listener setup.');
-            }
-        });
+      // Set theme to light
+      document.body.setAttribute('data-theme', 'light');
     }
   </script>
 </body>
