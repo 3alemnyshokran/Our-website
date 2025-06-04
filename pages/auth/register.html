@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate="register.title">Register</title>
     <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="../../assets/js/auth.js" defer></script>
     <script src="../../assets/js/main.js" defer></script>
+    <!-- Load Cookie Consent -->
+    <script src="../../assets/js/cookie-consent.js" defer></script>
     <!-- Load DB Connectivity Checker -->
     <script src="../../assets/js/db-connectivity.js" defer></script>
 </head>
@@ -66,9 +67,12 @@
                     try {
                         // Call handleRegistration from auth.js
                         const result = await handleRegistration(username);
-                        
-                        if (result.success) {
+                          if (result.success) {
                             showMessage('Registration successful!', 'success');
+                            
+                            // Create device token for automatic login in the future
+                            const deviceToken = generateDeviceToken();
+                            localStorage.setItem('tutor_device_token', deviceToken);
                             
                             // Show privacy policy
                             await showPrivacyModal();

@@ -54,8 +54,7 @@
             document.head.appendChild(script);
         });
     }
-    
-    // Main function to check authentication
+      // Main function to check authentication
     async function checkAuth() {
         try {
             // Load auth.js if needed
@@ -69,7 +68,7 @@
                 return;
             }
             
-            // If authenticated but privacy not accepted, show privacy policy
+            // If authenticated but privacy not accepted, show privacy policy first
             if (!isPrivacyAccepted()) {
                 showPrivacyModal().then(() => {
                     // Privacy policy accepted, update UI

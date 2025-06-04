@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Load DB Connectivity Checker -->
     <script src="../../assets/js/db-connectivity.js" defer></script>
+    <!-- Load Cookie Consent -->
+    <script src="../../assets/js/cookie-consent.js" defer></script>
 </head>
 <body>
     <div class="header-controls">
@@ -40,9 +42,9 @@
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="options">
-                    <label for="remember-me">
-                        <input type="checkbox" id="remember-me" name="remember-me">
-                        Remember me
+                    <label for="remember-me" class="remember-option">
+                        <input type="checkbox" id="remember-me" name="remember-me" checked>
+                        Remember this device (won't need to login again)
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary">
@@ -50,21 +52,6 @@
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </form>
-            
-            <div class="social-login">
-                <p>Or continue with</p>
-                <div class="social-buttons">
-                    <button class="social-btn google">
-                        <i class="fab fa-google"></i>
-                    </button>
-                    <button class="social-btn facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
-                    <button class="social-btn apple">
-                        <i class="fab fa-apple"></i>
-                    </button>
-                </div>
-            </div>
             
             <div class="register-link">
                 Don't have an account? <a href="register.html">Sign up</a>
@@ -97,7 +84,20 @@
             localStorage.setItem('language', this.value);
             // We don't need to reload for login page as there's no translated content yet
         });
-    });
+        
+        // Check if we have a device token - if so, attempt auto-login
+        const deviceToken = localStorage.getItem('tutor_device_token');
+        const username = localStorage.getItem('tutor_username');
+        
+        if (deviceToken && username) {
+            // Auto-login with remembered device
+            document.getElementById('username').value = username;
+            document.getElementById('remember-me').checked = true;
+            // Trigger login after a short delay
+            setTimeout(() => {
+                document.getElementById('login-form').dispatchEvent(new Event('submit'));
+            }, 300);
+        }
     
     function toggleTheme() {
         const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';

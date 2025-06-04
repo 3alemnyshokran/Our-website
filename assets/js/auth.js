@@ -8,6 +8,14 @@ const API_BASE_URL = 'http://localhost:3001/api';
 
 // Check if user is authenticated
 function isAuthenticated() {
+    // First check if we have a device token stored
+    const deviceToken = localStorage.getItem('tutor_device_token');
+    if (deviceToken) {
+        // Device is remembered, auto-authenticate
+        return true;
+    }
+    
+    // Otherwise check standard authentication
     return localStorage.getItem('tutor_authenticated') === 'true' &&
            localStorage.getItem('tutor_username') !== null;
 }
@@ -43,7 +51,7 @@ function showPrivacyModal() {
             <div class="privacy-modal-content">
                 <h2>Privacy Notice</h2>
                 <p>This platform collects and stores information about your learning progress and preferences. Your data is stored in our database to provide personalized learning experiences and track your progress.</p>
-                <p>We use this information to improve our educational content, analyze learning patterns, and offer features like personalized recommendations and leaderboards.</p>
+                <p>We use cookies to remember your device and login status. This helps you avoid having to log in each time you visit.</p>
                 <p>By clicking "Accept", you consent to our privacy policy and allow us to store and process this information.</p>
                 <button class="privacy-accept-btn">Accept</button>
             </div>
@@ -72,15 +80,20 @@ async function handleLogin(username, rememberMe) {
         });
         
         const data = await response.json();
-        
-        if (response.ok && data.success) {
+          if (response.ok && data.success) {
             // Store auth data in localStorage
             localStorage.setItem('tutor_authenticated', 'true');
             localStorage.setItem('tutor_username', username);
             localStorage.setItem('tutor_user_id', data.userId);
             
-            if (data.trusted || rememberMe) {
+            if (rememberMe) {
+                // Generate and store a device token for automatic login
+                const deviceToken = generateDeviceToken();
+                localStorage.setItem('tutor_device_token', deviceToken);
                 localStorage.setItem('tutor_trusted', 'true');
+                
+                // You could send this token to the server to associate with the user
+                // This is a simplified implementation
             }
             
             // Get redirect URL if any
@@ -157,6 +170,7 @@ function logout() {
     localStorage.removeItem('tutor_authenticated');
     localStorage.removeItem('tutor_trusted');
     localStorage.removeItem('tutor_user_id');
+    localStorage.removeItem('tutor_device_token');
     // Keep the username for easier re-login
     window.location.href = '/pages/auth/login.html';
 }
@@ -169,6 +183,17 @@ function getCurrentUsername() {
 // Get current user ID
 function getCurrentUserId() {
     return localStorage.getItem('tutor_user_id');
+}
+
+// Generate a unique device token
+function generateDeviceToken() {
+    // Generate a random string to use as device token
+    const tokenChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let token = 'device_';
+    for (let i = 0; i < 32; i++) {
+        token += tokenChars.charAt(Math.floor(Math.random() * tokenChars.length));
+    }
+    return token;
 }
 
 // Track user progress for a specific course and chapter

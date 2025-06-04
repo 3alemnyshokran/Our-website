@@ -4,6 +4,12 @@ document.body.setAttribute('data-theme', currentTheme);
 
 // Authentication Check
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if cookie consent has been given - if not, don't redirect yet
+    if (typeof hasConsentedToCookies === 'function' && !hasConsentedToCookies()) {
+        // Wait for cookie consent before proceeding with auth check
+        return;
+    }
+    
     // Check if this is a page that requires authentication
     if (!window.location.pathname.includes('/pages/auth/')) {
         // If not authenticated, redirect to login
