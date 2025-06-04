@@ -3,8 +3,24 @@
  * Handles login, registration, session persistence, and privacy policy consent
  */
 
-// API URL
-const API_BASE_URL = 'http://localhost:3001/api';
+// Import API configuration
+// API_BASE_URL will be initialized after the API config script loads
+let API_BASE_URL;
+
+// Set up to initialize API_BASE_URL once config is loaded
+function initApiConfig() {
+    if (typeof API !== 'undefined') {
+        API_BASE_URL = API.getBaseUrl();
+        console.log('API base URL initialized:', API_BASE_URL);
+    } else {
+        console.warn('API configuration not loaded yet');
+    }
+}
+
+// Initialize when document is loaded or when API is available
+document.addEventListener('DOMContentLoaded', initApiConfig);
+// Also try to initialize immediately in case script is loaded after DOM
+initApiConfig();
 
 // Check if user is authenticated
 function isAuthenticated() {
@@ -71,50 +87,92 @@ function showPrivacyModal() {
 // Handle login logic
 async function handleLogin(username, rememberMe) {
     try {
-        const response = await fetch(`${API_BASE_URL}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, rememberMe })
-        });
+        // Make sure API is configured
+        if (!API_BASE_URL && typeof API !== 'undefined') {
+            API_BASE_URL = API.getBaseUrl();
+        }
         
-        const data = await response.json();
-          if (response.ok && data.success) {
-            // Store auth data in localStorage
-            localStorage.setItem('tutor_authenticated', 'true');
-            localStorage.setItem('tutor_username', username);
-            localStorage.setItem('tutor_user_id', data.userId);
+        // If we have the API helper available, use it for better error handling
+        if (typeof API !== 'undefined' && API.fetch) {
+            const result = await API.fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, rememberMe })
+            });
             
-            if (rememberMe) {
-                // Generate and store a device token for automatic login
-                const deviceToken = generateDeviceToken();
-                localStorage.setItem('tutor_device_token', deviceToken);
-                localStorage.setItem('tutor_trusted', 'true');
+            if (result.success) {
+                // Store auth data in localStorage
+                localStorage.setItem('tutor_authenticated', 'true');
+                localStorage.setItem('tutor_username', username);
+                localStorage.setItem('tutor_user_id', result.data.userId);
                 
-                // You could send this token to the server to associate with the user
-                // This is a simplified implementation
+                if (rememberMe) {
+                    // Generate and store a device token for automatic login
+                    const deviceToken = generateDeviceToken();
+                    localStorage.setItem('tutor_device_token', deviceToken);
+                    localStorage.setItem('tutor_trusted', 'true');
+                }
+                
+                // Get redirect URL if any
+                const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
+                localStorage.removeItem('redirect_after_login'); // Clear the redirect
+                
+                return {
+                    success: true,
+                    redirectUrl: redirectUrl
+                };
+            } else {
+                return {
+                    success: false,
+                    message: result.error || 'Login failed. Please check your username.'
+                };
             }
-            
-            // Get redirect URL if any
-            const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
-            localStorage.removeItem('redirect_after_login'); // Clear the redirect
-            
-            return {
-                success: true,
-                redirectUrl: redirectUrl
-            };
         } else {
-            return {
-                success: false,
-                message: data.error || 'Login failed. Please check your username.'
-            };
+            // Fallback to original implementation if API helper isn't available
+            const response = await fetch(`${API_BASE_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, rememberMe })
+            });
+            
+            const data = await response.json();
+            if (response.ok && data.success) {
+                // Store auth data in localStorage
+                localStorage.setItem('tutor_authenticated', 'true');
+                localStorage.setItem('tutor_username', username);
+                localStorage.setItem('tutor_user_id', data.userId);
+                
+                if (rememberMe) {
+                    // Generate and store a device token for automatic login
+                    const deviceToken = generateDeviceToken();
+                    localStorage.setItem('tutor_device_token', deviceToken);
+                    localStorage.setItem('tutor_trusted', 'true');
+                }
+                
+                // Get redirect URL if any
+                const redirectUrl = localStorage.getItem('redirect_after_login') || '/index.html';
+                localStorage.removeItem('redirect_after_login'); // Clear the redirect
+                
+                return {
+                    success: true,
+                    redirectUrl: redirectUrl
+                };
+            } else {
+                return {
+                    success: false,
+                    message: data.error || 'Login failed. Please check your username.'
+                };
+            }
         }
     } catch (error) {
         console.error('Login error:', error);
         return {
             success: false,
-            message: 'Network error. Please try again later.'
+            message: 'Network error. Please check your internet connection and try again.'
         };
     }
 }

@@ -3,11 +3,25 @@
  * This script checks if the database server is running and provides a simple UI indicator
  */
 
-// API URL
-const API_BASE_URL = 'http://localhost:3001/api';
+// Import API configuration if available
+let API_BASE_URL;
+
+// Initialize API configuration
+function initApiConfig() {
+    if (typeof API !== 'undefined') {
+        API_BASE_URL = API.getBaseUrl();
+    } else {
+        // Fallback if API config is not loaded yet
+        API_BASE_URL = '/api';
+    }
+}
 
 // Check server connection on page load
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize API configuration
+    initApiConfig();
+    
+    // Check database connection
     checkDatabaseConnection();
     
     // Add server status indicator to page if not already present
@@ -76,27 +90,53 @@ async function checkDatabaseConnection() {
     const textElement = statusElement.querySelector('.status-text');
     
     try {
-        const response = await fetch(`${API_BASE_URL}/status`, { 
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-            // Short timeout to avoid blocking the page
-            signal: AbortSignal.timeout(3000)
-        });
+        // Initialize API configuration if needed
+        if (!API_BASE_URL) {
+            initApiConfig();
+        }
         
-        if (response.ok) {
-            // Server is online
-            iconElement.textContent = '⚫';
-            iconElement.classList.add('online');
-            iconElement.classList.remove('offline');
-            textElement.textContent = 'Database connected';
-            
-            // Hide status after 5 seconds
-            setTimeout(() => {
-                statusElement.style.opacity = '0.3';
-            }, 5000);
+        // Use API helper if available
+        if (typeof API !== 'undefined' && API.fetch) {
+            const result = await API.fetch('/status');
+            if (result.success) {
+                // Server is online
+                iconElement.textContent = '⚫';
+                iconElement.classList.add('online');
+                iconElement.classList.remove('offline');
+                textElement.textContent = 'Database connected';
+                
+                // Hide status after 5 seconds
+                setTimeout(() => {
+                    statusElement.style.opacity = '0.3';
+                }, 5000);
+            } else {
+                // Server returned an error
+                setOfflineStatus(iconElement, textElement);
+            }
         } else {
-            // Server returned an error
-            setOfflineStatus(iconElement, textElement);
+            // Fallback to original implementation
+            const response = await fetch(`${API_BASE_URL}/status`, { 
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+                // Short timeout to avoid blocking the page
+                signal: AbortSignal.timeout(3000)
+            });
+            
+            if (response.ok) {
+                // Server is online
+                iconElement.textContent = '⚫';
+                iconElement.classList.add('online');
+                iconElement.classList.remove('offline');
+                textElement.textContent = 'Database connected';
+                
+                // Hide status after 5 seconds
+                setTimeout(() => {
+                    statusElement.style.opacity = '0.3';
+                }, 5000);
+            } else {
+                // Server returned an error
+                setOfflineStatus(iconElement, textElement);
+            }
         }
     } catch (error) {
         // Connection failed
