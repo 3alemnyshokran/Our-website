@@ -80,6 +80,12 @@ app.use('/api/progress', progressRoutes);
 // Use quiz routes
 app.use('/api/quiz', quizRoutes);
 
+// Global error handler to always return JSON
+app.use((err, req, res, next) => {
+  console.error('Unhandled error:', err);
+  res.status(500).json({ error: 'Internal server error', details: err && err.message ? err.message : String(err) });
+});
+
 // Use status routes
 app.use('/api/status', statusRoutes);
 
