@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="../../assets/css/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Load API Configuration -->
-    <script src="../../assets/js/api-config.js" defer></script>
+    <!-- Load Network Helper -->
+    <script src="../../assets/js/network-helper.js" defer></script>
+    <!-- Load Enhanced API Manager -->
+    <script src="../../assets/js/enhanced-api.js" defer></script>
     <!-- Load DB Connectivity Checker -->
     <script src="../../assets/js/db-connectivity.js" defer></script>
     <!-- Load Cookie Consent -->
@@ -29,9 +31,77 @@
             color: var(--accent-color);
             text-decoration: underline;
         }
+
+        /* Add network status indicator */
+        .network-status {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            z-index: 1000;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .network-status:hover {
+            opacity: 1;
+        }
+
+        .network-status.online {
+            background-color: rgba(40, 167, 69, 0.8);
+            color: white;
+        }
+
+        .network-status.offline {
+            background-color: rgba(220, 53, 69, 0.8);
+            color: white;
+        }
+
+        .network-status.poor {
+            background-color: rgba(255, 193, 7, 0.8);
+            color: black;
+        }
+
+        /* Retry button styles */
+        .retry-button {
+            display: none;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .retry-button:hover {
+            background: var(--accent-color-dark);
+        }
+
+        /* Offline message */
+        .offline-message {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 4px;
+            color: var(--text-color);
+        }
     </style>
 </head>
 <body>
+    <div class="network-status" id="networkStatus">
+        <i class="fas fa-wifi"></i>
+        <span>Checking connection...</span>
+    </div>
+
     <div class="header-controls">
         <!-- Removed theme and language controls -->
     </div>
@@ -64,6 +134,14 @@
                     <span>Login</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
+                <div class="offline-message" id="offlineMessage">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>You appear to be offline. Login will be attempted when connection is restored.</span>
+                </div>
+                <button type="button" class="retry-button" id="retryButton">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Retry Connection</span>
+                </button>
             </form>
             
             <div class="register-link">
@@ -81,7 +159,60 @@
         // Set default theme to light
         document.documentElement.setAttribute('data-theme', 'light');
         
-        // Check if we have a device token - if so, attempt auto-login
+        // Initialize network status indicator
+        const networkStatusEl = document.getElementById('networkStatus');
+        const offlineMessageEl = document.getElementById('offlineMessage');
+        const retryButtonEl = document.getElementById('retryButton');
+        
+        // Update network status indicator based on NetworkStatus helper
+        function updateNetworkStatusIndicator() {
+            if (typeof NetworkStatus !== 'undefined') {
+                if (!NetworkStatus.isOnline) {
+                    networkStatusEl.className = 'network-status offline';
+                    networkStatusEl.innerHTML = '<i class="fas fa-wifi-slash"></i><span>Offline</span>';
+                    offlineMessageEl.style.display = 'block';
+                    retryButtonEl.style.display = 'block';
+                    return;
+                }
+                
+                if (NetworkStatus.connectionQuality === 'poor') {
+                    networkStatusEl.className = 'network-status poor';
+                    networkStatusEl.innerHTML = '<i class="fas fa-wifi"></i><span>Poor Connection</span>';
+                } else if (NetworkStatus.connectionQuality === 'fair') {
+                    networkStatusEl.className = 'network-status online';
+                    networkStatusEl.innerHTML = '<i class="fas fa-wifi"></i><span>Fair Connection</span>';
+                } else if (NetworkStatus.connectionQuality === 'good' || NetworkStatus.connectionQuality === 'excellent') {
+                    networkStatusEl.className = 'network-status online';
+                    networkStatusEl.innerHTML = '<i class="fas fa-wifi"></i><span>Good Connection</span>';
+                } else {
+                    networkStatusEl.className = 'network-status online';
+                    networkStatusEl.innerHTML = '<i class="fas fa-wifi"></i><span>Online</span>';
+                }
+                
+                offlineMessageEl.style.display = 'none';
+                retryButtonEl.style.display = 'none';
+            }
+        }
+        
+        // Listen for network status changes
+        document.addEventListener('network-status-change', updateNetworkStatusIndicator);
+        
+        // Initial update
+        setTimeout(updateNetworkStatusIndicator, 1000);
+        
+        // Setup retry button
+        retryButtonEl.addEventListener('click', async function() {
+            retryButtonEl.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i><span>Checking...</span>';
+            
+            if (typeof NetworkStatus !== 'undefined') {
+                await NetworkStatus.checkConnectionQuality();
+                updateNetworkStatusIndicator();
+            }
+            
+            retryButtonEl.innerHTML = '<i class="fas fa-sync-alt"></i><span>Retry Connection</span>';
+        });
+        
+        // Check for device token - attempt auto-login
         const deviceToken = localStorage.getItem('tutor_device_token');
         const username = localStorage.getItem('tutor_username');
         
@@ -92,7 +223,7 @@
             // Trigger login after a short delay
             setTimeout(() => {
                 document.getElementById('login-form').dispatchEvent(new Event('submit'));
-            }, 300);
+            }, 1000); // Increased delay to allow network check to complete
         }
     });
     
@@ -119,10 +250,17 @@
         }
     });
     
-    
-    // Handle login form submission
+    // Handle login form submission with enhanced error handling and retry logic
     document.getElementById('login-form').addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Check network status before proceeding
+        if (typeof NetworkStatus !== 'undefined' && !NetworkStatus.isOnline) {
+            showMessage('You appear to be offline. Please check your connection and try again.', 'error');
+            document.getElementById('offlineMessage').style.display = 'block';
+            document.getElementById('retryButton').style.display = 'block';
+            return;
+        }
         
         // Show loading state
         const loginBtn = document.querySelector('.btn-primary');
@@ -133,9 +271,25 @@
         const username = document.getElementById('username').value.trim();
         const rememberMe = document.getElementById('remember-me').checked;
         
-        // Authentication check
+        // Authentication check with retries
         try {
-            const result = await handleLogin(username, rememberMe);
+            // First, check connection quality
+            let connectionOK = true;
+            if (typeof NetworkStatus !== 'undefined') {
+                const quality = await NetworkStatus.checkConnectionQuality();
+                if (quality === 'poor') {
+                    console.warn('Poor connection detected, login may be slow');
+                } else if (quality === 'offline') {
+                    connectionOK = false;
+                }
+            }
+            
+            if (!connectionOK) {
+                throw new Error('No internet connection available');
+            }
+            
+            // Use our unified APIManager for login
+            const result = await APIManager.login(username, rememberMe);
             
             if (result.success) {
                 // Show success state
@@ -160,13 +314,28 @@
                 
                 // Show error message
                 showMessage(result.message || 'Login failed', 'error');
+                
+                // Show offline message if applicable
+                if (result.isOffline) {
+                    document.getElementById('offlineMessage').style.display = 'block';
+                    document.getElementById('retryButton').style.display = 'block';
+                }
             }
         } catch (error) {
             // Error occurred
+            console.error('Login error:', error);
             loginBtn.innerHTML = '<span>Login</span><i class="fas fa-arrow-right"></i>';
             loginBtn.disabled = false;
-            showMessage('An error occurred during login. Please try again.', 'error');
-            console.error('Login error:', error);
+            
+            if (error.message.includes('No internet')) {
+                showMessage('You appear to be offline. Please check your internet connection and try again.', 'error');
+                document.getElementById('offlineMessage').style.display = 'block';
+                document.getElementById('retryButton').style.display = 'block';
+            } else if (error.name === 'AbortError' || error.name === 'TimeoutError') {
+                showMessage('Login request timed out. Please check your connection and try again.', 'error');
+            } else {
+                showMessage('An error occurred during login. Please try again.', 'error');
+            }
         }
     });
     

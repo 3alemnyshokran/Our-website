@@ -20,13 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Disable submit button
             const submitBtn = registerForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Registering...';
+            const originalText = submitBtn.textContent;            submitBtn.textContent = 'Registering...';
             submitBtn.disabled = true;
-
+            
             try {
-                // Call handleRegistration from auth.js
-                const result = await handleRegistration(username);
+                // Check network status before proceeding
+                if (typeof NetworkStatus !== 'undefined' && !NetworkStatus.isOnline) {
+                    showMessage('You appear to be offline. Please check your connection and try again.', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    return;
+                }
+                
+                // Use our enhanced API manager for registration
+                const result = await APIManager.register(username);
+                
                 if (result.success) {
                     showMessage('Registration successful!', 'success');
                     localStorage.setItem('privacyAccepted', 'true');

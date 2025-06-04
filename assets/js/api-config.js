@@ -10,8 +10,8 @@ function getApiBaseUrl() {
     
     // If running locally via file:// protocol (common in mobile testing)
     if (window.location.protocol === 'file:') {
-        // Return the deployed API endpoint
-        return 'https://your-vercel-backend-url.vercel.app/api';
+        // Return the deployed API endpoint - use the actual Vercel URL from the deployment
+        return 'https://our-fucking-project-5yrcg4w98-shdwflxres-projects.vercel.app/api';
     }
     
     // If running on localhost
