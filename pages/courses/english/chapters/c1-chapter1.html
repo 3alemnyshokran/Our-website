@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English C1 - Chapter 1: Advanced Conditionals and Hypothetical Situations</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="/assets/css/responsive.css">
     <style>
         .chapter-container {
             max-width: 800px;
@@ -195,12 +196,10 @@
 <body data-course-id="english-c1">
     <header>
         <h1>English C1 - Chapter 1: Advanced Conditionals and Hypothetical Situations</h1>
-    </header>
-
-    <main class="chapter-container">
+    </header>    <main class="chapter-container">
         <div class="level-badge">C1 - Advanced</div>
 
-        <div class="content-section">
+        <div id="lesson-section" class="content-section">
             <h2>Advanced Conditionals and Hypothetical Situations</h2>
             <p>At the C1 level, you can understand a wide range of demanding, longer texts, and recognize implicit meaning. You can express yourself fluently and spontaneously without much obvious searching for expressions, and can use language flexibly and effectively for social, academic and professional purposes.</p>
             
@@ -212,34 +211,54 @@
                 <li><strong>Conditionals with modal perfects</strong>: E.g., "If you had listened to me, the problem might have been avoided."</li>
                 <li><strong>Conditionals with alternative conjunctions</strong>: Using words like 'unless', 'provided that', 'as long as', 'on condition that'</li>
             </ul>
-        </div>
-
-        <div class="progress-container">
-            <span>Progress:</span>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+            
+            <h3>Key Learning Points:</h3>
+            <ol>
+                <li>Understand how to form and use mixed conditionals correctly</li>
+                <li>Master inverted conditionals for more formal expression</li>
+                <li>Use a variety of conditional conjunctions beyond "if"</li>
+                <li>Express hypothetical situations in past, present, and future</li>
+                <li>Combine conditionals with modal verbs for nuanced meanings</li>
+            </ol>
+              <div style="text-align: center; margin-top: 30px;">
+                <button id="understood-btn" style="background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: background 0.3s ease; max-width: 100%; width: 100%; max-width: 320px;">I've Understood - Take Me to the Questions</button>
             </div>
-            <div class="progress-text">
-                <span id="currentQuestion">1</span>/<span id="totalQuestions">25</span>
+        </div>
+
+        <div id="questions-section" style="display: none;">
+            <div class="progress-container">
+                <span>Progress:</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span>/<span id="totalQuestions">25</span>
+                </div>
+            </div>
+
+            <div class="streak-counter">
+                <span class="streak-icon">🔥</span>
+                Streak: <span id="currentStreak">0</span>
+            </div>
+
+            <div id="questionsContainer">
+                <!-- Questions will be dynamically inserted here -->
+            </div>
+
+            <div class="navigation-buttons">
+                <button class="nav-button" id="prevButton" disabled>Previous</button>
+                <button class="nav-button" id="nextButton" disabled>Next</button>
             </div>
         </div>
-
-        <div class="streak-counter">
-            <span class="streak-icon">🔥</span>
-            Streak: <span id="currentStreak">0</span>
-        </div>
-
-        <div id="questionsContainer">
-            <!-- Questions will be dynamically inserted here -->
-        </div>
-
-        <div class="navigation-buttons">
-            <button class="nav-button" id="prevButton" disabled>Previous</button>
-            <button class="nav-button" id="nextButton" disabled>Next</button>
-        </div>
-    </main>
-
-    <script>
+    </main>    <script>
+        // Handle the "Understood" button click
+        document.getElementById('understood-btn').addEventListener('click', function() {
+            document.getElementById('lesson-section').style.display = 'none';
+            document.getElementById('questions-section').style.display = 'block';
+            // Scroll to the top of the questions section
+            window.scrollTo(0, 0);
+        });
+        
         // Question data
         const questions = [
             {

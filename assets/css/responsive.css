@@ -1,0 +1,194 @@
+/* Mobile responsiveness enhancements */
+
+/* Base responsive adjustments */
+@media (max-width: 768px) {
+    /* Global adjustments */
+    body {
+        padding: 0;
+    }
+    
+    .main-container {
+        padding: 1rem;
+        box-sizing: border-box;
+    }
+    
+    .main-content-area {
+        padding: 15px;
+    }
+    
+    /* Header and navigation */
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    .header-controls {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(var(--glass-blur));
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+    
+    /* Course content */
+    .chapter-container {
+        padding: 15px;
+        margin: 10px auto;
+    }
+    
+    .content-section {
+        padding: 15px;
+    }
+    
+    /* Question containers */
+    .question-container {
+        padding: 15px;
+    }
+    
+    .answer-options {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    /* Navigation and progress */
+    .navigation-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .nav-button {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    .progress-container {
+        flex-wrap: wrap;
+    }
+    
+    .progress-bar {
+        margin: 8px 0;
+        width: 100%;
+    }
+    
+    /* Course navigation */
+    .level {
+        padding: 15px;
+    }
+    
+    .chapter {
+        padding: 12px;
+    }
+    
+    /* Buttons and inputs */
+    .btn, .check-answer-btn {
+        width: 100%;
+        padding: 12px;
+        margin: 5px 0;
+    }
+    
+    input, textarea, select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Language selector */
+    .language-selector {
+        margin: 10px 0;
+    }
+    
+    /* Login/Register forms */
+    .login-box, .register-box {
+        width: 90%;
+        max-width: 400px;
+        padding: 20px;
+    }
+    
+    /* The "Understood" button */
+    #understood-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    /* Further font size reductions */
+    body {
+        font-size: 0.9rem;
+    }
+    
+    h1 {
+        font-size: 1.3rem;
+    }
+    
+    h2 {
+        font-size: 1.1rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+    
+    /* Smaller padding */
+    .content-section, .question-container {
+        padding: 12px;
+    }
+    
+    /* Tighter streaks and counters */
+    .streak-counter {
+        font-size: 0.9rem;
+        margin: 12px 0;
+    }
+    
+    .streak-icon {
+        font-size: 1.2rem;
+    }
+    
+    /* Stack header controls */
+    .header-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .header-controls > * {
+        margin-bottom: 8px;
+    }
+    
+    /* Full-width buttons */
+    .check-answer-btn, .nav-button {
+        width: 100%;
+    }
+}
+
+/* Fix for very small devices */
+@media (max-width: 320px) {
+    .main-container {
+        padding: 5px;
+    }
+    
+    header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .chapter-container {
+        padding: 10px;
+    }
+    
+    .level-badge {
+        font-size: 0.8rem;
+    }
+}

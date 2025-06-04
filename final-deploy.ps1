@@ -16,7 +16,7 @@ Write-Host "Adding changes to Git..." -ForegroundColor Cyan
 git add .
 
 # Commit changes
-$commitMessage = "Updated to start with sign-up screen and added visible privacy notice"
+$commitMessage = "Updated for mobile responsiveness with viewport tags and responsive CSS"
 Write-Host "Committing with message: $commitMessage" -ForegroundColor Cyan
 git commit -m $commitMessage
 
@@ -29,4 +29,4 @@ Write-Host "Running deployment script..." -ForegroundColor Cyan
 & .\deploy.ps1
 
 Write-Host "All changes have been added to Git and deployed to Vercel." -ForegroundColor Green
-Write-Host "Your website is now live with username-only authentication and database system!" -ForegroundColor Cyan
+Write-Host "Your website is now live with mobile-responsive design and improved user experience!" -ForegroundColor Cyan

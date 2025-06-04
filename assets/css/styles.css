@@ -1065,6 +1065,8 @@ body.modal-open {
 
     .login-box {
         padding: 25px;
+        width: 90%;
+        max-width: 400px;
     }
 
     .login-header h1 {
@@ -1079,12 +1081,65 @@ body.modal-open {
     .btn-container .btn {
         width: 100%;
         max-width: 300px; /* Limit width on mobile */
+        margin-bottom: 10px;
     }
     
     .header-controls {
         top: 10px;
         right: 10px;
         padding: 8px 10px;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    
+    .chapter-container {
+        padding: 15px;
+        margin: 15px auto;
+    }
+    
+    .content-section {
+        padding: 15px;
+    }
+    
+    .answer-options {
+        grid-template-columns: 1fr; /* Stack options on mobile */
+    }
+    
+    .navigation-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+        padding: 0 10px;
+        text-align: center;
+    }
+    
+    /* Fix language selector on mobile */
+    .language-selector {
+        margin-bottom: 10px;
+    }
+    
+    /* Make logout button fit better on mobile */
+    #logout-btn, .logout-btn {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+    
+    /* Better spacing for course buttons */
+    .course .level {
+        padding: 15px;
+    }
+    
+    /* Improve form layout on mobile */
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    /* Adjust course navigation on mobile */
+    .chapter h3 {
+        font-size: 1.1rem;
     }
 }
 
@@ -1092,13 +1147,68 @@ body.modal-open {
     body {
         font-size: 0.95rem; /* Slightly smaller base font for small screens */
     }
+    
     .login-box {
         margin: 10px; /* Add margin for very small screens */
         padding: 20px;
     }
+    
     .form-group input[type="text"],
     .form-group input[type="password"],
     .form-group input[type="email"] {
+        padding: 10px;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    /* Smaller font sizes for very small screens */
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* Make "Understood" button fit better on tiny screens */
+    #understood-btn {
+        padding: 10px 15px !important;
+        font-size: 1rem !important;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    /* Improve quiz UI on tiny screens */
+    .question-container {
+        padding: 15px;
+    }
+    
+    .streak-counter {
+        font-size: 1rem;
+    }
+    
+    .check-answer-btn {
+        width: 100%;
+    }
+    
+    /* Better spacing for progress indicator */
+    .progress-container {
+        flex-wrap: wrap;
+    }
+    
+    .progress-text {
+        width: 100%;
+        text-align: center;
+        margin-top: 5px;
+    }
+}
         padding: 12px 12px 12px 45px;
     }
     .login-btn, .privacy-accept-btn {

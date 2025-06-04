@@ -27,6 +27,12 @@
     { "src": "/pages/(.*)", "dest": "/pages/$1" },
     { "src": "/backend/(.*)", "dest": "/backend/$1" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/locales/(.*)", "dest": "/locales/$1" }
+    { "src": "/locales/(.*)", "dest": "/locales/$1" },
+    { "src": "/courses/(.*)", "dest": "/pages/courses/$1" },
+    { "src": "/chapters/(.*)", "dest": "/pages/courses/english/chapters/$1" },
+    { "src": "/pages/courses/arabic/chapters/(.*)", "dest": "/pages/courses/arabic/chapters/$1" },
+    { "src": "/pages/courses/german/chapters/(.*)", "dest": "/pages/courses/german/chapters/$1" },
+    { "src": "/pages/courses/math/chapters/(.*)", "dest": "/pages/courses/math/chapters/$1" },
+    { "src": "/pages/courses/science/chapters/(.*)", "dest": "/pages/courses/science/chapters/$1" }
   ]
 }
