@@ -138,13 +138,15 @@ async function handleRegistration(username) {
         });
         
         const data = await response.json();
-        
-        if (response.ok && data.success) {
+          if (response.ok && data.success) {
             // Store auth data in localStorage
             localStorage.setItem('tutor_authenticated', 'true');
             localStorage.setItem('tutor_username', username);
             localStorage.setItem('tutor_user_id', data.userId);
             localStorage.setItem('tutor_trusted', 'false');
+            
+            // Clear any existing redirect to ensure we always go to home page
+            localStorage.removeItem('redirect_after_login');
             
             return {
                 success: true,

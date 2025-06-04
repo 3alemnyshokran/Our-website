@@ -18,22 +18,6 @@
   <script src="assets/js/db-connectivity.js" defer></script>
   <!-- Add Auth Protection -->
   <script src="assets/js/auth-protection.js"></script>
-  <!-- Redirect to signup if not authenticated -->
-  <script>
-    // Redirect to sign up page on initial load
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if cookie consent has been given first
-      if (typeof hasConsentedToCookies === 'function' && !hasConsentedToCookies()) {
-        // Wait for cookie consent before doing anything
-        return;
-      }
-      
-      // If not authenticated, redirect to register page instead of login
-      if (!isAuthenticated()) {
-        window.location.href = '/pages/auth/register.html';
-      }
-    });
-  </script>
 </head>
 <body>
   <audio id="clickSound" src="assets/audio/click.mp3" preload="auto"></audio>
@@ -79,23 +63,20 @@
   <script>
     // Check if the user is authenticated
     document.addEventListener('DOMContentLoaded', function() {
-      // If not authenticated, redirect to login page
-      if (!isAuthenticated()) {
-        localStorage.setItem('redirect_after_login', window.location.pathname + window.location.search);
-        window.location.href = 'pages/auth/login.html';
-        return;
-      }
-      
-      // If authenticated but privacy not accepted, show privacy policy
-      if (!isPrivacyAccepted()) {
-        showPrivacyModal().then(() => {
+      // Do not redirect here since we have auth-protection.js handling that
+      // Just initialize the page if the user is authenticated
+      if (isAuthenticated()) {
+        // If authenticated but privacy not accepted, show privacy policy
+        if (!isPrivacyAccepted()) {
+          showPrivacyModal().then(() => {
+            initializePage();
+          }).catch(() => {
+            // Handle case where user might close modal without accepting (if applicable)
+            logout(); // Or redirect to a page explaining why consent is needed
+          });
+        } else {
           initializePage();
-        }).catch(() => {
-          // Handle case where user might close modal without accepting (if applicable)
-          logout(); // Or redirect to a page explaining why consent is needed
-        });
-      } else {
-        initializePage();
+        }
       }
     });
     
