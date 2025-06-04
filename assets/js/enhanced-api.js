@@ -61,6 +61,14 @@ const APIManager = {
             this.endpoints.unshift(API_ENDPOINTS.RELATIVE);
         }
         
+        // Force production endpoint on mobile devices
+        if (typeof isMobileDevice === 'function' && isMobileDevice()) {
+            API_ENDPOINTS.RELATIVE = API_ENDPOINTS.PRIMARY;
+            // Always use the production endpoint first on mobile
+            this.endpoints = [API_ENDPOINTS.PRIMARY, API_ENDPOINTS.FALLBACK1, API_ENDPOINTS.FALLBACK2];
+            console.log('[MOBILE] Forcing API endpoint to PRIMARY:', API_ENDPOINTS.PRIMARY);
+        }
+        
         return this;
     },
     
@@ -259,6 +267,11 @@ const APIManager = {
       // Simplified login function
     async login(username, rememberMe) {
         try {
+            if (typeof isMobileDevice === 'function' && isMobileDevice()) {
+                console.log('[MOBILE LOGIN] Attempting login with:', { username, rememberMe });
+                console.log('[MOBILE LOGIN] Using endpoint:', this.getCurrentEndpoint());
+            }
+            
             console.log('Using enhanced login function');
             
             // Pre-login check for connectivity
