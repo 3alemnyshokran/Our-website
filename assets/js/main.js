@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if this is a page that requires authentication
     if (!window.location.pathname.includes('/pages/auth/')) {
-        // If not authenticated, redirect to login
+        // If not authenticated, redirect to register page
         if (!isAuthenticated()) {
             // Store the current page URL to redirect back after login
             localStorage.setItem('redirect_after_login', window.location.href);
-            window.location.href = '/pages/auth/login.html';
+            window.location.href = '/pages/auth/register.html';
             return;
         }
         

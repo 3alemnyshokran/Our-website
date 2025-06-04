@@ -25,12 +25,12 @@ function isPrivacyAccepted() {
     return localStorage.getItem('privacyAccepted') === 'true';
 }
 
-// Redirect to login page if not authenticated
+// Redirect to register page if not authenticated
 function requireAuth() {
     if (!isAuthenticated()) {
         // Store the current page URL to redirect back after login
         localStorage.setItem('redirect_after_login', window.location.href);
-        window.location.href = '/pages/auth/login.html';
+        window.location.href = '/pages/auth/register.html';
         return false;
     }
     return true;

@@ -16,7 +16,7 @@ const statusRoutes = require('./routes/status');
 app.use(cors());
 app.use(express.json());
 
-// Register user - username only authentication
+// Register user - username-only authentication
 app.post('/api/register', (req, res) => {
   const { username } = req.body;
   if (!username) return res.status(400).json({ error: 'Username is required' });
@@ -28,7 +28,7 @@ app.post('/api/register', (req, res) => {
       return res.status(409).json({ error: 'Username already exists' });
     }
     
-    // Create the user
+    // Create the user - no password required, just username
     const result = userQueries.createUser.run(username);
     
     res.json({ 

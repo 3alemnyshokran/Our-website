@@ -16,7 +16,7 @@ Write-Host "Adding changes to Git..." -ForegroundColor Cyan
 git add .
 
 # Commit changes
-$commitMessage = "Updated to username-only auth with device remembering and cookie consent"
+$commitMessage = "Updated to start with sign-up screen and added visible privacy notice"
 Write-Host "Committing with message: $commitMessage" -ForegroundColor Cyan
 git commit -m $commitMessage
 

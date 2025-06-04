@@ -11,6 +11,22 @@
     <script src="../../assets/js/db-connectivity.js" defer></script>
     <!-- Load Cookie Consent -->
     <script src="../../assets/js/cookie-consent.js" defer></script>
+    <style>
+        .signup-prompt {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+            color: var(--primary-color);
+            background-color: rgba(74, 108, 247, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+        }
+        
+        .signup-prompt a {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="header-controls">
@@ -34,6 +50,7 @@
                 </div>
                 <h1>Welcome Back</h1>
                 <p class="login-subtitle">Please sign in to continue your learning journey</p>
+                <p class="signup-prompt">New user? <a href="register.html">Sign up now</a> to create your account!</p>
             </div>
             
             <form id="login-form">

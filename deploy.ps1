@@ -61,6 +61,7 @@ Write-Host "Deployment complete!" -ForegroundColor Green
 Write-Host "Your site with the new authentication and database system should now be live." -ForegroundColor Cyan
 Write-Host "The site now includes username-only authentication with device remembering." -ForegroundColor Yellow
 Write-Host "Users will be prompted for cookie consent on first visit." -ForegroundColor Yellow
+Write-Host "The website now starts with the sign-up screen with visible privacy notice." -ForegroundColor Yellow
 Write-Host "Remember to test the authentication flow and database functionality on all pages." -ForegroundColor Yellow
 
 # Create a readme for the database setup

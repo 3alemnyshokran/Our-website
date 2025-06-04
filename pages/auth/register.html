@@ -6,12 +6,42 @@
     <title data-translate="register.title">Register</title>
     <link rel="stylesheet" href="../../assets/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../../assets/js/auth.js" defer></script>
-    <script src="../../assets/js/main.js" defer></script>
+    <script src="../../assets/js/auth.js" defer></script>    <script src="../../assets/js/main.js" defer></script>
     <!-- Load Cookie Consent -->
     <script src="../../assets/js/cookie-consent.js" defer></script>
     <!-- Load DB Connectivity Checker -->
     <script src="../../assets/js/db-connectivity.js" defer></script>
+    <style>
+        .privacy-notice-box {
+            background-color: var(--card-bg, #f9f9f9);
+            border: 1px solid var(--border-color, #e0e0e0);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .privacy-notice-box h3 {
+            margin-top: 0;
+            color: var(--primary-color, #4a6cf7);
+            font-size: 16px;
+        }
+        
+        .privacy-notice-box p {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .privacy-checkbox {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .privacy-checkbox input {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="header-controls">
@@ -27,13 +57,24 @@
 
     <div class="main-container">
         <div class="main-content-area">
-            <div class="auth-container">
-                <div class="auth-box register-box">
+            <div class="auth-container">                <div class="auth-box register-box">
                     <h1 data-translate="register.header">Create Account</h1>
+                    
+                    <!-- Privacy notice box -->
+                    <div class="privacy-notice-box">
+                        <h3>Privacy Notice</h3>
+                        <p>This platform collects and stores information about your learning progress and preferences. Your data is stored in our database to provide personalized learning experiences and track your progress.</p>
+                        <p>We use cookies to remember your device and login status. This helps you avoid having to log in each time you visit.</p>
+                    </div>
+                    
                     <form id="register-form">
                         <div class="input-group">
                             <label for="username" data-translate="register.usernameLabel">Username</label>
                             <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="privacy-checkbox">
+                            <input type="checkbox" id="privacy-accept" required>
+                            <label for="privacy-accept">I accept the privacy policy</label>
                         </div>
                         <button type="submit" class="auth-btn" data-translate="register.submitButton">Register</button>
                     </form>
@@ -48,13 +89,18 @@
             initializePage(); // From main.js
 
             const registerForm = document.getElementById('register-form');
-            if (registerForm) {
-                registerForm.addEventListener('submit', async (event) => {
+            if (registerForm) {                registerForm.addEventListener('submit', async (event) => {
                     event.preventDefault();
                     const username = document.getElementById('username').value.trim();
+                    const privacyAccepted = document.getElementById('privacy-accept').checked;
                     
                     if (!username) {
                         showMessage('Username is required', 'error');
+                        return;
+                    }
+                    
+                    if (!privacyAccepted) {
+                        showMessage('You must accept the privacy policy', 'error');
                         return;
                     }
                     
@@ -66,19 +112,20 @@
                     
                     try {
                         // Call handleRegistration from auth.js
-                        const result = await handleRegistration(username);
-                          if (result.success) {
+                        const result = await handleRegistration(username);                        if (result.success) {
                             showMessage('Registration successful!', 'success');
+                            
+                            // Set privacy accepted flag since user already accepted it in the form
+                            localStorage.setItem('privacyAccepted', 'true');
                             
                             // Create device token for automatic login in the future
                             const deviceToken = generateDeviceToken();
                             localStorage.setItem('tutor_device_token', deviceToken);
                             
-                            // Show privacy policy
-                            await showPrivacyModal();
-                            
                             // Redirect to home page
-                            window.location.href = '/index.html';
+                            setTimeout(() => {
+                                window.location.href = '/index.html';
+                            }, 1000);
                         } else {
                             showMessage(result.message || 'Registration failed', 'error');
                             submitBtn.textContent = originalText;

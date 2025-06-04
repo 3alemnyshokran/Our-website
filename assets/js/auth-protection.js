@@ -59,12 +59,11 @@
         try {
             // Load auth.js if needed
             await loadAuthScript();
-            
-            // If not authenticated, redirect to login
+              // If not authenticated, redirect to register page
             if (!isAuthenticated()) {
                 // Store current page URL for redirect after login
                 localStorage.setItem('redirect_after_login', window.location.href);
-                window.location.href = '/pages/auth/login.html';
+                window.location.href = '/pages/auth/register.html';
                 return;
             }
             
@@ -81,11 +80,10 @@
                 updatePageWithUserInfo();
                 // Load tracking script for course pages
                 loadTrackingScript();
-            }
-        } catch (error) {
+            }        } catch (error) {
             console.error('Authentication check failed:', error);
-            // Fallback to login page if something goes wrong
-            window.location.href = '/pages/auth/login.html';
+            // Fallback to register page if something goes wrong
+            window.location.href = '/pages/auth/register.html';
         }
     }
     

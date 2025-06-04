@@ -18,6 +18,22 @@
   <script src="assets/js/db-connectivity.js" defer></script>
   <!-- Add Auth Protection -->
   <script src="assets/js/auth-protection.js"></script>
+  <!-- Redirect to signup if not authenticated -->
+  <script>
+    // Redirect to sign up page on initial load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if cookie consent has been given first
+      if (typeof hasConsentedToCookies === 'function' && !hasConsentedToCookies()) {
+        // Wait for cookie consent before doing anything
+        return;
+      }
+      
+      // If not authenticated, redirect to register page instead of login
+      if (!isAuthenticated()) {
+        window.location.href = '/pages/auth/register.html';
+      }
+    });
+  </script>
 </head>
 <body>
   <audio id="clickSound" src="assets/audio/click.mp3" preload="auto"></audio>
